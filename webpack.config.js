@@ -1,39 +1,62 @@
 const path = require('path');
+const nodeExternals = require('webpack-node-externals');
 
-module.exports = {
-    entry: {
-    	main: './src/main.tsx'
-    },
-    devtool: 'inline-source-map',
-    mode: 'development',
-    performance: {
-        hints: false
-    },
 
-    output: {
-        path: path.join(__dirname, 'public'),
-        filename: '[name].bundle.js',
-    },
+module.exports = [
+    {
+        name: 'client',
+        entry: {
+            main: './src/client/main.tsx'
+        },
+        devtool: 'inline-source-map',
+        mode: 'development',
+        performance: {
+            hints: false
+        },
 
-    devServer: {
-        inline: true,
-        port: 8090,
-        contentBase: path.join(__dirname, 'public')
-    },
+        output: {
+            path: path.join(__dirname, 'dist', 'public'),
+            filename: '[name].bundle.js',
+        },
 
-    module: {
-        rules: [
-            {
-                test: /\.jsx?$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader'
-            },
-	    {
-	    	test: /\.tsx?$/,
-		exclude: /node_modules/,
-                include: /src/,
-		loader: 'ts-loader'
-	    }
-        ]
+        devServer: {
+            inline: true,
+            port: 8090,
+            contentBase: path.join(__dirname, 'dist', 'public')
+        },
+
+        module: {
+            rules: [
+                {
+                    test: /\.tsx?$/,
+                    exclude: /node_modules/,
+                    include: /src\/client/,
+                    loader: 'ts-loader'
+                }
+            ]
+        }
+    },
+    {
+        name: 'server',
+        target: 'node',
+        mode: 'development',
+        externals: [nodeExternals()],
+        entry: {
+            main: './src/server/server.ts'
+        },
+        output: {
+            path: path.join(__dirname, 'dist', 'server'),
+            filename: 'server.js'
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.ts$/,
+                    exclude: /node_modules/,
+                    include: /src\/server/,
+                    loader: 'ts-loader'
+                }
+            ]
+        }
     }
-}
+]
