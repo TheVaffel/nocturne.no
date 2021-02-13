@@ -3,16 +3,18 @@ import { Suspense } from 'react';
 
 import { BrowserRouter, Route, Switch, Link, /* browserHistory,*/ } from 'react-router-dom';
 
-import { DynamicComponent0, DynamicComponent1 } from './dynamic_components/dynamics.tsx';
+import { DynamicComponent0, 
+       DynamicComponent1,
+       SettingUpABlog0 } from './dynamic_components/dynamics.tsx';
 
 
 export const ContentWrapper = () => (<div>
        <h2>Content Wrapper</h2>
        <hr/>
-       { /* <BrowserRouter> */ }
        <ul>
        <li><Link to="/programming_tutorial">Tutorial</Link> </li>
        <li><Link to="/dev_blog">Dev blog</Link> </li>
+       <li><Link to="/post0">Actual content</Link></li>
        </ul>
        <Switch>
        <Route path="/programming_tutorial" >
@@ -21,7 +23,8 @@ export const ContentWrapper = () => (<div>
        <Route path="/dev_blog" >
               <DynamicComponent1 param="This is a dev blog now" />
        </Route>
+       <Route path="/post0" >
+              <SettingUpABlog0 param="blogzz" />
+       </Route>
        </Switch>
-       { /* </BrowserRouter> */ }
-       { /* this.props.children */}
        </div>);
