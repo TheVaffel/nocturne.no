@@ -184,9 +184,9 @@ module.exports = [
         module: {
             rules: [
                 {
-                    test: /\.tsx?$/,
+                    test: /\\.tsx?$/,
                     exclude: /node_modules/,
-                    include: /src\/client/,
+                    include: /src\\/client/,
                     loader: 'ts-loader'
                 }
             ]
@@ -206,9 +206,9 @@ module.exports = [
         module: {
             rules: [
                 {
-                    test: /\.ts$/,
+                    test: /\\.ts$/,
                     exclude: /node_modules/,
-                    include: /src\/server/,
+                    include: /src\\/server/,
                     loader: 'ts-loader'
                 }
             ]
