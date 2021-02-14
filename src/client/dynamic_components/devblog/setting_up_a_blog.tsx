@@ -93,13 +93,13 @@ const SettingUpABlog0: React.FunctionComponent<Props> = (props) =>
                     isn't representative for anything.
 
                     To check whether node was installed corretly, confirm that writing
-                    (<CmdPrompt >
+                    <CmdPrompt >
                         node
-                    </CmdPrompt>)
+                    </CmdPrompt>
                     or
-                    (<CmdPrompt>
+                    <CmdPrompt>
                         npm
-                    </CmdPrompt>)
+                    </CmdPrompt>
                     gives some response indicating the command was found.
                 </p>
                 <p>
