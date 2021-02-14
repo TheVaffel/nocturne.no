@@ -6,6 +6,8 @@ interface ChildrenProps {
 
 const cmdStyle = { backgroundColor: "#999999"};
 
+const codeStyle = { backgroundColor: "#CCCCCC"};
+
 export const CmdPrompt: React.FunctionComponent<ChildrenProps> = (props) =>
     (<div>
     <code style={cmdStyle}>$ {props.children}</code>
@@ -13,5 +15,5 @@ export const CmdPrompt: React.FunctionComponent<ChildrenProps> = (props) =>
 
 export const CodeBlock: React.FunctionComponent<ChildrenProps> = (props) =>
     (<div>
-        <code><pre style={cmdStyle}>{props.children}</pre></code>
+        <code><pre style={codeStyle}>{props.children}</pre></code>
     </div>)
