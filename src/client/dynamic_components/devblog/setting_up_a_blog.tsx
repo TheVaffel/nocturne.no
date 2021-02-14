@@ -129,7 +129,7 @@ const SettingUpABlog0: React.FunctionComponent<Props> = (props) =>
                 <p>
                     Next up, install everything at once:
                     <CmdPrompt>
-                        npm install --save react react-dom react-router-dom express webpack webpack-cli webpack-node-externals ts-loader typescript
+                        npm install --save react react-dom react-router-dom express webpack webpack-cli webpack-node-externals ts-loader typescript helmet
                     </CmdPrompt>
                     , and to use typescript with these, install the relevant packages:
                     <CmdPrompt>
