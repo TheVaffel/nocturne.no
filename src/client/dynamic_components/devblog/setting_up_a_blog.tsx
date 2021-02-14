@@ -145,25 +145,25 @@ const SettingUpABlog0: React.FunctionComponent<Props> = (props) =>
                         mkdir -p dist/public
                     </CmdPrompt>
                     The HTML-page is placed at <code>dist/public/index.html</code> and looks like this:
-                    <code>
-                        {'<!DOCTYPE html>' + 
-                        '  <html lang = "en">' + 
-                        '   <head>' + 
-                        '      <meta charset = "UTF-8">' + 
-                        '      <title>Nocturne.no</title>' + 
-                        '   </head>' + 
-                        '   <body>' + 
-                        '      <div id = "hello">' + 
-                        '      </div>' + 
-                        '      <script src = "main.bundle.js"></script>' + 
-                        '   </body>' + 
-                        '</html>' }
-                    </code>
+                    
+                    <CodeBlock>{`<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset = "UTF-8">
+        <title>Nocturne.no</title>
+    </head>
+    <body>
+        <div id = "hello">
+        </div>
+        <script src = "main.bundle.js"></script>
+    </body>
+</html>`}
+                    </CodeBlock>
                     When this neat little piece of code is downloaded to a user, the 
                     magic will happen in the {'div'} tag, and will be performed by the "main.bundle.js" script.
                     <br/>
                     Next up, the webpack configuration file. It looks a little bit like this:
-                    <code><pre>{`
+                    <CodeBlock>{`
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 
@@ -214,7 +214,7 @@ module.exports = [
             ]
         }
     }
-]`}</pre></code>
+]`}</CodeBlock>
                     All this code is to be put into webpack.config.js in the project root.
                     Now, a lot of things are going on here. I'll cover the most important parts:
                     <ul>
@@ -240,7 +240,7 @@ module.exports = [
 
                     As declared in the webpack configuration, the root component is expected to reside at
                     src/client/main.tsx. In this file, we can define the following simple component:
-                    <code><pre>{`
+                    <CodeBlock>{`
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
@@ -250,12 +250,12 @@ ReactDOM.render(
 	document.getElementById('hello')
 );
 
-                    `}</pre></code>
+                    `}</CodeBlock>
                     
                     Before we can show this to our impatient user, we also need to setup the server.
                     A simple express server may look like this:
 
-                    <code><pre>{`
+                    <CodeBlock>{`
 import * as express from 'express';
 import { Request, Response } from 'express';
 import * as path from 'path';
@@ -288,7 +288,7 @@ app.get('/:file_req', (req : Request, res : Response) => {
 });
 
 app.listen(port, () => console.log('Server is running on port ' + port + '!'));
-`}</pre></code>
+`}</CodeBlock>
 
                     Now, this is a bit more convoluted than strictly necessary for our blog at this point,
                     but it's all in preparation for the future. In particular the "app.get"-statements make sure we
@@ -300,7 +300,7 @@ app.listen(port, () => console.log('Server is running on port ' + port + '!'));
 
                     The last speed bump on our road is the tsconfig file that steers the typescript transpilation.
                     You can slavingly write this to tsconfig.json in the root folder of the project:
-                    <code><pre>{`
+                    <CodeBlock>{`
 {
     "compilerOptions": {
         "outDir": "./dist/",
@@ -311,7 +311,7 @@ app.listen(port, () => console.log('Server is running on port ' + port + '!'));
         "jsx": "react",
         "allowJs": true
     }
-}`}</pre></code>
+}`}</CodeBlock>
                     Personally, I'm too stupid to tell you what is going on here, probably not everything is needed.
                     But it works, and I'm not gonna complain (although you can, if you want to).
                 </p>
