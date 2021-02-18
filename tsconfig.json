@@ -3,7 +3,8 @@
     "outDir": "./dist/",
     "noImplicitAny": true,
     "sourceMap": true,
-    "module": "commonjs",
+    "module": "esnext",
+    "moduleResolution": "node",
     "target": "es5",
     "jsx": "react",
     "allowJs": true
