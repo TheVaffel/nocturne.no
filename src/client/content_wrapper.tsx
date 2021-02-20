@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Suspense } from 'react';
 
-import { BrowserRouter, Route, Switch, Link, /* browserHistory,*/ } from 'react-router-dom';
+import { Route, Switch, Link, } from 'react-router-dom';
+import { DevBlogWrapper } from './dynamic_components/devblog/devblog_wrapper.tsx'
 
 import { DynamicComponent0, 
        DynamicComponent1,
@@ -21,7 +22,8 @@ export const ContentWrapper = () => (<div>
               <DynamicComponent0 param="This is a programming tutorial now" />
        </Route>
        <Route path="/dev_blog" >
-              <DynamicComponent1 param="This is a dev blog now" />
+              { /* <DynamicComponent1 param="This is a dev blog now" /> */ }
+              <DevBlogWrapper />
        </Route>
        <Route path="/post0" >
               <SettingUpABlog0 param="blogzz" />

@@ -29,4 +29,8 @@ app.get('/:file_req', (req : Request, res : Response) => {
     serve(res, req.url);
 });
 
+app.get('/:path_req/:file_req', (req : Request, res : Response) => {
+    serve(res, req.url);
+});
+
 app.listen(port, () => console.log('Server is running on port ' + port + '!'));
