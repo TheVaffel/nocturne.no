@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { CmdPrompt, CodeBlock } from './../../common/code_format.tsx';
+import { Db } from './../../common/utils.tsx';
 
 interface Props {
     param: string
@@ -11,7 +12,7 @@ const SettingUpABlog0: React.FunctionComponent<Props> = (props) =>
             <div>
                 <h1>How to Start Blogging, Part 1</h1>
                 
-                <p>Have you ever considered starting your own blog, but didn't know where to start?
+                Have you ever considered starting your own blog, but didn't know where to start?
                     <br/>
                     If yes, I can recommend <a href='blogspot.com'>Blogspot</a> as a good tool for creating your first blog. 
                     It provides all necessary tools for getting up and running with spreading your joy and/or thoughts of your favorite subject.
@@ -21,9 +22,9 @@ const SettingUpABlog0: React.FunctionComponent<Props> = (props) =>
                     to find and read posts that I create". By the time you read this post, this blog may have undergone a number of intrusive cosmetic transformations,
                     meaning that if you expect everything to work and feel the way this blog does after you have read this post, I have bad news for you. In addition,
                     this being the first post on my blog, I may or may not make up things about my blog as we go. 
-                </p>
+
                 <h3>Prerequisites</h3>
-                <p>
+
                     I will assume a few things about you when describing the anatomy of this blog:
                     <ul>
                         <li>You have a computer you can use</li>
@@ -36,11 +37,10 @@ const SettingUpABlog0: React.FunctionComponent<Props> = (props) =>
 
                     By the way, this will only be part one out of (probably) two parts.
 
-                </p>
 
                 <h2>Overview</h2>
                     
-                <p>
+
                     The blog I'm describing today (probably the same you're reading right now) will 
                     be made using npm with Typescript, ReactJS, Webpack and express.js. 
 
@@ -82,11 +82,9 @@ const SettingUpABlog0: React.FunctionComponent<Props> = (props) =>
                     and often larger than necessary. I don't think this blog will be any different, but
                     I have tried to limit the description above to the most important components of the projects.
                     Only time will show what unnecessary packages will find their way into the blog further on.
-                </p>
-                
+
 
                 <h2>Starting up</h2>
-                <p>
                     Installing node and npm can be done from <a href="https://nodejs.org/en/download/">Node's official website</a>, 
                     or your favorite package manager if you're on a Unix based system.
                     I'd love to guide you, but there are a good number of platforms to consider, and I'm using Gentoo Linux, which
@@ -101,16 +99,15 @@ const SettingUpABlog0: React.FunctionComponent<Props> = (props) =>
                         npm
                     </CmdPrompt>
                     gives some response indicating the command was found.
-                </p>
-                <p>
+                    <Db/>
+
                     At this point, I would like to mention that I am not an expert on neither npm, Javascript or
                     web development in general. If you have been following very closely, you might have an itchling that
                     my relationship with the mention frameworks is somewhat troublesome.
-                    <br/>
+                    <Db/>
                     Anyway
-                </p>
-                
-                <p>
+                    <Db/>
+
                     To start a blog, create a new directory 
                     <CmdPrompt>
                         mkdir notastupidblog
@@ -125,8 +122,7 @@ const SettingUpABlog0: React.FunctionComponent<Props> = (props) =>
                     </CmdPrompt>
                     Npm will project its insecurities on you and ask you a bunch of questions. 
                     If anything is unclear about the questions, press enter to escape to the next.
-                </p>
-                <p>
+                    <Db/>
                     Next up, install everything at once:
                     <CmdPrompt>
                         npm install --save react react-dom react-router-dom express webpack webpack-cli webpack-node-externals ts-loader typescript helmet
@@ -135,9 +131,7 @@ const SettingUpABlog0: React.FunctionComponent<Props> = (props) =>
                     <CmdPrompt>
                         npm install --save-dev @types/express @types/react @types/react-dom @types/react-router-dom 
                     </CmdPrompt>
-                </p>
                 <h2>Writing some code</h2>
-                <p>
                     I will not be going into detail of all components that constitute a blog, but I will write a
                     couple to communicate the idea. In any case, we will first need a HTML page to put our stuff into.
                     Create some room for it:
@@ -161,7 +155,7 @@ const SettingUpABlog0: React.FunctionComponent<Props> = (props) =>
                     </CodeBlock>
                     When this neat little piece of code is downloaded to a user, the 
                     magic will happen in the {'div'} tag, and will be performed by the "main.bundle.js" script.
-                    <br/>
+                    <Db/>
                     Next up, the webpack configuration file. It looks a little bit like this:
                     <CodeBlock>{`
 const path = require('path');
@@ -233,7 +227,7 @@ module.exports = [
                         </li>
                     </ul>
 
-                    <br/>
+                    <Db/>
                     Alright, we got the skeleton and the packer up. Let's create some meat for packing.
                     I will first only show how to create a simple component. I will discuss how to stitch
                     it together with other components, and eventually, blog posts.
@@ -295,7 +289,7 @@ app.listen(port, () => console.log('Server is running on port ' + port + '!'));
                     take matches on both http-queries to the root (<code>app.get('/')</code>) and queries to any
                     file in dist/public (<code>app.get('/')</code>). The serve() function searches for the requested path in the dist/public folder.
                     If it does not find a corresponding file, it returns the index file. The reason for this will be clear a bit later.
-                    <br/>
+                    <Db/>
                     Dump that code into src/server/server.ts, and we are soon ready to go.
 
                     The last speed bump on our road is the tsconfig file that steers the typescript transpilation.
@@ -314,9 +308,9 @@ app.listen(port, () => console.log('Server is running on port ' + port + '!'));
 }`}</CodeBlock>
                     Personally, I'm too stupid to tell you what is going on here, probably not everything is needed.
                     But it works, and I'm not gonna complain (although you can, if you want to).
-                </p>
+
                 <h2>Boot 'er up</h2>
-                <p>
+
                     After that travesty, add this section in your package.json. That file should have magically appeared
                     by following the above intsructions:
                     <CodeBlock>{`
@@ -334,14 +328,14 @@ app.listen(port, () => console.log('Server is running on port ' + port + '!'));
                     </CmdPrompt>
                     To make webpack create the output files. It should output those files to dist/server and dist/public
                     respectively. If you did not get any errors (they should show up pretty clearly), then you can enjoy 
-                    the next command! If you did, well.. I hope you're able to figure it out, buddy
+                    the next command! If you did, well.. I hope you're able to figure it out, buddy. 
+                    <Db/>
                     Now, run 
                     <CmdPrompt>
                         npm run serve
                     </CmdPrompt>
                     and open up your browser at <code>localhost:3000</code>. 
                     And with that, you should have a base for a blog!
-                </p>
                     
             </div>
         );
