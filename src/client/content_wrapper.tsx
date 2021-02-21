@@ -9,7 +9,6 @@ import { SettingUpABlog0,
 
 
 export const ContentWrapper = () => (<div>
-       <hr/>
        <Switch>
        <Route exact path="/">
               <SiteIndex />
