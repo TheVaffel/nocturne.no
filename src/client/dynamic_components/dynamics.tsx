@@ -16,6 +16,5 @@ const getLazy = function<T>(str: string) : React.FunctionComponent<T> {
       return DynamicWrapper<T>(Component);
 }
 
-export const DynamicComponent0 = getLazy<{ param: string }> ('DynamicHello0');
-export const DynamicComponent1 = getLazy<{ param: string }> ('DynamicHello1');
 export const SettingUpABlog0 = getLazy<{ param: string }> ('devblog/setting_up_a_blog');
+export const SiteIndex = getLazy<{}> ('site_index');

@@ -19,7 +19,7 @@ const PostListEntry: React.FunctionComponent<PostDesc> = (props) => (
 export const DevBlogIndex: React.FunctionComponent<{}> = () => (
     <div>
         <h2>Development Blog</h2>
-        <p>
+        <div>
             Boy, are you in for a treat. This blog will focus on different development adventures I find worthy of noting down. 
             In general, I'm a graphic-intensive and playful guy, meaning computer graphics and game programming may quickily become the most prominent topics around here. 
             Otherwise, I will note down different procrastination projects as well - like how I set up this blog.
@@ -27,6 +27,6 @@ export const DevBlogIndex: React.FunctionComponent<{}> = () => (
             The latest posts upon which you can feast your eyes are found here:
 
             <PostListEntry title="How to Start Blogging" description="How I started blogging, and how you (if you really want to) can too!" url="/dev_blog/post0"/>
-        </p>
+        </div>
     </div>
 );
