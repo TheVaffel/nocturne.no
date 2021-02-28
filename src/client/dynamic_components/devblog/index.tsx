@@ -11,9 +11,6 @@ const PostListEntry: React.FunctionComponent<{metadata: Metadata}> = (props) => 
         <Link to={devblogPath + '/' + props.metadata.hash}><h3>{props.metadata.title}</h3></Link>
         {props.metadata.description}
         <br/>
-        Here is the filename:
-        <br/>
-        {devblogPath + '/' + props.metadata.fileName}
     </div>
 );
 
