@@ -36,12 +36,11 @@ extends React.Component<T & { _dcw_fileName: string }, DynamicWrapperState<T>> {
       componentDidMount() {
             const lazyComp: React.FunctionComponent<T> = 
                   getLazy<T>(this.props._dcw_fileName);
-            console.log("Mounted dynamic wrapper");
             this.setState({ component: lazyComp})
       }
 
       render() {
-            return this.state.component == undefined ? <div></div> : <this.state.component {...this.props} />;
+            return this.state.component == undefined ? <></> : <this.state.component {...this.props} />;
       }
 }
 

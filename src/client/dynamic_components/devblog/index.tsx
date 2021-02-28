@@ -24,7 +24,10 @@ export const DevBlogIndex: React.FunctionComponent<{metadata: Metadata[]}> = (pr
             <Db/>
             The latest posts upon which you can feast your eyes are found here:
 
-            {(props.metadata != undefined && props.metadata.length > 0) ? (<PostListEntry metadata={props.metadata[0]} />) : <div></div>}
+            {
+                props.metadata.map((met: Metadata) =>
+                    (<PostListEntry key={met.hash} metadata={met}/>))
+            }
         </div>
     </div>
 );

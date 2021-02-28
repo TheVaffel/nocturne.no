@@ -2,12 +2,9 @@ import * as React from 'react';
 
 import { CmdPrompt, CodeBlock } from './../../common/code_format.tsx';
 import { Db } from './../../common/utils.tsx';
+import { DevBlogPostProps } from './devblog_wrapper.tsx';
 
-interface Props {
-    param: string
-}
-
-const SettingUpABlog0: React.FunctionComponent<Props> = (props) =>
+const SettingUpABlog0: React.FunctionComponent<DevBlogPostProps> = (props) =>
         (
             <div>
                 <h1>How to Start Blogging</h1>
