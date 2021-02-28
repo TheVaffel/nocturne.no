@@ -13,7 +13,11 @@ export interface DevBlogPostProps {
     param: string;
 };
 
-export const devblogPath = "/devblog"
+export const devblogPath = "/devblog";
+
+export const getURLPart = function(metadata: Metadata) : string {
+    return metadata.fileName.substring(0, metadata.fileName.length - 4);
+}
 
 type WrapperState = {
     metadataList : Metadata[];
@@ -41,7 +45,8 @@ export class DevBlogWrapper extends React.Component<{}, WrapperState> {
             { indexRoute }
             {this.state.metadataList.map((met: Metadata) =>
             {
-                return (<Route key = {met.hash} exact path={devblogPath + '/' + met.hash}>
+                const urlPart = getURLPart(met);
+                return (<Route key = {met.hash} exact path={devblogPath + '/' + urlPart}>
                     <DynamicComponentWrapper param={"Hey"} _dcw_fileName={devblogPath.substring(1) + '/' + met.fileName} />
                 </Route>);
             }

@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 
 import { Db } from '../../common/utils.tsx';
 import { Metadata } from '../../../server/update_metadata.ts';
-import { devblogPath } from './devblog_wrapper.tsx';
+import { devblogPath, getURLPart } from './devblog_wrapper.tsx';
 
 
 const PostListEntry: React.FunctionComponent<{metadata: Metadata}> = (props) => (
     <div>
-        <Link to={devblogPath + '/' + props.metadata.hash}><h3>{props.metadata.title}</h3></Link>
+        <Link to={devblogPath + '/' + getURLPart(props.metadata)}><h3>{props.metadata.title}</h3></Link>
         {props.metadata.description}
         <br/>
     </div>
