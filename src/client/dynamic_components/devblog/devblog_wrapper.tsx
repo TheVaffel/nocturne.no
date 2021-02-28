@@ -47,7 +47,7 @@ export class DevBlogWrapper extends React.Component<{}, WrapperState> {
             {
                 const urlPart = getURLPart(met);
                 return (<Route key = {met.hash} exact path={devblogPath + '/' + urlPart}>
-                    <DynamicComponentWrapper param={"Hey"} _dcw_fileName={devblogPath.substring(1) + '/' + met.fileName} />
+                    <DynamicComponentWrapper param={""} _dcw_fileName={devblogPath.substring(1) + '/' + met.fileName} />
                 </Route>);
             }
         )}
