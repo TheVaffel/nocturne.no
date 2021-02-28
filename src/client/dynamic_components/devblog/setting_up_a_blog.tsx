@@ -60,7 +60,7 @@ const SettingUpABlog0: React.FunctionComponent<Props> = (props) =>
                     React lets the programmer write webpages in a combination of HTML and Javascript, called <i>jsx</i>.
                     Now, we aren't just using plain old Javascript either, are we? No, and in Typescript land, we 
                     will instead write our website using <i>tsx</i> files. The rabbit hole stops here,
-                    but I'm sure you could find more <a href="https://github.com/metapensiero/metapensiero.pj">convoluted ways to write websites</a>
+                    but I'm sure you could find more <a href="https://github.com/metapensiero/metapensiero.pj">convoluted ways to write websites</a> 
                     if you wanted.
 
                     <h3>Webpack</h3>
@@ -72,7 +72,7 @@ const SettingUpABlog0: React.FunctionComponent<Props> = (props) =>
                     into one or more files ready for shipping to the user. 
                     
                     <h3>express.js</h3>
-                    Tired of hearing names yet? Well, that's web development for you.
+                    Tired of hearing names yet? Well, that's web development for you. 
                     <a href="http://expressjs.com/">Express.js</a> is our server framework.
                     We have already covered what we use for creating and packing our content for shipping to the user.
                     Express will be responsible for actually shipping our files to the user.
