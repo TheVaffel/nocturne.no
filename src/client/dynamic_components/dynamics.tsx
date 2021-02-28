@@ -9,12 +9,40 @@ const DynamicWrapper = function<T>(Component: React.FunctionComponent<T>): React
              </div>);
 }
 
-const getLazy = function<T>(str: string) : React.FunctionComponent<T> {
-
-      const Component = React.lazy(() => import('./' + str + '.tsx'));
+export const getLazy = function<T>(str: string) : React.FunctionComponent<T> {
+      console.log("Lazy-getting dynamic file " + str);
+      const Component = React.lazy(() => import('./' + str));
 
       return DynamicWrapper<T>(Component);
 }
 
-export const SettingUpABlog0 = getLazy<{ param: string }> ('devblog/setting_up_a_blog');
-export const SiteIndex = getLazy<{}> ('site_index');
+interface DynamicWrapperState<T> {
+      component: React.FunctionComponent<T>;
+}
+
+export interface DWCExtraProps {
+      _dcw_fileName: string;
+};
+
+export class DynamicComponentWrapper<T> 
+extends React.Component<T & { _dcw_fileName: string }, DynamicWrapperState<T>> {
+      constructor(props: T & { _dcw_fileName: string }) {
+            super(props);
+            this.state = {
+                  component: undefined
+            };
+      }
+
+      componentDidMount() {
+            const lazyComp: React.FunctionComponent<T> = 
+                  getLazy<T>(this.props._dcw_fileName);
+            console.log("Mounted dynamic wrapper");
+            this.setState({ component: lazyComp})
+      }
+
+      render() {
+            return this.state.component == undefined ? <div></div> : <this.state.component {...this.props} />;
+      }
+}
+
+export const SiteIndex = getLazy<{}> ('site_index.tsx');

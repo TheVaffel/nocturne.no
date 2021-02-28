@@ -10,18 +10,18 @@ interface Props {
 const SettingUpABlog0: React.FunctionComponent<Props> = (props) =>
         (
             <div>
-                <h1>How to Start Blogging, Part 1</h1>
+                <h1>How to Start Blogging</h1>
                 
                 Have you ever considered starting your own blog, but didn't know where to start?
-                    <br/>
-                    If yes, I can recommend <a href='blogspot.com'>Blogspot</a> as a good tool for creating your first blog. 
-                    It provides all necessary tools for getting up and running with spreading your joy and/or thoughts of your favorite subject.
-                    <br/>
-                    If your answer to the above question is no, however, you might be in luck. This post will tell of my journey to finally put this blog
-                    into working condition. "Working condition" in the last sentence means "anyone, given the sufficient patience and/or skills, will be able
-                    to find and read posts that I create". By the time you read this post, this blog may have undergone a number of intrusive cosmetic transformations,
-                    meaning that if you expect everything to work and feel the way this blog does after you have read this post, I have bad news for you. In addition,
-                    this being the first post on my blog, I may or may not make up things about my blog as we go. 
+                <br/>
+                If yes, I can recommend <a href='http://www.blogspot.com'>Blogspot</a> as a good tool for creating your first blog. 
+                It provides all necessary tools for getting up and running with spreading your joy and/or thoughts of your favorite subject.
+                <br/>
+                If your answer to the above question is no, however, you might be in luck. This post will tell of my journey to finally put this blog
+                into working condition. "Working condition" in the last sentence means "anyone, given the sufficient patience and/or skills, will be able
+                to find and read posts that I create". By the time you read this post, this blog may have undergone a number of intrusive cosmetic transformations,
+                meaning that if you expect everything to work and feel the way this blog does after you have read this post, I have bad news for you. In addition,
+                this being the first post on my blog, I may or may not make up things about my blog as we go. 
 
                 <h3>Prerequisites</h3>
 

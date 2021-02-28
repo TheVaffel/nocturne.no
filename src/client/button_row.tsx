@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { BrowserRouter, Link } from 'react-router-dom';
 
+import { devblogPath } from './dynamic_components/devblog/devblog_wrapper.tsx'
 
 const tabTitleStyle = { backgroundColor: "powderblue", 
                         display: "inline",
@@ -11,6 +12,6 @@ const TabTitle: React.FunctionComponent<React.PropsWithChildren<{}>> = (props) =
 export const TopButtonRow = () => (<div>
        <Link to="/"><TabTitle>Home</TabTitle></Link>
        { /* <Link to="/programming_tutorial"><TabTitle>Tutorial Blog</TabTitle></Link> */ }
-       <Link to="/dev_blog"><TabTitle>Tech Blog</TabTitle></Link>
+       <Link to={devblogPath}><TabTitle>Tech Blog</TabTitle></Link>
        {/* <Link to="/dev_blog"><TabTitle>Rant Blog</TabTitle></Link> */ }
        </div>);

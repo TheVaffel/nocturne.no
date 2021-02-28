@@ -1,18 +1,51 @@
 import * as React from 'react';
 import { Route } from 'react-router-dom';
+import * as axios_ from 'axios';
 
-import { SettingUpABlog0 } from '../dynamics.tsx';
+const axios  = axios_.default;
+
+import { DynamicComponentWrapper } from '../dynamics.tsx';
 import { DevBlogIndex } from './index.tsx';
 
-interface Post {
-    path: string;
-    component: React.ComponentType;
+import { Metadata } from '../../../server/update_metadata';
+
+export interface DevBlogPostProps {
+    param: string;
+};
+
+export const devblogPath = "/devblog"
+
+type WrapperState = {
+    metadataList : Metadata[];
+};
+
+export class DevBlogWrapper extends React.Component<{}, WrapperState> { 
+    state: WrapperState = {
+        metadataList: []
+    };
+    
+    constructor(props : {}) {
+        super(props);
+        axios.get(devblogPath + '/list').then((res) => {
+            this.setState({ metadataList: res.data });
+            console.log("Fetched metadatalist with length " + res.data.length);
+        });
+    }
+
+    render() {
+        const indexRoute = (<Route key = {0} exact path={devblogPath + '/'}>
+            <DevBlogIndex metadata={this.state.metadataList}/>
+        </Route>)
+
+        return <div>
+            { indexRoute }
+            {this.state.metadataList.map((met: Metadata) =>
+            {
+                return (<Route key = {met.hash} exact path={devblogPath + '/' + met.hash}>
+                    <DynamicComponentWrapper param={"Hey"} _dcw_fileName={devblogPath.substring(1) + '/' + met.fileName} />
+                </Route>);
+            }
+        )}
+        </div>
+    }
 }
-
-const devblogPath = "/dev_blog"
-const posts: Post[] = [{ path: "/post0", component: SettingUpABlog0 }, { path: "/", component: DevBlogIndex }];
-
-export const DevBlogWrapper: React.FunctionComponent<{}> = () => (<div>{posts.map((post) => 
-    (<Route key={post.path} exact path={devblogPath + post.path}>
-        <post.component />
-    </Route>))}</div>);

@@ -2,21 +2,22 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 
 import { Db } from '../../common/utils.tsx';
+import { Metadata } from '../../../server/update_metadata.ts';
+import { devblogPath } from './devblog_wrapper.tsx';
 
-interface PostDesc {
-    title: string;
-    description: string;
-    url: string;
-};
 
-const PostListEntry: React.FunctionComponent<PostDesc> = (props) => (
+const PostListEntry: React.FunctionComponent<{metadata: Metadata}> = (props) => (
     <div>
-        <Link to={props.url}><h3>{props.title}</h3></Link>
-        {props.description}
+        <Link to={devblogPath + '/' + props.metadata.hash}><h3>{props.metadata.title}</h3></Link>
+        {props.metadata.description}
+        <br/>
+        Here is the filename:
+        <br/>
+        {devblogPath + '/' + props.metadata.fileName}
     </div>
 );
 
-export const DevBlogIndex: React.FunctionComponent<{}> = () => (
+export const DevBlogIndex: React.FunctionComponent<{metadata: Metadata[]}> = (props) => (
     <div>
         <h2>Development Blog</h2>
         <div>
@@ -26,7 +27,7 @@ export const DevBlogIndex: React.FunctionComponent<{}> = () => (
             <Db/>
             The latest posts upon which you can feast your eyes are found here:
 
-            <PostListEntry title="How to Start Blogging" description="How I started blogging, and how you (if you really want to) can too!" url="/dev_blog/post0"/>
+            {(props.metadata != undefined && props.metadata.length > 0) ? (<PostListEntry metadata={props.metadata[0]} />) : <div></div>}
         </div>
     </div>
 );
