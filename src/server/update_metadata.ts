@@ -96,8 +96,8 @@ const getMetadataForFile = function(dir: string, filename : string) : Promise<Me
             updateDate: "",
             hash: "",
             fileName: "",
-        }));
-        metadataContent = fs.readFileSync(metadataContent);
+        }, null, '\t'));
+        metadataContent = fs.readFileSync(metadataFile);
         console.log("Successfully created new metadata file");
     }
 
