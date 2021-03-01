@@ -17,3 +17,7 @@ export const CodeBlock: React.FunctionComponent<ChildrenProps> = (props) =>
     (<div>
         <code><pre style={codeStyle}>{props.children}</pre></code>
     </div>)
+
+
+// Inline code
+export const Ic: React.FunctionComponent<React.PropsWithChildren<{}>> = (props) => (<code>{props.children}</code>);

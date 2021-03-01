@@ -11,7 +11,5 @@ const TabTitle: React.FunctionComponent<React.PropsWithChildren<{}>> = (props) =
 
 export const TopButtonRow = () => (<div>
        <Link to="/"><TabTitle>Home</TabTitle></Link>
-       { /* <Link to="/programming_tutorial"><TabTitle>Tutorial Blog</TabTitle></Link> */ }
        <Link to={devblogPath}><TabTitle>Tech Blog</TabTitle></Link>
-       {/* <Link to="/dev_blog"><TabTitle>Rant Blog</TabTitle></Link> */ }
        </div>);
