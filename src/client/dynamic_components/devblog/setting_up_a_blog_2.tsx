@@ -84,8 +84,179 @@ const SettingUpABlog1: React.FunctionComponent<DevBlogPostProps> = (props) =>
         <Db/>
         That was briefly how front-end routing works with <Ic>react-router</Ic>. Next up, we'll show 
         how we use laziness to utterly defeat the purpose of front-end routing.
-        <Db/>
+        
         <h2>Laziness</h2>
+
+        I'm especially lazy, and it shows.
+
+        <h2>Laziness, but for Real</h2>
+
+        Laziness, in the programming world, is to not do more work than you need to. As opposed to the real
+        world, it's something you as a programmer must generally put an extra effort into to make work.
+        <Db/>
+        In the context of web development, laziness is to not give the user something he hasn't asked for.
+        Following the description of back-end and front-end routing above, it is apparent that the back-end 
+        approach is the laziest, as the content the user wants is only loaded in when they navigate around.
+        <Db/>
+        But I'm using front-end routing, ain't I? Well.. Yes. I'm not going to go in depth on why I chose
+        the combination of front-end and laziness, in fear that I may end up realizing it doesn't make sense. 
+        <Db/>
+        What we want to do here, is to load most of the website infrastructure (the index page etc.) at the beginning,
+        but wait with loading the posts until the user wants them. In the distant future, it is 
+        estimated that the amount of blog post content may far supercede the amount of infrastructure,
+        which tells us that this separation makes sense, at least somewhat.
+
+        <h3>The Backend Shenanigans</h3>
+
+        Laziness with Webpack turns out to be rather straight-forward. Remember; Webpack is in charge of 
+        translating our different .tsx files into a .js-bundle that the browser can understand. However,
+        boiling all our .tsx-files into the same .js-bundle will give us a very un-lazy solution, where 
+        all the juicy web content is loaded at once.
+        <Db/>
+        What we want is separate .js-bundles, one for each blog post, as well as one for the website 
+        infrastructure. In the shady streets of Webpackburg, this is known as <i>code splitting</i>.
+        <Db/>
+        To tell webpack to split the code, all we need to write is
+
+        <CodeBlock>{`filename: '[name].bundle.js',`}
+        </CodeBlock>
+        in place of our previous <Ic>filename</Ic>, which was <Ic>'main.bundle.js'</Ic>.
+        <Db/>
+        I can hear you ask yourself what on earth is going on here. Well, we have simply told Webpack
+        to not name all bundles the same, but give each of them corresponding names. Oh, and another thing,
+        in tsconfig.json, you'll need to amp up the module ES version:
+        <CodeBlock>{`module: esnext`}
+        </CodeBlock>
+        I'm not even gonna admit how much time I spent before realizing that.
+        <Db/>
+        The cautious reader may have discovered that we still haven't told webpack <i>how</i> to
+        split up the code. How does it now what parts to put together and not?
+        <Db/>
+        The answer is <i>dynamic import statements</i>. Namely, in newer versions of Javascript, you
+        can import new code on the fly, and it even interracts well with React. It will look
+        something like this:
+        <CodeBlock>{`
+const DynamicComponent = React.lazy(() => import('dynamic_component.tsx));
+<React.Suspense fallback={<div>Loading...</div>}>
+    <DynamicComponent param="hey" />
+</React.Suspense>
+`}</CodeBlock>
+        where the file dynamic_component.tsx contains something like the following:
+        <CodeBlock>{`
+import * as React from 'react';
+
+const DynamicComponent: React.FunctionComponent<{param: string}> = (props) => (
+    <div>
+        <h2>Hi, the parameter is {props.param}</h2>
+    </div>
+);
+
+export default DynamicComponent;
+`}</CodeBlock>
+        
+        This might look straightforward for those familiar with React and Typescript. I will highlight
+        some key points: The import statement here is what I referred to as a dynamic import statement. 
+        Dynamic because the content of the file you request can originate from a string that is constructed
+        on runtime, i.e. Javascript does not have to know beforehand what will be requested.
+        <Db/>
+        The <Ic>React.lazy</Ic> function turns the newly imported content to a component. It requires the
+        component to be the default export of the imported file.
+        <Db/>
+        The <Ic>Suspense</Ic> block makes sure the user has something to watch while they wait for the
+        lazy content to arrive. Remember that the component will in general be requested over the network when 
+        the user asks for it. In this case, we will show the user a nice and helpful "Loading..." label
+        while they wait impatiently.
+
+        <h3>Now, Kiss</h3>
+        As a reader you may still feel a bit left in the dark whet it comes to exactly how this couples with
+        the routing we set up earlier. It goes a bit like this:
+        <Db/>
+        First, we put all of the above into a nice handy-dandy function, <Ic>getLazy</Ic>:
+        <CodeBlock>{`
+const DynamicWrapper = function<T>(Component: React.FunctionComponent<T>): React.FunctionComponent<T> {
+    return (props) => (<div>
+           <Suspense fallback={<div>Loading...</div>}>
+           <Component {...props} />
+           </Suspense>
+           </div>);
+}
+
+export const getLazy = function<T>(str: string) : React.FunctionComponent<T> {
+    const Component = React.lazy(() => import('./' + str));
+
+    return DynamicWrapper<T>(Component);
+}
+`}</CodeBlock>
+        now, calling the function will give us a nice component that will give us some eye-candy (although boring
+        eye-candy) while we wait for our beloved content to arrive.
+
+        <h3>Wrappng up Laziness</h3>
+
+        Now, when we call this function, things will already be set in motion. The client shoots a message
+        to the server, which in turn gets riled up and tries to produce the content we asked for. So if we 
+        really want to be lazy, we can't just go on and call this function anywhere. How do we
+        make sure it is only called when the user navigates to the right place?
+        <Db/>
+        We repeat the entire programming model of React - wrap it in another component. Such a wrapper component 
+        may look like this:
+        <CodeBlock>{`
+interface DynamicWrapperState<T> {
+    component: React.FunctionComponent<T>;
+}
+
+export class DynamicComponentWrapper<T> 
+    extends React.Component<T & { _dcw_fileName: string }, DynamicWrapperState<T>> {
+      constructor(props: T & { _dcw_fileName: string }) {
+            super(props);
+            this.state = {
+                  component: undefined
+            };
+      }
+
+      componentDidMount() {
+            const lazyComp: React.FunctionComponent<T> = 
+                  getLazy<T>(this.props._dcw_fileName);
+            this.setState({ component: lazyComp})
+      }
+
+      render() {
+            return this.state.component == undefined ? <></> : <this.state.component {...this.props} />;
+      }
+}`}</CodeBlock>
+        If you know React with Typescript, there isn't much magic happening here. Most notably,
+        we have the the component stored as part of the component state, since it will be changed by
+        internal function calls. The lazy function is only called when this component
+        is mounted, e.g. when it is first initialized. 
+        <Db/>
+        Extra care is taken in the render function for the very rare case of <Ic>render()</Ic> 
+        getting called before the <Ic>setState()</Ic> call finishes (which might happen, from what I learned
+        tinkering around with this).
+        <Db/>
+        We have here used the name <Ic>_dcw_fileName</Ic> for the name of the file we want to
+        lazy-load. It is given such a convoluted name in order to avoid collision with other prop members
+        we want to relay further to the lazily loaded component.
+
+        <h3>Wrapping up Laziness</h3>
+
+        Given this wrapper component that wraps the other wrapper component, we can finally smash it into
+        a router: 
+
+        <CodeBlock>{`
+<Route exact path="/dynamic_path">
+    <DynamicComponentWrapper param="Hey" _dcw_fileName="dynamic_component.tsx" />
+</Route>
+        `}</CodeBlock>
+
+        and there we have it. The dynamic component will now be loaded when the user navigates to 
+        <Ic>/dynamic_path</Ic>, not a second before. 
+        <Db/> 
+        When Webpack is run, it will pack all the files that the <i>main</i> file depend on, into
+        the main bundle. It will also do so similarily for all other script files. What it will <b>not</b> do,
+        is pack the things referenced by dynamic import statements only, into the main bundle.
+        Thus, when a file is requested, if it is not part of the "static" dependencies of the main file,
+        there will be sent a request for it to the server.
+
+        <h2>Blog Post Metadata</h2>
     </div>);
 
 export default SettingUpABlog1;
