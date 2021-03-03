@@ -25,7 +25,7 @@ const SettingUpABlog1: React.FunctionComponent<DevBlogPostProps> = (props) =>
         <ul>
             <li>Routing</li>
             <li>Lazy loading</li>
-            <li>Generate post metadata</li>
+            <li>Blog post metadata</li>
         </ul>
     
         As mentioned, these are merely the most interesting aspects of the blog at this point. I
@@ -135,15 +135,14 @@ const SettingUpABlog1: React.FunctionComponent<DevBlogPostProps> = (props) =>
         The answer is <i>dynamic import statements</i>. Namely, in newer versions of Javascript, you
         can import new code on the fly, and it even interracts well with React. It will look
         something like this:
-        <CodeBlock>{`
-const DynamicComponent = React.lazy(() => import('dynamic_component.tsx));
+        <CodeBlock>{`const DynamicComponent = React.lazy(() => import('dynamic_component.tsx));
 <React.Suspense fallback={<div>Loading...</div>}>
     <DynamicComponent param="hey" />
 </React.Suspense>
 `}</CodeBlock>
         where the file dynamic_component.tsx contains something like the following:
-        <CodeBlock>{`
-import * as React from 'react';
+        <CodeBlock>
+{`import * as React from 'react';
 
 const DynamicComponent: React.FunctionComponent<{param: string}> = (props) => (
     <div>
@@ -172,8 +171,8 @@ export default DynamicComponent;
         the routing we set up earlier. It goes a bit like this:
         <Db/>
         First, we put all of the above into a nice handy-dandy function, <Ic>getLazy</Ic>:
-        <CodeBlock>{`
-const DynamicWrapper = function<T>(Component: React.FunctionComponent<T>): React.FunctionComponent<T> {
+        <CodeBlock>
+{`const DynamicWrapper = function<T>(Component: React.FunctionComponent<T>): React.FunctionComponent<T> {
     return (props) => (<div>
            <Suspense fallback={<div>Loading...</div>}>
            <Component {...props} />
@@ -199,8 +198,8 @@ export const getLazy = function<T>(str: string) : React.FunctionComponent<T> {
         <Db/>
         We repeat the entire programming model of React - wrap it in another component. Such a wrapper component 
         may look like this:
-        <CodeBlock>{`
-interface DynamicWrapperState<T> {
+        <CodeBlock>
+{`interface DynamicWrapperState<T> {
     component: React.FunctionComponent<T>;
 }
 
@@ -241,8 +240,8 @@ export class DynamicComponentWrapper<T>
         Given this wrapper component that wraps the other wrapper component, we can finally smash it into
         a router: 
 
-        <CodeBlock>{`
-<Route exact path="/dynamic_path">
+        <CodeBlock>
+{`<Route exact path="/dynamic_path">
     <DynamicComponentWrapper param="Hey" _dcw_fileName="dynamic_component.tsx" />
 </Route>
         `}</CodeBlock>
@@ -257,6 +256,139 @@ export class DynamicComponentWrapper<T>
         there will be sent a request for it to the server.
 
         <h2>Blog Post Metadata</h2>
+
+        Lastly, I'll tell you the secrets of how blog post metadata is stored. 
+        Now, I'm not gonna pretend I'm definitely the only one doing it this way, but I think it differs
+        from the more mainstream method which is involves a database.
+        <Db/>
+        First of all, what metadata am I talking about? The purpose of my metadata is to contain information
+        the web page can use to
+        <ul>
+            <li>show the user to help them decide what to read (or not to read)</li>
+            <li>sort blog posts by newest to oldest</li>
+            <li>show when the post was last updated</li>
+            <li>know in what (.tsx) file the blog post can be found</li>
+        </ul>
+        With these requirements, I eventually ended up with metadata containing title, description (both
+        human-readable), create- and update date, file name and also a hash of the .tsx file. The reason
+        for including a hash in this list becomes painfully clear later.
+        <Db/>
+        First, how do we store the metadata? I went simple on this one. I thought a database would be a bit 
+        more bother than strictly necessary, so all the information above is put into plain .json files.
+        For example, here is the .json file with the metadata for the first blog post in this series:
+        <CodeBlock>
+{`{
+	"title": "How to Start Blogging, Part 1",
+	"description": "How I started blogging, and how you (if you really want to) can too!",
+	"createDate": 1614111623804,
+	"updateDate": 1614524522240,
+	"hash": "ba9f24bac7b46888e945dc0a3df512af",
+	"fileName": "setting_up_a_blog.tsx"
+}        
+`}</CodeBlock>
+        
+        <h3>Creating and reading the metadata</h3>
+        The way the metadata is read is pretty straight-forward: On server startup, before starting listening
+        to incoming requests, the server goes through all blog posts. For each blog post, it tries to find the 
+        corresponding metadata file. Their file names will be the same, although the metadata has another suffix
+        and is placed in another directory. If no metadata file can be found, a new empty one is created.
+        <Db/>
+        Now, we don't want to push empty metadata files to the user. When having ensured the metadata file exists,
+        the server considers the title. If the title is not filled out, the blog post is completely ignored.
+        The idea here is that the author (me, for the most part), fills in the title and description by hand
+        after the file has been created on the first server startup. This means the server must be restarted
+        once more after the author thas authored what he want to author, but this is supposed to happen in the
+        development stage, and the metadata file will be caught at once when deployed in production since it's
+        stored in Git.
+        <Db/>
+        When the title is defined, however, the corresponding post is good to go. The server further looks at the
+        hash in the metadata file. If this, again, doesn't exist (is empty), it computes the MD5-hash of the post 
+        file and stores it. At this point, the file is officially initialized, and we set 
+        the <Ic>createdDate</Ic> and <Ic>updatedDate</Ic> to the current time and set the fileName.
+        <Db/>
+        Lastly, if the hash <i>is</i> define, we know the blog post is already "active". The last thing we
+        do, is to compute the hash of the blog post file again. If it <i>differs</i> from the hash stored
+        in the metadata file, the file has been updated. In that case, we update the hash and the updatedDate.
+        Eventually, all metadata corresponding to "active" blog posts are stored in an array that is available 
+        to the server as it turns to the public to accept requests.
+        <Db/>
+        You may have noticed I didn't put much sample code in the above sections. And that's right. I didn't.
+        I just want to emphasize that the juicy part of this is the algorithm, the implementation
+        can be done by any farmer with a computer science degree.
+        <Db/>
+        If you <i>really</i> want to see what it looks like in practice, refer to the Github link to the 
+        right commit at the top of this post. That will let you enjoy how I coped with promises in 
+        nested async calls and the included anxiety.
+
+        <h3>Why Did We Do This Again?</h3>
+
+        Good question. First, let's set up an endpoint at the Express server for the client to get relevant metadata:
+        <CodeBlock>
+{`app.get('/devblog/list', (req : Request, res: Response) => {
+    res.send(metadataList);
+});
+`}</CodeBlock>
+        Now, when the user navigates to the index to the dev blog, the magic happens. The client sends
+        the request to <Ic>/devblog/list</Ic> and uses the resulting list to show the user a selection of 
+        blog posts they may or may not enjoy. In code, this is
+        <CodeBlock>
+{`constructor(props : {}) {
+    super(props);
+    axios.get(devblogPath + '/list').then((res) => {
+        this.setState({ metadataList: res.data });
+        console.log("Fetched metadatalist with length " + res.data.length);
+    });
+}
+`}</CodeBlock>
+        inside the top-level devblog-route component. Here, <Ic>axios</Ic> is a random http-request
+        library I stumbled upon. Works great, but don't let it stop you in your quest if you have 
+        your own favorite already. This allows us to put the following in the render function:
+        <CodeBlock>
+{`{this.state.metadataList.map((met: Metadata) =>
+    {
+        const urlPart = getURLPart(met);
+        return (<Route key = {met.hash} exact path={devblogPath + '/' + urlPart}>
+            <DynamicComponentWrapper param={""} _dcw_fileName={devblogPath.substring(1) + '/' + met.fileName} />
+        </Route>);
+    }
+)}`}
+        </CodeBlock>
+        Here, we run a fancy <Ic>.map</Ic>-function over the meadata list and create a new <Ic>Route</Ic> component
+        for each element in the list. The metadata contains information of where the blog post can be found,
+        and we use it to create a dynamic component from the file. Another notable aspect of the code above, is that
+        we include a <Ic>key</Ic> in the <Ic>Route</Ic> component. This is necessary whenever React component
+        is constructed from an array like it is above. The key must be unique, and I've decided to be fancy and use
+        our hash value for this.
+        <Db/>
+        Finally - we want to give the user a human-readable (where we assume the user is human) list of posts
+        to read. We will again use a map. In the render function of the index component of the dev blog, we have this:
+        <CodeBlock>
+{`{
+    props.metadata.map((met: Metadata) =>
+        (<PostListEntry key={met.hash} metadata={met}/>))
+}`}</CodeBlock>
+        Here, we have received the metadata list as a gift from above, i.e. it was put in the props by
+        the top-level dev blog component. The <Ic>PostListEntry</Ic> component gives an entry like this:
+        <CodeBlock>
+{`const PostListEntry: React.FunctionComponent<{metadata: Metadata}> = (props) => (
+    <div>
+        <Link to={devblogPath + '/' + getURLPart(props.metadata)}><h3>{props.metadata.title}</h3></Link>
+        {props.metadata.description}
+        <br/>
+    </div>
+);
+`}
+        </CodeBlock>
+        <Db/>
+        And that's it!
+        <h2>Doing sums</h2>
+        To sum up - I've given some pointers on how this blog is put together at the time of writing.
+        There is little reason to believe it will stay exactly like this for very long, but traces
+        of the ideas here are likely to remain for a good while.
+        <Db/>
+        I hope it was at least somewhat useful. I haven't put up a comment section yet, but I'm sure
+        I'm gonna get a healthy amount of Rick Rolls, or whatever the kids like nowaday, down there when I've
+        made it. Or constructive feedback, whichever I deserve the most.
     </div>);
 
 export default SettingUpABlog1;
