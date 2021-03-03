@@ -44,13 +44,13 @@ export class DevBlogWrapper extends React.Component<{}, WrapperState> {
         return <div>
             { indexRoute }
             {this.state.metadataList.map((met: Metadata) =>
-            {
-                const urlPart = getURLPart(met);
-                return (<Route key = {met.hash} exact path={devblogPath + '/' + urlPart}>
-                    <DynamicComponentWrapper param={""} _dcw_fileName={devblogPath.substring(1) + '/' + met.fileName} />
-                </Route>);
-            }
-        )}
+                {
+                    const urlPart = getURLPart(met);
+                    return (<Route key = {met.hash} exact path={devblogPath + '/' + urlPart}>
+                        <DynamicComponentWrapper param={""} _dcw_fileName={devblogPath.substring(1) + '/' + met.fileName} />
+                    </Route>);
+                }
+            )}
         </div>
     }
 }
