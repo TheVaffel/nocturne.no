@@ -10,7 +10,7 @@ import { DevBlogIndex } from './index.tsx';
 import { Metadata } from '../../server/update_metadata';
 
 export interface DevBlogPostProps {
-    param: string;
+    metadata: Metadata;
 };
 
 export const devblogPath = "/devblog";
@@ -47,7 +47,8 @@ export class DevBlogWrapper extends React.Component<{}, WrapperState> {
                 {
                     const urlPart = getURLPart(met);
                     return (<Route key = {met.hash} exact path={devblogPath + '/' + urlPart}>
-                        <DynamicComponentWrapper param={""} _dcw_fileName={devblogPath.substring(1) + '/posts/' + met.fileName} />
+                        <DynamicComponentWrapper metadata={met}
+                            _dcw_fileName={devblogPath.substring(1) + '/posts/' + met.fileName} />
                     </Route>);
                 }
             )}

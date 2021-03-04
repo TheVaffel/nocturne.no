@@ -1,13 +1,14 @@
 import * as React from 'react';
-
+import { DevBlogPostProps } from '../devblog_wrapper.tsx';
 import { CmdPrompt, CodeBlock } from './../../common/code_format.tsx';
 import { Db } from './../../common/utils.tsx';
-import { DevBlogPostProps } from '../devblog_wrapper.tsx';
+import { PostHeader } from './../../common/post_utils.tsx';
+
 
 const SettingUpABlog0: React.FunctionComponent<DevBlogPostProps> = (props) =>
         (
             <div>
-                <h1>How to Start Blogging</h1>
+                <PostHeader metadata={props.metadata}></PostHeader>
                 
                 Have you ever considered starting your own blog, but didn't know where to start?
                 <br/>

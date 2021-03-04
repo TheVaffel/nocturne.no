@@ -3,10 +3,11 @@ import * as React from 'react';
 import { DevBlogPostProps } from '../devblog_wrapper.tsx';
 import { Ic, CodeBlock } from '../../common/code_format.tsx';
 import { Db } from '../../common/utils.tsx';
+import { PostHeader } from '../../common/post_utils.tsx';
 
 const SettingUpABlog1: React.FunctionComponent<DevBlogPostProps> = (props) =>
     (<div>
-        <h1>How to Start Blogging Part 2</h1>
+        <PostHeader metadata={props.metadata}></PostHeader>
         After a bit of tinkering about, I've finally gotten around to write the second installment
         about how this blog came to be.
         <Db/>
