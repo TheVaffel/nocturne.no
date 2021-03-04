@@ -12,7 +12,12 @@ const port = 3000;
 let metadataList: Metadata[][];
 updateMetadata().then((res : Metadata[][]) =>
     {
-        metadataList = res;
+        const sortedLists = res.map((mets: Metadata[]) =>
+            {
+                mets.sort((a, b) => a.createDate > b.createDate ? -1 : 1);
+                return mets;
+            });
+        metadataList = sortedLists;
 
         console.dir("MetadataList = " + JSON.stringify(metadataList));
         main();
