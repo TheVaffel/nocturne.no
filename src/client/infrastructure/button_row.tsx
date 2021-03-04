@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BrowserRouter, Link } from 'react-router-dom';
 
-import { devblogPath } from './dynamic_components/devblog/devblog_wrapper.tsx'
+import { devblogPath } from '../devblog/devblog_wrapper.tsx'
 
 const tabTitleStyle = { backgroundColor: "powderblue", 
                         display: "inline",

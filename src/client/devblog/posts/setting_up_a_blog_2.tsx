@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { DevBlogPostProps } from './devblog_wrapper.tsx';
+import { DevBlogPostProps } from '../devblog_wrapper.tsx';
 import { Ic, CodeBlock } from '../../common/code_format.tsx';
 import { Db } from '../../common/utils.tsx';
 

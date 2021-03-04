@@ -44,4 +44,4 @@ extends React.Component<T & { _dcw_fileName: string }, DynamicWrapperState<T>> {
       }
 }
 
-export const SiteIndex = getLazy<{}> ('site_index.tsx');
+export const SiteIndex = getLazy<{}> ('misc_views/site_index.tsx');

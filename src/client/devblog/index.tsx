@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
-import { Db } from '../../common/utils.tsx';
-import { Metadata } from '../../../server/update_metadata.ts';
+import { Db } from '../common/utils.tsx';
+import { Metadata } from '../../server/update_metadata.ts';
 import { devblogPath, getURLPart } from './devblog_wrapper.tsx';
 
 

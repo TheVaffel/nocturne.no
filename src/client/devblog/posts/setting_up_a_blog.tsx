@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { CmdPrompt, CodeBlock } from './../../common/code_format.tsx';
 import { Db } from './../../common/utils.tsx';
-import { DevBlogPostProps } from './devblog_wrapper.tsx';
+import { DevBlogPostProps } from '../devblog_wrapper.tsx';
 
 const SettingUpABlog0: React.FunctionComponent<DevBlogPostProps> = (props) =>
         (

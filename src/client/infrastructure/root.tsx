@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Header } from './header.tsx';
 import { BrowserRouter } from 'react-router-dom';
-import { ContentWrapper } from './content_wrapper.tsx';
 
+import { ContentWrapper } from './content_wrapper.tsx';
+import { Header } from './header.tsx';
 
 export const Root = () =>
         (

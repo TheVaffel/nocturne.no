@@ -6,7 +6,7 @@ module.exports = [
     {
         name: 'client',
         entry: {
-            main: './src/client/main.tsx'
+            main: './src/client/infrastructure/main.tsx'
         },
         devtool: 'inline-source-map',
         mode: 'development',

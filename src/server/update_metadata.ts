@@ -1,8 +1,7 @@
 import * as fs from 'fs';
 import { Md5 } from 'ts-md5';
 
-const postDirectoryPrefix = './src/client/dynamic_components';
-const avoidFiles = {'index.tsx': false, 'devblog_wrapper.tsx': false};
+const postDirectoryPrefix = './src/client';
 const postDirectories : string[] = ['devblog'];
 const metadataDirectorySuffix = '/metadata';
 
@@ -18,6 +17,7 @@ export interface Metadata {
 const getMetadataFileName = (fileName : string) : string => {
     const spl = fileName.split('/');
     const lastPart : string = spl.pop();
+    spl.pop();
     return spl.join('/')  + metadataDirectorySuffix + '/' +
         lastPart.substring(0, lastPart.length - 4) + '.json';
 }
@@ -77,10 +77,6 @@ const updateFileMetadata = (metadata : Metadata, postFileName : string) : [Metad
 
 const getMetadataForFile = function(dir: string, filename : string) : Promise<Metadata> {
     const fullFileName = dir + '/' + filename;
-    if (filename in avoidFiles || filename.substring(filename.length - 4) != '.tsx') {
-        console.log("Ignoring path " + fullFileName);
-        return new Promise((res, rej) => rej());
-    }
     
     const metadataFile = getMetadataFileName(fullFileName);
     let metadataContent: Buffer;
@@ -156,13 +152,11 @@ export const updateMetadata = function() : Promise<Metadata[][]> {
 
     let pr = new Promise<Metadata[][]>((resolve, reject) => { 
         const metadataPrs = postDirectories.map((dirPart) => {
-            const dir = postDirectoryPrefix + '/' + dirPart;
+            const dir = postDirectoryPrefix + '/' + dirPart + '/posts';
             return getMetadataListPromise(dir);
             
         });
         return Promise.all(metadataPrs).then(resolve);
     });
-    // console.log("Returning metadata list = " + metadataList);
-    // return metadataList;
     return pr;
 };

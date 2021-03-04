@@ -7,7 +7,7 @@ const axios  = axios_.default;
 import { DynamicComponentWrapper } from '../dynamics.tsx';
 import { DevBlogIndex } from './index.tsx';
 
-import { Metadata } from '../../../server/update_metadata';
+import { Metadata } from '../../server/update_metadata';
 
 export interface DevBlogPostProps {
     param: string;
@@ -47,7 +47,7 @@ export class DevBlogWrapper extends React.Component<{}, WrapperState> {
                 {
                     const urlPart = getURLPart(met);
                     return (<Route key = {met.hash} exact path={devblogPath + '/' + urlPart}>
-                        <DynamicComponentWrapper param={""} _dcw_fileName={devblogPath.substring(1) + '/' + met.fileName} />
+                        <DynamicComponentWrapper param={""} _dcw_fileName={devblogPath.substring(1) + '/posts/' + met.fileName} />
                     </Route>);
                 }
             )}
