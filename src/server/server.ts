@@ -37,19 +37,15 @@ function main() : void {
         res.sendFile(filename);
     }
 
-    app.get('/devblog/list', (req : Request, res: Response) => {
+    app.get('/devblog_list', (req : Request, res: Response) => {
         res.send(metadataList[0]);
     });
 
     app.get('/', (req : Request, res: Response) => {
         serve(res, '/index.html');
     });
-
-    app.get('/:file_req', (req : Request, res : Response) => {
-        serve(res, req.url);
-    });
-
-    app.get('/:path_req/:file_req', (req : Request, res : Response) => {
+    
+    app.get(/(\/.*)*/, (req : Request, res : Response) => {
         serve(res, req.url);
     });
 

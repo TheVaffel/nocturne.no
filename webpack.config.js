@@ -26,6 +26,18 @@ module.exports = [
                     exclude: /node_modules/,
                     include: /src\/client/,
                     loader: 'ts-loader'
+                },
+                {
+                    test: /\.s[ac]ss$/i,
+                    exclude: /node_modules/,
+                    include: /src\/client/,
+                    use: ["style-loader", "css-loader", "sass-loader"]
+                },
+                {
+                    test: /\.png$/,
+                    exclude: /node_modules/,
+                    include: /src\/client/,
+                    loader: 'file-loader'
                 }
             ]
         }

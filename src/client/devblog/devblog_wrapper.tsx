@@ -13,7 +13,8 @@ export interface DevBlogPostProps {
     metadata: Metadata;
 };
 
-export const devblogPath = "/devblog";
+export const devblogPathUrl = "/eno/devblog";
+export const devblogPathLocal = "/devblog";
 
 export const getURLPart = function(metadata: Metadata) : string {
     return metadata.fileName.substring(0, metadata.fileName.length - 4);
@@ -30,14 +31,14 @@ export class DevBlogWrapper extends React.Component<{}, WrapperState> {
     
     constructor(props : {}) {
         super(props);
-        axios.get(devblogPath + '/list').then((res) => {
+        axios.get('/devblog_list').then((res) => {
             this.setState({ metadataList: res.data });
             console.log("Fetched metadatalist with length " + res.data.length);
         });
     }
 
     render() {
-        const indexRoute = (<Route key = {0} exact path={devblogPath + '/'}>
+        const indexRoute = (<Route key = {0} exact path={devblogPathUrl + '/'}>
             <DevBlogIndex metadata={this.state.metadataList}/>
         </Route>)
 
@@ -46,9 +47,9 @@ export class DevBlogWrapper extends React.Component<{}, WrapperState> {
             {this.state.metadataList.map((met: Metadata) =>
                 {
                     const urlPart = getURLPart(met);
-                    return (<Route key = {met.hash} exact path={devblogPath + '/' + urlPart}>
+                    return (<Route key = {met.hash} exact path={devblogPathUrl + '/' + urlPart}>
                         <DynamicComponentWrapper metadata={met}
-                            _dcw_fileName={devblogPath.substring(1) + '/posts/' + met.fileName} />
+                            _dcw_fileName={devblogPathLocal.substring(1) + '/posts/' + met.fileName} />
                     </Route>);
                 }
             )}
