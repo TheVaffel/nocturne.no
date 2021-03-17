@@ -1,10 +1,14 @@
 import * as React from 'react';
 
+import { useSetLangContext } from '../infrastructure/root.tsx';
+    
 import { Db } from '../common/utils.tsx';
-import { Toggle, LangToggle } from '../common/toggle.tsx';
-import { GlobalProps } from '../infrastructure/root.tsx';
 
-const SiteIndexNo: React.FunctionComponent<GlobalProps> = (props) => (
+const SiteIndexNo: React.FunctionComponent<{}> = () => {
+    
+    const langState = useSetLangContext({isNorwegian: true, canChange: true});
+
+    return (
     <div>
         <h2>Hei!</h2>
         Siden du er her, er du antakeligvis nysgjerrig på hva greia med denne siden er. 
@@ -16,6 +20,7 @@ const SiteIndexNo: React.FunctionComponent<GlobalProps> = (props) => (
         Vær obs på at alt i området er under bygging.
 
     </div>
-);
+    );
+}
 
 export default SiteIndexNo;

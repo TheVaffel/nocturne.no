@@ -5,7 +5,6 @@ import { Db } from '../common/utils.tsx';
 import { Metadata } from '../../server/update_metadata.ts';
 import { devblogPathUrl, getURLPart } from './devblog_wrapper.tsx';
 
-
 const PostListEntry: React.FunctionComponent<{metadata: Metadata}> = (props) => (
     <div>
         <Link to={devblogPathUrl + '/' + getURLPart(props.metadata)}><h3>{props.metadata.title}</h3></Link>
@@ -14,7 +13,8 @@ const PostListEntry: React.FunctionComponent<{metadata: Metadata}> = (props) => 
     </div>
 );
 
-export const DevBlogIndex: React.FunctionComponent<{metadata: Metadata[]}> = (props) => (
+export const DevBlogIndex: React.FunctionComponent<{metadata: Metadata[]}> = (props) => {
+    return (
     <div>
         <h2>Development Blog</h2>
         <div>
@@ -30,4 +30,5 @@ export const DevBlogIndex: React.FunctionComponent<{metadata: Metadata[]}> = (pr
             }
         </div>
     </div>
-);
+    );
+}

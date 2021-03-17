@@ -1,7 +1,11 @@
 import * as React from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { LangContextStruct } from '../infrastructure/root';
 
-import { getLangIsNorwegian, getLangCanChange, replaceCurrentUrlLangPrefix } from '../infrastructure/root.tsx';
+import { LangContext } from '../infrastructure/root.tsx';
+
+import { 
+  replaceCurrentUrlLangPrefix } from '../infrastructure/root.tsx';
 
 import './toggle.scss';
 
@@ -30,26 +34,20 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (props) =>
     </label>
   </div>);
 
-  export const LangToggle: React.FunctionComponent<{style?: Object}> = (props) =>
-  {
-    const isNorw = getLangIsNorwegian();
-    const canChange = getLangCanChange();
-    const history = useHistory();
-    const location = useLocation(); // To force update on url change
-
-    const onClick = (b: boolean) => {
-      const isNorw = getLangIsNorwegian();
-      const canChange = getLangCanChange();
-
-      if (!canChange) {
+export const LangToggle: React.FunctionComponent<{style?: Object}> = (props) => {
+  const langContext: LangContextStruct = React.useContext(LangContext);
+  const history = useHistory();
+  
+  const onClick = (b: boolean) => {
+      if (!langContext.canChange) {
         return;
       }
 
-      const newPref = (isNorw ? 'en' : 'no');
-      const newUrl = replaceCurrentUrlLangPrefix(newPref);
+      langContext.setNorwegianAndCanChange({isNorwegian: !b, canChange: true});
+      const newUrl = replaceCurrentUrlLangPrefix(b ? 'en' : 'no', history.location.pathname);
       history.push(newUrl);
-    };
+  }
 
-    return <Toggle state={!isNorw} name='oentuho' style={props.style}
-      onChange={onClick} disabled={!canChange} />
-  };
+  return <Toggle state={!langContext.isNorwegian} name='oeunthoeu' style={props.style} 
+            onChange={onClick} disabled={!langContext.canChange} />
+};

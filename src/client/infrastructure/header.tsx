@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { Route } from 'react-router-dom';
 
-import { GlobalProps } from './root.tsx';
 import { TopButtonRow } from './button_row.tsx';
 
-import { Toggle, LangToggle } from '../common/toggle.tsx';
+import { LangToggle } from '../common/toggle.tsx';
 
-export const Header : React.FunctionComponent<GlobalProps> = (props) =>
+export const Header : React.FunctionComponent<{}> = () =>
    {
       return (<div>
        <h1>Nocturne.no</h1>
