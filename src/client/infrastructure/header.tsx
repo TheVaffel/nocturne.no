@@ -1,21 +1,20 @@
 import * as React from 'react';
-import { Route } from 'react-router-dom';
 
 import { TopButtonRow } from './button_row.tsx';
 
 import { LangToggle } from '../common/toggle.tsx';
+import { LangContext, LangContextStruct } from './root.tsx';
+
+const headerTexts = ['    - Hjemmet til en blogg, eller to',
+                     '    - Home of a blog or two'];
 
 export const Header : React.FunctionComponent<{}> = () =>
    {
+      const langState : LangContextStruct = React.useContext(LangContext);
       return (<div>
        <h1>Nocturne.no</h1>
-       <Route exact path={["/en*", "/"]}>
-         <h2>    - Home of a blog or two</h2>
-      </Route>
-      <Route path="/no*">
-         <h2>    - Hjemmet til en blogg, eller to</h2>
-      </Route>
-      <LangToggle style={{float: "right"}}/>
+       <h2>{headerTexts[Math.max(0, langState.langIndex)]}</h2>
+       <LangToggle style={{float: "right"}}/>
        <br/>
        <TopButtonRow />
        </div>);

@@ -6,7 +6,7 @@ import { Db } from '../common/utils.tsx';
 
 const SiteIndex: React.FunctionComponent<{}> = () => {
 
-    const langState = useSetLangContext({isNorwegian: false, canChange: true});
+    const langState = useSetLangContext({langIndex: 1, canChange: true});
 
     return (
         <div>

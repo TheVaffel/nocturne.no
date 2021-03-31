@@ -41,6 +41,12 @@ function main() : void {
         res.send(metadataList[0]);
     });
 
+    app.get('/tutorial_lists', (req : Request, res: Response) => {
+        console.dir("Giving tutorial lists: ")
+        console.dir([metadataList[1], metadataList[2]]);
+        res.send([metadataList[1], metadataList[2]]);
+    });
+
     app.get('/', (req : Request, res: Response) => {
         serve(res, '/index.html');
     });

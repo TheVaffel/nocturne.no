@@ -24,7 +24,7 @@ export const DevBlogWrapper = (props: {}) => {
         <DevBlogIndex metadata={metadataList} />
     </Route>);
 
-    const langState = useSetLangContext({isNorwegian: false, canChange: false});
+    const langState = useSetLangContext({langIndex: 1, canChange: false});
 
     return (<>
         { indexRoute }

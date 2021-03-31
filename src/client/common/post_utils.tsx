@@ -1,6 +1,19 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
+
 import { Metadata } from '../../server/update_metadata';
 import { printDate } from './utils.tsx';
+
+import { getURLPart } from '../devblog/devblog_wrapper.tsx';
+
+
+export const PostListEntry: React.FunctionComponent<{metadata: Metadata, blogUrl: string}> = (props) => (
+    <div>
+        <Link to={props.blogUrl + '/' + getURLPart(props.metadata)}><h3>{props.metadata.title}</h3></Link>
+        {props.metadata.description}
+        <br/>
+    </div>
+);
 
 export const PostHeader : React.FunctionComponent<{metadata : Metadata}> = (props) =>
     (<>

@@ -1,17 +1,9 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 
 import { Db } from '../common/utils.tsx';
 import { Metadata } from '../../server/update_metadata.ts';
-import { devblogPathUrl, getURLPart } from './devblog_wrapper.tsx';
-
-const PostListEntry: React.FunctionComponent<{metadata: Metadata}> = (props) => (
-    <div>
-        <Link to={devblogPathUrl + '/' + getURLPart(props.metadata)}><h3>{props.metadata.title}</h3></Link>
-        {props.metadata.description}
-        <br/>
-    </div>
-);
+import { PostListEntry } from '../common/post_utils.tsx';
+import { devblogPathUrl } from './devblog_wrapper.tsx';
 
 export const DevBlogIndex: React.FunctionComponent<{metadata: Metadata[]}> = (props) => {
     return (
@@ -26,7 +18,7 @@ export const DevBlogIndex: React.FunctionComponent<{metadata: Metadata[]}> = (pr
 
             {
                 props.metadata.map((met: Metadata) =>
-                    (<PostListEntry key={met.hash} metadata={met}/>))
+                    (<PostListEntry key={met.hash} metadata={met} blogUrl={devblogPathUrl}/>))
             }
         </div>
     </div>

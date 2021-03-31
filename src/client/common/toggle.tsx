@@ -4,9 +4,6 @@ import { LangContextStruct } from '../infrastructure/root';
 
 import { LangContext } from '../infrastructure/root.tsx';
 
-import { 
-  replaceCurrentUrlLangPrefix } from '../infrastructure/root.tsx';
-
 import './toggle.scss';
 
 interface ToggleProps {
@@ -37,17 +34,17 @@ export const Toggle: React.FunctionComponent<ToggleProps> = (props) =>
 export const LangToggle: React.FunctionComponent<{style?: Object}> = (props) => {
   const langContext: LangContextStruct = React.useContext(LangContext);
   const history = useHistory();
+  const [setFromClick, setSetFromClick] = React.useState(false);
   
   const onClick = (b: boolean) => {
       if (!langContext.canChange) {
         return;
       }
-
-      langContext.setNorwegianAndCanChange({isNorwegian: !b, canChange: true});
-      const newUrl = replaceCurrentUrlLangPrefix(b ? 'en' : 'no', history.location.pathname);
-      history.push(newUrl);
+      
+      setSetFromClick(true);
+      langContext.setLangIndexAndCanChange({langIndex: (b ? 1 : 0), canChange: true});
   }
 
-  return <Toggle state={!langContext.isNorwegian} name='oeunthoeu' style={props.style} 
+  return <Toggle state={langContext.langIndex == 1} name='langToggle' style={props.style} 
             onChange={onClick} disabled={!langContext.canChange} />
 };

@@ -1,10 +1,4 @@
 import * as React from 'react';
-import * as axios_ from 'axios';
-
-const axios  = axios_.default;
-
-import { useHistory } from 'react-router-dom';
-import { Toggle } from './toggle';
 
 // Double break
 export const Db: React.FunctionComponent = () => (<div><br style={{"display": "block", "margin": "10px 0"}} /></div>);
@@ -39,9 +33,8 @@ export const useFetch = function<T>(url: string, defaultValue: T) : T {
     const [data, setData] = React.useState(defaultValue);
 
     async function fetchData() {
-        const response = await fetch(url);
-        axios.get('/devblog_list').then((res) => {
-            setData(res.data);
+        fetch(url).then((response) => {
+            response.json().then(data => setData(data));
         });
     }
 

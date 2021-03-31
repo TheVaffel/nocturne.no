@@ -2,7 +2,11 @@ import * as fs from 'fs';
 import { Md5 } from 'ts-md5';
 
 const postDirectoryPrefix = './src/client';
-const postDirectories : string[] = ['devblog'];
+const postDirectories : [string, (fileName: string) => boolean][] = 
+    [['devblog', (_) => true], 
+    ['tutorial', (name) => name.endsWith('.no.tsx')], 
+    ['tutorial', (name) => name.endsWith('.en.tsx')]];
+
 const metadataDirectorySuffix = '/metadata';
 
 export interface Metadata {
@@ -12,7 +16,16 @@ export interface Metadata {
     updateDate: Date;
     hash: string;
     fileName: string;
+    urlPath: string;
 };
+
+const getURLPartFromFileName = function(str: string) {
+    return str.substring(0, str.length - 4);
+}
+
+const getURLPart = function(metadata: Metadata) : string {
+    return getURLPartFromFileName(metadata.fileName);
+}
 
 const getMetadataFileName = (fileName : string) : string => {
     const spl = fileName.split('/');
@@ -22,19 +35,19 @@ const getMetadataFileName = (fileName : string) : string => {
         lastPart.substring(0, lastPart.length - 4) + '.json';
 }
 
-const missesTitle = (metadata : Metadata) : Boolean => {
+const missesTitle = (metadata : Metadata) : boolean => {
     return !('title' in metadata) || 
         typeof metadata['title'] != 'string' || 
         (metadata['title'] as string).length == 0;
 }
 
-const missesHash = (metadata : Metadata) : Boolean => {
+const missesHash = (metadata : Metadata) : boolean => {
     return !('hash' in metadata) ||
         typeof metadata['hash'] != 'string' ||
         (metadata['hash'] as string).length == 0;
 }
 
-const updateFileMetadata = (metadata : Metadata, postFileName : string) : [Metadata, Boolean] => {
+const updateFileMetadata = (metadata : Metadata, postFileName : string) : [Metadata, boolean] => {
     
     const lastPart = postFileName.substring(postFileName.lastIndexOf('/') + 1);
 
@@ -54,9 +67,14 @@ const updateFileMetadata = (metadata : Metadata, postFileName : string) : [Metad
         return [Object.assign({}, metadata, { 'hash': hashish,
             'createDate': nowDate,
             'updateDate': nowDate,
-            'fileName': lastPart}), true];
+            'fileName': lastPart,
+            'urlPath': getURLPartFromFileName(lastPart)}), true];
     
     } else {
+        if (metadata.urlPath == '' || metadata.urlPath == undefined) {
+            metadata = Object.assign({}, metadata, { 'urlPath': getURLPart(metadata) });
+        }
+
         // Has hash, check if updated
         const readFile = fs.readFileSync(postFileName);
         const hashish = Md5.hashStr(readFile.toString());
@@ -66,8 +84,7 @@ const updateFileMetadata = (metadata : Metadata, postFileName : string) : [Metad
             
             const nowDate = Date.now();
             return [Object.assign({}, metadata, { 'hash': hashish,
-                'updateDate': nowDate,
-                'fileName': lastPart }), true]; // filename not really necessary in the future
+                'updateDate': nowDate}), true]; // filename not really necessary in the future
         }
         
         console.log("[updateFileMetadata] File " + postFileName + " was up to date, ignoring");
@@ -92,6 +109,7 @@ const getMetadataForFile = function(dir: string, filename : string) : Promise<Me
             updateDate: "",
             hash: "",
             fileName: "",
+            urlPath: "",
         }, null, '\t'));
         metadataContent = fs.readFileSync(metadataFile);
         console.log("Successfully created new metadata file");
@@ -125,7 +143,9 @@ const getMetadataForFile = function(dir: string, filename : string) : Promise<Me
     });
 }
 
-const getMetadataListPromise = function(dir : string) : Promise<Metadata[]> {
+const getMetadataListPromise = function(dir : string, 
+    filter: (fileName: string) => boolean) : Promise<Metadata[]> {
+
     return new Promise((resolve, reject) => {
         fs.readdir(dir, (error, files) => {
             if (error) {
@@ -134,7 +154,9 @@ const getMetadataListPromise = function(dir : string) : Promise<Metadata[]> {
             }
             
             console.log("Found files " + files);
-            const metadataPromises = files.map(filename => {
+            const metadataPromises = files
+                .filter(filter)
+                .map(filename => {
                 return getMetadataForFile(dir, filename);
             });
             
@@ -151,9 +173,9 @@ export const updateMetadata = function() : Promise<Metadata[][]> {
     let metadataList : Metadata[] = [];
 
     let pr = new Promise<Metadata[][]>((resolve, reject) => { 
-        const metadataPrs = postDirectories.map((dirPart) => {
+        const metadataPrs = postDirectories.map(([dirPart, filter]) => {
             const dir = postDirectoryPrefix + '/' + dirPart + '/posts';
-            return getMetadataListPromise(dir);
+            return getMetadataListPromise(dir, filter);
             
         });
         return Promise.all(metadataPrs).then(resolve);
