@@ -9,10 +9,6 @@ import { LangContext, LangContextStruct } from '../infrastructure/root.tsx';
 import { TutorialIndexNo } from './index.no.tsx';
 import { TutorialIndexEn } from './index.en.tsx';
 
-export interface DevBlogPostProps {
-    metadata: Metadata;
-};
-
 export const tutorialUrlNo = "/no/introduksjon_til_python";
 export const tutorialUrlEn = "/en/introduction_to_python";
 
