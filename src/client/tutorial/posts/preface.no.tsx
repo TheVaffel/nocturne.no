@@ -10,7 +10,7 @@ const PrefaceNo = (props: TutorialPostProps) => (
     <PostHeader metadata={props.metadata}/>
     Det er mye å irritere seg over i denne verden.
     <Db />
-    Noe jeg bruker mye tid på å irritere meg over, er hvor lite i denne verden jeg forstår. Og det er en del.
+    Noe jeg bruker mye tid på å irritere meg over, er alt i denne verden jeg ikke forstår. Og det er en del.
     <Db />
     Hvordan fungerer en bil, for eksempel? Drivstoff eller elektrisk energi går inn, eksos går ut og hjulene ruller - 
     men det er forstatt mange ubesvarte spørsmål. Er du heldig, kan du ett og annet om hvordan f. eks. en tradisjonell bil omdanner
@@ -20,7 +20,7 @@ const PrefaceNo = (props: TutorialPostProps) => (
     <Db />
     Hvor går grensen? 
     <Db />
-    Trenger Jeg å <i>forstå</i> en bil for å snakke om den?
+    Trenger jeg å <i>forstå</i> en bil for å snakke om den?
     <Db />
     Trenger jeg å <i>forstå</i> en bil for å kunne kjøre den? 
     <Db />
@@ -32,7 +32,7 @@ const PrefaceNo = (props: TutorialPostProps) => (
     ordet <i>forstå</i> inneholder ikke noe eksakt kriterium som må være oppfylt for at noe skal være <i>forstått</i>.
     <Db />
     Hva vil vi egentlig formidle når vi sier at vi <i>forstår</i> hvordan biler fungerer? 
-    Jeg kunne sagt det for å formidle at jeg vet hvordan drivstoffet forflytter seg i bilen, forbrennes og skaper
+    Jeg kunne sagt det for å formidle at jeg vet hvordan drivstoffet forflytter seg i bilen, forbrennes og 
     skaper drivkraft i motoren (med andre ord, jeg ville løyet).
     <Db />
     Jeg kunne brukt samme setning til å formidle at jeg vet hvor man skal trykke, tråkke og vri for å kjøre
