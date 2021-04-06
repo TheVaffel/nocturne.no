@@ -24,11 +24,9 @@ export const TutorialIndexNo = (props: {metadatas: Metadata[][]}) => (
             Den er beregnet på begynnere.
 
             <Db />
-            Om dette hørtes interessant ut, kan du begynne med å lese <a href={tutorialUrlNo + '/forord'} >forordet</a> for en mer 
+            Om dette hørtes interessant ut, kan du begynne med å lese <a href={tutorialUrlNo + '/forord'} > forordet</a> for en mer 
             utfyllende introduksjon til denne bloggserien.
-
         </div>
-
 
         {
             props.metadatas[0].map((met: Metadata) =>
