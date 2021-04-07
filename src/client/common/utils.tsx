@@ -26,7 +26,7 @@ function ordinal_suffix_of(i : number) : string {
 }
 
 export const printDate = function(date: Date) : string {
-    return ordinal_suffix_of(date.getDay()) + " of " +  months[date.getMonth()] + " " + date.getFullYear();
+    return ordinal_suffix_of(date.getDate()) + " of " +  months[date.getMonth()] + " " + date.getFullYear();
 }
 
 export const useFetch = function<T>(url: string, defaultValue: T) : T {
