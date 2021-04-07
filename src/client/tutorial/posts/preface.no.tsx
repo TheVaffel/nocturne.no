@@ -46,7 +46,7 @@ const PrefaceNo = (props: TutorialPostProps) => (
     Uansett, la oss snakke om programmering.
     <Db />
     Målet mitt med denne bloggserien er å gi deg, min kjære leser, en innføring i <b>programmering</b> (eller <b>koding</b>) i Python. 
-    Jeg vil gi deg en forståelse for hvordan programmering fungerer, og hva det kan brukes til.
+    Jeg vil gi deg en forståelse for hvordan programmering fungerer og hva det kan brukes til.
 
     <Db />
     Ordet <i>forståelse</i> i setningen over har jeg allerede brukt altfor mye plass på å definere.
@@ -61,7 +61,7 @@ const PrefaceNo = (props: TutorialPostProps) => (
     Det er altså en sjanse for at bloggen ikke er ferdigskrevet når du starter lesingen.
     Jeg har per nå ingen fast plan for når nye innlegg skal bli skrevet eller lagt ut, eller hvor mange innlegg jeg vil ha, men
     målet er at nye innlegg i den grunnleggende delen av innføringen skal komme ut med noen dagers, maks én ukes mellomrom.
-    Du kan følge med på <a href="https://github.com/TheVaffel/nocturne.no">Github-siden</a> til denne bloggen
+    Du kan følge med på <a href="https://github.com/TheVaffel/nocturne.no">Github-siden</a> til denne nettsiden
     for å få en idé om hvilken del av dette nettstedet jeg legger arbeid i til en hver tid (om jeg ikke satser all 
     tid på et helt annet plutselig innfall).
     <Db />
