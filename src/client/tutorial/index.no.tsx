@@ -9,7 +9,7 @@ import { Db } from '../common/utils.tsx';
 
 export const TutorialIndexNo = (props: {metadatas: Metadata[][]}) => (
     <div>
-        <h2>Introduksjon til litt av hvert</h2>
+        <h2>Innføring til programmering i Python</h2>
         <div>
             Liker du å lære nye ting? 
             <Db />
