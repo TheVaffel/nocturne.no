@@ -16,11 +16,17 @@ const TabTitle: React.FunctionComponent<React.PropsWithChildren<{}>> =
  (props) => 
  (<div style={tabTitleStyle}>{props.children}</div>)
 
+const homeText = ["Hjem", "Home"];
+const techBlogText = ["Utviklerblogg", "Devblog"];
+const pythonTutorialText = ["Innføring i Python", "Introduction to Python"];
+
 export const TopButtonRow = () => {
    const langState: LangContextStruct = React.useContext(LangContext);
+   const langInd = Math.max(langState.langIndex, 0);
+
    return (<div>
-       <Link to="/"><TabTitle>Home</TabTitle></Link>
-       <Link to={devblogPathUrl}><TabTitle>Tech Blog</TabTitle></Link>
-       <Link to={rootTutorialUrls[Math.max(langState.langIndex, 0)]}><TabTitle>Tutorial</TabTitle></Link>
+       <Link to="/"><TabTitle>{homeText[langInd]}</TabTitle></Link>
+       <Link to={devblogPathUrl}><TabTitle>{techBlogText[langInd]}</TabTitle></Link>
+       <Link to={rootTutorialUrls[Math.max(langState.langIndex, 0)]}><TabTitle>{pythonTutorialText[langInd]}</TabTitle></Link>
        </div>);
 }
