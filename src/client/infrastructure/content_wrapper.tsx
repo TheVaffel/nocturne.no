@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import { LangContext, LangContextStruct } from '../infrastructure/root.tsx';
 import { DevBlogWrapper, devblogPathUrl } from '../devblog/devblog_wrapper.tsx'
-import { TutorialWrapper, rootTutorialUrls } from '../tutorial/tutorial_wrapper.tsx';
+import { TutorialWrapper, rootTutorialUrls } from '../python_tutorial/tutorial_wrapper.tsx';
 
 import { SiteIndexEn, SiteIndexNo } from '../dynamics.tsx';
 

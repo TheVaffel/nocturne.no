@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { LangContext } from '../infrastructure/root.tsx';
 import { devblogPathUrl } from '../devblog/devblog_wrapper.tsx'
-import { rootTutorialUrls } from '../tutorial/tutorial_wrapper.tsx';
+import { rootTutorialUrls } from '../python_tutorial/tutorial_wrapper.tsx';
 import { LangContextStruct } from './root.tsx';
 
 const tabTitleStyle = { backgroundColor: "powderblue", 
