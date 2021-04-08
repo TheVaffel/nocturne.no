@@ -4,6 +4,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 import * as helmet from 'helmet';
 import { updateMetadata, Metadata } from './update_metadata.ts';
+import { initStatistics, incrementLoadCount } from './statistics.ts';
 
 const app = express();
 
@@ -23,6 +24,11 @@ updateMetadata().then((res : Metadata[][]) =>
         main();
     });
 
+initStatistics().catch((err: Error) => {
+    console.log("Was unable to initialize statistics: " + err);
+    process.exit(-1);
+});
+
 function main() : void {
     app.use(helmet());
 
@@ -32,6 +38,7 @@ function main() : void {
 
         if (!fs.existsSync(filename)) {
             filename = path.resolve(path.join('./dist/public/index.html'));
+            incrementLoadCount();
         }
 
         res.sendFile(filename);
@@ -48,6 +55,7 @@ function main() : void {
     });
 
     app.get('/', (req : Request, res: Response) => {
+        incrementLoadCount();
         serve(res, '/index.html');
     });
     
