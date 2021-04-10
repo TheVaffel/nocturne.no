@@ -21,7 +21,7 @@ export const TutorialIndexNo = (props: {metadatas: Metadata[][]}) => (
             Om du svarte ja, kan du bare glede deg!
             <Db />
             Dette er en innføring i programmering med programmeringsspråket Python.
-            Den er beregnet på begynnere.
+            Den er beregnet på nybegynnere.
 
             <Db />
             Om dette hørtes interessant ut, kan du begynne med å lese <a href={tutorialUrlNo + '/forord'} > forordet</a> for en mer 

@@ -39,7 +39,7 @@ const PrefaceNo = (props: TutorialPostProps) => (
     bilen (også en løgn, per skrivende stund).
     <Db />
     Hva det vil si at vi <i>forstår</i> hvordan biler fungerer er altså avhengig av hva vi vil formidle. 
-    Det er konteksten som avgjør hva ordet <i>forstår</i> betyr. Jakten på <i>forståelse</i> kan altså være en
+    Det er konteksten som avgjør hva ordet <i>forstår</i> betyr. Jakten på <i>forståelse</i> kan altså være
     et uendelig jag etter sammenhenger og kunnskap, men i praksis finnes det alltid et kunnskapsnivå som er <i>godt nok</i> for enhver mening vi vil uttrykke med ordet.
     <Db />
     <Db />
