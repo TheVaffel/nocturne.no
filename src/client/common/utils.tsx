@@ -6,7 +6,10 @@ export const Db: React.FunctionComponent = () => (<div><br style={{"display": "b
 /*
  * Date utils
  */
-const months : string[] = ["January", "February", "March", "April", "May", "June", "July", 
+const monthsNo : string[] = ["januar", "februar", "mars", "april", "mai", "juni", "juli", "august", "september",
+    "oktober", "november", "desember"];
+
+const monthsEn : string[] = ["January", "February", "March", "April", "May", "June", "July", 
     "August", "September", "October", "November", "December"];
 
 // Copy-paste from https://stackoverflow.com/questions/13627308/add-st-nd-rd-and-th-ordinal-suffix-to-a-number
@@ -25,8 +28,12 @@ function ordinal_suffix_of(i : number) : string {
     return i + "th";
 }
 
-export const printDate = function(date: Date) : string {
-    return ordinal_suffix_of(date.getDate()) + " of " +  months[date.getMonth()] + " " + date.getFullYear();
+export const printDateEn = function(date: Date) : string {
+    return ordinal_suffix_of(date.getDate()) + " of " +  monthsEn[date.getMonth()] + " " + date.getFullYear();
+}
+
+export const printDateNo = function(date: Date) : string {
+    return date.getDate() + ". " + monthsNo[date.getMonth()] + " " + date.getFullYear();
 }
 
 export const useFetch = function<T>(url: string, defaultValue: T) : T {

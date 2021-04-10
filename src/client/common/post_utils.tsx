@@ -2,7 +2,8 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 
 import { Metadata } from '../../server/update_metadata';
-import { printDate } from './utils.tsx';
+import { printDateEn, printDateNo } from './utils.tsx';
+import { LangContextStruct, LangContext } from '../infrastructure/root.tsx';
 
 export const PostListEntry: React.FunctionComponent<{metadata: Metadata, blogUrl: string}> = (props) => (
     <div>
@@ -12,9 +13,17 @@ export const PostListEntry: React.FunctionComponent<{metadata: Metadata, blogUrl
     </div>
 );
 
-export const PostHeader : React.FunctionComponent<{metadata : Metadata}> = (props) =>
-    (<>
+const createdTexts: string[] = ["Skrevet", "Created"];
+const updatedTexts: string[] = ["Sist oppdatert", "Last updated"];
+
+export const PostHeader : React.FunctionComponent<{metadata : Metadata}> = (props) => {
+    const langState: LangContextStruct = React.useContext(LangContext);
+    const langIndex = Math.max(0, langState.langIndex);
+    const printDate = langIndex == 0 ? printDateNo : printDateEn;
+
+    return (<>
         <h1>{props.metadata.title}</h1>
-        <h4>Created: {printDate(new Date(props.metadata.createDate))}<br/>
-            Updated: {printDate(new Date(props.metadata.updateDate))}</h4>
+        <h4>{createdTexts[langIndex]}: {printDate(new Date(props.metadata.createDate))}<br/>
+            {updatedTexts[langIndex]}: {printDate(new Date(props.metadata.updateDate))}</h4>
     </>);
+}
