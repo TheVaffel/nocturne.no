@@ -4,8 +4,8 @@ import { Md5 } from 'ts-md5';
 const postDirectoryPrefix = './src/client';
 const postDirectories : [string, (fileName: string) => boolean][] = 
     [['devblog', (_) => true], 
-    ['tutorial', (name) => name.endsWith('.no.tsx')], 
-    ['tutorial', (name) => name.endsWith('.en.tsx')]];
+    ['python_tutorial', (name) => name.endsWith('.no.tsx')], 
+    ['python_tutorial', (name) => name.endsWith('.en.tsx')]];
 
 const metadataDirectorySuffix = '/metadata';
 

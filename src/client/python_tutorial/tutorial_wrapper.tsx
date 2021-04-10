@@ -14,7 +14,7 @@ export const tutorialUrlEn = "/en/introduction_to_python";
 
 export const rootTutorialUrls = [tutorialUrlNo, tutorialUrlEn];
 
-export const localUrl = 'tutorial';
+export const localUrl = 'python_tutorial';
 
 interface MetadataMap {
     [key: string]: Metadata[];
