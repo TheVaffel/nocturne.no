@@ -15,7 +15,7 @@ updateMetadata().then((res : Metadata[][]) =>
     {
         const sortedLists = res.map((mets: Metadata[]) =>
             {
-                mets.sort((a, b) => a.createDate > b.createDate ? -1 : 1);
+                mets.sort((a, b) => a.createDate < b.createDate ? -1 : 1);
                 return mets;
             });
         metadataList = sortedLists;
