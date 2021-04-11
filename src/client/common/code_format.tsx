@@ -4,9 +4,10 @@ interface ChildrenProps {
     children: React.ReactNode
 }
 
-const cmdStyle = { backgroundColor: "#999999"};
+const cmdStyle = { backgroundColor: "#999999" };
 
-const codeStyle = { backgroundColor: "#CCCCCC"};
+const codeStyle = { backgroundColor: "#CCCCCC" };
+const inlineCodeStyle = { backgroundColor: "#DDDDDD" };
 
 export const CmdPrompt: React.FunctionComponent<ChildrenProps> = (props) =>
     (<div>
@@ -20,4 +21,4 @@ export const CodeBlock: React.FunctionComponent<ChildrenProps> = (props) =>
 
 
 // Inline code
-export const Ic: React.FunctionComponent<React.PropsWithChildren<{}>> = (props) => (<code>{props.children}</code>);
+export const Ic: React.FunctionComponent<React.PropsWithChildren<{}>> = (props) => (<code style={inlineCodeStyle}>{props.children}</code>);
