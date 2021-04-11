@@ -8,53 +8,16 @@ import { Db } from '../../common/utils.tsx';
 const PrefaceEn = (props: TutorialPostProps) => (
     <>
     <PostHeader metadata={props.metadata} />
-    There's a lot by which to be annoyed in this world.
+    Welcome to an introduction to Python!
     <Db />
-    One of the things I spend the most time being annoyed about, are all the things I don't understand in this world. And that's quite a lot.
-    <Db />
-    For instance, how does a car work? Fuel or electric energy goes in, smoke comes out, the wheels roll forward -
-    but many questions still stand unanswered. If you're lucky, you may know a thing or two about how e.g. a traditional car turns
-    gasoline into forward momentum, perhaps you even have an overview of the physical laws that are at play.
-    <Db />
-    But when do you <i>understand</i> how a car works?
-    <Db />
-    Where do you draw the line?
-    <Db />
-    Do I need to <i>understand</i> a car to talk about it?
-    <Db />
-    Do I need to <i>understand</i> a car to drive it?
-    <Db />
-    Do I need to <i>understand</i> a car to repair it?
-    <Db />
-    Do I need to <i>understand</i> a car to create it?
-    <Db />
-    You may have an opinion on where you would draw the line for what you agree on and not, but
-    the word <i>understand</i> does not entail an exact criterium which must be fulfilled in order for something to be <i>understood</i>.
-    <Db />
-    What do we actually want to convey when boasting that we <i>understand</i> how a car works?
-    I could have said it to convey that I know how the fuel moves inside the care, is burned and creates a forward momentum 
-    (in other words, I would have lied).
-    I could have pronounced the same sentence in order to tell you that I know where to push, step and turn in order to drive it 
-    (also a lie, at the moment of writing).
-    <Db />
-    What it means to <i>understand</i> how cars work is seemingly dependent on what exactly I want to convey. It is the context
-    that determines what the word <i>understand</i> means. The search for an <i>understanding</i> could be an eternal
-    hunt for knowledge and relations, but in practice, there is always a level of knowledge that is <i>good enough</i> for
-    each meaning of the world <i>understand</i>.
-    <Db />
-    <Db />
-    Anyway, let's talk about programming.
-    <Db />
-    The goal of this blog series is to give you, my dear reader, an introduction to <b>programming</b> (or <b>coding</b>) in Python.
+    The goal of this blog series is to give you an introduction to <b>programming</b> (or <b>coding</b>) in Python.
     I want to give you an understanding of how programming works, and what it can be used for.
     <Db />
-    I've already spent way too much space defining the word <i>understanding</i> in the sentence above.
-    Just like the process it is to <i>understand</i> a car, the process of <i>understanding</i> programming is never really finished,
-    and you will likely have many questions left after having read through what I have to say, no matter how much I let my mouth (or fingers) run.
-    <Db />
-    Therefore, I first and foremost want to give you an introduction that is <i>good enough</i> to do a number of interesting things
-    with programming, and that is <i>good enough</i> for you to be able to find the way forward with other resources 
-    in order to learn about whatever you want.
+    The word <i>understanding</i> is boldly vague, and is, all in all, difficult to define precisely.
+    Here is another (possible even more vague) perspective: I want to give you an introduction that
+    is good enough that you become able to do a plethora of interesting things with Python <i>and</i> that you
+    become able to find your way further on with other resources to learn more about <i>exactly</i>
+    what you find the most interesting.
     <Db />
     At the time of writing, I still haven't started on the programming content for this blog (but I will very soon, promise!).
     That means there's a chance that this blog is still unfinished when you start reading.
@@ -62,7 +25,10 @@ const PrefaceEn = (props: TutorialPostProps) => (
     but in the introductory part of this blog, I want there to be at most a few days, maximum a week between posts.
     You can keep an eye on the <a href="https://github.com/TheVaffel/nocturne.no">Github-page</a> for this website
     to get an idea of what part of this site I'm putting work into at each point in time (if I'm not going all-in on 
-    some totally different project).
+    some totally different project). At that page, you can also give me suggestions for improvements
+    in case you find something in the blog unclear or uncomfortable. There is a chance that this blog
+    gets its own comment field at some point in the future. In that case, the discussion
+    will be conveniently moved here.
     <Db />
     At the end of this preface, I want to say something directly about programming: Programming consists of two main elements.
     The first is to learn the basic concepts and the "programmatic way of thinking", which are essential for making
