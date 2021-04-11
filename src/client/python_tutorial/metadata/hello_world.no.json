@@ -2,8 +2,8 @@
 	"title": "Hallo, verden!",
 	"description": "Vi installerer Python og lager vårt første program!",
 	"createDate": 1618061205568,
-	"updateDate": 1618061205568,
-	"hash": "dd625dec6f2d87400807d9694fe653bc",
+	"updateDate": 1618161633702,
+	"hash": "2afd3b22c209cdf1cfd1ccba45f43b75",
 	"fileName": "hello_world.no.tsx",
 	"urlPath": "hallo_verden"
 }

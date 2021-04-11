@@ -37,7 +37,7 @@ const HelloWorldNo = (props: TutorialPostProps) => (
 
     <h2>Installasjon</h2>
     
-    Framgangnsmåten for å installere Python avhenger sterkt av hvilket operativsystem du bruker.
+    Framgangsmåten for å installere Python avhenger sterkt av hvilket operativsystem du bruker.
     Denne seksjonen vil derfor være delt etter operativsystemer - du trenger bare å lese den delen
     som svarer til det operativsystemet du bruker. Er du usikker på hvilket operativsystem du bruker,
     har jeg skrevet tommelfingerregler for å hjelpe deg med å finne ut av det i underoverskriftene.
@@ -47,7 +47,7 @@ const HelloWorldNo = (props: TutorialPostProps) => (
     på "Downloads" under Python-logoen. Her vil du finne en stor, gul (i skrivende stund, i det minste) knapp for å laste ned
     den nyeste versjonen av Python. Denne innføringen vil fokusere på Python 3, som er den nyeste versjonen
     i det jeg skriver dette. Om du leser dette langt inn i framtiden, kan det være lurt å dobbeltsjekke at
-    det er Python 3 du laster ned.
+    det er Python 3 du laster ned. Trykk på knappen.
     <Db />
     Trykk "Lagre fil", vent til den er lastet ned, og klikk på nedlastningen når den er ferdig. Hvor du klikker på nedlastningen,
     er avhengig av hvilken nettleser du bruker, men nedlastninger finner du som regel øverst til høyre eller i bunnen av nettleservinduet.
@@ -68,10 +68,11 @@ const HelloWorldNo = (props: TutorialPostProps) => (
     
     Før vi begynner, har jeg en innrømmelse å komme med: Det er flere år siden jeg rørte ved en Mac, og jeg har aldri
     eid en. Derfor vil disse instruksjonene være langt mindre detaljerte enn de for Windows, bare for å åpne opp for minst 
-    mulig forvirring. Stegene vil grovt sett gå ut på å laste ned et installasjonsprogram, slik som på Windows.
+    mulig forvirring, ettersom jeg ikke har noen maskin å teste stegene på. 
+    Stegene vil grovt sett gå ut på å laste ned et installasjonsprogram, slik som på Windows.
  
     <Db />
-    Igjen, gå til <a href="https://python.org">python.org</a> og trykk "Downloads". Under "Stable Releases", se under den
+    Gå til <a href="https://python.org">python.org</a> og trykk "Downloads" under Python-logoen. Under "Stable Releases", se under den
     øverste Python-versjonen, og last ned og lagre ett av installasjonsprogrammene ("Download macOS 64-bit XXX installer").
     Etter at programmet er lastet ned, finn nedlastningen i nettleseren (typisk på bunnen av vinduet, eller øverst til høyre), og åpne den.
 
@@ -92,7 +93,7 @@ const HelloWorldNo = (props: TutorialPostProps) => (
 
     <h2>Teksteditoren</h2>
     
-    Teksteditoren er programmet vi bruker når vi skriver programmer med programmeringsspråk. Et kjennetegn ved teksteditorer er at de
+    Teksteditoren er programmet vi bruker når vi programmerer. Et kjennetegn ved teksteditorer er at de
     lar oss skrive ren tekst til en fil, i motsetning til f. eks. Microsoft Word, som i tillegg lagrer informasjon relatert til skriftstørrelse, 
     skrifttype, farger osv. Vi vil altså at filene vi lagrer koden vår i, skal inneholde utelukkende tekst, og 
     ingen tilleggsinformasjon om f. eks. formatering. 
@@ -100,10 +101,10 @@ const HelloWorldNo = (props: TutorialPostProps) => (
     Et eksempel på et program som kan egne seg som en teksteditor, er Windows' Notepad, som kun opererer på ren tekst.
     Likevel er mer spesialiserte kodeeditorer ofte å foretrekke. De kan for eksempel inneholde "syntaks-farging"
     som viser visse ord i forskjellige farger for å hjelpe programmereren med å lese koden. Andre funksjoner som 
-    er typiske for en kodeeditor, er innebygd navigasjon i filhierarkiet, feilsøking og ordforslag mens du skriver koden.
-    <Db />
+    er typiske for en kodeeditor, er innebygd navigasjon i filhierarkiet, feilsøking (som vil forklares senere) og ordforslag mens du skriver koden.
+
     <h3>IDLE</h3>
-    For denne Python-introduksjonen kommer jeg til å anbefale IDLE, som er en enkel kode-editor beregnet på Python.
+    For denne Python-introduksjonen kommer jeg til å anbefale IDLE, som er en enkel kodeeditor beregnet på Python.
     Den inneholder ikke mange luksøriøse hjelpemidler. Årsaken til at jeg likevel vil begynne med denne editoren, er
     at det gjør det lettere å kun fokusere på koden. Av funksjonene IDLE <i>har</i>, vil syntaks-farging og filkjøring 
     være de vi kommer til å benytte oss mest av.
@@ -114,9 +115,10 @@ const HelloWorldNo = (props: TutorialPostProps) => (
     <h3>Andre editorer</h3>    
     Du står fritt til å bruke andre editorer enn IDLE, men instruksjonene for oppretting og lagring av kodefiler, 
     kommer til å ta utgangspunkt i IDLE. Det er mange editorer å velge mellom, og de fleste fungerer på alle populære operativsystemer:
-    Visual Code, Atom Editor, Sublime er vanlige valg. De har blant annet filnavigasjon innebygget, samt diverse utvidelser for å kjøre
+    Visual Code, Atom Editor og Sublime er vanlige valg. De har blant annet filnavigasjon innebygget, samt diverse utvidelser for å kjøre
     Python-programmer. Et annet alternativ for å kjøre Python-programmer som er uavhengig av hvilken editor du bruker, er å kjøre <Ic>python {`<filnavn>`}</Ic> i
-    terminalen, hvor <Ic>{`<filnavn>`}</Ic> er navnet på programfilen du vil kjøre. 
+    terminalen, hvor <Ic>{`<filnavn>`}</Ic> er navnet på programfilen du vil kjøre. Ikke få panikk om du ikke vet
+    hvordan man bruker terminalen, det kommer ikke til å være nødvendig i denne bloggen.
 
     <Db />
     Noen editorer inneholder funksjonalitet for å håndtere store prosjekter med mange filer, versjonshåndtering og feilsøking direkte i editoren. 
@@ -142,16 +144,16 @@ const HelloWorldNo = (props: TutorialPostProps) => (
     når vi lager programmer. Jeg skal ikke bruke mye tid på forklare koden her ettersom det er dét resten av denne innføringen er til for,
     men kort fortalt vil den skrive teksten "Hallo, verden!" (uten hermetegn) til skjermen.
     <Db />
-    Neste steg er å lagre filen. Trykk på "File"-&gt;"Save" øverst i vinduet, alternativt <kbd>ctrl+S</kbd> (<kbd>cmd+S</kbd>).
+    Neste steg er å lagre filen. Trykk på "File"-&gt;"Save" øverst i vinduet, alternativt <kbd>ctrl+S</kbd> (<kbd>cmd+S</kbd> på Mac).
     Velg et sted å lagre filen. Det spiller ingen rolle hvor du lagrer filen, men det kan være lurt å legge den et sted der du klarer
     å finne den igjen. For eksempel kan du lage en ny mappe under Dokumenter som heter "Python", og lagre den der.
-    Gi den et informativt navn, f. eks. <Ic>hallo_verden.py</Ic>, og lagre. Det er viktig at filen slutter på ".py" for 
-    at den skal bli gjenkjent som en Python-fil.
+    Gi den et informativt navn, f. eks. <Ic>hallo_verden.py</Ic>, og lagre. Det er lurt at filen slutter på ".py" for 
+    at den skal bli gjenkjent som en Python-fil, men IDLE vil passe på at filen får denne endelsen om du ikke slenger den på selv.
     <Db />
     Da er det bare én ting som gjenstår...
 
     <h2>Kjør!</h2>
-    For å kjøre programmet, trykker du på "Run"-&gt;"Run Module". Et nytt vindu vil dukke opp, med en del tekst. Nær bunnen
+    For å kjøre programmet, trykker du på "Run"-&gt;"Run Module" øverst i vinduet. Et nytt vindu vil dukke opp, med en del tekst. Nær bunnen
     av teksten finner du forhåpentligvis resultatet av kjøringen vår: 
     <CodeBlock>
         Hallo, verden!
@@ -159,7 +161,7 @@ const HelloWorldNo = (props: TutorialPostProps) => (
     Og dermed har vi skrevet og kjørt vårt første program! Du kan lukke dette nye vinduet når du er ferdig med å se
     resultatet av kjøringen.
     <Db />
-    Hvis du ikke får dette resultatet, pass på at du har skrevet programmet i det forrige vinduet akkurat slik som det
+    Hvis du ikke får dette resultatet eller får en feil, pass på at du har skrevet programmet i det forrige vinduet akkurat slik som det
     er gjengitt over. Hvis du får en annen form for feilmelding, vil jeg igjen anbefale å ta Internett til hjelp for å finne
     en løsning.
     
