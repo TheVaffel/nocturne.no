@@ -74,7 +74,7 @@ Hallo, verden!
 >>>`}
     </CodeBlock>
     Det vi i praksis gjør her er å be Python om å gi oss verdien av <Ic>a</Ic>, og Python svarer på linja under at
-    verdien er satt til 1, akkurat som vi sa at den skulle gjøre med forrige innputt-linje. Til sammenligning,
+    verdien er satt til 1, akkurat som vi sa at den skulle gjøre med forrige innputtlinje. Til sammenligning,
     prøv å skrive <Ic>b</Ic> i konsollen:
     <CodeBlock>
         {`>>> b
@@ -200,7 +200,7 @@ NameError: name 'b' is not defined
     Hver gang du vil lage en tekststreng, må du altså skrive teksten mellom to apostrofer, ellers
     vil Python prøve å tolke det som variabelnavn.
     <Db />
-    Vi kan sette sammen to tekststrenger ved å bruke pluss-tegn <Ic>+</Ic>. I det følgende eksempelet
+    Vi kan sette sammen to tekststrenger ved å bruke plusstegn <Ic>+</Ic>. I det følgende eksempelet
     viser vi også at vi kan lage tekststrenger ved å bruke anførselstegn (<Ic>""</Ic>) og at
     vi kan bruke bakoverskråstrek foran en apostrof (eller et anførselstegn) for å si at den ikke markerer
     slutten på strengen.
@@ -218,7 +218,7 @@ NameError: name 'b' is not defined
 
     <h2>Datatyper</h2>
     I programmeringssammenheng er tall og tekststrenger to helt forskjellige ting. Formelt sett 
-    sier vi at de har forskjellige <i>datatyper</i>. Vi har sett at pluss-operasjonen kan brukes
+    sier vi at de har forskjellige <i>datatyper</i>. Vi har sett at plussoperasjonen kan brukes
     både for tall - for å legge sammen verdien av tallene - og på tekststrenger, for å sette sammen
     to tekststrenger. Hva skjer om vi prøver å sette sammen et tall og en tekststreng?
 
@@ -319,13 +319,13 @@ TypeError: unsupported operand type(s) for +: 'int' and 'str'
 
     <CodeBlock>{`>>> 1e16 + 1
 1e+16`}</CodeBlock>
-    Her betyr <Ic>1e16</Ic> et ett-tall med 16 nuller bak, tolket som flyttall.
+    Her betyr <Ic>1e16</Ic> et 1-tall med 16 nuller bak, tolket som flyttall.
     Det er altså et veldig stort tall! Det er faktisk så stort
     at datamaskinen bare husker på de første sifrene, og har ikke noe siffer som holder rede på hva som står på
-    ener-plassen, og derfor ignorerer at ett-tallet legges til, slik at svaret blir <Ic>1e16</Ic> igjen. 
+    enerplassen, og derfor ignorerer at 1-tallet legges til, slik at svaret blir <Ic>1e16</Ic> igjen. 
     Dette er en litt forenklet forklaring,
     ettersom datamaskinen ikke direkte representerer hver tallposisjon i vårt titallssystem,
-    men bruker totallssystemet i stedet. Forrklaringen gir likevel riktig intuisjon. Hadde vi brukt 
+    men bruker totallssystemet i stedet. Forklaringen gir likevel riktig intuisjon. Hadde vi brukt 
     et stort heltall i stedet, ville vi fått nøyaktig svar tilbake.
     
     <h2>Oppsummering</h2>
