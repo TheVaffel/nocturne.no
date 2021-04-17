@@ -12,7 +12,7 @@ const InteractiveVariablesNo = (props: TutorialPostProps) => (
     I denne posten skal vi gå gjennom det kanskje mest fundamentale konseptet i Python
     og mange andre programmeringsspråk: Variabler. 
     <Db />
-    Men før vi begir oss ut på dén reisen, 
+    Men før vi begir oss ut på <i>den</i> reisen, 
     skal vi først lære om <i>interaktiv</i> Python, som vi skal bruke aktivt for å forstå
     variabler etterpå.
 
@@ -55,9 +55,9 @@ Hallo, verden!
 
     <h2>Variabler</h2>
     I programmeringssammenheng er <i>variabler</i> navn vi gir til verdier. Verdiene 
-    kan være f.eks. tall, men kan også være tekst eller lister, for å nevne noe. Ideen er at vi <i>lagrer</i> 
-    verdier
-    i variabler, og bruker variabel-navnene når vi refererer til verdiene i ettertid.
+    kan være f.eks. tall, men kan også være tekst eller lister, for å nevne noe. Ideen er at 
+    vi <i>lagrer</i> verdier
+    i variabler, og bruker variabelnavnene når vi refererer til verdiene i ettertid.
     <Db />
     La oss se på noen eksempler, før jeg rekker å forvirre deg for mye. Skriv <Ic>a = 1</Ic> inn i konsollen.
     Denne linjen ber Python om å legge verdien <Ic>1</Ic> inn i variabelen <Ic>a</Ic>.
