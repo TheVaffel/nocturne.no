@@ -46,8 +46,8 @@ Type "help", "copyright", "credits" or "license()" for more information.
     <CodeBlock>{`>>> print('Hallo, verden!')
 Hallo, verden!
 >>>`}</CodeBlock>
-    Den interaktive konsollen leste inn linjen, kjørte den, og vi ser resultatet av kjøringen
-    med én gang! Konsollen har til slutt 
+    Den interaktive konsollen leste inn linjen og kjørte den, og vi ser resultatet av kjøringen
+    med én gang, rett under der vi skrev kodelinjen! Konsollen har til slutt 
     skrevet <Ic>{`>>>`}</Ic> på skjermen igjen, som betyr at den venter på neste linje. 
     <Db />
     Du kan skrive inn samme linje på nytt for å få samme resultat, men det er grenser for hvor mange ganger 
@@ -67,14 +67,17 @@ Hallo, verden!
     </CodeBlock>
     Dette er den generelle formen for å sette en variabel til en verdi: <Ic>{`<variabelnavn> = <verdi>`}</Ic>.
     Tilsynelatende har ingenting skjedd.
-    Hvis vi nå skriver <Ic>a</Ic> i konsollen skal vi få noe lignende:
+    Hvis vi nå skriver bare <Ic>a</Ic> i konsollen skal vi få noe lignende:
     <CodeBlock>
         {`>>> a
 1
 >>>`}
     </CodeBlock>
-    Det vi i praksis gjør her er å be Python om å gi oss verdien av <Ic>a</Ic>, og Python svarer på linja under at
-    verdien er satt til 1, akkurat som vi sa at den skulle gjøre med forrige innputtlinje. Til sammenligning,
+    Det vi i praksis gjør her er å be Python om å gi oss verdien av <Ic>a</Ic>, eller <i>evaluere</i> <Ic>a</Ic>, 
+    og Python svarer på linja under at
+    verdien er satt til 1, akkurat som vi sa at den skulle gjøre med forrige innputtlinje. 
+    <Db />
+    Til sammenligning,
     prøv å skrive <Ic>b</Ic> i konsollen:
     <CodeBlock>
         {`>>> b
@@ -114,11 +117,11 @@ NameError: name 'b' is not defined
 >>>`}
     </CodeBlock>
     Vi definerte tidligere <Ic>a</Ic> til å være 1,
-    og Python substituerer inn tallet 1 i stedet for <Ic>a</Ic> for å regne ut uttrykket. 
+    og Python putter inn tallet 1 i stedet for <Ic>a</Ic> for å regne ut uttrykket. 
     Dette fungerer så fremt du ikke har restartet konsollen siden du definerte <Ic>a</Ic>. 
     Hvis du lukker konsollen, forsvinner alle variablene du har definert der.
     <Db />
-    Vi har lært to ting: Python fungerer flott som en kalkulator, og lar deg sette navn på verdier
+    Vi har lært (minst) to ting: Python fungerer flott som en kalkulator, og lar deg sette navn på verdier
     som du kan bruke alle steder der du ville brukt verdiene selv!
     Vi kan gjøre litt flere operasjoner for å vise fleksibiliteten til Python:
     <CodeBlock>
@@ -173,7 +176,7 @@ NameError: name 'b' is not defined
     Ikke så mye mystisk her; vi ba Python om å evaluere tekststrengen <Ic>'Hallo!'</Ic>, og den ble
     evaluert til tekststrengen <Ic>'Hallo!'</Ic>. 
     <Db />
-    Som du sikkert klarer å gjette, kan vi lagre 
+    Som du sikkert klarer å gjette, kanskje fordi jeg allerede har hintet til det et par ganger, kan vi også lagre 
     tekststrenger i variabler:
     <CodeBlock>
         {`>>> a = 'Hei på deg!'
@@ -195,7 +198,8 @@ NameError: name 'b' is not defined
     til tekststrengen <Ic>'Hei på deg!'</Ic>. Her dukker "a" opp både som tekststreng og variabelnavn, men
     vi skiller mellom dem ved at tekststrengen <Ic>'a'</Ic> skrives mellom apostrofer.
     Dette skillet 
-    er viktig, ettersom <Ic>a</Ic> og <Ic>'a'</Ic> evalueres til helt forskjellige verdier i dette tilfellet.
+    er viktig, ettersom <Ic>a</Ic> og <Ic>'a'</Ic> evalueres til helt forskjellige verdier i dette tilfellet, 
+    og på generell basis.
     <Db />
     Hver gang du vil lage en tekststreng, må du altså skrive teksten mellom to apostrofer, ellers
     vil Python prøve å tolke det som variabelnavn.
@@ -259,6 +263,10 @@ TypeError: unsupported operand type(s) for +: 'int' and 'str'
     
     Og da fungerer det! Vi kunne også skrevet <Ic>str(et_tall) + en_streng</Ic> direkte.
     Her er <Ic>str()</Ic> det vi kaller en <i>funksjon</i>, som er noe vi skal se nærmere på senere.
+    Vær obs på at <Ic>str()</Ic> ikke <i>endrer</i> verdien i variabelen <Ic>et_tall</Ic>. Etter operasjonen
+    over vil fortsatt <Ic>et_tall</Ic> inneholdet tallet <Ic>7</Ic>, mens <Ic>tall_som_streng</Ic> vil inneholde
+    <i>strengen</i> <Ic>'7'</Ic>.
+    <Db />
     Hovedlærdommen fra dette avsnittet, er at hver verdi som ligger i en variabel har en datatype,
     og datatypen bestemmer hvilke operasjoner vi kan utføre med variabelen. Det er altså
     en viktig forskjell på f. eks. tallet <Ic>7</Ic> og strengen <Ic>'7'</Ic>!
@@ -287,7 +295,8 @@ TypeError: unsupported operand type(s) for +: 'int' and 'str'
     mellom to heltall alltid være et flyttall (se eksempelet under).
 
     <Db />
-    Hvis du noen gang blir forvirret og ikke vet hvilken datatype variabelen din har, kan du bruke  <Ic>type()</Ic>-funksjonen for å finne typen, f. eks.:
+    Hvis du noen gang blir forvirret og ikke vet hvilken datatype variabelen din har, kan du 
+    bruke <Ic>type()</Ic>-funksjonen for å finne typen, f. eks.:
     <CodeBlock>
         {`>>> a = 1
 >>> b = 2
@@ -313,6 +322,7 @@ TypeError: unsupported operand type(s) for +: 'int' and 'str'
     Som et tallkyndig menneske kan se, burde svaret være <Ic>0.01</Ic>, men Python ser ut til å ha lagt på
     ørlite ekstra på svaret. Dette er ikke Python sin skyld, men en konsekvens av hvordan tall representeres
     på datamaskinen. Svar fra flyttallsoperasjoner bør ikke behandles som nøyaktige, bare omtrentlige.
+    <Db />
     En annen grunn til å være forsiktig med bruk av flyttall, er at flyttall bare husker et visst antall siffer. 
     Dersom tallene du har er veldig store, vil ikke flyttallene være i stand til å representere små endringer i 
     tallene, for eksempel:
@@ -331,7 +341,7 @@ TypeError: unsupported operand type(s) for +: 'int' and 'str'
     <h2>Oppsummering</h2>
     Det var en munnfull med informasjon! I løpet av denne posten har vi lært om den interaktive Python-konsollen,
     variabler og datatyper, samt tatt et dypdykk i forskjellen på heltall og flyttall. 
-    Python-konsollen kan være nyttig til å prøve ut ting i enkelte tilfeller, for 
+    Python-konsollen kan være nyttig til å prøve ut ting, for 
     å utføre demonstrasjoner og tester, og du kan bruke den til å utforske alt vi kommer
     til å lære framover.
     <Db />
