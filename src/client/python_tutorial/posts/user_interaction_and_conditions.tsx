@@ -79,13 +79,10 @@ Hei, Dangfart Tønnesen!`}</CodeBlock>
     
     <h2>Betingelser</h2>
     
-    La oss si at du har lagret en hemmelighet, og vil beskytte den med 
-    et passord. Vi lager et program der brukeren må skrive inn riktig passord
-    for å kunne se hemmeligheten. Til dette trenger vi <i>betingelser</i>.
-    <Db />
-    Helt overordnet handler betingelser om å kjøre et stykke kode
+    Når vi snakker om  betingelser i programmeringssammenheng, 
+    dreier det seg generelt om å kjøre et stykke kode
     kun dersom en betingelse er oppfylt. I Python (og en del andre språk)
-    er den viktigste betingelsesmekanismen hvis-setninger (engelsk: <b>if-statements</b>).
+    er den viktigste mekanismen for betingelser hvis-setninger (engelsk: <b>if-statements</b>).
     <Db />
     En hvis-setning er på formen 
     <CodeBlock>
@@ -202,5 +199,142 @@ else:
     
     <h2>Innputt som tall</h2>
 
-    Hva om vi spør om en alder
+    Som nevnt over, vil <Ic>input()</Ic> returnere brukerens innputt som en tekststreng,
+    som gir mening med tanke på at det er tekst vi snakker om. Men hva om vi vil at brukeren skal 
+    gi oss et tall, og vi vil utføre matematiske operasjoner med tallet? Vi kan ikke gjøre
+    matematikk med en tekststreng direkte, så vi må først konvertere strengen til et heltall:
+    <Db />
+    På samme måte som vi brukte <Ic>str()</Ic> for å konvertere et tall til en streng i forrige post,
+    kan vi bruke <Ic>int()</Ic> for å konvertere en streng til et heltall. Vi kunne 
+    brukt <Ic>float()</Ic> for å konvertere strengen til et flyttall i stedet, men vi kommer
+    bare til å trenge heltall her. For eksempel:
+    <CodeBlock>
+    {`print('Hvor gammel er du?')
+alder_som_streng = input()
+alder_som_tall = int(alder_som_streng)
+alder_om_to_år = alder_som_tall + 2
+print('Om to år er du ' + str(alder_om_to_år) + ' gammel!')`}
+    </CodeBlock>
+    Kjører vi dette eksempelet, får vi f.eks.
+    <CodeBlock>
+{`Hvor gammel er du?
+67
+Om to år er du 69 gammel!`}
+    </CodeBlock>
+    I dette programmet trenger vi å legge til 2 på tallet som brukeren skriver inn
+    for å kunne informere dem om hvor gamle de er om to år.
+    For å få til dét, må vi sørge for at vi jobber med et tall ved å konvertere
+    innputtstrengen til et heltall. Etter å ha regnet ut den nye alderen, konverterer vi
+    den tilbake til en streng for å sette den inn i utputtstrengen.
+    <Db />
+    Som et sidenotat kunne vi skrevet hele programmet over mye kortere slik:
+    <CodeBlock>
+        {`print('Hvor gammel er du?')
+print('Om to år er du ' + str(int(input()) + 2) + ' gammel!')`}
+    </CodeBlock>
+    Hvis du vil ha en utfordring, kan du se om du kan forstå hvordan dette programmet fungerer!
+    <Db />
+
+    Helt til sist i denne posten, skal vi se på flere måter å danne betingelser på. Vi har
+    hittil bare brukt <Ic>==</Ic>-operatoren for å sammenligne to strenger, men det er flere alternativer:
+    <ul>
+        <li><Ic>==</Ic> - gjør betingelsen sann om verdiene på venstre og høyre side av operatoren er like</li>
+        <li><Ic>!=</Ic> - gjør betingelsen sann om verdiene er ulike</li>
+        <li><Ic>{`>`}</Ic> - sann hvis venstre side er <i>større</i> enn høyre</li>
+        <li><Ic>{`<`}</Ic> - sann hvis venstre side er <i>mindre</i> enn høyre</li>
+        <li><Ic>{`>=`}</Ic> og <Ic>{`<=`}</Ic> - fungerer som større enn- og mindre enn-operatorene over, 
+        men er også sanne dersom verdiene er like </li>
+    </ul>
+
+    Operatorene som sjekker verdienes størrelser i forhold til hverandre, vil vi først og fremst
+    bruke for å sammenligne tall.
+    <Db />
+    La oss lage et program som skriver ut en hemmelighet hvis brukeren er gammel nok:
+    <CodeBlock>
+    {`print('Hvor gammel er du?')
+
+alder = int(input())
+
+if alder >= 18:
+    print('Du er gammel nok! Hemeligheten er "https://www.youtube.com/watch?v=dQw4w9WgXcQ"')
+else:
+    print('Du er ikke gammel nok, ha deg vekk!')`}
+    </CodeBlock>
+
+    Du kan sjekke selv at programmet kun gir brukeren hemmeligheten hvis brukeren er 18 år eller eldre (eller en løgner).
+    <Db />
+    Hva om vi nå har lyst til å passe på at hemmeligheten bare gis til personer over 18 år ved navn Arne?
+    Det er flere operatorer for å sette sammen flere betingelser til én betingelse:
+    <ul>
+        <li><Ic>and</Ic> - (og-operator) evalueres til sann kun dersom betingelsene før og etter operatoren er sanne</li>
+        <li><Ic>or</Ic> - (eller-operator) evalueres til sann hvis minst én av betingelsene er sann</li>
+        <li><Ic>not</Ic> - (ikke-operator) evalueres til sann hvis betingelsen etter er usann, og omvendt</li>
+    </ul>
+
+    Med dette kan vi skrive om programmet over:
+    <CodeBlock>{`print('Hvor gammel er du?')
+alder = int(input())
+
+print('Hva heter du?')
+navn = input()
+
+if alder >= 18 and navn == 'Arne':
+    print('Du er gammel nok, og heter Arne! Hemeligheten er "https://www.youtube.com/watch?v=dQw4w9WgXcQ"')
+elif not navn == 'Arne':
+    print('Du er ikke gammel nok, ha deg vekk!')
+else:
+    print('Hei Arne, du kan komme tilbake når du er gammel nok')`}</CodeBlock>
+
+    Her er det en del som skjer:
+    <Db />
+    Først tar vi inn alderen som heltall, som tidligere. Deretter tar vi inn navnet
+    som en tekststreng.
+    Vi har nå en serie med tre hvis- og ellers-blokker. Den første kjøres 
+    hvis <i>både</i> navnet er <Ic>'Arne'</Ic>, og alderen er minst 18.
+    Dersom ett av disse ikke er oppfylt, evalueres betingelsen i den første hvis-setningen til usann, og
+    Python sjekker neste hvis-setning. 
+    <Db />
+    Denne hvis-setningen er sann hvis navnet <i>ikke</i> er lik <Ic>'Arne'</Ic>.
+    Dvs. hvis navnet er Arne, hopper Python videre til siste hvis-blokk. Denne er en <Ic>else</Ic>-setning,
+    og vil kjøres uansett dersom ingen av betingelsene i de foregående hvis-setningene var sanne.
+    Resultatet er altså et program som oppfører seg høflig så lenge du heter Arne, og til og med gir deg
+    en hemmelighet dersom du både heter Arne og er gammel nok.
+    <Db />
+    Om du er usikker på nøyaktig hvordan koden over fungerer, kan du prøve å kjøre den med forskjellige 
+    kombinasjoner av navn og alder, for å se hvordan programmet oppfører seg.
+    
+    <h2>Oppsummering</h2>
+
+    Gratulerer, du har lest deg gjennom nok en post! 
+    Vi kommer til å støte på hvis-setninger og brukerinteraksjon i stort sett alle postene framover, så
+    dette er noe som er nyttig å ha en god forståelse av, både for videre lesing i denne bloggen men også 
+    for programmering generelt. 
+    <Db />
+    Neste post vil ta for seg funksjoner og løkker, som også er viktige biter å ha med seg
+    for å oppnå en overordnet forståelse for programmering.
+
+    <h2>Oppgaver</h2>
+    Nå som vi har lært litt forskjellige programmeringskonsepter, kan du allerede
+    begynne å lage små programmer på egen hånd! Disse oppgavene er i aller høyeste grad
+    frivillige, men er ment til å hjelpe deg med å ta i bruk konseptene vi lærer om, på egen hånd.
+    <Db />
+    Programmering er en treningssak, så dersom du er sikker på at dette er noe du vil satse på
+    framover, vil jeg absolutt anbefale deg å prøve deg på oppgavene, eller komme opp med
+    egne ideer til programmer, og sette dem ut i live.
+    <Db />
+    1. Lag et program som regner ut hvor mange år brukeren fyller i år etter at brukeren 
+        har skrevet inn fødselsåret sitt.
+    <Db />
+    2. Lag et program som skriver ut forskjellige meldinger hvis brukeren skriver f. eks.
+    Per, Pål eller Espen Askeladd, eller en en "standard"-melding hvis brukeren skriver hva som helst annet.
+    <Db />
+    3. Lag et program som regner ut BMI (Body Mass Index) for en bruker, utifra høyde og vekt som
+    brukeren oppgir. Formelen for BMI er <Ic>vekt / (høyde * høyde)</Ic>. Obs: Høyden her er oppgitt i meter,
+    så pass på at du bruker flyttall for å lagre høyden! Vekt er oppgitt i kg. 
+    Sjekk at programmet regner ut at en person på 1,80 meter med en 
+    vekt på 80kg har en BMI på ca 24,7. Om du er eventyrlysten, kan du i tillegg skrive
+    kort om helsetilstanden til brukeren basert på den utregnede BMIen: BMI mellom 18,5 og 25 regnes som normalt,
+    lavere kan tyde på at brukeren er undervektig, mens høyere kan tyde på overvekt.
+
+
     </>);
