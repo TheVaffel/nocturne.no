@@ -256,7 +256,7 @@ print('Om to år er du ' + str(int(input()) + 2) + ' gammel!')`}
 alder = int(input())
 
 if alder >= 18:
-    print('Du er gammel nok! Hemeligheten er "https://www.youtube.com/watch?v=dQw4w9WgXcQ"')
+    print('Du er gammel nok! Hemmeligheten er "https://www.youtube.com/watch?v=dQw4w9WgXcQ"')
 else:
     print('Du er ikke gammel nok, ha deg vekk!')`}
     </CodeBlock>
@@ -279,7 +279,7 @@ print('Hva heter du?')
 navn = input()
 
 if alder >= 18 and navn == 'Arne':
-    print('Du er gammel nok, og heter Arne! Hemeligheten er "https://www.youtube.com/watch?v=dQw4w9WgXcQ"')
+    print('Du er gammel nok, og heter Arne! Hemmeligheten er "https://www.youtube.com/watch?v=dQw4w9WgXcQ"')
 elif not navn == 'Arne':
     print('Du er ikke gammel nok, ha deg vekk!')
 else:
@@ -316,7 +316,7 @@ else:
     <h2>Oppgaver</h2>
     Nå som vi har lært litt forskjellige programmeringskonsepter, kan du allerede
     begynne å lage små programmer på egen hånd! Disse oppgavene er i aller høyeste grad
-    frivillige, men er ment til å hjelpe deg med å ta i bruk konseptene vi lærer om, på egen hånd.
+    frivillige, men er ment til å hjelpe deg med å ta i bruk konseptene vi lærer om i egne prosjekter.
     <Db />
     Programmering er en treningssak, så dersom du er sikker på at dette er noe du vil satse på
     framover, vil jeg absolutt anbefale deg å prøve deg på oppgavene, eller komme opp med
