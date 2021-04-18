@@ -12,14 +12,14 @@ const UserInteractionAndConditionsNo = (props: TutorialPostProps) => (
     I denne posten tar vi for oss hvordan vi kan interagere med en bruker
     av programmet vårt. Interaksjonen vil i dette tilfellet kun være tekstbasert,
     programmet skriver noe på skjermen, og brukeren skriver noe tilbake.
-    Som en del av gjennomgangen av bruker interaksjon, skal vi også gå gjennom <i>betingelser</i>, 
+    Som en del av gjennomgangen av brukerinteraksjon, skal vi også gå gjennom <i>betingelser</i>, 
     som er et viktig konsept i programmering generelt.
 
     <h2><Ic>print()</Ic> og <Ic>input()</Ic></h2>
 
     Som nevnt er målet vårt å lage et program som skriver tekst <i>til</i> brukeren, og som 
     tar imot tekst <i>fra</i> brukeren. Den første delen har vi sett tidligere, nemlig da vi skrev
-    "Hallo, verden!"-programmet vårt. La oss ta en liten titt på dét programmet igjen:
+    "Hallo, verden!"-programmet vårt. La oss ta en liten titt på det programmet igjen:
     <CodeBlock>
     {`print('Hallo, verden!')`}
     </CodeBlock>
@@ -32,13 +32,13 @@ const UserInteractionAndConditionsNo = (props: TutorialPostProps) => (
     
     <Db />
     Da vi brukte den interaktive konsollen i forrige kapittel,
-    kunne vi bare skrive en verdi eller variabel alene på en linje for å skrive den til skjerm. I
-    kjørende programmer vil ikke det fungere, og vi må bruke <Ic>print()</Ic>-funksjonen for å se verdiene.
+    kunne vi skrive en verdi eller variabel alene på en linje for å vise verdien på skjermen. I
+    kjørende programmer vil ikke dette fungere, og vi må bruke <Ic>print()</Ic>-funksjonen for å se verdiene.
     <Db />
     Hva med å ta imot informasjon fra brukeren? For dét formålet har vi en annen funksjon: <Ic>input()</Ic>.
     Når Python leser gjennom og kjører et program, og den kommer til en linje med <Ic>input()</Ic>-funksjonen,
-    vil den stoppe opp og vente på at brukeren skal skrive noe. Idét brukeren har skrevet noe og trykket linjeskift,
-    vil <Ic>input()</Ic> evalueres til tekststrengen som brukeren skrev. 
+    vil den stoppe opp og vente på at brukeren skal skrive noe. Idet brukeren har skrevet noe og trykket linjeskift,
+    vil <Ic>input()</Ic> evalueres til tekststrengen som brukeren skrev, og Python fortsetter å kjøre programmet.
 
     <Db />
     Det vil si at for å lagre innputteksten i en variabel, trenger vi bare å skrive 
@@ -56,15 +56,15 @@ print(tekst)`}
     deretter skriver den rett tilbake til brukeren.
     Lag en ny fil, legg inn koden over, lagre under et fornuftig navn, og kjør!
     Resultatet blir noe á la dette:
-<CodeBlock> {`Skriv noe!
+<CodeBlock>{`Skriv noe!
 Jeg er en potet
 Jeg er en potet`}
 </CodeBlock>
     Her er den andre linjen brukerens sofistikerte innputt, mens den siste linjen er 
-    programmet som skriver innputtet tilbake, altså det som gjøres i siste del av programmet.
+    programmet som skriver innputtet tilbake, altså det som gjøres av <Ic>print()</Ic>-funksjonen i programmet over.
     <Db />
     Vi kan være litt mer kreative og endre programmet over til å lage en liten hilsen til brukeren:
-    <CodeBlock> {`print('Skriv navnet ditt!')
+    <CodeBlock>{`print('Skriv navnet ditt!')
 navn = input()
 print('Hei, ' + navn + '!')`}
 </CodeBlock>
@@ -74,8 +74,7 @@ print('Hei, ' + navn + '!')`}
 Dangfart Tønnesen
 Hei, Dangfart Tønnesen!`}</CodeBlock>
     
-    Her har vi brukt pluss-operatoren for å sette sammen svarteksten, og 
-    gjort alle operasjonene direkte inne i <Ic>print()</Ic>-parantesene.
+    Her har vi brukt pluss-operatoren for å sette sammen svarteksten direkte inne i <Ic>print()</Ic>-parantesene.
     
     <h2>Betingelser</h2>
     
@@ -88,7 +87,6 @@ Hei, Dangfart Tønnesen!`}</CodeBlock>
     <CodeBlock>
         {`if <betingelse>:
     <kode som skal kjøres hvis betingelse er oppfylt>
-<kode etter betingelse>
         `}
     </CodeBlock>
     Det er flere ting å bite merke i her: En hvis-setning starter alltid med 
@@ -101,25 +99,27 @@ Hei, Dangfart Tønnesen!`}</CodeBlock>
     bestå av så mange linjer du vil, men minst én.
     Hvis-blokken må <i>indenteres</i>, altså skrives med innrykk. Den letteste
     måten å sette inn et innrykk på, er å trykke tab (tasten over Caps Lock til 
-    venstre på tastaturet). Alternativt kan du sette inn 2 eller flere mellomrom.
-    Det er viktig at du er konsekvent på hvorvidt du bruker tab eller mellomrom, 
+    venstre på tastaturet). Alternativt kan du sette inn to eller flere mellomrom.
+    Det er viktig at du er konsekvent på hvorvidt du bruker tab eller mellomrom, og 
+    hvor mange mellomrom du eventuelt bruker,
     ellers vil du få en feilmeldingssalve fra Python.
     <Db />
     Hvis-blokken varer til vi kommer til en kodelinje der koden ikke lenger
     er innrykket. Hvis betingelsen var oppfylt, og Python dermed kjørte hvis-blokken,
     vil den fortsette å kjøre denne uinnrykkede koden rett etter at den er 
     ferdig med hvis-blokken. Dersom betingelsen ikke er oppfylt, kommer Python
-    til å kjøre kode fra den uinnrykkede linjen direkte, og ignorere hele
-    hvis-blokken.
+    til å ignorere hele
+    hvis-blokken og fortsette å kjøre kode fra den uinnrykkede linjen i stedet.
     <Db />
-    Så hvordan ser en betingelse ut? En typisk betingelse er hvorvidt
+    Så hvordan ser en betingelse ut? En typisk betingelse er å sjekke hvorvidt
     to verdier er like. Vi kan sjekke om to verdier er like ved å 
-    bruke <Ic>==</Ic>-operatoren: <Ic>a == 0</Ic>. Denne betingelsen er 
-    sann dersom variabelen <Ic>a</Ic>er <Ic>0</Ic>, og usann hvis <Ic>a</Ic> er hva
+    bruke <Ic>==</Ic>-operatoren: F.eks. <Ic>a == 0</Ic>. Denne betingelsen er 
+    sann dersom variabelen <Ic>a</Ic> er <Ic>0</Ic>, og usann hvis <Ic>a</Ic> er hva
     som helst annet (og koden krasjer hvis <Ic>a</Ic> ikke er definert).
     Det kan være forvirring mellom <Ic>=</Ic> og <Ic>==</Ic> i starten, men
-    den første av de to brukes til å sette en variabel til en verdi, mens den
-    siste brukes for å sjekke om to verdier er like.
+    den første av de to brukes altså til å sette en variabel til en verdi, mens den
+    siste brukes for å sjekke om to verdier er like. Python vil være rask til å klage
+    hvis du blander bruken av disse to.
     <Db />
     Et program som bruker en hvis-setning kan altså se slik ut:
     <CodeBlock>
@@ -132,7 +132,11 @@ print('Programmet er ferdig, hadet!')`}
     <CodeBlock>
     {`a var lik 1!
 Programmet er ferdig, hadet!`}
-    </CodeBlock>
+    </CodeBlock> 
+    Legg merke til at den siste <Ic>print()</Ic>-setningen er uten innrykk, og dermed 
+    markerer at hvis-blokken er ferdig. Denne linjen vil kjøres uavhengig om <Ic>a</Ic> 
+    er <Ic>1</Ic> eller ikke.
+    <Db />
     Dette er ikke et fryktelig spennende resultat, ettersom vi allerede
     vet hva <Ic>a</Ic> er på forhånd.
     <Db />
@@ -163,10 +167,10 @@ else:
     <en ellers-blokk>
         `}
     </CodeBlock>
-    Her har vi lagt til to nye blokker på hvis-setnignen vår!
+    Her har vi lagt til to nye blokker på hvis-setningen vår!
     Den første, <Ic>elif</Ic>-blokken, kan du lese som "ellers, hvis",
     som har sin egen betingelse.
-    Denne "ellers, hvis"-setnignen vil bare bli evaluert hvis den
+    Denne "ellers, hvis"-setningen vil bare bli evaluert hvis den
     første betingelsen ikke var oppfylt. Ellers fungerer denne
     setningen på samme måte som den første hvis-setningen: Den tilhørende
     blokken er markert med innrykk og blir bare kjørt om den tilhørende
@@ -177,11 +181,12 @@ else:
     i rekken som har betingelsen sin oppfylt, resten blir hoppet over.
     <Db />
     Den siste blokken er en <Ic>else</Ic>-blokk, som ikke har noen tilhørende
-    betingelse. <Ic>else</Ic>-blokken kjøres dersom ingen av de foregående <Ic>if</Ic>- og
-    <Ic>elif</Ic>-setningene i rekken hadde betingelsen sin oppfylt. Det kan maksimalt være
+    betingelse. <Ic>else</Ic>-blokken kjøres dersom ingen av de 
+    foregående <Ic>if</Ic>- og <Ic>elif</Ic>-setningene 
+    i rekken hadde betingelsene sine oppfylt. Det kan maksimalt være
     én <Ic>else</Ic>-blokk i en slik rekke av <Ic>if</Ic>- og <Ic>elif</Ic>-blokker.
     Av alle blokkene i en <Ic>if</Ic>-<Ic>elif</Ic>-<Ic>else</Ic>-rekke, er det kun 
-    én som blir kjørt, og muligens ingen, dersom det ikke finnes noen <Ic>else</Ic>-blokk.
+    én som blir kjørt (og muligens ingen, dersom den ikke har noen <Ic>else</Ic>-blokk).
     <Db />
     La oss gjøre programmet vårt over litt mer responsivt for brukere
     som ikke heter Arne:
@@ -195,7 +200,8 @@ else:
     </CodeBlock>
     Flott, nå får brukeren en respons uavhengig av hva de heter. Legg merke til 
     at vi ikke har noen <Ic>elif</Ic>-blokker her, kun en <Ic>else</Ic>-blokk
-    som sørger for at vi printer noe i det tilfellet at betingelsen ikke er oppfylt.
+    som sørger for at vi printer noe i det tilfellet at betingelsen i den innledende hvis-setningen 
+    ikke er oppfylt.
     
     <h2>Innputt som tall</h2>
 
@@ -227,6 +233,10 @@ Om to år er du 69 gammel!`}
     innputtstrengen til et heltall. Etter å ha regnet ut den nye alderen, konverterer vi
     den tilbake til en streng for å sette den inn i utputtstrengen.
     <Db />
+    Dersom strengen du gir til <Ic>int()</Ic>-funksjonen ikke inneholder et tall, vil Python 
+    gi en feilmelding. Vi skal se på hvordan vi kan håndtere slike feil og forhindre at programmet krasjer mot
+    slutten av denne bloggserien.
+    <Db />
     Som et sidenotat kunne vi skrevet hele programmet over mye kortere slik:
     <CodeBlock>
         {`print('Hvor gammel er du?')
@@ -236,7 +246,7 @@ print('Om to år er du ' + str(int(input()) + 2) + ' gammel!')`}
     <Db />
 
     Helt til sist i denne posten, skal vi se på flere måter å danne betingelser på. Vi har
-    hittil bare brukt <Ic>==</Ic>-operatoren for å sammenligne to strenger, men det er flere alternativer:
+    hittil bare brukt <Ic>==</Ic>-operatoren for å sammenligne to strenger, men vi har flere verktøy i skuffen:
     <ul>
         <li><Ic>==</Ic> - gjør betingelsen sann om verdiene på venstre og høyre side av operatoren er like</li>
         <li><Ic>!=</Ic> - gjør betingelsen sann om verdiene er ulike</li>
@@ -281,7 +291,7 @@ navn = input()
 if alder >= 18 and navn == 'Arne':
     print('Du er gammel nok, og heter Arne! Hemmeligheten er "https://www.youtube.com/watch?v=dQw4w9WgXcQ"')
 elif not navn == 'Arne':
-    print('Du er ikke gammel nok, ha deg vekk!')
+    print('Du heter ikke Arne, ha deg vekk!')
 else:
     print('Hei Arne, du kan komme tilbake når du er gammel nok')`}</CodeBlock>
 
@@ -290,13 +300,20 @@ else:
     Først tar vi inn alderen som heltall, som tidligere. Deretter tar vi inn navnet
     som en tekststreng.
     Vi har nå en serie med tre hvis- og ellers-blokker. Den første kjøres 
-    hvis <i>både</i> navnet er <Ic>'Arne'</Ic>, og alderen er minst 18.
-    Dersom ett av disse ikke er oppfylt, evalueres betingelsen i den første hvis-setningen til usann, og
-    Python sjekker neste hvis-setning. 
+    hvis <i>både</i> navnet er <Ic>'Arne'</Ic>, og alderen er minst 18. Dersom begge disse er sanne,
+    gir vi brukeren hemmeligheten.
+    Dersom ett av disse betingelsene ikke er oppfylt, 
+    er betingelsen i den første hvis-setningen usann, og
+    Python fortsetter ved å sjekke ellers-hvis-setningen. 
     <Db />
-    Denne hvis-setningen er sann hvis navnet <i>ikke</i> er lik <Ic>'Arne'</Ic>.
-    Dvs. hvis navnet er Arne, hopper Python videre til siste hvis-blokk. Denne er en <Ic>else</Ic>-setning,
-    og vil kjøres uansett dersom ingen av betingelsene i de foregående hvis-setningene var sanne.
+    Ellers-hvis-setningen er sann hvis navnet <i>ikke</i> er lik <Ic>'Arne'</Ic>. Her kunne vi 
+    brukt <Ic>!=</Ic>-operatoren også.
+    Hvis navnet ikke er Arne, ber programmet brukeren om å ha seg vekk.
+    Ellers hopper Python videre til siste blokk. Denne er en <Ic>else</Ic>-setning,
+    og vil kjøres kun dersom ingen av betingelsene i de foregående hvis-setningene var sanne.
+    Hvis ingen av de foregående betingelsene var sanne, må brukeren hete Arne og være under 18 år gammel,
+    og meldingen i <Ic>print()</Ic>-setningen reflekterer dette.
+    <Db />
     Resultatet er altså et program som oppfører seg høflig så lenge du heter Arne, og til og med gir deg
     en hemmelighet dersom du både heter Arne og er gammel nok.
     <Db />
@@ -307,7 +324,7 @@ else:
 
     Gratulerer, du har lest deg gjennom nok en post! 
     Vi kommer til å støte på hvis-setninger og brukerinteraksjon i stort sett alle postene framover, så
-    dette er noe som er nyttig å ha en god forståelse av, både for videre lesing i denne bloggen men også 
+    dette er noe som er nyttig å ha en god forståelse av, både for videre lesing i denne bloggen, men også 
     for programmering generelt. 
     <Db />
     Neste post vil ta for seg funksjoner og løkker, som også er viktige biter å ha med seg
@@ -320,21 +337,22 @@ else:
     <Db />
     Programmering er en treningssak, så dersom du er sikker på at dette er noe du vil satse på
     framover, vil jeg absolutt anbefale deg å prøve deg på oppgavene, eller komme opp med
-    egne ideer til programmer, og sette dem ut i live.
+    egne ideer til programmer og sette dem ut i live.
     <Db />
     1. Lag et program som regner ut hvor mange år brukeren fyller i år etter at brukeren 
         har skrevet inn fødselsåret sitt.
     <Db />
-    2. Lag et program som skriver ut forskjellige meldinger hvis brukeren skriver f. eks.
-    Per, Pål eller Espen Askeladd, eller en en "standard"-melding hvis brukeren skriver hva som helst annet.
+    2. Lag et program som skriver ut forskjellige meldinger hvis brukeren oppgir navnene
+    Per, Pål eller Espen Askeladd, eller en en "standard"-melding dersom brukeren skriver hva som helst annet.
     <Db />
     3. Lag et program som regner ut BMI (Body Mass Index) for en bruker, utifra høyde og vekt som
     brukeren oppgir. Formelen for BMI er <Ic>vekt / (høyde * høyde)</Ic>. Obs: Høyden her er oppgitt i meter,
     så pass på at du bruker flyttall for å lagre høyden! Vekt er oppgitt i kg. 
     Sjekk at programmet regner ut at en person på 1,80 meter med en 
     vekt på 80kg har en BMI på ca 24,7. Om du er eventyrlysten, kan du i tillegg skrive
-    kort om helsetilstanden til brukeren basert på den utregnede BMIen: BMI mellom 18,5 og 25 regnes som normalt,
+    en kort melding til skjerm om helsetilstanden til brukeren basert på BMIen: 
+    BMI mellom 18,5 og 25 regnes som normalt,
     lavere kan tyde på at brukeren er undervektig, mens høyere kan tyde på overvekt.
-
-
     </>);
+
+export default UserInteractionAndConditionsNo;
