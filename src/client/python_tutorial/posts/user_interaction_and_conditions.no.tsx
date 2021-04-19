@@ -52,8 +52,8 @@ const UserInteractionAndConditionsNo = (props: TutorialPostProps) => (
 tekst = input()
 print(tekst)`}
     </CodeBlock>
-    Her legger vi altså innputteksten fra brukeren inn i variabelen <Ic>tekst</Ic>, og
-    deretter skriver den rett tilbake til brukeren.
+    Her ber vi brukeren skrive noe, legger innputteksten fra brukeren inn i variabelen <Ic>tekst</Ic>, og
+    skriver den deretter rett tilbake til brukeren.
     Lag en ny fil, legg inn koden over, lagre under et fornuftig navn, og kjør!
     Resultatet blir noe á la dette:
 <CodeBlock>{`Skriv noe!
