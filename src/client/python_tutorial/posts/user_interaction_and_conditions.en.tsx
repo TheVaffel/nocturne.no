@@ -88,6 +88,79 @@ Hi, Voldemort!`}
     the <Ic>print()</Ic> parantheses.
 
     <h2>Conditions</h2>
+
+    When we talk about conditions in the context of programming, we
+    generally refer to running a piece of code only if some condition is fulfilled
+    or not. In Python (and many other languages), the most important mechanism for 
+    conditions is <i>if-statements</i>.
+
+    <Db />
+    An if-statement is in the form 
+    <CodeBlock>
+        {`if <condition>:
+    <code to run if the condition is fulfilled>`}
+    </CodeBlock>
+    
+    There are multiple thing to take note of here:
+    An if-statement always starts with the word <Ic>if</Ic>, and is then followed by a condition 
+    (separated by a space from the word <Ic>if</Ic>). We will examine such conditions more closely in 
+    very soon. The end of the first line is marked with a colon ":".
+    <Db />
+    The code to run when the condition is fulfilled, will be referred to as the if-block. It 
+    can consist of arbitrarily many lines, but must contain at least one.
+    The if-block must be <i>indented</i>. The easiest way of inserting an indent is by pressing
+    tab (the key above the Caps Lock to the left on your keyboard). Alternatively, you can insert
+    two or more spaces. It's important that you are consistent in whether you use tab or spaces,
+    and, if using spaces, in how many spaces you use, or Python will be sure to let you know something is up.
+    <Db />
+    The if-block lasts until we arrive at a line of code where the code is no longer indented. If 
+    the condition is fulfilled, and Python therefore ran the code in the if-block, it will
+    continue running the unindented code right after it is done with the if-block. If the 
+    condition is not fulfilled, Python will ignore the entire if-block and continue running
+    from the first unindented line instead.
+    <Db />
+    So what does a condition look like? A typical condition is to check whether two values are equal.
+    We can check whether two values are equal by using the <Ic>==</Ic>-operator, e.g. <Ic>a == 0</Ic>.
+    This condition is fulfilled, or true, if the variable <Ic>a</Ic> has the value <Ic>0</Ic>, and 
+    unfulfilled (false) if <Ic>a</Ic> has any other value (and the code crashes if <Ic>a</Ic> is undefined).
+    There might be some mixup between <Ic>=</Ic> and <Ic>==</Ic> for beginners, but to be clear:
+    The first is used to set a variable to a value, while the other checks whether two values are
+    equal. Python will be sure to let you know if you get this wrong at some point.
+
+    <Db />
+    A program which uses an if-statement can look like this:
+    <CodeBlock>
+        {`a = 1
+if a == 1:
+    print('a was equal to 1!')
+print('The program is finished, goodbye!')`}
+    </CodeBlock>
+    If we run this code, we get:
+    <CodeBlock>
+        {`a was equal to 1!
+The program is finished, goodbye!`}
+    </CodeBlock>
+
+    Notice that the last <Ic>print()</Ic>-statement is without indentation, and therefore
+    marks the end of the if-block. This line will be run regardless of whether <Ic>a</Ic>
+    is <Ic>1</Ic> or not.
+    <Db />
+    This isn't a very exciting result, since we already know what <Ic>a</Ic> is beforehand.
+    <Db />
+    A (slightly) more exciting program is this: Using if-statements, we can make conditional
+    greetings - a program that only greet certain users:
+    <CodeBlock>{`print('Write your name:')
+name = input()
+if name == 'Larry':
+    print('Hi, Larry!')`}
+    </CodeBlock>
+    Here, the program will only greet you if you tell it that your name is <Ic>Larry</Ic>. If you
+    try writing anything else, the program will exit without printing anything else. Also, be aware
+    that it will not recognize <Ic>larry</Ic> written in lower case either. The equality operator
+    <Ic>==</Ic> checks that all letters are equal, and higher- and lower-case letters are considered different.
+    <Db />
+
+
     </>
 );
 
