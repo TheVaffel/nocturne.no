@@ -156,10 +156,201 @@ if name == 'Larry':
     </CodeBlock>
     Here, the program will only greet you if you tell it that your name is <Ic>Larry</Ic>. If you
     try writing anything else, the program will exit without printing anything else. Also, be aware
-    that it will not recognize <Ic>larry</Ic> written in lower case either. The equality operator
-    <Ic>==</Ic> checks that all letters are equal, and higher- and lower-case letters are considered different.
+    that it will not recognize <Ic>larry</Ic> written in lower case either. The equality operator <Ic>==</Ic> checks 
+    that all letters are equal, and higher- and lower-cased letters are considered different.
     <Db />
+    It's a bit rude of the program to just exit without saying anything, just because your name isn't Larry, isn't it?
+    We can fix this with another form of the if-statement:
+    <CodeBlock>
+        {`if <condition>:
+    <if-block>
+elif <another condition>:
+    <an else-if-block>
+else:
+    <an else-block>`}
+    </CodeBlock>
+    Here, we have included two new types of blocks in our if-statement!
+    The first one, the <Ic>elif</Ic>-block can be read as "else, if", which requires
+    its own condition.
+    This "else, if"-sentence will only be evaluated if the condition in the original if-statement was not
+    fulfilled. Otherwise, the elif-statement works just like the first if-statement: The associated
+    block is marked by indentation and will only be run if the else-if condition is true.
+    <Db />
+    We can have as many <Ic>elif</Ic>-statements with blocks we want after the first if-statement, including
+    zero. Python will only run the code in the first of the blocks where the associated condition is true,
+    the rest of the blocks will be skipped.
+    <Db />
+    The last block is an <Ic>else</Ic>-block, which has no associated condition. The <Ic>else</Ic>-block
+    will be run only if none of the preceding <Ic>if</Ic>- or <Ic>elif</Ic>-blocks where run.
+    There can only be a maximum of one <Ic>else</Ic>-block in such a series of <Ic>if</Ic>- and <Ic>elif</Ic>-blocks.
+    Out of all the blocks in an <Ic>if</Ic>-<Ic>elif</Ic>-<Ic>else</Ic>-series, only one can be run (and
+    potentially zero, if there is no <Ic>else</Ic>-block).
+    <Db />
+    Let's make our program more responsive towards users whose name is not Larry:
+    <CodeBlock>
+        {`print('Write your name:')
+name = input()
+if name == 'Larry':
+    print('Hi, Larry!')
+else:
+    print('You\\'re not Larry, go away!')`}
+    </CodeBlock>
+    Beautiful, now the user will get a response no matter what their name is! Notice
+    that we have no <Ic>elif</Ic>-blocks here, only an <Ic>else</Ic>-block that makes sure
+    we print something in the case where the condition in the introductory if-statement is not fulfilled.
 
+    <h2>Input as an integer</h2>
+    
+    As already mentioned, <Ic>input()</Ic> will return the user's input as a string,
+    which makes sense, since it will necessarily be given in text form. But what 
+    if we want the user to give us a number, and we want to perform mathematical operations
+    with the number? We cannot perform mathematics with a string directly, so we will
+    first have to convert the string to an integer.
+    <Db />
+    In the same way that we used <Ic>str()</Ic> to convert an integer to a string in the previous
+    post, we can use <Ic>int()</Ic> to convert a string to an integer. We could also use <Ic>float()</Ic> in
+    order to convert the string to a floating point number instead, but we will only need integers here. 
+    For example:
+    <CodeBlock>
+        {`print('How old are you?')
+age_as_string = input()
+age_as_number = int(age_as_string)
+age_in_two_years = age_as_number + 2
+print('In two years, you will be ' + str(age_in_two_years) + ' years old!')`}
+    </CodeBlock>
+    If we run this example, we get something like
+    <CodeBlock>
+{`How old are you?
+67
+In two years, you are 69 years old!`}
+    </CodeBlock>
+
+    In this program, we need to add two to the number the user gives us, in order 
+    to inform them of how old they will be in two years. To do that, we ensure
+    that we are working with numbers by converting the input string to an integer. After
+    having computed the new age, we convert it back to a string and put it into
+    the response text we send back to the user.
+    <Db />
+    If the string we try to convert with <Ic>int()</Ic> is <i>not</i> a number, Python will
+    give us an error message. We will have a brief look at how we can handle such errors, and avoid 
+    having the program crash, towards the end of this blog series.
+    <Db />
+    As a sidenote, we could have written the entire program above much shorter like this:
+    <CodeBlock>
+        {`print('How old are you?')
+print('In two years, you will be ' + str(int(input()) + 2) + ' years old!')`}
+    </CodeBlock>
+    If you want a challenge, see if you can understand how this work!
+
+    <h2>Different Ways of Creating Conditions</h2>
+    At last in this post, we will look at different ways of making conditions. So far,
+    we have only used the <Ic>==</Ic>-operator to compare two strings, but we have many
+    more tools in the shed:
+    <ul>
+        <li><Ic>==</Ic> - makes the condition true if the values on the left and right of the operator are equal</li>
+        <li><Ic>!=</Ic> - makes the condition true if the values are different</li>
+        <li><Ic>{`>`}</Ic> - true if the left side is <i>larger</i> than the right</li>
+        <li><Ic>{`<`}</Ic> - true if the left side is <i>smaller</i> than the right</li>
+        <li><Ic>{`>=`}</Ic> and <Ic>{`<=`}</Ic> - works just like the bigger than- and less than-operators
+        above, but are also true if the values are equal</li>
+    </ul>
+
+    The operators that compare the sizes of differnet values, will first and foremost be used to compare
+    numbers.
+    <Db />
+    Let's create a program that prints a secret only if the user is old enough:
+    <CodeBlock>
+        {`print('How old are you?')
+        
+age = int(input())
+
+if age >= 18:
+    print('You are old enough! The secret is "https://www.youtube.com/watch?v=dQw4w9WgXcQ"')
+else:
+    print('You aren\\'t old enough, away with you!')`}
+    </CodeBlock>
+
+    You can check yourself that the program only gives the user the secret if they are 18 years old or older (or a liar).
+    <Db />
+    What if we want to make sure that the secret is only passed to people that are at least 18 years of age and go
+    by the name Larry? There are multiple operators we can use to join together conditions to new conditions:
+    <ul>
+        <li><Ic>and</Ic> - evaluates to true only if the conditions before and after the operator are true</li>
+        <li><Ic>or</Ic> - evaluates to true only if at least one of the conditions are true</li>
+        <li><Ic>not</Ic> - evaluates to true if the following condition is false, and the other way around</li>
+    </ul>
+
+    With this, we can write the following program:
+    <CodeBlock>{`print('How old are you?')
+age = int(input())
+
+print('What\\'s your name?')
+name = input()
+
+if age >= 18 and name == 'Larry':
+    print('You\\'re old enough and called Larry! The secret is "https://www.youtube.com/watch?v=dQw4w9WgXcQ"')
+elif not name == 'Larry':
+    print('You\\'re not Larry, go away!')
+else:
+    print('Hi, Larry, you can come back when you\\'re old enough!')`}</CodeBlock>
+
+    There are a lot of things going on here:
+    <Db />
+    First, we take the user's age as an integer and their name as a string.
+    Then we have a series of three if- and else-blocks. The first is run if <i>both</i> the name 
+    is <Ic>'Larry'</Ic> and the age is at least 18. If both of these are true, we give the user the secret.
+    If one (or both) of these conditions are false, the first if-statement is evaluated to false, and Python
+    continues by checking the <Ic>elif</Ic>-statement.
+    <Db />
+    The else-if-statement is true if the name is <i>not</i> <Ic>'Larry'</Ic>. Here, we could have used the
+    <Ic>!=</Ic>-operator as well.
+    If this statement is true, that is, if the name is not Larry, we ask the user to go away. Otherwise, if the name
+    is Larry, Python jumps down to the last block in the if-else-statement series. This block is an else-block
+    and will be run if none of the other statements in the series were true. If none of them were true,
+    it must be the case that the user's name is 'Larry', but is not at least 18 years old, 
+    and the message in the <Ic>print()</Ic>-
+    statement fits the theme.
+    <Db />
+    The result is thus a program that behaves nicely as long as you tell it your name is Larry, and 
+    even gives you a secret if your name is Larry and you are old enough.
+    <Db />
+    If you're not exactly sure how the code above works, you can try running it with different combinations of 
+    name and age, and observe the behavior of the program.
+
+    <h2>Summary</h2>
+
+    Congratulations! You have read your way through yet another post!
+    We will encounter if-statements and user interaction in mostly all posts going forward,
+    so it will pay off to invest in getting a good understanding of these concepts, both for the sake
+    of following this blog, but also programming in general.
+    <Db />
+    The next post will review functions and loops, which are also important parts of the way
+    to understanding programming.
+
+    <h2>Exercises</h2>
+    Now that we have learned different fundamental programming concepts, you can already start making your
+    own small programs! These exercises are very voluntary, but are made as to help you make use of the concepts
+    you have learnt.
+    <Db />
+    To be a good programmer, practical experience is of the essence. Therefore, if programming is 
+    something you want to go on with in the future, I will absolutely recommend you to make an 
+    attempt at the exercises, or program ideas that you come up with on your own.
+    <Db />
+    1. Create a program that computes how many years the user was / will be on his/her birthday this year,
+        after the user has given their year of birth.
+    <Db />
+    2. Create a program that writes different messages if the user gives their name as Huey, Dewey and Louie,
+    or a "default" message if the user writes anything else.
+    <Db />
+    3. Write a program that computes the BMI (Body Mass Index) of a user, given their height and weight.
+    The formula for BMI is <Ic>weight / (height * height)</Ic>. Be aware: The height must be in meters,
+    and will need to be handled as a float. The weight must be in kilograms. If you don't want the user
+    to know these units of measurements themselves, you can do the conversion in the program.
+    Check that the program computes the BMI of a person of 1.80 meters and with a weight of 80 kg to be 
+    about 24.7. If you're feeling adventurous, you can also write a short message to screet assessing
+    the health status of the user, based on the BMI:
+    BMI between 18.5 and 25 is considered normal, lower may suggest that the user is underweight,
+    while higher may mean overweight.
 
     </>
 );
