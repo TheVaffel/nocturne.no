@@ -237,13 +237,14 @@ Om to år er du 69 gammel!`}
     gi en feilmelding. Vi skal se på hvordan vi kan håndtere slike feil og forhindre at programmet krasjer mot
     slutten av denne bloggserien.
     <Db />
-    Som et sidenotat kunne vi skrevet hele programmet over mye kortere slik:
+    En liten digresjon: Vi kunne skrevet hele programmet over mye kortere slik:
     <CodeBlock>
         {`print('Hvor gammel er du?')
 print('Om to år er du ' + str(int(input()) + 2) + ' gammel!')`}
     </CodeBlock>
     Hvis du vil ha en utfordring, kan du se om du kan forstå hvordan dette programmet fungerer!
-    <Db />
+    
+    <h2>Forskjellige måter å lage betingelser</h2>
 
     Helt til sist i denne posten, skal vi se på flere måter å danne betingelser på. Vi har
     hittil bare brukt <Ic>==</Ic>-operatoren for å sammenligne to strenger, men vi har flere verktøy i skuffen:
