@@ -324,8 +324,8 @@ else:
     so it will pay off to invest in getting a good understanding of these concepts, both for the sake
     of following this blog, but also programming in general.
     <Db />
-    The next post will review functions and loops, which are also important parts of the way
-    to understanding programming.
+    The next post will review loops, which is also an important part of understanding programming.
+    With loops, the power of programming is starting to reveal itself for real.
 
     <h2>Exercises</h2>
     Now that we have learned different fundamental programming concepts, you can already start making your
