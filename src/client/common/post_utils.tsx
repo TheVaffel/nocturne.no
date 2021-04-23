@@ -5,11 +5,23 @@ import { Metadata } from '../../server/update_metadata';
 import { printDateEn, printDateNo } from './utils.tsx';
 import { LangContextStruct, LangContext } from '../infrastructure/root.tsx';
 
+const noticeStyle = { backgroundColor: "#EEEE88",
+                      width: "50%",
+                      margin: "25px",
+                      padding: "10px",
+                    floating: "center" };
+
 export const PostListEntry: React.FunctionComponent<{metadata: Metadata, blogUrl: string}> = (props) => (
     <div>
         <Link to={props.blogUrl + '/' + props.metadata.urlPath}><h3>{props.metadata.title}</h3></Link>
         {props.metadata.description}
         <br/>
+    </div>
+);
+
+export const NoticeBlock = (props: React.PropsWithChildren<{}>) => (
+    <div style={noticeStyle}>
+        {props.children}
     </div>
 );
 
