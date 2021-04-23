@@ -2,8 +2,8 @@
 	"title": "User Interaction and Conditions",
 	"description": "We take a look at how to interact with users, and how run some parts of the code only if some condition is fulfilled",
 	"createDate": 1619029117860,
-	"updateDate": 1619029611437,
-	"hash": "697c0df95095e2de5331adad8c2de9f9",
+	"updateDate": 1619210004583,
+	"hash": "8cc88a8be15929ac18251a0555736183",
 	"fileName": "user_interaction_and_conditions.en.tsx",
 	"urlPath": "user_interaction_and_conditions.en"
 }
