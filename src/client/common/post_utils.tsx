@@ -5,11 +5,22 @@ import { Metadata } from '../../server/update_metadata';
 import { printDateEn, printDateNo } from './utils.tsx';
 import { LangContextStruct, LangContext } from '../infrastructure/root.tsx';
 
-const noticeStyle = { backgroundColor: "#EEEE88",
-                      width: "50%",
-                      margin: "25px",
-                      padding: "10px",
-                    floating: "center" };
+const noticeStyle: React.CSSProperties = { 
+    backgroundColor: "#EEEE88",
+    width: "80%",
+    // margin: "25px",
+    padding: "10px",
+    borderStyle: "solid",
+    borderColor: "#000000",
+    textAlign: 'left',
+    display: 'inline-block' };
+
+const noticeOuterStyle: React.CSSProperties = {
+    width: "100%",
+    textAlign: 'center',
+    alignItems: 'center',
+    marginTop: '20px'
+};
 
 export const PostListEntry: React.FunctionComponent<{metadata: Metadata, blogUrl: string}> = (props) => (
     <div>
@@ -20,8 +31,10 @@ export const PostListEntry: React.FunctionComponent<{metadata: Metadata, blogUrl
 );
 
 export const NoticeBlock = (props: React.PropsWithChildren<{}>) => (
-    <div style={noticeStyle}>
-        {props.children}
+    <div style={noticeOuterStyle} >
+        <div style={noticeStyle}>
+            {props.children}
+        </div>
     </div>
 );
 
