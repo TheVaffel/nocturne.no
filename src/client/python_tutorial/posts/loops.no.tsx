@@ -393,7 +393,12 @@ while i < 1000:
     og <Ic>i</Ic> som deler <Ic>i</Ic>, slik at <Ic>i</Ic> må
     være et primtall. Ellers må vi ha funnet et tall som 
     deler <Ic>i</Ic>, slik at <Ic>i</Ic> ikke kan være et primtall.
-
+    <Db />
+    En enklere måte å forstå denne konstruksjonen på, er ved å se
+    på den store løkkeblokken (som tilhører den 
+    første <Ic>while</Ic>-setningen) i isolasjon først, og 
+    se om du skjønner hvordan den bestemmer om <Ic>i</Ic> er et 
+    primtall.
     <Db />
     Det var en munnfull! Her er det lett å gå i baret på flere måter,
     for eksempel er det viktig at vi sjekker delelighet bare med
