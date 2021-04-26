@@ -263,7 +263,7 @@ print('Tallet ' + str(i) + ' er delelig på 24 og 17')`}</CodeBlock>
     dette at hver gang Python leser <Ic>while</Ic>-setningen for 
     å finne ut om den skal kjøre løkkeblokken, finner den at svaret
     er <i>ja</i>. Hvis vi ikke er forsiktige, kan dette føre til at
-    løkken avsluttes - men det har vi naturligvis tenkt på:
+    løkken aldri avsluttes - men det har vi naturligvis tenkt på:
     <Db />
     Hvis-setningen inne i løkkeblokken evalueres til sann
     dersom tallet vårt er delelig både på 24 og på 17 - som
@@ -309,8 +309,8 @@ print('Tallet ' + str(i) + ' er delelig på 24 og 17')`}
     er å hoppe over iterasjonen dersom <Ic>i</Ic> er 408, slik
     at ikke løkken stopper i hvis-setningen under.
     <Db />
-    Det er fristende å bare skrive <Ic>continue</Ic> direkte inne
-    hvis-blokken, men det vil føre til at neste iterasjon også 
+    Det er fristende å bare skrive <Ic>continue</Ic> alene inne
+    i hvis-blokken, men det vil føre til at neste iterasjon også 
     har <Ic>i</Ic> med verdi 408, og Python kommer til å 
     kjøre <Ic>continue</Ic> i all evighet til noen avslutter 
     programmet med makt. Når vi kjører <Ic>continue</Ic>, mister
@@ -318,7 +318,8 @@ print('Tallet ' + str(i) + ' er delelig på 24 og 17')`}
     linja <Ic>i += 1</Ic>, som sørger for at vi starter hver nye
     iterasjon med en ny verdi i variabelen <Ic>i</Ic>. Vi må
     altså sørge for at effekten av denne linja er med 
-    når vi bruker <Ic>continue</Ic>.
+    når vi bruker <Ic>continue</Ic>, og legger denne linja
+    inn i hvis-blokken, <i>før</i> vi kjører <Ic>continue</Ic>.
     <Db />
     <Ic>continue</Ic> kan være litt risikabelt å bruke 
     med <Ic>while</Ic>-løkker, som vi kan se 
