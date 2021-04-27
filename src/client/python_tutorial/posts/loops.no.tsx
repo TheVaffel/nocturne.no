@@ -86,11 +86,25 @@ Nå er i = 4`}
     Den siste gangen løkkeblokken kjøres, er <Ic>i</Ic> lik 4.
     Verdien skrives til skjerm og <Ic>i</Ic> økes til 5.
     Når Python så går tilbake til <Ic>while</Ic>-linja, finner
-    den at betingelsen ikke lenger er oppfylt 
-    (ulikhetsoperatoren <Ic>{`<`}</Ic> evalueres til usant hvis
+    den at betingelsen ikke lenger er oppfylt.
+    Det er fordiulikhetsoperatoren <Ic>{`<`}</Ic> evalueres til usant hvis
     de to sidene har samme verdi. Hvis vi ville inkludert tilfellet
-    hvor de var like, kunne vi brukt <Ic>{`<=`}</Ic>).
-    Dermed hopper Python til etter løkkeblokken, og programmet avsluttes.
+    hvor de var like, kunne vi brukt <Ic>{`<=`}</Ic>.
+    Etter å ha sett at løkkebetingelsen ikke er oppfylt,
+    hopper Python til etter løkkeblokken, og programmet avsluttes.
+    <Db />
+    Når man tenker på løkker i programmering, er det fort
+    gjort å gjøre en feilberegning rundt hvilke verdier som
+    brukes i siste iterasjon av en løkke, på engelsk har
+    det fått det egne begrepet <b>off-by-one-error</b>. I dette
+    programmet kan det f.eks. være lett å forvente
+    at siste iterasjon vil bruke <Ic>i</Ic> med verdien 5,
+    men, som vi allerede har diskutert, er det absolutt ikke tilfellet.
+    <Db />
+    En grei måte å unngå slike feil på, er å tenke 
+    nøye gjennom hva som skjer i løkken i <i>første</i> og 
+    i <i>siste</i> iterasjon, og passe på at det stemmer med 
+    hensikten du har med koden.
     <Db />
     Legg merke til at vi bare trenger å endre ett tall i programmet for å 
     bestemme hvor mange ganger programmet trenger å kjøre gjennom
@@ -101,19 +115,6 @@ Nå er i = 4`}
     blir tatt hånd om av datamaskinen. 
     Prøv f.eks. å endre 5-tallet i programmet over til tallet 100 og
     la Python gjøre resten av jobben!
-    <Db />
-    Det kan være litt lite intuitivt at vi ikke får ut verdien 5 her
-    når vi har sagt at vi teller opp til 5, men om du leser forklaringen
-    over nøye, blir du nok til slutt enig i at det er det koden skal
-    gjøre. Når man tenker på løkker i programmering, er det fort
-    gjort å gjøre en feilberegning rundt hvilke verdier som
-    brukes i siste iterasjon av en løkke, på engelsk har
-    det fått det egne begrepet <b>off-by-one-error</b>.
-    <Db />
-    En grei måte å unngå slike feil på, er å tenke 
-    nøye gjennom hva som skjer i løkken i <i>første</i> og 
-    i <i>siste</i> iterasjon, og passe på at det stemmer med 
-    hensikten du har med koden.
 
     <NoticeBlock>
         Når du skriver egne <Ic>while</Ic>-løkker, er det 
@@ -137,7 +138,8 @@ Nå er i = 4`}
     <h2>Vi legger en blokk inne i en blokk</h2>
     
     I det følgende eksempelet kommer vi til å bruke <Ic>%</Ic>-operatoren, også kalt 
-    restoperatoren. Den brukes med heltall, og gir resten etter divisjon av venstresiden på høyresiden.
+    modulooperatoren, eller restoperatoren. 
+    Den brukes med heltall, og gir resten etter divisjon av venstresiden på høyresiden.
     Det betyr f. eks. at 5 % 3 gir 2 som svar, og 7 % 2 gir 1.
     <Db />
     Om du ikke føler deg hundre prosent sikker på hvordan restregning fungerer, så er ikke det veldig 
