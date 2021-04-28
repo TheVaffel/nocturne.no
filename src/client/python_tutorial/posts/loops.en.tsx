@@ -36,7 +36,7 @@ const LoopsEn = (props: TutorialPostProps) => (
 
     It starts with a line that begins with <Ic>while</Ic>, followed
     by a condition, and ending with a colon. Then follows
-    an indented block, just like we saw with the if-sentence in 
+    an indented block, just like we saw with the if-statement in 
     the previous post.
     <Db />
     The <Ic>while</Ic>-loop is run like this:
@@ -153,8 +153,75 @@ Now, i = 4`}
     if <i>a</i> % <i>b</i> gives the answer 0, then <i>a</i> is divisible by <i>b</i>, and
     in particular, this means that if <i>a</i> is an even number, <i>a</i> % 2 will give 0 
     as the answer.
-
+    <Db />
+    Have a look at the following program:
+    <CodeBlock>
+        {`i = 0
+while i <= 10:
+    if i % 2 == 0:
+        print(str(i) + ' is even')
     
+    i += 1`}
+    </CodeBlock>
+    
+    Here, we have thrown an if-statement into our <Ic>while</Ic>-loop, making our code write 
+    all even numbers from zero to ten, both inclusive, to screen:
+    <CodeBlock>{`0 is even
+2 is even
+4 is even
+6 is even
+8 is even
+10 is even`}</CodeBlock>
+    It's not really anything mysterious about this code, we just have to breathe calmly and 
+    stay focused to be sure we understand what is happening:
+    <Db />
+    When Python arrives at the loop for the first time, <Ic>i</Ic> is 0. 0 is even, so
+    that <Ic>i % 2</Ic> evaluates to true and the if-block is run, giving us
+    an output line at the screen. Then the if-block ends, since the next line has
+    less indentation than the <Ic>print()</Ic>-line. This causes the line <Ic>i += 1</Ic> to
+    be run in every iteration of the loop, regardless of whether <Ic>i</Ic> is even or not:
+    In the next iteration, <Ic>i</Ic> is 1, which is not an even number, causing the 
+    if-block not to be run, but the value of <Ic>i</Ic> is incremented to 2 nevertheless.
+    <Db />
+    Notice that we used <Ic>{`<=`}</Ic> in the <Ic>while</Ic> condition to ensure the last
+    iteration had <Ic>i = 10</Ic>.
+    <Db />
+    As we can see above, there is no problem in combining <Ic>while</Ic> loops 
+    with if-statements. We can also insert more if-statements into the loop block.
+    As an example, we could rewrite the above program to give special treatment for the
+    number 2:
 
+    <CodeBlock>
+        {`i = 0
+while i <= 10:
+    is_even = i % 2 == 0;
+    if is_even:
+        if i == 2:
+            print('2 is even, but we already knew that')
+        else:
+            print(str(i) + ' is even')
+
+    i += 1`}
+    </CodeBlock>
+    
+    Here, we have included a new if-statement. This if-statement is only checked by Python if the 
+    condition in the first if-statement is true. The new if-statement only checks if <Ic>i</Ic> is 2,
+    and if so, writes a special message to the screen. Otherwise, Python writes the 
+    same as before. Output becomes:
+
+    <CodeBlock>
+        {`0 is even
+2 is even, but we already knew that
+4 is even
+6 is even
+8 is even
+10 is even`}
+    </CodeBlock>
+    
+    An attentative reader may have noticed that we created a new variable in the above code: <Ic>is_even</Ic>,
+    which we have set to be equal to <Ic>i % 2 == 0</Ic>. We have then used the variable <Ic>is_even</Ic> directly
+    as the condition in the <Ic>if</Ic>-statement. When we store a condition in a variable, the variable
+    is of the datatype <Ic>bool</Ic>, short for <i>boolean</i>. A boolean variable is either true (<Ic>True</Ic> in Python)
+    or false (<Ic>False</Ic>). The capitalization in <Ic>True</Ic> and <Ic>False</Ic> is important.
     </>
 );
