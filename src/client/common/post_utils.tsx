@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { Metadata } from '../../server/update_metadata';
 import { Comment, InputComment } from '../../server/comments.ts';
-import { printDateEn, printDateNo, useFetch } from './utils.tsx';
+import { printDateEn, printDateNo, useMutableFetch } from './utils.tsx';
 import { LangContextStruct, LangContext } from '../infrastructure/root.tsx';
 
 const noticeStyle: React.CSSProperties = { 
@@ -57,12 +57,24 @@ export const PostHeader : React.FunctionComponent<{metadata : Metadata}> = (prop
 
 // Comments
 
-const CommentElement = (props: Comment) => {
-    return (<>
-        <h5>{props.author}</h5>
-        <p>{props.text}</p>
-        {printDateEn(new Date(props.timestamp))}
-        </>);
+interface CommentProps {
+    metadata: Metadata;
+    comment: Comment;
+};
+
+const CommentElement = (props: CommentProps) => {
+    let [replies, setReplies]: [Comment[], (c: Comment[]) => void] = React.useState(props.comment.replies);
+    const addReply = (c: Comment) => { console.log("Calling setreplies with "); console.dir(c); setReplies([...replies, c]); };
+    return (<div>
+        <b>{props.comment.author}</b><br />
+        {props.comment.text}<br />
+        {printDateEn(new Date(props.comment.timestamp))}<br />
+        <CollapsibleCommentField metadata={props.metadata} addToList={addReply} parentComment={props.comment} /> <br />
+        <div style={{paddingLeft: "10px"}}>
+            {props.comment.replies.map((comment: Comment) => (<CommentElement key={comment.id} comment={comment}
+                                                                              metadata={props.metadata} />))}
+        </div>
+    </div>);
 }
 
 interface CommentSectionProps {
@@ -71,23 +83,37 @@ interface CommentSectionProps {
 
 
 export const CommentSection = (props: CommentSectionProps) => {
-    let comments: Comment[] = useFetch(`/comments/${props.metadata.fileName}`, []);
+    let [comments, setComments]: [Comment[], (c: Comment[]) => void] = useMutableFetch(`/comments/${props.metadata.fileName}`, []);
     console.log("Comments = ");
     console.dir(comments);
+    const addComment = (c: Comment) => { setComments([...comments, c]); };
     return (<>
-        { comments.map((comment) => (<CommentElement key={comment.id} {...comment} />)) }
+        <h4>Comments</h4>
+        { comments.map((comment) => (<div  key={comment.id}><CommentElement comment={comment} metadata={props.metadata} /><br /> </div>)) }
+            <CommentField metadata={props.metadata} addToList={addComment} />
     </>)
 };
 
 
 // Comment field
 
-const sendComment = (author: string, text: string, postFileName: string) => {
+const mockComment = (inComment: InputComment): Comment => {
+    const comment: Comment = {
+        author: inComment.author,
+        text: inComment.text,
+        id: -1,
+        timestamp: new Date(),
+        replies: []
+    };
+    return comment;
+}
+
+const submitComment = (author: string, text: string, postFileName: string, parentComment: Comment): Comment => {
     const inputComment: InputComment = {
         author: author,
         text: text,
         postFileName: postFileName,
-        parentId: -1
+        parentId: parentComment?.id ?? -1
     };
     
     const body = JSON.stringify(inputComment);
@@ -96,16 +122,40 @@ const sendComment = (author: string, text: string, postFileName: string) => {
     fetch('/submit_comment', { method: 'POST', headers: {"Content-Type": 'application/json'}, body: body })
         .then(response => console.log("After posting comment, got status " + response.status))
         .catch(err => console.log("After posting comment, got error " + err));
+    return mockComment(inputComment);
 };
 
+interface CommentFieldProps {
+    metadata: Metadata;
+    addToList: (c: Comment) => void;
+    parentComment?: Comment;
+};
 
-export const CommentField = (props: Metadata) => {
+export const CommentField = (props: CommentFieldProps) => {
     const [author, setAuthor] = React.useState('');
     const [text, setText] = React.useState('');
     
     return ( <>
-        <label>Author</label> <input type="text" onChange={(event) => { setAuthor(event.target.value); }} /> 
-        <label>Text</label><input type="text" onChange={(event) => { setText(event.target.value);}} />
-        <input type="submit" value="Submit" onClick={() => sendComment(author, text, props.fileName)} />
+        <label>Author</label> <input type="text" value={author} onChange={(event) => { setAuthor(event.target.value); }} /> <br/>
+        <div><label>Text</label>
+            <textarea rows={4} cols={50} style={{resize: 'none'}} value={text} onChange={(event) => { setText(event.target.value);}} /></div>
+        <input type="submit" value="Submit" onClick={() => {
+            console.log("Setting author and text to ''");
+            setAuthor('');
+            setText('');
+            const mock: Comment = submitComment(author, text, props.metadata.fileName, props.parentComment);
+            props.addToList(mock);
+        }} />
     </>);
+}
+
+export const CollapsibleCommentField = (props: CommentFieldProps) => {
+    const [active, setActive] = React.useState(false);
+
+    return (
+        <>
+            <label onClick={() => { setActive(!active); }} ><u>{active ? "Nah" : "Reply" }<br /></u></label>
+            {active ? <CommentField {...props} /> : (<></>)}
+        </>
+    );
 }

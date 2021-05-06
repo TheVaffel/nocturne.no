@@ -27,6 +27,29 @@ export interface CommentMap {
     [key: string]: Comment[];
 };
 
+export interface IdCommentMap {
+    [key: number]: Comment;
+};
+
+
+export let comments: CommentMap = {};
+export let idCommentMap: IdCommentMap = {};
+
+const addComment = (idCommentMap: IdCommentMap, com: Comment) => {
+    idCommentMap[com.id] = com;
+    com.replies.forEach((rep) => addComment(idCommentMap, rep));
+}
+
+const createIdCommentMap = (comments: CommentMap): IdCommentMap => {
+    let idCommentMap: IdCommentMap = {};
+    for (const key in comments) {
+        comments[key].forEach((comment) => {
+            addComment(idCommentMap, comment);
+        });
+    }
+
+    return idCommentMap;
+}
 
 const commentFileDirectory: string = 'comments/';
 
@@ -86,6 +109,7 @@ export const initComments = (metadata: Metadata[][]): Promise<void> => {
 
             setInterval(popFromQueue, 10_000);
             comments = mp;
+            idCommentMap = createIdCommentMap(comments);
             resolve();
         }).catch(err => {
             console.log("Could not initialize comments: " + err);
@@ -123,11 +147,15 @@ const popFromQueue = () => {
     firstCommentInQueue = (firstCommentInQueue + 1) % 10;
     numCommentsInQueue--;
 
+    let newId: number = 0;
+    do {
+        newId = Math.floor(Math.random() * 1e10);
+    } while (newId in idCommentMap);
 
     const comment: Comment = {
         admin: false,
         author: inComment.author,
-        id: Math.floor(Math.random() * 1e10),
+        id: newId,
         text: inComment.text,
         timestamp: new Date(Date.now()),
         replies: []
@@ -138,14 +166,21 @@ const popFromQueue = () => {
         return;
     }
 
-    comments[inComment.postFileName].push(comment);
+
+    if (inComment.parentId >= 0) {
+        if (!(inComment.parentId in idCommentMap)) {
+            console.log("Could not find parent id in id map, dropping comment");
+            return;
+        }
+
+        idCommentMap[inComment.parentId].replies.push(comment);
+    } else {
+        comments[inComment.postFileName].push(comment);
+    }
+
+    idCommentMap[comment.id] = comment;
 
     const commentFileName = getCommentFileName(inComment.postFileName);
     fs.writeFileSync(commentFileName, JSON.stringify(comments[inComment.postFileName], null, 2));
     console.log("Wrote comments for " + inComment.postFileName);
 };
-
-
-export let comments: CommentMap = {};
-
-// export const popCommentQueue;

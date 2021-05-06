@@ -37,6 +37,10 @@ export const printDateNo = function(date: Date) : string {
 }
 
 export const useFetch = function<T>(url: string, defaultValue: T) : T {
+    return useMutableFetch(url, defaultValue)[0];
+};
+
+export const useMutableFetch = function<T>(url: string, defaultValue: T) : [T, (t: T) => void] {
     const [data, setData] = React.useState(defaultValue);
 
     async function fetchData() {
@@ -47,6 +51,6 @@ export const useFetch = function<T>(url: string, defaultValue: T) : T {
 
     React.useEffect(() => { fetchData(); }, [url]);
     
-    return data;
+    return [data, setData];
 };
 
