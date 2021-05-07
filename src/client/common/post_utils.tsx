@@ -9,7 +9,6 @@ import { LangContextStruct, LangContext } from '../infrastructure/root.tsx';
 const noticeStyle: React.CSSProperties = { 
     backgroundColor: "#EEEE88",
     width: "80%",
-    // margin: "25px",
     padding: "10px",
     borderStyle: "solid",
     borderColor: "#000000",
