@@ -2,13 +2,13 @@ import * as React from 'react';
 import { DevBlogPostProps } from '../devblog_wrapper.tsx';
 import { CmdPrompt, CodeBlock } from './../../common/code_format.tsx';
 import { Db } from './../../common/utils.tsx';
-import { PostHeader } from './../../common/post_utils.tsx';
+import { PostWrapper } from './../../common/post_utils.tsx';
 
 
 const SettingUpABlog0: React.FunctionComponent<DevBlogPostProps> = (props) =>
         (
-            <div>
-                <PostHeader metadata={props.metadata}></PostHeader>
+            <>
+                <PostWrapper metadata={props.metadata} >
                 
                 Have you ever considered starting your own blog, but didn't know where to start?
                 <br/>
@@ -332,8 +332,8 @@ app.listen(port, () => console.log('Server is running on port ' + port + '!'));
                     </CmdPrompt>
                     and open up your browser at <code>localhost:3000</code>. 
                     And with that, you should have a base for a blog!
-                    
-            </div>
+                </PostWrapper>
+            </>
         );
 
 export default SettingUpABlog0;

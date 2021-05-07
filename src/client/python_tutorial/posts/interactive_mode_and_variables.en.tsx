@@ -1,14 +1,14 @@
 import * as React from 'react';
 
 import { TutorialPostProps } from '../tutorial_wrapper.tsx';
-import { PostHeader } from  '../../common/post_utils.tsx';
+import { PostWrapper } from  '../../common/post_utils.tsx';
 
 import { Db } from '../../common/utils.tsx';
 import { Ic, CodeBlock } from '../../common/code_format.tsx';
 
 const InteractiveVariablesEn = (props: TutorialPostProps) => (
     <>
-    <PostHeader metadata={props.metadata} />
+    <PostWrapper metadata={props.metadata} >
     In this post, we will go through what is perhaps the most fundamental concept of Python and 
     many other programming languages: Variables.
     <Db />
@@ -336,7 +336,7 @@ TypeError: unsupported operand type(s) for +: 'int' and 'str'`}
     We will not, however, be using the console much more in this series explicitly, because in the next
     post, we will start writing programs. We are going to learn how to receive input from the user and give
     back output that depends on what the user wrote. It's time for user interaction and conditionals!
-
+    </PostWrapper>
 </>);
 
 export default InteractiveVariablesEn;

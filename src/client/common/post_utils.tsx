@@ -42,7 +42,15 @@ export const NoticeBlock = (props: React.PropsWithChildren<{}>) => (
 const createdTexts: string[] = ["Skrevet", "Created"];
 const updatedTexts: string[] = ["Sist oppdatert", "Last updated"];
 
-export const PostHeader : React.FunctionComponent<{metadata : Metadata}> = (props) => {
+export const PostWrapper = (props: {metadata: Metadata, children: React.ReactNode}) => {
+    return (<>
+        <PostHeader metadata={props.metadata} />
+        {props.children}
+        <CommentSection metadata={props.metadata} />
+        </>);
+};
+
+const PostHeader : React.FunctionComponent<{metadata : Metadata}> = (props) => {
     const langState: LangContextStruct = React.useContext(LangContext);
     const langIndex = Math.max(0, langState.langIndex);
     const printDate = langIndex == 0 ? printDateNo : printDateEn;

@@ -1,14 +1,14 @@
 import * as React from 'react';
 
 import { TutorialPostProps } from '../tutorial_wrapper.tsx';
-import { PostHeader } from  '../../common/post_utils.tsx';
+import { PostWrapper } from  '../../common/post_utils.tsx';
 
 import { Db } from '../../common/utils.tsx';
 import { Ic, CodeBlock } from '../../common/code_format.tsx';
 
 const HelloWorldNo = (props: TutorialPostProps) => (
     <>
-    <PostHeader metadata={props.metadata} />
+    <PostWrapper metadata={props.metadata} >
     I denne posten skal vi sette opp alt som trengs for å jobbe med Python. Etter å ha jobbet oss
     gjennom denne posten, skal vi ha
 
@@ -171,6 +171,7 @@ const HelloWorldNo = (props: TutorialPostProps) => (
     Om du har fått til alt så langt, betyr det at vi er klare til å gå i gang med selve det å lære Python!
     <Db />
     I neste post skal vi se på interaktiv Python og bruke det til å lære om variabler.
+    </PostWrapper >
     </>
 );
 

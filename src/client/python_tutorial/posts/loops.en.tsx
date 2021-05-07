@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { TutorialPostProps } from '../tutorial_wrapper.tsx';
-import { PostHeader, NoticeBlock } from  '../../common/post_utils.tsx';
+import { PostWrapper, NoticeBlock } from  '../../common/post_utils.tsx';
 
 import { Db } from '../../common/utils.tsx';
 import { Ic, CodeBlock } from '../../common/code_format.tsx';
@@ -9,7 +9,7 @@ import { Ic, CodeBlock } from '../../common/code_format.tsx';
 
 const LoopsEn = (props: TutorialPostProps) => (
     <>
-    <PostHeader metadata={props.metadata} />
+    <PostWrapper metadata={props.metadata} >
 
     In this post, we will review loops. Loops is, in many ways, the
     biggest reason that programming is such a useful tool.
@@ -397,7 +397,7 @@ while i < 1000:
     4 (Difficult). Create a guessing game - initiate a variable to a number between 0 and 100 that you choose yourself.
     Let the user try to guess the number, and tell them for each guess whether the number they guessed is
     too large or too small. Let the user guess anew until they get it right, and exit the program.
-
+    </PostWrapper>
     </>
 );
 

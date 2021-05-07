@@ -1,14 +1,14 @@
 import * as React from 'react';
 
 import { TutorialPostProps } from '../tutorial_wrapper.tsx';
-import { PostHeader } from  '../../common/post_utils.tsx';
+import { PostWrapper } from  '../../common/post_utils.tsx';
 
 import { Db } from '../../common/utils.tsx';
 import { Ic, CodeBlock } from '../../common/code_format.tsx';
 
 const UserInteractionAndConditionsEn = (props: TutorialPostProps) => (
     <>
-    <PostHeader metadata={props.metadata} />
+    <PostWrapper metadata={props.metadata} >
     In this post, we will explore how we can interact with a user of our program.
     The interaction we will discuss will be strictly text-based: The program writes something to
     the screen, and the user writes something back.
@@ -351,7 +351,7 @@ else:
     the health status of the user, based on the BMI:
     BMI between 18.5 and 25 is considered normal, lower may suggest that the user is underweight,
     while higher may mean overweight.
-
+    </PostWrapper>
     </>
 );
 

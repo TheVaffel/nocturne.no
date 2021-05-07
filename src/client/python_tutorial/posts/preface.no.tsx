@@ -1,13 +1,13 @@
 import * as React from 'react';
 
 import { TutorialPostProps } from '../tutorial_wrapper.tsx';
-import { PostHeader } from  '../../common/post_utils.tsx';
+import { PostWrapper } from  '../../common/post_utils.tsx';
 
 import { Db } from '../../common/utils.tsx';
 
 const PrefaceNo = (props: TutorialPostProps) => (
     <>
-    <PostHeader metadata={props.metadata}/>
+    <PostWrapper  metadata={props.metadata}>
     Velkommen til en introduksjon til Python!
     <Db />
     Målet mitt med denne bloggserien er å gi deg en innføring i <b>programmering</b> (eller <b>koding</b>) i Python. 
@@ -51,6 +51,7 @@ const PrefaceNo = (props: TutorialPostProps) => (
     i denne bloggen! 
     <Db />
     God fornøyelse og lykke til!
+    </PostWrapper>
     </>
 );
 

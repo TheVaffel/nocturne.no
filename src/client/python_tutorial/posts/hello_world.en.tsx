@@ -1,14 +1,14 @@
 import * as React from 'react';
 
 import { TutorialPostProps } from '../tutorial_wrapper.tsx';
-import { PostHeader } from  '../../common/post_utils.tsx';
+import { PostWrapper } from  '../../common/post_utils.tsx';
 
 import { Db } from '../../common/utils.tsx';
 import { Ic, CodeBlock } from '../../common/code_format.tsx';
 
 const HelloWorldEn = (props: TutorialPostProps) => (
     <>
-    <PostHeader metadata={props.metadata} />
+    <PostWrapper metadata={props.metadata} >
     In this post, we will setup all that is needed to work with Python.
     After having worked our way through this post, we will have
 
@@ -192,7 +192,7 @@ const HelloWorldEn = (props: TutorialPostProps) => (
     If everything went well thus far, it means you are well prepared to start learning Python!
     <Db />
     In the next post, we will have a look at interactive Python and use it to learn about variables.
-
+    </PostWrapper >
     </>
 );
 

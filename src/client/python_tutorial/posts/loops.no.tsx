@@ -1,14 +1,14 @@
 import * as React from 'react';
 
 import { TutorialPostProps } from '../tutorial_wrapper.tsx';
-import { PostHeader, NoticeBlock } from  '../../common/post_utils.tsx';
+import { PostWrapper, NoticeBlock } from  '../../common/post_utils.tsx';
 
 import { Db } from '../../common/utils.tsx';
 import { Ic, CodeBlock } from '../../common/code_format.tsx';
 
 const LoopsNo = (props: TutorialPostProps) => (
     <>
-    <PostHeader metadata={props.metadata} />
+    <PostWrapper metadata={props.metadata} >
     I denne posten skal vi se på løkker. Løkker er på mange måter den største grunnen
     til at programmering er nyttig til mange forskjellige formål. Løkker gjør det mulig 
     å kjøre den samme koden mange ganger, noe som gjør oss i stand til å prosessere store
@@ -444,6 +444,7 @@ while i < 1000:
     til et tall mellom 0 og 100 som du velger selv. La brukeren prøve
     å gjette tallet, og fortell dem om tallet de gjettet er for høyt eller lavt.
     La brukeren gjette på nytt til de gjetter riktig, og avslutt programmet.
+    </PostWrapper>
     </>
 );
 

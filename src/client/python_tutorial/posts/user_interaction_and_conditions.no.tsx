@@ -1,14 +1,14 @@
 import * as React from 'react';
 
 import { TutorialPostProps } from '../tutorial_wrapper.tsx';
-import { PostHeader } from  '../../common/post_utils.tsx';
+import { PostWrapper } from  '../../common/post_utils.tsx';
 
 import { Db } from '../../common/utils.tsx';
 import { Ic, CodeBlock } from '../../common/code_format.tsx';
 
 const UserInteractionAndConditionsNo = (props: TutorialPostProps) => (
     <>
-    <PostHeader metadata={props.metadata} />
+    <PostWrapper metadata={props.metadata} >
     I denne posten tar vi for oss hvordan vi kan interagere med en bruker
     av programmet vårt. Interaksjonen vil i dette tilfellet kun være tekstbasert,
     programmet skriver noe på skjermen, og brukeren skriver noe tilbake.
@@ -355,6 +355,7 @@ else:
     en kort melding til skjerm om helsetilstanden til brukeren basert på BMIen: 
     BMI mellom 18,5 og 25 regnes som normalt,
     lavere kan tyde på at brukeren er undervektig, mens høyere kan tyde på overvekt.
+    </PostWrapper>
     </>);
 
 export default UserInteractionAndConditionsNo;

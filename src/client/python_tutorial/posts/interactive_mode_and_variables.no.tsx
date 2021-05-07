@@ -1,14 +1,14 @@
 import * as React from 'react';
 
 import { TutorialPostProps } from '../tutorial_wrapper.tsx';
-import { PostHeader } from  '../../common/post_utils.tsx';
+import { PostWrapper } from  '../../common/post_utils.tsx';
 
 import { Db } from '../../common/utils.tsx';
 import { Ic, CodeBlock } from '../../common/code_format.tsx';
 
 const InteractiveVariablesNo = (props: TutorialPostProps) => (
     <>
-    <PostHeader metadata={props.metadata} />
+    <PostWrapper metadata={props.metadata} >
     I denne posten skal vi gå gjennom det kanskje mest fundamentale konseptet i Python
     og mange andre programmeringsspråk: Variabler. 
     <Db />
@@ -349,6 +349,7 @@ TypeError: unsupported operand type(s) for +: 'int' and 'str'
     nemlig begynne å
     skrive programmer. Vi skal lære å ta imot innputt fra brukeren, og gi utputt avhengig
     av hva brukeren skrev. Det er duket for brukerinteraksjon og betingelser!
+    </PostWrapper>
     </>
 );
 
