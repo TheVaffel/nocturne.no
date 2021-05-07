@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import { LangContextStruct, LangContext } from '../infrastructure/root.tsx';
+
 // Double break
 export const Db: React.FunctionComponent = () => (<div><br style={{"display": "block", "margin": "10px 0"}} /></div>);
 
@@ -35,6 +37,23 @@ export const printDateEn = function(date: Date) : string {
 export const printDateNo = function(date: Date) : string {
     return date.getDate() + ". " + monthsNo[date.getMonth()] + " " + date.getFullYear();
 }
+
+export const localizedDate = (date: Date)  => {
+    const langStruct: LangContextStruct = React.useContext(LangContext);
+    const langInd = Math.max(0, langStruct.langIndex);
+
+    if (langInd == 0) {
+        return (<>{printDateNo(date)}</>);
+    } else {
+        return (<>{printDateEn(date)}</>);
+    }
+};
+
+export const localize = (st: string[]) => {
+    const langStruct: LangContextStruct = React.useContext(LangContext);
+    const langInd = Math.max(0, langStruct.langIndex);
+    return st[langInd];
+};
 
 export const useFetch = function<T>(url: string, defaultValue: T) : T {
     return useMutableFetch(url, defaultValue)[0];

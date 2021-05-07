@@ -125,8 +125,10 @@ let numCommentsInQueue: number = 0;
 let firstCommentInQueue: number = 0;
 
 
+const isCommentValid = (c: InputComment) => c.author.trim().length > 0 && c.text.trim().length > 0;
+
 export const receiveComment = (inComment: InputComment): boolean => {
-    if (numCommentsInQueue == MAX_COMMENTS_IN_QUEUE) {
+    if (numCommentsInQueue == MAX_COMMENTS_IN_QUEUE || !isCommentValid(inComment)) {
         return false;
     }
 

@@ -60,8 +60,7 @@ function main(): void {
     });
 
     app.get('/tutorial_lists', (req: Request, res: Response) => {
-        console.dir("Giving tutorial lists: ")
-        console.dir([metadataList[1], metadataList[2]]);
+        console.log("Sending tutorial list");
         res.send([metadataList[1], metadataList[2]]);
     });
 
@@ -69,21 +68,19 @@ function main(): void {
         const spl = req.url.split('/');
         const lastPart = spl[spl.length - 1];
 
+        console.log("Sending comments");
+
         if (lastPart in comments) {
-            console.log("Sending comments belongng to " + lastPart + ": ");
-            console.dir(comments[lastPart]);
             res.send(comments[lastPart]);
         } else {
-            console.log("Could not find comments for " + lastPart);
             res.sendStatus(404);
         }
     });
 
     app.post('/submit_comment', (req: Request, res: Response) => {
         const inComment: InputComment = req.body;
-        console.log("Received submit comment. inComment = " + req.body);
+        console.log("Received submit comment. inComment = ");
         console.dir(req.body);
-        console.dir(inComment);
         receiveComment(inComment);
     });
 
