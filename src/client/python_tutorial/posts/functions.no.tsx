@@ -206,8 +206,95 @@ si_hei('Arne', False)`}
             </CodeBlock>
             Det nye argumentet heter <Ic>med_hjerter</Ic>, og vi har satt standardverdien til <Ic>True</Ic>, under antakelsen om at mer er bedre. Hvis dette argumentet er sant, skrives tre hjerter til skjermen på linjen etter hilsenen. Hjertene kan skrus av og på uavhengig av entusiasme-parameteren. Her har vi brukt <i>unicode</i>-enkoding for å spesifisere hjertene. Unicode-enkoding lar deg putte spesialtegn inn i strenger ved å skrive <Ic>{`\\uxxxx`}</Ic>, hvor <Ic>x</Ic>-ene er koden for spesialtegnet du ønsker. For å finne koden for et tegn, kan du for eksempel søke på <a href="https://unicode-table.com/">unicode-table.com</a>. <Ic>2665</Ic> er koden for hjerte.
             <Db />
-            Nå fungerer kallet slik som dette:
+            Nå kan vi kalle funksjonen med ett, to eller tre argumenter:
+            <CodeBlock>
+                {`si_hei('Arne')
+si_hei('Arne', False)
+si_hei('Arne', False, False)`}
+            </CodeBlock>
 
+            Men hva nå om vi er sikre på at vi <i>ikke</i> vil ha hjerter, men er likegyldige til hvor entusiastisk resten av meldingen er, slik at vi bare vil bruke standardverdien for entusiasmeargumentet. Hvordan oppgir vi verdi på et spesifikt standardargument uten å måtte bry oss med alle standardargumentene som kommer først? Det er her <i>navngitte</i> argumenter kommer inn i bildet:
+            <Db />
+            Når du kaller en funksjon, kan du spesifisere verdi for bare noen spesifikke standardargumenter ved å skrive <Ic>{`<argumentnavn>=<verdi>`}</Ic> i funksjonskallet. Dette kaller vi <i>navngitte</i> argumenter. For å tilfredsstille de spesifikke preferansene nevnt over kan vi skrive følgende:
+            <CodeBlock>
+                {`si_hei('Arne', med_hjerner=False)`}
+            </CodeBlock>
+            Nå kan vi være sikre på at vi ikke får noen unødvendige hjerter i utputtet, uten at vi har trengt å ta stilling til hvor entusiastisk vi vil ha hilsenen vår. Bra!
+            <Db />
+            Når du har ett eller flere standardargumenter i funksjonsdefinisjonen, må alle standardargumenter oppgis etter de vanlige obligatoriske argumentene. Det samme gjelder i funksjonskall - obligatoriske argumenter må komme før alle navngitte argumenter.
+            
+            <h3>Typiske funksjoner med standardargumenter</h3>
+            Standardargumenter er et veldig spesifikt tema som kanskje ikke føles veldig nyttig i en introduksjon til funksjoner. Årsaken til at vi har det med likevel, er at det er en del funksjoner som er laget på denne måten, og gjennomgangen her vil kunne gi deg en bedre forståelse av hvordan de fungerer.
+            <Db />
+            Hittil har vi bare brukt <Ic>input()</Ic> uten argumenter. Men <Ic>input()</Ic> kan faktisk ta et argument: Hvis vi gir den en streng, skriver den strengen ut på skjermen før brukeren skriver noe. Det gjør det hakket enklere å be brukeren om å gi innputt:
+            <CodeBlock>
+                {`navn = input('Skriv navnet ditt: ')`}
+            </CodeBlock>
+            Vi kommer til å bruke denne formen framover.
+            <Db />
+            På samme måte har bare sett på tilfeller hvor <Ic>print</Ic> tar ett argument, men det er ikke hele historien. Dersom du gir flere argumenter til <Ic>print()</Ic>-funksjonen, skriver den alle argumentene ut på skjermen, separert med mellomrom. En annen egenskap ved <Ic>print()</Ic>-funksjonen, er at argumentene kan være i en hvilken som helst datatype. Det betyr at vi kan skrive inn heltall som egne argumenter uten å måtte konvertere dem til streng først. Disse to linjene gjør altså det samme:
+            <CodeBlock>
+                {`print('Du er ' + str(alder) + ' år gammel')
+print('Du er', alder, 'år gammel')`}
+            </CodeBlock>
+            Det kan gjøre brukerinteraksjon enda litt enklere!
+            <Db />
+            Et annet triks man kan bruke med <Ic>print()</Ic>-funksjonen, er å spesifisere en verdi for standardargumentet <Ic>end</Ic>. Som vi har erfart, vil <Ic>print()</Ic> skrive tekst på skjermen og deretter avslutte linjen. Med <Ic>end</Ic> kan vi be <Ic>print</Ic> om å ende utputtet med noe annet. Standardverdien for <Ic>end</Ic>-argumentet er <Ic>'\\n'</Ic>, som betyr linjeskift. Hvis vi gir det en annen verdi, vil neste <Ic>print</Ic>-kall skrive på samme linje som denne. Dette kan vi for eksempel bruke når vi går igjennom en løkke for å får hver iterasjon til å skrive på samme linje:
+            <CodeBlock>
+                {`i = 0
+while i < 10:
+    print(i, end=' ')
+    i += 1`}
+            </CodeBlock>
+            Her har vi satt <Ic>end</Ic> til mellomrom (<Ic>{`' '`}</Ic>). Med dette vil alle tallene fra 0 til og med 9 skrives på én linje, i motsetning til hver sin linje.
+
+            <h2>Medlemsfunksjoner</h2>
+
+            Helt til slutt skal vi introdusere <i>medlemsfunksjoner</i>. Medlemsfunksjoner er funksjoner som "tilhører" verdier av enkelte datatyper. Her skal vi bare se på medlemsfunksjoner på strenger.
+            <Db />
+            En medlemsfunksjon kaller man med denne syntaksen: <Ic>{`<verdi>.<funksjon>(<eventuelle argumenter>)`}</Ic>. Strenger har mange medlemsfunksjoner, ett enkelt eksempel er <Ic>isnumeric()</Ic> som forteller oss om strengen inneholder et tall eller ikke:
+            <CodeBlock>
+                {`streng0 = '1kk3_37_7411'
+streng1 = '7411'
+
+er_streng0_et_tall = streng0.isnumeric()
+er_streng1_et_tall = streng1.isnumeric()`}
+            </CodeBlock>
+            I denne koden vil <Ic>er_streng0_et_tall</Ic> være den boolske verdien <Ic>False</Ic>, siden tekststrengen <Ic>streng0</Ic> inneholder tegn som ikke er forenlig med at det er et tall. <Ic>streng1</Ic>, derimot, er en streng som inneholder et tall, slik at <Ic>er_streng1_et_tall</Ic> vil være <Ic>True</Ic>.
+            <Db />
+            Et annet eksempel er medlemsfunksjonen <Ic>upper()</Ic> som returnerer den samme strengen, men hvor alle små bokstaver er gjort store. I en entusiastisk-hilsen-funksjon som over, kan dette hjelpe oss med å gjøre utputtet <i>enda</i> mer entusiastisk. Hvis vi bare skriver
+            <CodeBlock>{`print('HALLO ' + navn + ', DIN SUKKERKLUMP!')`}</CodeBlock>
+            , vil utputt se slik ut:
+            <CodeBlock>
+                {`HALLO Arne, DIN SUKKERKLUMP!`}
+            </CodeBlock>
+            Dersom vi heller bruker <Ic>upper()</Ic> slik som i
+            <CodeBlock>{`print('HALLO ' + navn.upper() + ', DIN SUKKERKLUMP!')`}</CodeBlock>
+            , vil vi få ut
+            <CodeBlock>
+                {`HALLO ARNE, DIN SUKKERKLUMP!`}
+            </CodeBlock>
+            som jo høres mer troverdig ut. 
+            <Db />
+            Vi kommer til å bruke flere medlemsfunksjoner i neste post.
+
+            <h2>Oppsummering</h2>
+
+            Gratulerer med å ha kommet deg gjennom nok en lang post! Funksjoner er en viktig del av verktøykassa for alle programmerere, men det å finne ut hvor det gir mening å bruke funksjoner, og å bruke dem effektivt er en treningssak. Funksjoner er et konsept som gir mer og mer mening å bruke jo større kode du jobber med. Likevel vil du gjøre deg selv en tjeneste ved å prøve å dele også de små programmene du lager i starten, opp i funksjoner.
+            <Db />
+            Vi har allerede lært mange av de grunnleggende konseptene i Python - og vi kan begynne å gjøre mer og mer interessante ting. I neste post skal vi ta for oss lister, som vil la oss holde rede på store mengder data av gangen, og <Ic>for</Ic>-løkker, som er en litt mer intuitiv måte å skrive løkker på.
+
+            <h2>Oppgaver</h2>
+            Flere av disse oppgavene går ut på å lage nye funksjoner. Det anbefales at du lager kode som kaller funksjonene selv, sånn at du kan se at de fungerer.
+            1. Lag en funksjon som tar inn fornavn og etternavn og en parameter <Ic>formell</Ic> som er enten <Ic>True</Ic> ellers <Ic>False</Ic>. Hvis <Ic>formell</Ic> er <Ic>True</Ic>, skall bare etternavnet brukes is hilsenen, ellers skal bare fornavnet brukes.
+            <Db />
+            2. Lag en funksjon som kan avgjøre om et år er et skuddår. Regelen for skuddår er som følger: Hvis årstallet er delelig på fire, er det et skuddår. Dette gjelder ikke når tallet også er delelig på 100, men det gjelder likevel når tallet er delelig på 400. Derfor er f. eks. år 1900 ikke et skuddår, mens år 2000 <i>er</i> det.
+            <Db />
+            3. Lag en funksjon <Ic>skriv_stjerner(n)</Ic> som skriver en linje med <Ic>n</Ic> stjerner på skjermen, hvor <Ic>n</Ic> er et tallargument som sendes inn. F. eks. skal kallet <Ic>skriv_stjerner(5)</Ic> skrive <Ic>*****</Ic> på skjermen. (Hint: Bruk <Ic>{`end=''`}</Ic> som argument i <Ic>print</Ic>-funksjonen).
+            <Db />
+            4. Gjør oppgave 3 om BMI i <a href="/introduksjon_til_python/brukerinteraksjon_og_betingelser">posten om brukerinteraksjon</a>, hvor du bruker separate funksjoner for brukerinnputt (én for henholdsvis høyde og vekt), utregning av BMI og tilbakemelding til brukeren basert på den utregnede BMIen.
+            <Db />
+            5 (Vanskelig). Fibonacci-tallene er tallrekken som starter med <Ic>F(0) = 1</Ic> og <Ic>F(1) = 1</Ic>, og fortsetter med <Ic>F(n) = F(n - 1) + F(n - 2)</Ic> for alle heltall <Ic>n</Ic> høyere enn 1. Lag en funksjon som regner ut det <Ic>n</Ic>-te Fibonacci-tallet. (<i>Hint: Dette er enklest å lage som en <b>rekursiv</b> funksjon, en funksjon som kaller seg selv i funksjonsblokken. Pass på at funksjonen ikke kaller seg selv igjen og igjen i det uendelige</i>).
         </PostWrapper>
     </>
 );
