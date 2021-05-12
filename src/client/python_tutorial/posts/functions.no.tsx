@@ -87,7 +87,7 @@ print('Du fyller ' + str(alder_i_år) + ' år i år!')`}
     
 
 fødselsår = hent_fødselsår()
-wile fødselsår < 1990 or fødselsår > 2021:
+while fødselsår < 1900 or fødselsår > 2021:
     print('Fødselsåret er ugyldig!')
     
     fødselsår = hent_fødselsår()
