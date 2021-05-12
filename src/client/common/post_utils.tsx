@@ -62,7 +62,9 @@ const PostHeader : React.FunctionComponent<{metadata : Metadata}> = (props) => {
 }
 
 
-// Comments
+/*
+ * Comments
+ */
 
 const commentsHeaderText: string[] = ["Kommentarer", "Comments"];
 const authorLabel: string[] = ["Navn", "Name"];
@@ -148,18 +150,26 @@ export const CommentField = (props: CommentFieldProps) => {
     const [author, setAuthor] = React.useState('');
     const [text, setText] = React.useState('');
     const valid = author.trim().length > 0 && text.trim().length > 0;
+
+    const onSubmit = () => {
+        setAuthor('');
+        setText('');
+        const mock: Comment = submitComment(author, text, props.metadata.fileName, props.parentComment);
+        props.addToList(mock);
+    };
     
     return ( <div style={{margin: "5px"}}>
-        <label>{localize(authorLabel)}</label> <input type="text" width="50px" value={author} onChange={(event) => { setAuthor(event.target.value); }} /> <br/>
-        <div><label>{localize(textLabel)}</label>
-            <textarea style={{resize: 'none'}} value={text} onChange={(event) => { setText(event.target.value);}} /></div>
-        <input type="submit" disabled={!valid} value={localize(submitText)} onClick={() => {
-            console.log("Setting author and text to ''");
-            setAuthor('');
-            setText('');
-            const mock: Comment = submitComment(author, text, props.metadata.fileName, props.parentComment);
-            props.addToList(mock);
-        }} />
+        <table>
+            <tr>
+                <th><label>{localize(authorLabel)}</label></th>
+                <th><input type="text" width="50px" value={author} onChange={(event) => { setAuthor(event.target.value); }} /></th>
+            </tr>
+            <tr>
+                <th><label>{localize(textLabel)}</label></th>
+                <th align='left'><textarea style={{resize: 'none'}} value={text} onChange={(event) => { setText(event.target.value);}} /></th>
+            </tr>
+        </table>
+        <input type="submit" disabled={!valid} value={localize(submitText)} onClick={onSubmit} />
     </div>);
 }
 
