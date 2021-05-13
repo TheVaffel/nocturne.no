@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { TutorialPostProps } from '../tutorial_wrapper.tsx';
-import { PostWrapper, NoticeBlock } from '../../common/post_utils.tsx';
+import { PostWrapper } from '../../common/post_utils.tsx';
 
 import { Db } from '../../common/utils.tsx';
 import { Ic, CodeBlock } from '../../common/code_format.tsx';
