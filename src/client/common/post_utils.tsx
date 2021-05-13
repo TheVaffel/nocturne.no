@@ -160,14 +160,16 @@ export const CommentField = (props: CommentFieldProps) => {
     
     return ( <div style={{margin: "5px"}}>
         <table>
+            <tbody>
             <tr>
-                <th><label>{localize(authorLabel)}</label></th>
-                <th><input type="text" width="50px" value={author} onChange={(event) => { setAuthor(event.target.value); }} /></th>
+                <td align='right' style={{fontSize: 'contents'}}>{localize(authorLabel)}</td>
+                <td align='left'style={{marginLeft: '5px'}}><input type="text" width="50px" value={author} onChange={(event) => { setAuthor(event.target.value); }} /></td>
             </tr>
             <tr>
-                <th><label>{localize(textLabel)}</label></th>
-                <th align='left'><textarea style={{resize: 'none'}} value={text} onChange={(event) => { setText(event.target.value);}} /></th>
+                <td align='right'>{localize(textLabel)}</td>
+                <td align='left' style={{marginLeft: '5px'}}><textarea style={{resize: 'none'}} value={text} onChange={(event) => { setText(event.target.value);}} /></td>
             </tr>
+            </tbody>
         </table>
         <input type="submit" disabled={!valid} value={localize(submitText)} onClick={onSubmit} />
     </div>);
