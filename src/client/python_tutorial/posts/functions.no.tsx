@@ -98,7 +98,7 @@ print('Du fyller ' + str(alder_i_år) + ' år i år!')`}
 
             Sånn - nå er den repeterte koden samlet på ett sted. Når vi nå leser gjennom koden, er den også litt lettere å få oversikt over. Det er mer innlysende hva som foregår i <Ic>while</Ic>-løkken nå som det er færre linjer å konsentrere seg om.
             <Db />
-            Legg merke til at vi i stedet for å lage variabelen <Ic>fødselsår</Ic> i funksjonen, bare returnerer verdien, og overlater ansvaret med å legge den i en variabel til koden som kalte funksjonen.
+            Legg merke til at vi i stedet for å lage variabelen <Ic>fødselsår</Ic> i funksjonen, bare returnerer verdien, og overlater ansvaret for å legge den i en variabel til koden som kalte funksjonen.
             <Db />
             Merk - vi kunne også gjort koden litt mindre ved å fjerne de første tre linjene i programmet og heller lage en uendelig <Ic>while</Ic>-løkke som spør brukeren om innputt igjen og igjen, og kjører <Ic>break</Ic> når brukeren gir et gyldig innputt. Framgangsmåten vi har brukt funker heller som et pedagogisk eksempel.
 
@@ -130,7 +130,7 @@ print('Du fyller ' + str(alder_i_år) + ' år i år!')`}
             
             Sånn, nå ligger hele essensen av programmet i de tre nederste linjene. For en som leser koden for første gang, er det mye lettere å få oversikt når de litt mer innfløkte delene av koden gjemmes i funksjonene. 
             <Db />
-            Det å <i>abstrahere</i> bort deler av koden med funksjoner, slik som vi har gjort over, er regnet som en god skikk, nettopp fordi det gjør lettere å resonnere med koden. Det gjør det enkelt å fokusere på den delen av koden du er mest interessert i når du leser ny kode, skal legge til ny funksjonalitet, eller rette feil. I likhet med mange andre skikker programmerere er glad i, er utstrakt bruk av funksjoner litt vanskelig å motivere skikkelig, fordi de først og fremst gir mening når man jobber med mye kode. Det er fullt mulig å skrive programmer uten å definere funksjoner, men det er på ingen måte noen god idé. I tillegg til å potensielt inneholde mye repetert kode, blir det vanskelig å få oversikt og lete seg fram til de interessante delene av koden uten intim kjennskap til hvordan programmet fungerer. Og selv om du har skrevet programmet selv, har den intime kjennskapen lett for å forsvinne over tid - så funksjoner vil være til hjelp både for deg selv og dem du er glad i, som også leser koden!
+            Det å <i>abstrahere</i> bort deler av koden med funksjoner, slik som vi har gjort over, er regnet som en god skikk, nettopp fordi det gjør lettere å resonnere med koden. Det gjør det enkelt å fokusere på den delen av koden du er mest interessert i når du leser ny kode, skal legge til ny funksjonalitet, eller rette feil. I likhet med mange andre skikker programmerere er glad i, er utstrakt bruk av funksjoner litt vanskelig å motivere skikkelig for nybegynnere, fordi de først og fremst gir mening når man jobber med mye kode. Det er fullt mulig å skrive lengre programmer uten å definere funksjoner, men det er på ingen måte noen god idé. I tillegg til å potensielt inneholde mye repetert kode, blir det vanskelig å få oversikt og lete seg fram til de interessante delene av koden uten intim kjennskap til hvordan programmet fungerer. Og selv om du har skrevet programmet selv, har den intime kjennskapen lett for å forsvinne over tid - så funksjoner vil være til hjelp både for deg selv i framtiden og alle andre som skulle komme til å kaste et blikk på koden din!
             
             <h2>Argumenter</h2>
 
@@ -148,7 +148,7 @@ print('Du fyller ' + str(alder_i_år) + ' år i år!')`}
             <CodeBlock>
                 {`Hei, Arne!`}
             </CodeBlock>
-            Her har vi skrevet strengen <Ic>'Arne'</Ic> direkte inne i parantesene til funksjonskallet. Vi kunne også lagt strengen i en variabel først og brukt variabelen i stedet.
+            Her har vi skrevet strengen <Ic>'Arne'</Ic> inne i parantesene til funksjonskallet, og det blir dermed satt til argumentet <Ic>navn</Ic> i funksjonen. Vi kunne også lagt strengen i en variabel først og skrevet  variabelen inn mellom parantesene i stedet.
             <Db />
             Navnene på argumentene er fullstendig valgfrie, men som vanlig er det lurt å gi dem meningsfulle navn. Det kan også være lurt å gjøre det tydelig hvilken datatype argumentene har, dersom det ikke er åpenbart. Her er navnet på argumentet <Ic>navn</Ic>, som gjør det forholdsvis innlysende at argumentet må være en tekststreng. Koden ville for eksempel ha krasjet hvis vi hadde sendt inn et tall i stedet, ettersom vi ikke kan bruke <Ic>+</Ic>-operatoren på en streng og et tall direkte - som vi har sett før.
             <Db />
@@ -182,7 +182,6 @@ print('Du fyller ' + str(alder_i_år) + ' år i år!')`}
                 {`si_hei('Arne', False)`}
             </CodeBlock>
 
-            <Db />
             La oss nå anta at de aller fleste brukerne foretrekker den mer entusiastiske hilsenen, altså at de aller fleste vil foretrekke å kalle funksjonen med <Ic>True</Ic> som siste argument. For å gjøre livet lettere for majoriteten av brukerne, kan vi gi <Ic>med_entusiasme</Ic> en standardverdi. Det gjør vi som følger:
             <CodeBlock>{`def si_hei(navn, med_entusiasme=True):
     if ...`}</CodeBlock>
@@ -204,7 +203,7 @@ si_hei('Arne', False)`}
     if med_hjerter:
         print('\\u2665\\u2665\\u2665')`}
             </CodeBlock>
-            Det nye argumentet heter <Ic>med_hjerter</Ic>, og vi har satt standardverdien til <Ic>True</Ic>, under antakelsen om at mer er bedre. Hvis dette argumentet er sant, skrives tre hjerter til skjermen på linjen etter hilsenen. Hjertene kan skrus av og på uavhengig av entusiasme-parameteren. Her har vi brukt <i>unicode</i>-enkoding for å spesifisere hjertene. Unicode-enkoding lar deg putte spesialtegn inn i strenger ved å skrive <Ic>{`\\uxxxx`}</Ic>, hvor <Ic>x</Ic>-ene er koden for spesialtegnet du ønsker. For å finne koden for et tegn, kan du for eksempel søke på <a href="https://unicode-table.com/">unicode-table.com</a>. <Ic>2665</Ic> er koden for hjerte.
+            Det nye argumentet heter <Ic>med_hjerter</Ic>, og vi har satt standardverdien til <Ic>True</Ic>, under antakelsen om at mer er bedre. Hvis dette argumentet er sant, skrives tre hjerter til skjermen på linjen etter hilsenen. Hjertene kan skrus av og på uavhengig av entusiasme-argumentet. Her har vi brukt <i>unicode</i>-enkoding for å spesifisere hjertene. Unicode-enkoding lar deg putte spesialtegn inn i strenger ved å skrive <Ic>{`\\uxxxx`}</Ic>, hvor <Ic>x</Ic>-ene er koden for spesialtegnet du ønsker. For å finne koden for et tegn, kan du for eksempel søke på <a href="https://unicode-table.com/">unicode-table.com</a>. <Ic>2665</Ic> er koden for hjerte.
             <Db />
             Nå kan vi kalle funksjonen med ett, to eller tre argumenter:
             <CodeBlock>
@@ -224,7 +223,7 @@ si_hei('Arne', False, False)`}
             Når du har ett eller flere standardargumenter i funksjonsdefinisjonen, må alle standardargumenter oppgis etter de vanlige obligatoriske argumentene. Det samme gjelder i funksjonskall - obligatoriske argumenter må komme før alle navngitte argumenter.
             
             <h3>Typiske funksjoner med standardargumenter</h3>
-            Standardargumenter er et veldig spesifikt tema som kanskje ikke føles veldig nyttig i en introduksjon til funksjoner. Årsaken til at vi har det med likevel, er at det er en del funksjoner som er laget på denne måten, og gjennomgangen her vil kunne gi deg en bedre forståelse av hvordan de fungerer.
+            Standardargumenter er et veldig spesifikt tema som kanskje ikke føles veldig nyttig i en introduksjon til funksjoner. Årsaken til at vi har det med likevel, er at det er en del funksjoner i Python som er laget på denne måten, og gjennomgangen her vil kunne gi deg en bedre forståelse av hvordan de fungerer.
             <Db />
             Hittil har vi bare brukt <Ic>input()</Ic> uten argumenter. Men <Ic>input()</Ic> kan faktisk ta et argument: Hvis vi gir den en streng, skriver den strengen ut på skjermen før brukeren skriver noe. Det gjør det hakket enklere å be brukeren om å gi innputt:
             <CodeBlock>
@@ -239,7 +238,7 @@ print('Du er', alder, 'år gammel')`}
             </CodeBlock>
             Det kan gjøre brukerinteraksjon enda litt enklere!
             <Db />
-            Et annet triks man kan bruke med <Ic>print()</Ic>-funksjonen, er å spesifisere en verdi for standardargumentet <Ic>end</Ic>. Som vi har erfart, vil <Ic>print()</Ic> skrive tekst på skjermen og deretter avslutte linjen. Med <Ic>end</Ic> kan vi be <Ic>print</Ic> om å ende utputtet med noe annet. Standardverdien for <Ic>end</Ic>-argumentet er <Ic>'\\n'</Ic>, som betyr linjeskift. Hvis vi gir det en annen verdi, vil <Ic>print</Ic>-kallet skrive denne verdien etter resten av meldingen, og la neste <Ic>print</Ic>-kall begynne å skrive rett etter siste tegn, som vil være på samme linje dersom siste tegn ikke var linjeskift. Dette kan vi for eksempel bruke når vi går gjennom en løkke for å få hver iterasjon til å skrive på samme linje:
+            Et annet triks man kan bruke med <Ic>print()</Ic>-funksjonen, er å spesifisere en verdi for standardargumentet <Ic>end</Ic>. Som vi har erfart, vil <Ic>print()</Ic> skrive tekst på skjermen og deretter avslutte linjen. Med <Ic>end</Ic> kan vi be <Ic>print</Ic> om å ende utputtet med noe annet. Standardverdien for <Ic>end</Ic>-argumentet er <Ic>'\n'</Ic>, som betyr linjeskift. Hvis vi gir det en annen verdi, vil <Ic>print</Ic>-kallet skrive denne verdien etter resten av meldingen, og la neste <Ic>print</Ic>-kall begynne å skrive rett etter siste tegn, som vil være på samme linje dersom siste tegn ikke var linjeskift. Dette kan vi for eksempel bruke når vi går gjennom en løkke for å få hver iterasjon til å skrive på samme linje:
             <CodeBlock>
                 {`i = 0
 while i < 10:
@@ -264,13 +263,13 @@ er_streng1_et_tall = streng1.isnumeric()`}
             <Db />
             Et annet eksempel er medlemsfunksjonen <Ic>upper()</Ic> som returnerer den samme strengen, men hvor alle små bokstaver er gjort store. I en entusiastisk-hilsen-funksjon som over, kan dette hjelpe oss med å gjøre utputtet <i>enda</i> mer entusiastisk. Hvis vi bare skriver
             <CodeBlock>{`print('HALLO ' + navn + ', DIN SUKKERKLUMP!')`}</CodeBlock>
-            , vil utputt se slik ut:
+            vil utputt se slik ut:
             <CodeBlock>
                 {`HALLO Arne, DIN SUKKERKLUMP!`}
             </CodeBlock>
             Dersom vi heller bruker <Ic>upper()</Ic> slik som i
             <CodeBlock>{`print('HALLO ' + navn.upper() + ', DIN SUKKERKLUMP!')`}</CodeBlock>
-            , vil vi få ut
+            vil vi få ut
             <CodeBlock>
                 {`HALLO ARNE, DIN SUKKERKLUMP!`}
             </CodeBlock>
@@ -287,15 +286,15 @@ er_streng1_et_tall = streng1.isnumeric()`}
             <h2>Oppgaver</h2>
             Flere av disse oppgavene går ut på å lage nye funksjoner. Det anbefales at du lager kode som kaller funksjonene selv, sånn at du kan se at de fungerer.
             <Db />
-            1. Lag en funksjon som tar inn fornavn og etternavn og en parameter <Ic>formell</Ic> som er enten <Ic>True</Ic> ellers <Ic>False</Ic>. Funksjonen skal skrive en hilsen til brukeren. Hvis <Ic>formell</Ic> er <Ic>True</Ic>, skall bare etternavnet brukes is hilsenen, ellers skal bare fornavnet brukes.
+            1. Lag en funksjon som tar inn argumentene fornavn og etternavn pluss et argument <Ic>formell</Ic> som er enten <Ic>True</Ic> ellers <Ic>False</Ic>. Funksjonen skal skrive en hilsen til brukeren. Hvis <Ic>formell</Ic> er <Ic>True</Ic>, skal bare etternavnet brukes is hilsenen, ellers skal bare fornavnet brukes.
             <Db />
-            2. Lag en funksjon som kan avgjøre om et år er et skuddår. Regelen for skuddår er som følger: Hvis årstallet er delelig på fire, er det et skuddår. Dette gjelder ikke når tallet også er delelig på 100, men det gjelder likevel når tallet er delelig på 400. Derfor er f. eks. år 1900 ikke et skuddår, mens år 2000 <i>er</i> det.
+            2. Lag en funksjon som tar et årstall som argument og avgjør om året et skuddår; den skal returnere <Ic>True</Ic> om året er et skuddår, og <Ic>False</Ic> ellers. Regelen for skuddår er som følger: Hvis årstallet er delelig på fire, er det et skuddår. Dette gjelder ikke når tallet også er delelig på 100, men det gjelder likevel når tallet er delelig på 400. Derfor er f. eks. år 1900 ikke et skuddår, mens år 2000 <i>er</i> det.
             <Db />
             3. Gjør oppgave 3 om BMI i <a href="/no/introduksjon_til_python/brukerinteraksjon_og_betingelser">posten om brukerinteraksjon</a>, hvor du bruker separate funksjoner for brukerinnputt (én hver for henholdsvis høyde og vekt), utregning av BMI og tilbakemelding til brukeren basert på den utregnede BMIen.
             <Db />
             4. Lag en funksjon <Ic>skriv_stjerner(n)</Ic> som skriver en linje med <Ic>n</Ic> stjerner på skjermen, hvor <Ic>n</Ic> er et tallargument som sendes inn. F. eks. skal kallet <Ic>skriv_stjerner(5)</Ic> skrive <Ic>*****</Ic> på skjermen. (Hint: Bruk <Ic>{`end=''`}</Ic> som argument i <Ic>print</Ic>-funksjonen).
             <Db />
-            5 (Vanskelig). Fibonacci-tallene er tallrekken som starter med <Ic>F(0) = 1</Ic> og <Ic>F(1) = 1</Ic>, og fortsetter med <Ic>F(n) = F(n - 1) + F(n - 2)</Ic> for alle heltall <Ic>n</Ic> høyere enn 1. Lag en funksjon som regner ut det <Ic>n</Ic>-te Fibonacci-tallet. (<i>Hint: Dette er enklest å lage som en <b>rekursiv</b> funksjon, en funksjon som kaller seg selv i funksjonsblokken. Pass på at funksjonen ikke kaller seg selv igjen og igjen i det uendelige</i>).
+            5 (Vanskelig). Fibonacci-tallene er tallrekken som starter med <Ic>F(0) = 1</Ic> og <Ic>F(1) = 1</Ic>, og fortsetter med <Ic>F(n) = F(n - 1) + F(n - 2)</Ic> for alle heltall <Ic>n</Ic> høyere enn 1. Lag en funksjon som regner ut det <Ic>n</Ic>-te Fibonacci-tallet. (<i>Hint: Dette er minst arbeid å lage som en <b>rekursiv</b> funksjon, en funksjon som kaller seg selv i funksjonsblokken. Pass på at funksjonen ikke kaller seg selv igjen og igjen i det uendelige</i>).
         </PostWrapper>
     </>
 );
