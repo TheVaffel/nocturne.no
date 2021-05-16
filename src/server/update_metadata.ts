@@ -9,6 +9,8 @@ const postDirectories : [string, (fileName: string) => boolean][] =
 
 const metadataDirectorySuffix = '/metadata';
 
+const defaultIndex = 1e9;
+
 export interface Metadata {
     title: string;
     description: string;
@@ -17,15 +19,21 @@ export interface Metadata {
     hash: string;
     fileName: string;
     urlPath: string;
+    index: number;
 };
 
 const getURLPartFromFileName = function(str: string) {
     return str.substring(0, str.length - 4);
-}
+};
 
 const getURLPart = function(metadata: Metadata) : string {
     return getURLPartFromFileName(metadata.fileName);
-}
+};
+
+const getPostFileName = (metadata: Metadata, dirNum: number): string => {
+    const dir = postDirectoryPrefix + '/' + postDirectories[dirNum][0] + '/post';
+    return dir + '/' + metadata.fileName;
+};
 
 const getMetadataFileName = (fileName : string) : string => {
     const spl = fileName.split('/');
@@ -33,19 +41,20 @@ const getMetadataFileName = (fileName : string) : string => {
     spl.pop();
     return spl.join('/')  + metadataDirectorySuffix + '/' +
         lastPart.substring(0, lastPart.length - 4) + '.json';
-}
+};
+
+const getMetadataFileNameFromMetadata = (metadata: Metadata, dirNum: number): string => {
+    const postFileName = getPostFileName(metadata, dirNum);
+    return getMetadataFileName(postFileName);
+};
 
 const missesTitle = (metadata : Metadata) : boolean => {
-    return !('title' in metadata) || 
-        typeof metadata['title'] != 'string' || 
-        (metadata['title'] as string).length == 0;
-}
+    return metadata.title.length == 0;
+};
 
 const missesHash = (metadata : Metadata) : boolean => {
-    return !('hash' in metadata) ||
-        typeof metadata['hash'] != 'string' ||
-        (metadata['hash'] as string).length == 0;
-}
+    return metadata.hash.length == 0;
+};
 
 const updateFileMetadata = (metadata : Metadata, postFileName : string) : [Metadata, boolean] => {
     
@@ -64,21 +73,25 @@ const updateFileMetadata = (metadata : Metadata, postFileName : string) : [Metad
         const nowDate = Date.now();
         
         console.log("[updateFileMetadata] File " + postFileName + " initialized with createDate and hash");
-        return [Object.assign({}, metadata, { 'hash': hashish,
-            'createDate': nowDate,
-            'updateDate': nowDate,
-            'fileName': lastPart,
-            'urlPath': getURLPartFromFileName(lastPart)}), true];
-    
+        return [Object.assign({}, metadata, { hash: hashish,
+            createDate: nowDate,
+            updateDate: nowDate,
+            fileName: lastPart,
+            urlPath: getURLPartFromFileName(lastPart),
+            index: defaultIndex}), true];
     } else {
         if (metadata.urlPath == '' || metadata.urlPath == undefined) {
             metadata = Object.assign({}, metadata, { 'urlPath': getURLPart(metadata) });
         }
 
+        if (metadata.index == defaultIndex) {
+            metadata.index = parseInt(metadata.createDate.toString());
+        }
+
         // Has hash, check if updated
         const readFile = fs.readFileSync(postFileName);
         const hashish = Md5.hashStr(readFile.toString());
-        if (hashish != metadata['hash']) {
+        if (hashish != metadata.hash) {
             // Hash was different, change updateDate and update hash
             console.log("[updateFileMetadata] File " + postFileName + " was changed since last hash, updating");
             
@@ -87,7 +100,6 @@ const updateFileMetadata = (metadata : Metadata, postFileName : string) : [Metad
                 'updateDate': nowDate}), true]; // filename not really necessary in the future
         }
         
-        console.log("[updateFileMetadata] File " + postFileName + " was up to date, ignoring");
         return [metadata, true];
     }
 }
@@ -110,6 +122,7 @@ const getMetadataForFile = function(dir: string, filename : string) : Promise<Me
             hash: "",
             fileName: "",
             urlPath: "",
+            index: defaultIndex
         }, null, '\t'));
         metadataContent = fs.readFileSync(metadataFile);
         console.log("Successfully created new metadata file");
@@ -121,7 +134,8 @@ const getMetadataForFile = function(dir: string, filename : string) : Promise<Me
             reject();
         } else {
         
-            const metadataJson : Metadata = JSON.parse(metadataContent.toString());
+            const metadataJson : Metadata = Object.assign({index: defaultIndex}, 
+                JSON.parse(metadataContent.toString()));
 
             const [newMetadata, shouldUse] = updateFileMetadata(metadataJson, fullFileName);
 
@@ -133,9 +147,7 @@ const getMetadataForFile = function(dir: string, filename : string) : Promise<Me
             }
 
             if (shouldUse) {
-                console.dir("Pushing m = " + JSON.stringify(newMetadata, null, '\t'));
                 resolve(newMetadata);
-                // metadataList.push(newMetadata)
             } else {
                 reject();
             }
@@ -153,7 +165,6 @@ const getMetadataListPromise = function(dir : string,
                 return;
             }
             
-            console.log("Found files " + files);
             const metadataPromises = files
                 .filter(filter)
                 .map(filename => {
@@ -169,16 +180,33 @@ const getMetadataListPromise = function(dir : string,
     });
 }
 
-export const updateMetadata = function() : Promise<Metadata[][]> {
-    let metadataList : Metadata[] = [];
+const ensureIndexesInOrder = (metadatas: Metadata[][]): void => {
+    metadatas.forEach((metadata: Metadata[], postDirNum: number) => {
+        const sortMet = metadata.sort((a: Metadata, b: Metadata) => (a.index - b.index));
+        sortMet.forEach((met: Metadata, ind: number) => {
+            if (met.index != ind) {
+                met.index = ind;
+                const metadataFileName = getMetadataFileNameFromMetadata(met, postDirNum);
+                fs.writeFileSync(metadataFileName, JSON.stringify(met, null, '\t'));
+            }
+        });
+        metadatas[postDirNum] = sortMet;
+    });
+};
 
+export const updateMetadata = function() : Promise<Metadata[][]> {
     let pr = new Promise<Metadata[][]>((resolve, reject) => { 
         const metadataPrs = postDirectories.map(([dirPart, filter]) => {
             const dir = postDirectoryPrefix + '/' + dirPart + '/posts';
             return getMetadataListPromise(dir, filter);
             
         });
-        return Promise.all(metadataPrs).then(resolve);
+        return Promise.all(metadataPrs).then((data: Metadata[][]) =>
+            {
+                ensureIndexesInOrder(data);
+                resolve(data);
+            });
     });
+
     return pr;
 };

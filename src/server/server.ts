@@ -15,11 +15,7 @@ const port = 3000;
 let metadataList: Metadata[][];
 
 updateMetadata().then((res: Metadata[][]) => {
-    const sortedLists = res.map((mets: Metadata[]) => {
-        mets.sort((a, b) => a.createDate < b.createDate ? -1 : 1);
-        return mets;
-    });
-    metadataList = sortedLists;
+    metadataList = res;
 
     initComments(metadataList).then(() => {
         console.dir("Initialized comments!");
