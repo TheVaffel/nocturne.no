@@ -21,8 +21,6 @@ updateMetadata().then((res: Metadata[][]) => {
     });
     metadataList = sortedLists;
 
-    console.dir("MetadataList = " + JSON.stringify(metadataList));
-
     initComments(metadataList).then(() => {
         console.dir("Initialized comments!");
         main();
