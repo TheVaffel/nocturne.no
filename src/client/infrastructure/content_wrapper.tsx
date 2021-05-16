@@ -10,7 +10,7 @@ import { SiteIndexEn, SiteIndexNo } from '../dynamics.tsx';
 
 export const ContentWrapper: React.FunctionComponent<{}> = () => {
        const langState: LangContextStruct = React.useContext(LangContext);
-       return (<div>
+       return (<div style={{maxWidth: '800px', margin: '0 auto'}} >
        <Switch>
        <Route exact path={['/', '/en', '/no']} >
               { langState.langIndex == 0 ? <SiteIndexNo /> : <SiteIndexEn /> }

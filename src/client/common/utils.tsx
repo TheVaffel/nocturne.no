@@ -73,3 +73,6 @@ export const useMutableFetch = function<T>(url: string, defaultValue: T) : [T, (
     return [data, setData];
 };
 
+export const isMobile = () => {
+    return window.innerWidth < 500 || (window.innerWidth / window.innerHeight < 8.0 / 9.0);
+};

@@ -13,7 +13,8 @@ const noticeStyle: React.CSSProperties = {
     borderStyle: "solid",
     borderColor: "#000000",
     textAlign: 'left',
-    display: 'inline-block' };
+    display: 'inline-block',
+    borderRadius: '6px' };
 
 const noticeOuterStyle: React.CSSProperties = {
     width: "100%",

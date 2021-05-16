@@ -16,6 +16,14 @@ export const rootTutorialUrls = [tutorialUrlNo, tutorialUrlEn];
 
 export const localUrl = 'python_tutorial';
 
+const outerDivColor = '#347AB4';
+const innerDivColor = '#FFCA1D';
+const backgroundColor = '#FFFFFF';
+
+const outerDivStyle = { backgroundColor: outerDivColor, padding: '5px' };
+const innerDivStyle = { backgroundColor: innerDivColor, padding: '5px' };
+const backgroundDivStyle = { backgroundColor: backgroundColor, padding: '20px'};
+
 interface MetadataMap {
     [key: string]: Metadata[];
 };
@@ -171,7 +179,9 @@ export const TutorialWrapper = (props: {}) => {
         </Route>
     </>);
 
-    return (<>
+    return (<div style={outerDivStyle}>
+        <div style={innerDivStyle}>
+            <div style={backgroundDivStyle} >
         { indexRoute }
         { (metadataLists[0].length == 0 || langIndex == -1) ? <></> : metadataLists[langIndex].map((met: Metadata) =>
             {
@@ -182,5 +192,8 @@ export const TutorialWrapper = (props: {}) => {
                 </Route>);
             })
         }
-    </>);
+            </div>
+        </div>
+    </div>
+    );
 };

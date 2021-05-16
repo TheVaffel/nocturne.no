@@ -41,7 +41,9 @@ export const Root = (props: {}) => {
         <BrowserRouter>
         <Header />
         <hr/>
-        <ContentWrapper />
+        <div style={{fontFamily: 'sans-serif'}} >
+            <ContentWrapper />
+        </div>
         </BrowserRouter>
     </LangContext.Provider>);
 }
