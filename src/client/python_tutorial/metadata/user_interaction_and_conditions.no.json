@@ -1,4 +1,5 @@
 {
+	"index": 3,
 	"title": "Brukerinteraksjon og betingelser",
 	"description": "Vi ser på hvordan vi kan lage programmer som interagerer med brukeren, og hvordan vi kan bruke betingelser for å bestemme hvilken del av koden som skal kjøres og ikke",
 	"createDate": 1618748415317,
