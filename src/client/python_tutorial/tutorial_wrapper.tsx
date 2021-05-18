@@ -20,8 +20,14 @@ const outerDivColor = '#347AB4';
 const innerDivColor = '#FFCA1D';
 const backgroundColor = '#FFFFFF';
 
-const outerDivStyle = { backgroundColor: outerDivColor, padding: '5px' };
-const innerDivStyle = { backgroundColor: innerDivColor, padding: '5px' };
+const outerDivStyle: React.CSSProperties = { backgroundColor: outerDivColor, 
+    padding: '5px', 
+    paddingTop: '0px',
+    paddingBottom: '0px' };
+const innerDivStyle: React.CSSProperties = { backgroundColor: innerDivColor, 
+    padding: '5px', 
+    paddingTop: '0px',
+    paddingBottom: '0px' };
 const backgroundDivStyle = { backgroundColor: backgroundColor, padding: '20px'};
 
 interface MetadataMap {

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { Metadata } from '../../server/update_metadata';
 import { Comment, InputComment } from '../../server/comments.ts';
-import { printDateEn, printDateNo, localizedDate, localize, useMutableFetch } from './utils.tsx';
+import { printDateEn, printDateNo, localizedDate, localize, useMutableFetch, Db } from './utils.tsx';
 import { LangContextStruct, LangContext } from '../infrastructure/root.tsx';
 
 const noticeStyle: React.CSSProperties = { 
@@ -46,6 +46,8 @@ export const PostWrapper = (props: {metadata: Metadata, children: React.ReactNod
     return (<>
         <PostHeader metadata={props.metadata} />
         {props.children}
+        <Db />
+        <hr />
         <CommentSection metadata={props.metadata} />
         </>);
 };
@@ -105,7 +107,7 @@ export const CommentSection = (props: CommentSectionProps) => {
     let [comments, setComments]: [Comment[], (c: Comment[]) => void] = useMutableFetch(`/comments/${props.metadata.fileName}`, []);
     const addComment = (c: Comment) => { setComments([...comments, c]); };
     return (<>
-        <h4>{localize(commentsHeaderText)}</h4>
+        <h2>{localize(commentsHeaderText)}</h2>
         { comments.map((comment) => (<div  key={comment.id}><CommentElement comment={comment} metadata={props.metadata} /><br /> </div>)) }
             <CommentField metadata={props.metadata} addToList={addComment} />
     </>)
