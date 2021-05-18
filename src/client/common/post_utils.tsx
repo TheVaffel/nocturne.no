@@ -25,7 +25,7 @@ const noticeOuterStyle: React.CSSProperties = {
 
 export const PostListEntry: React.FunctionComponent<{metadata: Metadata, blogUrl: string}> = (props) => (
     <div>
-        <Link to={props.blogUrl + '/' + props.metadata.urlPath}><h3>{props.metadata.title}</h3></Link>
+        <Link to={props.blogUrl + '/' + props.metadata.urlPath}><h3>{props.metadata.index}. {props.metadata.title}</h3></Link>
         {props.metadata.description}
         <br/>
     </div>
