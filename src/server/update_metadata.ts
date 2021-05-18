@@ -140,7 +140,7 @@ const getMetadataForFile = function(dir: string, filename : string) : Promise<Me
             const [newMetadata, shouldUse] = updateFileMetadata(metadataJson, fullFileName);
 
             if (newMetadata == metadataJson) {
-                console.log(">>>Ignored file " + fullFileName);
+                console.log(">>>Ignored file " + fullFileName + " when updating metadata");
             } else {
                 console.log(">>>Writing metadata for file " + fullFileName);
                 fs.writeFileSync(metadataFile, JSON.stringify(newMetadata, null, '\t'));
