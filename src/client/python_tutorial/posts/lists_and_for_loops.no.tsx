@@ -70,8 +70,57 @@ while i < len(liste):
 5
 7
 11`}</CodeBlock>
-            Det er litt hjernegymnastikk å sjekke at løkken faktisk går igjennom alle elementene i listen bare ved å se på den. Det som er viktig her, er at vi starter på 0, som er første indeks i lista, og fortsetter til (men ikke med!) indeksen er lik lengden av lista. Hvis du synes dette er tungt å resonnere over nå, kan du trøste deg med at dette kommer til å bli lettere når vi introduserer <Ic>for</Ic>-løkker snart.
-            {/* Summere over løkke? */}
+            Det er litt hjernegymnastikk å sjekke at løkken faktisk går igjennom alle elementene i listen bare ved å se på den. Det som er viktig her, er at vi starter på 0, som er første indeks i lista, og fortsetter til (men ikke med!) indeksen er lik lengden av lista. Hvis du synes dette er tungt å resonnere over nå, kan du trøste deg med at det kommer til å bli lettere når vi introduserer <Ic>for</Ic>-løkker om litt.
+            <Db />
+            For å ta et annet eksempel - denne koden lager en liste og regner ut summen av den:
+            <CodeBlock>{`liste = [1, 2, 3, 4, 5, 6, 7]
+
+i = 0
+sum = 0
+while i < len(liste):
+    sum += liste[i]
+    
+    i += 1
+
+print('Summen er', sum)`}</CodeBlock>
+            Her har vi laget variabelen <Ic>sum</Ic> som starter på null og deretter økes med hvert element i lista med <Ic>+=</Ic>-operatoren. I Python har vi også den innebygde funksjonen <Ic>sum()</Ic>, slik at vi like gjerne kunne ha skrevet <Ic>print('Summen er', sum(liste))</Ic>, men vi har skrevet det med en løkke over for eksempelets skyld.
+            <Db />
+            Til slutt tar vi et litt mer sammensatt eksempel. I koden under ber vi brukeren om å skrive inn en rekke navn, som legges i en liste, helt til brukeren skriver "ferdig". Deretter sorteres lista, og navnene skrives tilbake til brukeren på hver sin linje.
+            <Db />
+            En eventyrlysten sjel ville kanskje ha implementert en sorteringsfunksjon som sorterte lista på egen hånd, men her nøyer vi oss med å bruke <Ic>sort()</Ic>, som er en medlemsfunksjon på lister. <Ic>sort()</Ic> brukes ofte på lister av tall, men kan også brukes på lister av strenger, hvor den sorterer listen alfabetisk:
+            <CodeBlock>{`liste = []
+
+while True:
+
+    navn = input('Skriv et navn eller "ferdig": ')
+
+    if navn == 'ferdig':
+        break
+
+    liste.append(navn)
+
+
+liste.sort()
+
+i = 0
+while i < len(liste):
+    print(liste[i])
+
+    i += 1`}</CodeBlock>
+
+            Det er i grunn ikke noe nytt her, men dette eksempelet er litt mer sammensatt enn de vi har sett tidligere. Se om du forstår hvordan dette programmet gjør det beskrivelsen over sier!
+
+            <h2><Ic>for</Ic>-løkker</h2>
+
+            Det er et mønster vi har gjentatt mange ganger i eksemplene over, nemlig <Ic>while</Ic>-løkker på formen
+            <CodeBlock>{`i = 0
+while i < len(<liste>):
+    ...
+    
+    i += 1`}</CodeBlock>
+            I tillegg til at man fort blir lei av å skrive de samme linjene om og om igjen, er det mange detaljer som kan være lette å glemme. Som et alternativ kan vi bruke <Ic>for</Ic>-løkker i Python.
+            <Db />
+            <Ic>for</Ic>-løkker skrives på følgende måte:
         </PostWrapper>
     </>
 );
