@@ -121,6 +121,65 @@ while i < len(<liste>):
             I tillegg til at man fort blir lei av å skrive de samme linjene om og om igjen, er det mange detaljer som kan være lette å glemme. Som et alternativ kan vi bruke <Ic>for</Ic>-løkker i Python.
             <Db />
             <Ic>for</Ic>-løkker skrives på følgende måte:
+            <CodeBlock>{`for <iterasjonsvariabel> in <liste>:
+    <løkkeblokk>`}</CodeBlock>
+            Den første linja starter med <Ic>for</Ic> (som du kanskje kunne gjettet deg til), etterfulgt av et valgfritt variabelnavn som brukes som iterasjonsvariabel. Deretter følger ordet <Ic>in</Ic>, og så lista vi vil iterere gjennom. Den første linja avsluttes med et kolon. Deretter følger løkkeblokken, skrevet med innrykk som vanlig. 
+            <Db />
+            Måten <Ic>for</Ic>-løkken fungerer på, er at løkkeblokken kjøres én gang for hvert element i lista. For hver iterasjon settes iterasjonsvariabelen til det nåværende <i>elementet</i> i løkka. Dette står i kontrast til iterasjonsvariabelen vi har brukt i <Ic>while</Ic>-løkkene, hvor den inneholder en indeks.
+            <Db />
+            Vi kan skrive om det ene eksempelet vi hadde over, hvor vi definerer en liste med tall og skrver tallene til skjerm på hver sin linje:
+            <CodeBlock>
+                {`liste = [2, 3, 5, 7, 11]
+
+for e in liste:
+    print(e)`}
+            </CodeBlock>
+
+            Se så mye enklere! Nå settes iterasjonsvariabelen <Ic>e</Ic> til elementene 2, 3, 5, 7 og 11 i hver sin iterasjon, slik at de blir skrevet på hver sin linje på skjermen. Jeg kommer til å bruke variabelnavnet <Ic>e</Ic> for <i>element</i> for å presisere at den inneholder elementene i listen og ikke indekser. 
+            <Db />
+            Her er summeringsprogrammet, revitalisert med en <Ic>for</Ic>-løkke.
+            <CodeBlock>{`liste = [1, 2, 3, 4, 5, 6, 7]
+
+sum = 0
+for e in liste:
+    sum += e
+
+print('Summen er', sum)`}</CodeBlock>
+            Sammenlignet med den korresponderende koden over, er det mye lettere å skjønne hva som foregår, og det er mindre rom for å skrive feil!
+            
+            <h2><Ic>range()</Ic>-funksjonen</h2>
+
+            La oss si at vi har en liste med navn, og vil skrive navnene ut på hver sin linje sammen med nummeret på navnet i lista. Med en <Ic>while</Ic>-løkke kunne vi gjort det slik:
+            <CodeBlock>{`navneliste = ['Ole', 'Dole', 'Doffen']
+i = 0
+while i < len(navneliste):
+    print(i + 1, navneliste[i])
+    i += 1`}
+    </CodeBlock>
+            Legg merke til at vi har skrevet <Ic>i + 1</Ic> i <Ic>print()</Ic>-kallet, for å få numereringen til å begynne på 1 i stedet for 0. 
+            <Db />
+            Vi kan ikke skrive om koden over ved å iterere gjennom listen med en <Ic>for</Ic>-løkke direkte, fordi vi trenger indeksen for hvert element inne i løkkeblokken, men <Ic>for</Ic>-løkken gir oss bare elementet selv. I slike tilfeller kan vi bruke <Ic>range()</Ic>-funksjonen.
+            <Db />
+            <Ic>range()</Ic> gir oss en rekke med heltall fra et startpunkt til et sluttpunkt. For eksempel vil
+            <Ic>{`range(3)`}</Ic> gi oss tallene fra og med 0, til, men <i>ikke</i> med, 3. Vi kan også legge inn en egen startgrense som første argument, som gjør andre argument til øvre grense; <Ic>range(3, 5)</Ic> gir tallene fra og med 3, til og med 4. Vi kan bruke <Ic>range()</Ic> direkte med <Ic>for</Ic>-løkker slik:
+            <CodeBlock>{`for i in range(10):
+    print(i)`}
+            </CodeBlock>
+            Denne koden skriver bare ut tallene 0 til 9 på hver sin linje, med veldig lite kode! Dette er den foretrukne måten å iterere gjennom en rekke med tall på.
+            <Db />
+            For å gjenskape eksempelet over ved hjelp av <Ic>for</Ic>-løkker, kan vi bruke <Ic>range()</Ic> slik:
+            <CodeBlock>{`navneliste = ['Ole', 'Dole', 'Doffen']
+
+for i in range(len(navneliste)):
+    print(i + 1, navneliste[i])`}
+            </CodeBlock>
+            
+            Husk at <Ic>len()</Ic> gir lengden på lista. Dermed gir <Ic>range(len(navneliste))</Ic> en rekke med tall fra og med 0, til, men ikke med lengden på lista. Dette passer godt sammen med måten indeksering av lister fungerer i Python: De gyldige indeksene i en liste starter på 0 og går opp til, men ikke med, lengden av lista. Derfor gir <Ic>range(len(navneliste))</Ic> bare de gyldige indeksene vi kan bruke på lista!
+            <Db />
+            Et annet tilfelle vi kan bruke <Ic>range()</Ic> i, er når vi vil iterere gjennom to lister samtidig. <Ic>for</Ic>-løkker itererer gjennom kun én løkke. For å iterere to lister, er det lettest å bruke indekser direkte:
+            <CodeBlock>{`navneliste = `}</CodeBlock>
+
+            
         </PostWrapper>
     </>
 );
