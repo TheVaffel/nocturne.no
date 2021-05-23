@@ -1,10 +1,10 @@
 {
-	"title": "",
-	"description": "",
-	"createDate": "",
-	"updateDate": "",
-	"hash": "",
-	"fileName": "",
-	"urlPath": "",
-	"index": 1000000000
+	"index": 6,
+	"title": "Lister og for-løkker",
+	"description": "Vi ser på lister og lærer om for-løkker for å iterere gjennom dem.",
+	"createDate": 1621776269138,
+	"updateDate": 1621781049288,
+	"hash": "0eac628abf9a408cb4781ad65f722542",
+	"fileName": "lists_and_for_loops.no.tsx",
+	"urlPath": "lists_and_for_loops.no"
 }
