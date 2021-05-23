@@ -25,7 +25,7 @@ const PrefaceEn = (props: TutorialPostProps) => (
     but in the introductory part of this blog, I want there to be at most a few days, maximum a week between posts.
     You can keep an eye on the <a href="https://github.com/TheVaffel/nocturne.no">Github-page</a> for this website
     to get an idea of what part of this site I'm putting work into at each point in time (if I'm not going all-in on 
-    some totally different project). At that page, you can also give suggestions to technical improvements to this blog site. If you have questions or feedback more directly aimed at the content of this blog or Python, you can use the comment field found at the end of every post.
+    some totally different project). At that page, you can also give suggestions to technical improvements to this blog site. If you have questions or feedback more directly aimed at the content of this blog or Python, you can use the comment section found at the end of every post.
     <Db />
     At the end of this preface, I want to say something directly about programming: Programming consists of two main elements.
     The first is to learn the basic concepts and the "programmatic way of thinking", which are essential for making
