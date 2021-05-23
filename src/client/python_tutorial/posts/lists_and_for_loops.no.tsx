@@ -275,15 +275,13 @@ for e in eldre:
 
             <h2>Oppgaver</h2>
 
-            1. Lag et program som ber brukeren skrive inn en rekke tall og legger dem i en liste, helt til brukeren skriver noe som ikke er et tall (tips: bruk medlemsfunksjonen <Ic>isnumeric()</Ic> for strenger). Deretter sorterer du tallene og skriver dem tilbake til brukeren.
+            1. Lag en liste som inneholder de hundre første kvadrattallene (<Ic>n * n</Ic> for <Ic>n</Ic> fra 1 til 100). Prøv å gjøre det med listeinklusjon!
             <Db />
-            2. Lag en liste som inneholder de hundre første kvadrattallene (<Ic>n * n</Ic> for <Ic>n</Ic> fra 1 til 100). Prøv å gjøre det med listeinklusjon!
+            2. Skriv om eksempelet i denne posten der brukeren skriver inn en rekke navn som legges i en liste, med <Ic>for</Ic>-løkke(r). Burde begge <Ic>while</Ic>-løkkene gjøres om til <Ic>for</Ic>-løkker?
             <Db />
-            3. Skriv om eksempelet i denne posten der brukeren skriver inn en rekke navn som legges i en liste, med <Ic>for</Ic>-løkke(r). Burde begge <Ic>while</Ic>-løkkene gjøres om til <Ic>for</Ic>-løkker?
+            3. Skriv om eksempelet om primtall i posten om <a href="/no/introduksjon_til_python/løkker">while-løkker</a> ved hjelp av <Ic>for</Ic>-løkker og funksjoner.
             <Db />
-            4. Skriv om eksempelet om primtall i posten om <a href="/no/introduksjon_til_python/løkker">while-løkker</a> ved hjelp av <Ic>for</Ic>-løkker og funksjoner.
-            <Db />
-            5 (Vanskelig). En liste kan også inneholde andre lister som elementer. Lag gangetabellen i en slik dobbel liste: Lag en liste der hvert element er en liste som inneholder <i>n</i>-gangen. F. eks. skal første element i "hovedlisten" være listen <Ic>[1, 2, 3..., 10]</Ic>, mens andre element er listen <Ic>[2, 4, 6..., 20]</Ic> og syvende element skal være <Ic>[7, 14, 21... 70</Ic>. 
+            4 (Vanskelig). En liste kan også inneholde andre lister som elementer. Lag gangetabellen i en slik dobbel liste: Lag en liste der hvert element er en liste som inneholder <i>n</i>-gangen. F. eks. skal første element i "hovedlisten" være listen <Ic>[1, 2, 3..., 10]</Ic>, mens andre element er listen <Ic>[2, 4, 6..., 20]</Ic> og syvende element skal være <Ic>[7, 14, 21... 70</Ic>. 
             <Db /> 
             For en ekstra (<i>ekstra</i>) utfordring, prøv å definere listen på én linje ved hjelp av listeinklusjon!
             
