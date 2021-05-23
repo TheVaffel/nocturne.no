@@ -26,9 +26,7 @@ const PrefaceNo = (props: TutorialPostProps) => (
     målet er at nye innlegg i den grunnleggende delen av innføringen skal komme ut med noen dagers, maks én ukes mellomrom.
     Du kan følge med på <a href="https://github.com/TheVaffel/nocturne.no">Github-siden</a> til denne nettsiden
     for å få en idé om hvilken del av dette nettstedet jeg legger arbeid i til en hver tid (om jeg ikke satser all 
-    tid på et helt annet plutselig innfall). Her kan du også komme med forslag til forbedringer dersom noe i
-    bloggen er uklart eller ukomfortabelt. Det er en sjanse for at bloggen får sitt eget kommentarfelt en gang i framtiden,
-    og i såfall kan diskusjonen flyttes hit.
+    tid på et helt annet plutselig innfall). Her kan du også komme med forslag til tekniske forbedringer i bloggen. For spørsmål og tilbakemeldinger rettet direkte mot innholdet i bloggen eller Python, kan du bruke kommentarfeltet nederst i hver post.
     <Db />
     Til slutt i dette forordet vil jeg si noe litt mer konkret om programmering: Programmering består av to hovedkomponenter.
     Det første er å lære seg grunnkonseptene og "programmeringstenkemåten", som er helt nødvendig for å sette nye ideer ut i live med programmering. 
