@@ -75,7 +75,13 @@ function main(): void {
         const inComment: InputComment = req.body;
         console.log("Received submit comment. inComment = ");
         console.dir(req.body);
-        receiveComment(inComment);
+        const accepted = receiveComment(inComment);
+
+        if (accepted) {
+            res.sendStatus(200);
+        } else {
+            res.sendStatus(400);
+        }
     });
 
     app.get('/', (req: Request, res: Response) => {
