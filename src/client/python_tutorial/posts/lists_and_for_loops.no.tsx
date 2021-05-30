@@ -5,8 +5,9 @@ import { PostWrapper } from '../../common/post_utils.tsx';
 
 import { Db } from '../../common/utils.tsx';
 import { Ic, CodeBlock } from '../../common/code_format.tsx';
+import { NoticeBlock } from '../../common/post_utils';
 
-const ListsAndForLoops = (props: TutorialPostProps) => (
+const ListsAndForLoopsNo = (props: TutorialPostProps) => (
     <>
         <PostWrapper metadata={props.metadata} >
             Her skal vi introdusere lister, som vil la oss håndtere store mengder data i programmene våre. Deretter skal vi introdusere <Ic>for</Ic>-løkker, som gir oss en enkel måte å iterere gjennom lister.
@@ -14,7 +15,7 @@ const ListsAndForLoops = (props: TutorialPostProps) => (
             <h2>Lister</h2>
 
             <i>Lister</i> er objekter som kan inneholde null, én, eller flere verdier, kalt <i>elementer</i>. Vi kan lage en liste på denne måten:
-            <CodeBlock>{`[<første elementer>, <andre elementer>, <tredje elementer>...]`}</CodeBlock>
+            <CodeBlock>{`[<første element>, <andre element>, <tredje element>...]`}</CodeBlock>
             Altså bare en komma-separert liste av null eller flere verdier omsluttet av klammeparenteser <Ic>[]</Ic>.
             For eksempel kan vi skrive 
             <CodeBlock>
@@ -64,7 +65,7 @@ i = 0
 while i < len(liste):
     print(liste[i])
     i += 1`}</CodeBlock>
-            Her lager vi først en liste med noen tall, og setter iterasjonsvariabelen vår <Ic>i</Ic> til 0. Betingelsen i <Ic>while</Ic>-setningen sier at løkken skal kjøres så lenge <Ic>i</Ic> er mindre enn lengden på listen, som er 5 i dette tilfellet. For hver iterasjon i løkka, kjører vi <Ic>print(liste[i])</Ic>, altså skriver vi det <Ic>i</Ic>-te elementet i listen til skjermen. Siden <Ic>i</Ic> er et heltall som starter på 0 og går opp til lengden på lista, vil dette gjøre at vi til slutt skriver alle elementene i lista til skjermen. Som vanlig øker vi verdien til <Ic>i</Ic> med 1 for hver iterasjon i løkka. Resultatet blir:
+            Her lager vi først en liste med noen tall, og setter iterasjonsvariabelen vår <Ic>i</Ic> til 0. Betingelsen i <Ic>while</Ic>-setningen sier at løkken skal kjøres så lenge <Ic>i</Ic> er mindre enn lengden på listen, som er 5 i dette tilfellet. For hver iterasjon i løkka, kjører vi <Ic>print(liste[i])</Ic>, altså skriver vi elementet pa index <Ic>i</Ic> i listen til skjermen. Siden <Ic>i</Ic> er et heltall som starter på 0 og går opp til lengden på lista, vil dette gjøre at vi til slutt skriver alle elementene i lista til skjermen. Som vanlig øker vi verdien til <Ic>i</Ic> med 1 for hver iterasjon i løkka. Resultatet blir:
             <CodeBlock>{`2
 3
 5
@@ -72,7 +73,7 @@ while i < len(liste):
 11`}</CodeBlock>
             Det er litt hjernegymnastikk å sjekke at løkken faktisk går igjennom alle elementene i listen bare ved å se på den. Det som er viktig her, er at vi starter på 0, som er første indeks i lista, og fortsetter til (men ikke med!) indeksen er lik lengden av lista. Hvis du synes dette er tungt å resonnere over nå, kan du trøste deg med at det kommer til å bli lettere når vi introduserer <Ic>for</Ic>-løkker om litt.
             <Db />
-            For å ta et annet eksempel - denne koden lager en liste og regner ut summen av den:
+            For å ta et annet eksempel - denne koden lager en liste og regner ut summen av elementene i den:
             <CodeBlock>{`liste = [1, 2, 3, 4, 5, 6, 7]
 
 i = 0
@@ -112,6 +113,8 @@ while i < len(liste):
 
             Utover funksjonen <Ic>sort()</Ic>, er det ikke noe nytt her, men dette eksempelet er litt mer sammensatt enn de vi har sett tidligere. Se om du forstår hvordan dette programmet gjør det beskrivelsen over sier!
 
+            <NoticeBlock>Merk: Når man sammenligner to bokstaver i Python og andre programmeringsspråk, kommer alle store bokstaver foran alle små. Det vil si at strengen "Ola" vil settes før strengen "ada" under sortering.</NoticeBlock>
+
             <h2><Ic>for</Ic>-løkker</h2>
 
             Det er et mønster vi har gjentatt mange ganger i eksemplene over, nemlig <Ic>while</Ic>-løkker på formen
@@ -127,7 +130,7 @@ while i < len(<liste>):
     <løkkeblokk>`}</CodeBlock>
             Den første linja starter med <Ic>for</Ic> (som du kanskje kunne gjettet deg til), etterfulgt av et valgfritt variabelnavn som brukes som iterasjonsvariabel. Deretter følger ordet <Ic>in</Ic>, og så lista vi vil iterere gjennom. Den første linja avsluttes med et kolon. Deretter følger løkkeblokken, skrevet med innrykk som vanlig. 
             <Db />
-            Måten <Ic>for</Ic>-løkken fungerer på, er at løkkeblokken kjøres én gang for hvert element i lista. For hver iterasjon settes iterasjonsvariabelen til det nåværende <i>elementet</i> i løkka. Dette står i kontrast til iterasjonsvariabelen vi har brukt i <Ic>while</Ic>-løkkene tidligere, hvor iterasjonsvariabelen inneholder en indeks.
+            Måten <Ic>for</Ic>-løkken fungerer på, er at løkkeblokken kjøres én gang for hvert element i lista. For hver iterasjon settes iterasjonsvariabelen til det korresponderende <i>elementet</i> i lista. Dette står i kontrast til iterasjonsvariabelen vi har brukt i <Ic>while</Ic>-løkkene tidligere, hvor iterasjonsvariabelen inneholder en indeks.
             <Db />
             Vi kan skrive om det ene eksempelet vi hadde over, hvor vi definerer en liste med tall og skriver tallene til skjerm på hver sin linje:
             <CodeBlock>
@@ -148,16 +151,6 @@ for e in liste:
 
 print('Summen er', sum)`}</CodeBlock>
             Sammenlignet med den korresponderende koden over, er det mye lettere å skjønne hva som foregår, og det er mindre rom for å skrive feil!
-            <Db />
-            Vi kan også bruke <Ic>break</Ic> og <Ic>continue</Ic> i <Ic>for</Ic>-løkker. Husk at <Ic>break</Ic> hopper ut av hele løkken, mens <Ic>continue</Ic> hopper videre til neste iterasjon. I motsetning til det som er tilfellet med <Ic>while</Ic>-løkker, vil Python automatisk bruke neste element i neste iterasjon når vi hopper videre med <Ic>continue</Ic> i en <Ic>for</Ic>-løkke.
-            <Db />
-            Her er et eksempel som skriver alle positive tall under hundre som er delelige på 8 og 12, hvor vi bruker <Ic>continue</Ic> for å hoppe over tall som ikke oppfyller kravet:
-            <CodeBlock>{`for i in range(1, 100):
-    if not (i % 8 == 0 and i % 12 == 0):
-        continue
-    print(i)`}</CodeBlock>
-            
-            Det kan hende det føles mer naturlig å lage en hvis-setning med betingelsen <Ic>i % 8 == 0 and i % 12 == 0</Ic>, og legge <Ic>print()</Ic>-kallet inne i hvis-blokken i stedet - koden over er skrevet med <Ic>continue</Ic> først og fremst for demonstrasjonens skyld.
             
             <h2><Ic>range()</Ic>-funksjonen</h2>
 
@@ -197,6 +190,16 @@ for i in range(len(navneliste)):
             Ved å bruke den samme indeksen i begge listene, kan vi kombinere korresponderende elementer i samme <Ic>print()</Ic>-setning i løkkeblokken.
             <Db />
             Strengt tatt returnerer ikke <Ic>range()</Ic> en liste, men en <i>iterator</i>. Forskjellen er først og fremst at en iterator ikke nødvendigvis inneholder alle elementene, men bare genererer dem når de trengs, som kan spare mye minne når det er snakk om uhorvelig mange elementer. <Ic>for</Ic>-løkker fungerer både med lister og iteratorer, så forskjellen er ikke veldig viktig nå.
+            <Db />
+            Vi kan også bruke <Ic>break</Ic> og <Ic>continue</Ic> i <Ic>for</Ic>-løkker. Husk at <Ic>break</Ic> hopper ut av hele løkken, mens <Ic>continue</Ic> hopper videre til neste iterasjon. I motsetning til det som er tilfellet med <Ic>while</Ic>-løkker, vil Python automatisk bruke neste element i neste iterasjon når vi hopper videre med <Ic>continue</Ic> i en <Ic>for</Ic>-løkke.
+            <Db />
+            Her er et eksempel som skriver alle positive tall under hundre som er delelige på 8 og 12, hvor vi bruker <Ic>continue</Ic> for å hoppe over tall som ikke oppfyller kravet:
+            <CodeBlock>{`for i in range(1, 100):
+    if not (i % 8 == 0 and i % 12 == 0):
+        continue
+    print(i)`}</CodeBlock>
+            
+            Det kan hende det føles mer naturlig å lage en hvis-setning med betingelsen <Ic>i % 8 == 0 and i % 12 == 0</Ic>, og legge <Ic>print()</Ic>-kallet inne i hvis-blokken i stedet - koden over er skrevet med <Ic>continue</Ic> først og fremst for demonstrasjonens skyld.
             
             <h2><Ic>for</Ic> eller <Ic>while</Ic>?</h2>
             
@@ -290,4 +293,4 @@ for e in eldre:
     </>
 );
 
-export default ListsAndForLoops;
+export default ListsAndForLoopsNo;
