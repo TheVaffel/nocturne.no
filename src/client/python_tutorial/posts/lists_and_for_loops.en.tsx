@@ -1,11 +1,10 @@
 import * as React from 'react';
 
 import { TutorialPostProps } from '../tutorial_wrapper.tsx';
-import { PostWrapper } from '../../common/post_utils.tsx';
+import { PostWrapper, NoticeBlock } from '../../common/post_utils.tsx';
 
 import { Db } from '../../common/utils.tsx';
 import { Ic, CodeBlock } from '../../common/code_format.tsx';
-import { NoticeBlock } from '../../common/post_utils';
 
 const ListsAndForLoopsEn = (props: TutorialPostProps) => (
     <>
@@ -150,27 +149,138 @@ print('The sum is', sum)`}</CodeBlock>
 
 
         Let's say we have a list of names and want to write the names on separate lines together with the number of the name in the list. With a <Ic>while</Ic> loop, we could have done as follows:
-        <CodeBlock>{`names = ['Bam', 'Rachel', Beelzebub']
+        <CodeBlock>{`names = ['Bam', 'Rachel', 'Beelzebub']
 
 i = 0
 while i < len(names):
     print(i + 1, names[i])
-    i ++ 1`}</CodeBlock>
+    i += 1`}</CodeBlock>
         
         Notice that we have written <Ic>i + 1</Ic> in the <Ic>print()</Ic>-call in order to make the ordering start at 1 instead of 0.
         <Db />
         We can't rewrite this to use a <Ic>for</Ic>-loop directly, because we need both the element and the index, while the iteration variable in the <Ic>for</Ic>-loop will only gives us the element. In these cases, we can use the <Ic>range()</Ic>-function.
         <Db />
+        The <Ic>range()</Ic>-function gives us a series of integers from some starting point to some ending point. For example, the call <Ic>{`range(3)`}</Ic> gives us the numbers from 0 inclusive, until 3 exclusive (so only the numbers 0, 1, 2). We can also add a starting point as the first argument, which makes the second argument the upper limit: <Ic>range(3, 5)</Ic> gives the numbers from, and including, 3 to, but <i>not</i> including 5, in other words, just the numbers 3 and 4. We can use <Ic>range()</Ic> directly with <Ic>for</Ic> loops like this:
+        <CodeBlock>{`for i in range(10):
+    print(i)`}</CodeBlock>
+        This code just writes the numbers 0 to 9 out on separate lines, but with a very small amount of code! This is the preferred way of iterating through a contiguous range of numbers.
+        <Db />
+        To recreate the example above with <Ic>for</Ic>-loops, we can use <Ic>range()</Ic> like this:
+        <CodeBlock>{`names = ['Bam', 'Rachel', 'Beelzebub']
 
-        {// At end of range section
-        }
+for i in range(len(names)):
+    print(i + 1, names[i])`}</CodeBlock>
+
+        Remember that <Ic>len()</Ic> gives the length of the list. Thus, <Ic>range(len(names))</Ic> gives a series of numbers from and including 0, to, but not including, the length of the lits. This fits very well with how indexing in lists work: The valid indices we can use with a list start at 0 and goes up to, but not included, the length of the list. Therefore, <Ic>range(len(names))</Ic> gives us only the valid indices we can use with the list, which in turn makes the code do the same as the original example which used a <Ic>while</Ic>-loop. Even in this example, we were able to reduce the number of lines using a <Ic>for</Ic>-loop.
+        <Db />
+        Another case in which we can use the <Ic>range()</Ic>-function, is the when we need to iterate through two lists at the same time, for instance when we want to combine pairs of corresponding elements from the two lists with some kind of operation. <Ic>for</Ic>-loops can only iterate through one list at a time. To iterate through two lists at the same time, it's easier to use indices.:
+        <CodeBlock>{`names = ['Bam', 'Rachel', 'Beelzebub']
+ages = [13, 14, 4521]
+
+for i in range(len(names)):
+    print(names[i], 'is', ages[i], 'years old')`}</CodeBlock>
+        By using the same index in both lists, we can combine corresponding elements in the same <Ic>print()</Ic>-sentence in the loop block.
+        <Db />
+        Strictly speaking, <Ic>range()</Ic> does not return a list, but an <i>iterator</i>. The difference is mainly that an iterator not necessarily contains all the elements, but only generates them as they are needed, which may save a lot of memory when there are extremely many elements in play. <Ic>for</Ic>-loops works both with lists and iterators, so this difference is not important right now.
+
         <Db />
         We can also use <Ic>break</Ic> and <Ic>continue</Ic> in <Ic>for</Ic>-loops. Remember that <Ic>break</Ic> jumps out of the the whole loop, while <Ic>continue</Ic> skips to the next iteration. As opposed to the case with <Ic>while</Ic>-loops, Python will automatically use the next element in the next iteration when we jump forth with <Ic>continue</Ic> in a <Ic>for</Ic>-loop.
         <Db />
         Here is an example that writes all positive numbers below a hundred that are divisible by 8 and 12, where we use <Ic>continue</Ic> to skip numbers that do not fulfill the criteria.
         <CodeBlock>
-            {`for i in range(1,)`}
+            {`for i in range(1, 100):
+    if not (i % 8 == 0 and i % 12 == 0):
+        continue
+    print(i)`}
         </CodeBlock>
+
+        It may feel more natural to create an if-statement with the condition <Ic>i % 8 == 0 and i % 12 == 0</Ic> inside the loop, and put the <Ic>print()</Ic>-call inside that if-statement instead - the code above is written with a <Ic>continue</Ic> for the sake of demonstration.
+
+        <h2><Ic>for</Ic> or <Ic>while</Ic>?</h2>
+
+        Now that we have provided two ways of writing loops, a natural question arises: Which one should we use? In the majority of cases, <Ic>for</Ic>-loops are the best choice. This is particularily true when iterating through a list or some given interval of integers.
+        <Db />
+        In the cases where you don't know how many iterations the loop will run, it will be better to use <Ic>while</Ic>-loops. This can be a good idea e.g. if the loop is terminated when the user gives a specific input, or when you search for some number, but have no upper bound of how big that number can be.
+
+        <h2>Strings as Lists</h2>
+
+        We can also treat strings like lists, to some degree. For example, we may use indices to get specific characters in the string:
+        <CodeBlock>{`string = 'hello'
+first_letter = string[0]`}</CodeBlock>
+        Here, <Ic>first_letter</Ic> will contain <Ic>'h'</Ic>, which is also a string.
+        <Db/>
+        On the other hand, we <i>cannot</i> change the letters in a string. Strings are <i>immutable</i>, uchangable. This means we cannot change strings, only create new ones.
+        <Db />
+        Another property strings share with lists, is that we can iterate through them with <Ic>for</Ic>-loops. The <Ic>for</Ic>-loop will treat the string as a list of characters. This code writes every character of a string on their separate lines:
+        <CodeBlock>
+            {`string = 'An extremely large potato'
+
+for character in string:
+    print(character)`}
+        </CodeBlock>
+        
+        <h2>List Comprehension</h2>
+
+        At last, we will talk a little about another way of creating lists, which will be easier in many cases. <i>List comprehension</i> is a shorter way of defining a list when the elements of the new list are created directly from elements in another list. For instance, have a look at this code:
+
+        <CodeBlock>
+        {`names = ['Bam', 'Rachel', 'Beelzebub']
+
+capitalized_names = []
+for e in names:
+    capitalized_names.append(e.upper())
+    
+for e in capitalized_names:
+    print('LOOK OUT,', e, 'IS COMING!')`}
+        </CodeBlock>
+        Here, we create a new list where we take the names from the old lists and converts all the lower-case letters to upper-case letters with <Ic>upper()</Ic>. It gives more depth to the <Ic>print()</Ic>-call in the loop at the end of the code. This code works totally fine, but can be simplified with list comprehension.
+        <Db />
+        With list comprehension, we define a list in the following way:
+        <CodeBlock>
+            {`[<value created from variable> for <variable name> in <list>]`}
+        </CodeBlock>
+
+        This new list is defined with a series of values that are computed, or somehow created, from the elements in another list (or iterator). We can rewrite the elements above like this:
+        <CodeBlock>
+            {`names = ['Bam', 'Rachel', 'Beelzebub']
+            
+capitalized_names = [e.upper() for e in names]
+
+for e in capitalized_names:
+    print('LOOK OUT,', e, 'IS COMING!')`}
+        </CodeBlock>
+
+        Here, we have written <Ic>capitalized_names</Ic> with list comprehension - <Ic>[e.upper() for e in names]</Ic>. The variable name <Ic>e</Ic> that we use within the list comprehension is a freely chosen variable name, just like the name of the iteration variable in <Ic>for</Ic>-loops. We can translate what's happening in the list comprehension like this: "create a list that consists of <Ic>e.upper()</Ic> for every element <Ic>e</Ic> in the list <Ic>names</Ic>".
+        <Db />
+        We can also specify a condition in the list comprehension to only choose some of the elements to use in the new list. Then the list comprehension looks a bit like this: <Ic>{`[<value created from variable> for <variable name> in <list> if <condition>]`}</Ic>. With this in had, we can create a program where we e.g. throw away names that are associated with an age that is too small:
+        <CodeBlock>{`names = ['Bam', 'Rachel', 'Beelzebub']
+ages = [13, 14, 4521]
+elderly = [names[i] for i in range(len(names)) if ages[i] > 75]
+
+for e in elderly:
+    print('You are starting to get gray hair,', e)`}</CodeBlock>
+
+        Here, we have said that we will only include names with a valid index in <Ic>names</Ic> (with the <Ic>range()</Ic> call), but only if the age at that same index in <Ic>ages</Ic> is higher than 75. This example is extra complicated because we want elements from one list, but need to check the condition in another, which means we need to iterate through indices using the <Ic>range()</Ic>-function, instead of just iterating through the elements themselves in the list comprehension. Don't worry if you don't get everything that happens in this example - it is a difficult one!
+        
+        <h2>Summary</h2>
+
+        Lists will enable us to handle large amounts of data, wherever they should arise. We have only looked at lists with a few elements here, but Python can very well handle lists with millions of elements. The actual upper limit depends on how much your machine can take.
+        <Db />
+        With this post, we have actually gone through the most important fundamental concepts of Python. The next posts will primarily focus on expanding the horizon for what can be done with Python and programming in general. We will build our discussion heavily on the concepts we have already visited: Variables, conditions, functions, lists and loops.
+        <Db />
+        In the next post, we will introduce dictionaries, which is an alternative way of storing large amounts of data, and reading and writing files.
+
+        <h2>Exercises</h2>
+
+        1. Create a list that contains the first hundred square numbers (<Ic>n * n</Ic> for <Ic>n</Ic> from 1 to 100). Try writing it with list comprehension!
+        <Db />
+        2. Rewrite the example in this post where the user writes a series of names which are put in a list, using <Ic>for</Ic>-loop(s). Should both the <Ic>while</Ic>-loops be made into <Ic>for</Ic>-loops?
+        <Db />
+        3. Rewrite the example about prime numbers in the post about <a href="en/introduction_to_python/loops">while loops</a> by using <Ic>for</Ic>-loops and functions.
+        <Db />
+        4 (Difficult). A list can also contain other lists as elemnets. Create the multiplication table in such a double list: Create a list where every element contains the <i>n</i>-multiplication series. E.g. the first element in the "main" list will be the list <Ic>[1, 2, 3..., 10]</Ic>, while the second element is <Ic>[2, 4, 6..., 20]</Ic> and the seventh should be <Ic>[7, 14, 21..., 70]</Ic>.
+        <Db />
+        For an extra (<i>extra</i>) challenge, try defining the list on one line using list comprehension!
         </PostWrapper>
     </>
 );

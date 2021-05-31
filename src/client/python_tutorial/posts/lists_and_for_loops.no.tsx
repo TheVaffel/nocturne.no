@@ -1,11 +1,10 @@
 import * as React from 'react';
 
 import { TutorialPostProps } from '../tutorial_wrapper.tsx';
-import { PostWrapper } from '../../common/post_utils.tsx';
+import { PostWrapper, NoticeBlock } from '../../common/post_utils.tsx';
 
 import { Db } from '../../common/utils.tsx';
 import { Ic, CodeBlock } from '../../common/code_format.tsx';
-import { NoticeBlock } from '../../common/post_utils';
 
 const ListsAndForLoopsNo = (props: TutorialPostProps) => (
     <>
@@ -179,7 +178,7 @@ for i in range(len(navneliste)):
     print(i + 1, navneliste[i])`}
             </CodeBlock>
             
-            Husk at <Ic>len()</Ic> gir lengden av lista. Dermed gir <Ic>range(len(navneliste))</Ic> en rekke med tall fra og med 0, til, men ikke med, lengden av lista. Dette passer godt sammen med måten indeksering av lister fungerer i Python: De gyldige indeksene i en liste starter på 0 og går opp til, men ikke med, lengden av lista. Derfor gir <Ic>range(len(navneliste))</Ic> bare de gyldige indeksene vi kan bruke i lista! Derfor gjør koden over det samme som eksempelet som brukte en <Ic>while</Ic>-løkke, men med mindre kode.
+            Husk at <Ic>len()</Ic> gir lengden av lista. Dermed gir <Ic>range(len(navneliste))</Ic> en rekke med tall fra og med 0, til, men ikke med, lengden av lista. Dette passer godt sammen med måten indeksering av lister fungerer i Python: De gyldige indeksene i en liste starter på 0 og går opp til, men ikke med, lengden av lista. Derfor gir <Ic>range(len(navneliste))</Ic> bare de gyldige indeksene vi kan bruke i lista! Dermed gjør koden over det samme som eksempelet som brukte en <Ic>while</Ic>-løkke, men med mindre kode.
             <Db />
             Et annet tilfelle vi kan bruke <Ic>range()</Ic> i, er når vi vil iterere gjennom to lister samtidig, for eksempel for å kombinere elementer fra hver liste i én eller annen operasjon. <Ic>for</Ic>-løkker itererer gjennom kun én liste av gangen. For å iterere gjennom to lister samtidig, er det lettest å bruke indekser:
             <CodeBlock>{`navneliste = ['Erna', 'Bent', 'Beelzebub']
@@ -199,7 +198,7 @@ for i in range(len(navneliste)):
         continue
     print(i)`}</CodeBlock>
             
-            Det kan hende det føles mer naturlig å lage en hvis-setning med betingelsen <Ic>i % 8 == 0 and i % 12 == 0</Ic>, og legge <Ic>print()</Ic>-kallet inne i hvis-blokken i stedet - koden over er skrevet med <Ic>continue</Ic> først og fremst for demonstrasjonens skyld.
+            Det kan hende det føles mer naturlig å lage en hvis-setning med betingelsen <Ic>i % 8 == 0 and i % 12 == 0</Ic> inne i løkka, og legge <Ic>print()</Ic>-kallet inne i hvis-blokken i stedet - koden over er skrevet med <Ic>continue</Ic> først og fremst for demonstrasjonens skyld.
             
             <h2><Ic>for</Ic> eller <Ic>while</Ic>?</h2>
             
@@ -245,7 +244,7 @@ for e in store_navn:
             <CodeBlock>
                 {`[<verdi dedusert fra variabelnavn> for <variabelnavn> in <liste>]`}
             </CodeBlock>
-            Den nye lista blir definert med en rekke verdier som blir regnet ut, eller på en eller annen måte laget, fra elementene i en annen liste. Vi kan skrive om eksempelet over slik:
+            Den nye lista blir definert med en rekke verdier som blir regnet ut, eller på en eller annen måte laget, fra elementene i en annen liste (eller iterator). Vi kan skrive om eksempelet over slik:
             <CodeBlock>
                 {`navn = ['Erna', 'Bent', 'Beelzebub']
 
@@ -284,7 +283,7 @@ for e in eldre:
             <Db />
             3. Skriv om eksempelet om primtall i posten om <a href="/no/introduksjon_til_python/løkker">while-løkker</a> ved hjelp av <Ic>for</Ic>-løkker og funksjoner.
             <Db />
-            4 (Vanskelig). En liste kan også inneholde andre lister som elementer. Lag gangetabellen i en slik dobbel liste: Lag en liste der hvert element er en liste som inneholder <i>n</i>-gangen. F. eks. skal første element i "hovedlisten" være listen <Ic>[1, 2, 3..., 10]</Ic>, mens andre element er listen <Ic>[2, 4, 6..., 20]</Ic> og syvende element skal være <Ic>[7, 14, 21... 70</Ic>. 
+            4 (Vanskelig). En liste kan også inneholde andre lister som elementer. Lag gangetabellen i en slik dobbel liste: Lag en liste der hvert element er en liste som inneholder <i>n</i>-gangen. F. eks. skal første element i "hovedlisten" være listen <Ic>[1, 2, 3..., 10]</Ic>, mens andre element er listen <Ic>[2, 4, 6..., 20]</Ic> og syvende element skal være <Ic>[7, 14, 21..., 70</Ic>. 
             <Db /> 
             For en ekstra (<i>ekstra</i>) utfordring, prøv å definere listen på én linje ved hjelp av listeinklusjon!
             
