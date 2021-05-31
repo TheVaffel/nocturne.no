@@ -16,8 +16,6 @@ const SiteIndexNo: React.FunctionComponent<{}> = () => {
         Jobber med saken. 
         <Db/>
         Imens kan du gjerne slukke kunnskapstørsten ved å klikke rundt her.
-        <Db />
-        Vær obs på at alt i området er under bygging.
 
     </div>
     );
