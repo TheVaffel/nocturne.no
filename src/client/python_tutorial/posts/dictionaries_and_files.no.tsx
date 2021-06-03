@@ -10,7 +10,7 @@ const DictionariesAndFilesNo = (props: TutorialPostProps) => (
     <>
         <PostWrapper metadata={props.metadata} >
             Velkommen tilbake! Denne gangen tar vi for oss tabeller og filer. Vi hopper rett i det!
-            <h2>Tupler og tabeller</h2>
+            <h2>Tupler </h2>
             I forrige post så vi på lister, som lar oss legge mange verdier, eller <i>elementer</i> på rekke og rad. Lister er nyttige å bruke i mange tilfeller, men noen ganger kan de være upraktiske til formålene våre. La oss ta et eksempel:
             <Db />
             La oss si at vi vil representere alle verdens land assosiert med hver sin hovedstad i programmet vårt. Vi vil bruke denne representasjonen til å finne hovedstaden til et land som blir gitt oss av brukeren . Én måte å gjøre dette på, er å bruke to lister, én for land og én for hovedsteder. Programmet vårt blir seende omtrent slik ut:
@@ -41,8 +41,58 @@ else:
             Det første vi kan se på, er de to listene våre. De er veldig tett knyttet opp mot hverandre. De er faktisk så tett knyttet at en endring i én av dem vil ødelegge den <i>implisitte</i> relasjonen de har til hverandre. Hvis vi f. eks. stokker om på, fjerner eller legger til nye land i <Ic>landliste</Ic>, vil det innføre potensielle feil i koden, ettersom korresponderende elementer i <Ic>hovedsteder</Ic>-listen ikke lenger nødvendigvis har riktig hovedstad til riktig land. 
             <Db />
             Nå kan det hende du tenker "men det skjønner jeg jo, jeg kommer jo aldri til å gjøre noe så dumt som å endre på én av listene uten å endre den andre?". Dette er et forholdsvis enkelt eksempel hvor det er lett å se at det går galt når man bare endrer én liste, men i større eksempler kan det være vanskeligere å huske på. Vi vil altså fjerne denne usynlige, implisitte relasjonen mellom de to listene, og heller gjøre den synlig, <i>eksplisitt</i>.
+            <Db />
+            Dette er et tilfelle der vi kan bruke <i>tupler</i>. Tupler ligner på lister - men skrives med vanlige paranteser <Ic>()</Ic> i stedet for klammeparanteser <Ic>[]</Ic>. En annen forskjell er at tupler ikke kan endres, man kan hverken legge til, endre eller fjerne elementer fra et tuppel. Eksempler på tupler er <Ic>(1, 3)</Ic> og <Ic>(3, True, 1)</Ic>. Tupler er bra for å holde på et lite antall verdier som er relatert til hverandre, men verdiene kan ha forskjellig mening. For eksempel kan et tuppel med tre elementer representere en person ved å inneholde en streng for navn, et heltall for alder, og et flyttall for høyde. Dette står i motsetning til lister som fungerer best for å inneholde mange verdier som ikke nødvendigvis har tilknytning til hverandre, men som har samme betydning, som en deltagerliste for et arrangement eller en liste av de ti første primtallene.
+            <Db />
+            Når vi har et tuppel, kan vi "splitte" det opp ved hjelp av <Ic>=</Ic>-operatoren slik:
+            <CodeBlock>{`et_tuppel = (1, 2, 3)
+a, b, c = et_tuppel`}</CodeBlock>
+            Her vil variablene <Ic>a</Ic>, <Ic>b</Ic> og <Ic>c</Ic> inneholde henholdsvis verdiene 1, 2 og 3.
+            <Db />
+            Vi kan skrive om programmet over ved hjelp av tupler. Vi kommer til å bruke tupler med kun to elementer, som vi rett og slett kaller et <i>par</i>:
+            <CodeBlock>{`land_og_hovedsteder = [('Norge', 'Oslo'), ('Sverige', 'Stockholm'), ('England', 'London')]
+
+land = input('Skriv inn et land: ')
+
+hovedstad = ''
+
+for i in range(len(land_og_hovedsteder)):
+    if land == land_og_hovedsteder[i][0]:
+        hovedstad = land_og_hovedsteder[i][1]
+        break
+
+if len(hovedstad) == 0:
+    print('Fant ikke hovedstaden til', land, ':(')
+else:
+    print('Hovedstaden i', land, 'er', hovedstad)`}</CodeBlock>
             
-            <h3>Tupler</h3>
+            Her har vi erstattet de to listene med én liste bestående av par. Dette gjør relasjonen mellom elementene i hvert par mye tydeligere enn om de ligger i separate lister. 
+            <Db />
+            Legg merke til at vi bruker notasjonen <Ic>land_og_hovedsteder[i][0]</Ic> for å få ut land på indeks <Ic>i</Ic> i listen. Den første indeksen, <Ic>[i]</Ic> brukes til å velge paret på indeks <Ic>i</Ic>, mens <Ic>[0]</Ic> henter ut det første elementet, altså landet, i paret. Dette er en kortere måte å skrive f. eks.
+            <CodeBlock>{`par = land_og_hovedsteder[i]
+valgt_land = par[0]`}</CodeBlock>
+            på.
+
+            <h2>Tabeller</h2>
+
+            <i>Tabeller</i> (engelsk: <b>dictionaries</b>) er objekter som inneholder verdier og som tillater oss å bruke andre datatyper enn heltall som indekser. En tabell kan defineres med <Ic>{`{ <indeks0>: <verdi0>, <indeks1>: <verdi1>...}`}</Ic>. Altså en liste av kommaseparerte av indeks-verdi-par, hvor indeks og verdi er separert med kolon, omsluttet av krøllparanteser. I tabeller er datatypene til både indeksene og verdiene valgfrie, men det er vanligst at alle indekser har samme type, og alle verdier har samme type. Når man skal hente ut og legge inn elementer i en tabell, bruker man indekser med samme klammeparantesnotasjon som vi bruker med lister. Her er et eksempel:
+            <CodeBlock>{`tabell = {}
+
+tabell['a'] = 0
+tabell['b'] = 1
+tabell['c'] = 2
+
+print(tabell['b'])
+print(tabell)`}</CodeBlock>
+            Først definerer vi variabelen <Ic>tabell</Ic> som settes til <Ic>{`{}`}</Ic>, som bare er en tom tabell. Deretter bruker vi notasjonen <Ic>{`tabell[<indeks>] = <verdi>`}</Ic> til å sette verdier inn på ulike indekser i tabellen. Legg merke til at indeksene ikke trenger å eksistere i tabellen fra før for at man skal kunne legge noe på dem, i motsetning til indekser i lister. Her legges verdien <Ic>0</Ic> på indeks <Ic>'a'</Ic> (som er en streng), <Ic>1</Ic> på indeks <Ic>'b'</Ic> og <Ic>2</Ic> på indeks <Ic>'c'</Ic>. Utskriften fra programmet blir:
+            <CodeBlock>{`1
+{'a': 0, 'b': 1, 'c': 2}`}</CodeBlock>
+            Som forventet, får vi at elementet på indeks <Ic>'b'</Ic> er 1, og det siste <Ic>print()</Ic>-kallet viser at alle de tre indeks-verdi-parene ligger der som forventet.
+            <Db />
+            Merk at du kun kan ha én verdi assosiert med en indeks. Hvis du i koden etter eksempelet over hadde skrevet <Ic>tabell['a'] = 4</Ic>, ville du endt opp med tabellen <Ic>{`{'a': 4, 'b': 1, 'c': 2}`}</Ic>.
+            <Db />
+            Vi kan gjøre det opprinnelige eksempelet vårt enda litt bedre ved å bruke en tabell.
+            
         </PostWrapper>
     </>
 );
