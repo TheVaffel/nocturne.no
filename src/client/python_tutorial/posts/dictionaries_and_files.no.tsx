@@ -9,7 +9,7 @@ import { Ic, CodeBlock } from '../../common/code_format.tsx';
 const DictionariesAndFilesNo = (props: TutorialPostProps) => (
     <>
         <PostWrapper metadata={props.metadata} >
-            Velkommen tilbake! Denne gangen tar vi for oss tabeller og filer. Vi hopper rett i det!
+            Velkommen tilbake! Dette blir en litt kortere post der vi fokuserer på to nye konsepter som ofte kommer til nytte når man er på kodeeventyr: Tupler og tabeller. Vi hopper rett i det!
             <h2>Tupler </h2>
             I forrige post så vi på lister, som lar oss legge mange verdier, eller <i>elementer</i> på rekke og rad. Lister er nyttige å bruke i mange tilfeller, men noen ganger kan de være upraktiske til formålene våre. La oss ta et eksempel:
             <Db />
@@ -98,7 +98,9 @@ print(tabell)`}</CodeBlock>
 {'a': 0, 'b': 1, 'c': 2}`}</CodeBlock>
             Som forventet, får vi at elementet på indeks <Ic>'b'</Ic> er 1, og det siste <Ic>print()</Ic>-kallet viser at alle de tre indeks-verdi-parene ligger der som forventet.
             <Db />
-            Merk at du kun kan ha én verdi assosiert med en indeks. Hvis du i koden etter eksempelet over hadde skrevet <Ic>tabell['a'] = 4</Ic>, ville du endt opp med tabellen <Ic>{`{'a': 4, 'b': 1, 'c': 2}`}</Ic>.
+            Merk at du kun kan ha én verdi assosiert med en indeks. Hvis du i koden etter eksempelet over hadde skrevet <Ic>tabell['a'] = 4</Ic>, ville du endt opp med tabellen <Ic>{`{'a': 4, 'b': 1, 'c': 2}`}</Ic>. Det er derimot ikke noe problem å ha flere like verdier i tabellen, så lenge indeksene er ulike.
+            <Db />
+            Vær også obs på at rekkefølgen på indeks/verdi-parene kan være annerledes når du skriver den til skjerm, enn rekkefølgen du la dem inn i. Rekkefølgen på elementene i tabellen skal ikke ha noen betydning, så du bør ikke belage deg på at elementene er i en bestemt rekkefølge.
             <Db />
             Vi kan gjøre det opprinnelige eksempelet vårt enda litt bedre ved å bruke en tabell.
             <CodeBlock>{`land_og_hovedsteder = { 'Norge': 'Oslo', 'Sverige': 'Stockholm', 'England': 'London' }
@@ -119,10 +121,45 @@ else:
             <Db />
             Sammenligner vi første og siste utkast av eksempelet over, ser vi at tabellen har hjulpet oss enormt med å gjøre koden enklere. Tabeller er gode å ha når vi har en én-til-én-korrespondanse mellom to mengder med verdier, og gjerne vil bruke elementer fra den ene mengden, for eksempel land, til å hente ut korresponderende element i den andre mengden, for eksempel hovedstad.
 
-            <h2>Filer</h2>
+            <h2>Iterere gjennom en tabell</h2>
 
+            Fra tid til annen kan det hende vi vil iterere gjennom en tabell, for eksempel for å liste opp innholdet. I Python kan vi bruke <Ic>for</Ic>-løkker til dette formålet.
+            <Db />
+            En standard <Ic>for</Ic>-løkke basert på en tabell ser ut som følger:
+            <CodeBlock>{`for <indeksvariabel> in <tabell>:
+    <løkkeblokk>`}</CodeBlock>
+            Iterasjonsvariabelen vi får når vi itererer gjennom en tabell, er indeksene i tabellen. Dermed kan vi bruke indeksen for å skrive hvert element til skjerm, f. eks.
+            <CodeBlock>{`for land in land_og_hovedsteder:
+    print('Hovedstaden i', land, 'er', land_og_hovedsteder[land])`}</CodeBlock>
+            Hvor <Ic>land_og_hovedsteder</Ic> er som i eksempelet over.
+            <Db />
+            Det finnes alternative måter å iterere gjennom en tabell på. Tabeller har medlemsfunksjonen <Ic>values()</Ic>, som gir oss en iterator med alle <i>verdiene</i> i tabellen, i motsetning til indeksene. Dermed kan vi liste opp alle hovedstedene i tabellen vår slik:
+            <CodeBlock>{`for hovedstad in land_og_hovedsteder.values():
+    print(hovedstad, 'er en hovedstad')`}</CodeBlock>
+            <Ic>values()</Ic>-funksjonen kan være nyttig når vi kun er interessert i verdiene i tabellen, og ikke hvilke indekser de tilhører.
+            <Db />
+            En siste måte å iterere gjennom tabeller på, er å bruke medlemsfunksjonen <Ic>items()</Ic>. <Ic>items()</Ic> returnerer en iterator med par, hvor hvert par inneholder korresponderende indeks og verdi fra tabellen. Dermed kan vi liste opp land med hver sin hovedstad litt enklere på denne måten:
+            <CodeBlock>{`for land,hovedstad in land_og_hovedsteder.items():
+    print(hovedstad, 'er hovedstaden i', land)`}</CodeBlock>
+            Iterasjonsvariabelen i denne løkken er et par, men vi kan splitte paret opp i to komponenter slik at vi skriver mindre og gjør koden klarere.
+
+            <h2>Oppsummering</h2> 
+
+            Det var alt for denne gang! Tupler og tabeller er ikke fryktelig avanserte konsepter, men kan gjøre koden din langt enklere om du bruker dem riktig.
+            <Db />
+            I neste post tar vi for oss skriving og lesing av filer, som vil gjøre oss i stand til å gjøre mer interessante operasjoner på større mengder data.
+
+            <h2>Oppgaver</h2>
+
+            1. Lag en <i>funksjon</i> som tar inn en liste og returnerer en tabell med de samme elementene, men hvor verdi/indeks er <i>reversert</i>. Altså skal elementene i lista være indekser i tabellen, og de korresponderende verdiene i tabellen blir indeksen elementet har i lista. Eksempel: Hvis funksjonen får inn lista <Ic>['a', 'b', 'c']</Ic>, skal den returnere tabellen <Ic>{`{'a': 0, 'b': 1, 'c': 2}`}</Ic>.
+            <Db />
+            2. Lag en funksjon som tar inn en streng og returnerer en tabell med tegnene i strengen som indekser, og antallet av hvert tegn som korresponderende verdier. Hvis funksjonen for eksempel får inn strengen <Ic>'hallo'</Ic>, skal den returnere tabellen <Ic>{`{'a': 1, 'h': 1, 'l': 2, 'o': 1}`}</Ic>. 
+            <Db />
+            3. Lag et program som lar brukeren øve på verdens hovedsteder: Programmet viser navnet til ett og ett land og tar i mot brukerens innputt, som er deres svar på hva hovedstaden er. Til slutt viser programmet hvor mange riktige brukeren hadde. Du kan begrense deg til landene vi har brukt i denne posten, om du synes det er stressende å komme på flere.
+            <Db />
+            4 (Vanskelig). Lag en liste med alle tupler av heltall <Ic>a</Ic>, <Ic>b</Ic> og <Ic>c</Ic> slik at <Ic>a * a + b * b == c * c</Ic>, der <Ic>a</Ic>, <Ic>b</Ic> og <Ic>c</Ic> er under 100. Slike tupler (inkludert dem som inneholder tall over 100) kalles <i>pytagoreiske tripler</i>. (Merk - dette er først og fremst en løkkeoppgave).
             
-            
+
         </PostWrapper>
     </>
 );
