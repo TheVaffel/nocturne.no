@@ -273,7 +273,7 @@ for e in eldre:
             <Db />
             Med denne posten har vi faktisk gått igjennom de viktigste grunnelementene i Python. De neste postene kommer først og fremst til å fokusere på å utvide horisonten for hva man kan gjøre med Python og programmering generelt. Da kommer vi til å bygge forklaringene i større grad på konseptene vi allerede har definert: Variabler, betingelser, funksjoner, lister og løkker.
             <Db />
-            I neste post introduserer vi tabeller, som er en alternativ måte å lagre datamengder på, og skriving og lesing av filer.
+            I neste post introduserer vi tabeller, som er en alternativ måte å lagre datamengder på.
 
             <h2>Oppgaver</h2>
 

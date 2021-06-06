@@ -268,7 +268,7 @@ for e in elderly:
         <Db />
         With this post, we have actually gone through the most important fundamental concepts of Python. The next posts will primarily focus on expanding the horizon for what can be done with Python and programming in general. We will build our discussion heavily on the concepts we have already visited: Variables, conditions, functions, lists and loops.
         <Db />
-        In the next post, we will introduce dictionaries, which is an alternative way of storing large amounts of data, and reading and writing files.
+        In the next post, we will introduce dictionaries, which is an alternative way of storing large amounts of data.
 
         <h2>Exercises</h2>
 
