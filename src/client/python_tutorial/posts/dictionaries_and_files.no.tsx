@@ -18,7 +18,7 @@ const DictionariesAndFilesNo = (props: TutorialPostProps) => (
                 {`landliste = ['Norge', 'Sverige', 'England']
 hovedsteder = ['Oslo', 'Stockholm', 'London']
 
-land = input('Skriv inn et land:')
+land = input('Skriv inn et land: ')
 
 hovedstad = ''
 
@@ -56,7 +56,7 @@ a, b, c = et_tuppel`}</CodeBlock>
             Vi kan skrive om programmet over ved hjelp av tupler. Vi kommer til å bruke tupler med kun to elementer, som vi rett og slett kaller et <i>par</i>:
             <CodeBlock>{`land_og_hovedsteder = [('Norge', 'Oslo'), ('Sverige', 'Stockholm'), ('England', 'London')]
 
-land = input('Skriv inn et land:')
+land = input('Skriv inn et land: ')
 
 hovedstad = ''
 
@@ -79,8 +79,8 @@ valgt_land = par[0]`}</CodeBlock>
             <Db />
             Tupler er også hendige for å returnere flere enn én verdi fra et funksjonskall. Her er en funksjon som tar inn både navn og skostørrelse fra brukeren, og returnerer begge:
             <CodeBlock>{`def hent_personalia():
-    navn = input('Skriv navnet ditt:')
-    skostørrelse = int(input('Skriv skostørrelsen din:'))
+    navn = input('Skriv navnet ditt: ')
+    skostørrelse = int(input('Skriv skostørrelsen din: '))
     return (navn, skostørrelse)`}
             </CodeBlock>
             Vi kan legge de to returverdiene fra funksjonskallet enten i én variabel (som et tuppel), eller i separate variabler slik:
@@ -111,7 +111,7 @@ print(tabell)`}</CodeBlock>
             Vi kan gjøre det opprinnelige eksempelet vårt enda litt bedre ved å bruke en tabell:
             <CodeBlock>{`land_og_hovedsteder = { 'Norge': 'Oslo', 'Sverige': 'Stockholm', 'England': 'London' }
 
-land = input('Skriv inn et land:')
+land = input('Skriv inn et land: ')
 
 if land in land_og_hovedsteder:
     print('Hovedstaden i', land, 'er', land_og_hovedsteder[land])
