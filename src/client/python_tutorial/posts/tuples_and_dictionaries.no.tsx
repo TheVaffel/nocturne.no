@@ -10,7 +10,8 @@ const DictionariesAndFilesNo = (props: TutorialPostProps) => (
     <>
         <PostWrapper metadata={props.metadata} >
             Velkommen tilbake! Dette blir en litt kortere post der vi fokuserer på to nye konsepter som ofte kommer til nytte når man er på kodeeventyr: Tupler og tabeller. 
-            <h2>Tupler </h2>
+            
+            <h2>Tupler</h2>
 
             La oss si at vi vil representere alle verdens land assosiert med hver sin hovedstad i programmet vårt. Vi vil bruke dette til å finne hovedstaden til et land som brukeren skriver inn som innputt til programmet. Én måte å representere relasjonen mellom land og hovedsteder på, er å bruke to lister, én for land og én for hovedsteder. Programmet vårt blir seende omtrent slik ut:
             <Db />
@@ -44,14 +45,14 @@ else:
             <Db />
             Nå kan det hende du tenker "men dét skjønner jeg jo, jeg kommer jo aldri til å gjøre noe så dumt som å endre på én av listene uten å endre den andre?". Sant nok. Dette er et forholdsvis enkelt eksempel hvor det er lett å se at det går galt når man bare endrer én liste, men i større eksempler kan det være mye vanskeligere å holde rede på sånne avhengigheter mellom f. eks. lister. Ideelt sett vil vi altså fjerne denne usynlige, implisitte relasjonen mellom de to listene, og heller gjøre den synlig, <i>eksplisitt</i>.
             <Db />
-            Dette er et tilfelle der vi kan bruke <i>tupler</i>. Tupler ligner på lister - men skrives med vanlige paranteser <Ic>()</Ic> i stedet for klammeparanteser <Ic>[]</Ic>. En annen forskjell er at tupler ikke kan endres, man kan hverken legge til, endre eller fjerne elementer fra et tuppel. Eksempler på tupler er <Ic>(1, 3)</Ic> og <Ic>(3, True, 1)</Ic>. Tupler kan ha så mange elemneter vi vil, men alle elementene må være med i det tuppelet blir definert, siden det ikke kan endres senere. 
+            Dette er et tilfelle der vi kan bruke <i>tupler</i>. Tupler ligner på lister - men skrives med vanlige paranteser <Ic>()</Ic> i stedet for klammeparanteser <Ic>[]</Ic>. En annen forskjell er at tupler ikke kan endres, man kan hverken legge til, endre eller fjerne elementer fra en tuppel. Eksempler på tupler er <Ic>(1, 3)</Ic> og <Ic>(3, True, 1)</Ic>. Tupler kan ha så mange elemneter vi vil, men alle elementene må være med i det tuppelen blir definert, siden det ikke kan endres senere. 
             <Db />
-            Tupler er bra for å holde på et lite antall verdier som er relatert til hverandre, men verdiene kan ha forskjellig mening. For eksempel kan et tuppel med tre elementer representere en person ved å inneholde en streng for navn, et heltall for alder, og et flyttall for høyde. Dette står i motsetning til lister som fungerer best for å inneholde mange verdier som ikke nødvendigvis er relatert til hverandre, men som har samme betydning, som en deltagerliste for et arrangement eller en liste av de ti første primtallene.
+            Tupler er bra for å holde på et lite antall verdier som er relatert til hverandre, men verdiene kan ha forskjellig mening. For eksempel kan en tuppel med tre elementer representere en person ved å inneholde en streng for navn, et heltall for alder, og et flyttall for høyde. Dette står i motsetning til lister som fungerer best for å inneholde mange verdier som ikke nødvendigvis er relatert til hverandre, men som har samme betydning, som en deltagerliste for et arrangement eller en liste av de ti første primtallene.
             <Db />
-            Når vi har et tuppel, kan vi "splitte" det opp ved hjelp av <Ic>=</Ic>-operatoren slik:
-            <CodeBlock>{`et_tuppel = (1, 2, 3)
-a, b, c = et_tuppel`}</CodeBlock>
-            Her vil variablene <Ic>a</Ic>, <Ic>b</Ic> og <Ic>c</Ic> inneholde henholdsvis verdiene 1, 2 og 3. Vi kan også bruke indekser på samme måte som vi gjør for lister: <Ic>a = et_tuppel[0]</Ic>.
+            Når vi har en tuppel, kan vi "splitte" det opp ved hjelp av <Ic>=</Ic>-operatoren slik:
+            <CodeBlock>{`en_tuppel = (1, 2, 3)
+a, b, c = en_tuppel`}</CodeBlock>
+            Her vil variablene <Ic>a</Ic>, <Ic>b</Ic> og <Ic>c</Ic> inneholde henholdsvis verdiene 1, 2 og 3. Vi kan også bruke indekser på samme måte som vi gjør for lister: <Ic>a = en_tuppel[0]</Ic>.
             <Db />
             Vi kan skrive om programmet over ved hjelp av tupler. Vi kommer til å bruke tupler med kun to elementer, som vi rett og slett kaller et <i>par</i>:
             <CodeBlock>{`land_og_hovedsteder = [('Norge', 'Oslo'), ('Sverige', 'Stockholm'), ('England', 'London')]
@@ -83,7 +84,7 @@ valgt_land = par[0]`}</CodeBlock>
     skostørrelse = int(input('Skriv skostørrelsen din: '))
     return (navn, skostørrelse)`}
             </CodeBlock>
-            Vi kan legge de to returverdiene fra funksjonskallet enten i én variabel (som et tuppel), eller i separate variabler slik:
+            Vi kan legge de to returverdiene fra funksjonskallet enten i én variabel (som en tuppel), eller i separate variabler slik:
             <CodeBlock>{`navn, skostørrelse = hent_personalia()`}</CodeBlock>
 
             <h2>Tabeller</h2>
