@@ -6,7 +6,7 @@ import { PostWrapper, NoticeBlock } from '../../common/post_utils.tsx';
 import { Db } from '../../common/utils.tsx';
 import { Ic, CodeBlock } from '../../common/code_format.tsx';
 
-const DictionariesAndFilesNo = (props: TutorialPostProps) => (
+const TuplesAndDictionariesNo = (props: TutorialPostProps) => (
     <>
         <PostWrapper metadata={props.metadata} >
             Velkommen tilbake! Dette blir en litt kortere post der vi fokuserer på to nye konsepter som ofte kommer til nytte når man er på kodeeventyr: Tupler og tabeller. 
@@ -37,7 +37,7 @@ else:
             <Db />
             Programmet begynner med å definere to lister, én som inneholder land og én som inneholder korresponderende hovedsteder. Vi har gjort en forenkling hvor vi antar at verden består av tre land. Vi tar inn navnet på et land fra brukeren, og definerer variabelen <Ic>hovedstad</Ic> som vi setter til <Ic>''</Ic>, altså en tom tekststreng. Deretter går vi igjennom indeksene til listen <Ic>landliste</Ic> og sammenligner hvert land i listen med landet vi fikk av brukeren. Når vi finner landet i <Ic>landliste</Ic> som stemmer overens med det brukeren skrev inn, setter vi variabelen vi definerte tidligere, <Ic>hovedstad</Ic>, til være strengen på korresponderende indeks i listen <Ic>hovedsteder</Ic> og avslutter løkken med <Ic>break</Ic>. 
             <Db />
-            Til slutt sjekker vi om lengden på strengen <Ic>hovedstad</Ic> er lik null med <Ic>len()</Ic>-funksjonen. Hvis lengden er null, vet vi at <Ic>hovedstad</Ic> ikke har endret seg siden vi initialiserte den til en tom liste, noe som betyr at vi ikke fant et land som matchet brukerinnputtet fra listen <Ic>landliste</Ic> i løkken over. Dermed må vi, med halen mellom beina, fortelle brukeren at vi ikke fant noen hovedstad. Ellers, hvis <Ic>hovedstad</Ic> ikke er tom, betyr det at vi må ha funnet et matchende land, og dermed en hovedstad - som vi så skriver ut til brukeren.
+            Til slutt sjekker vi om lengden på strengen <Ic>hovedstad</Ic> er lik null med <Ic>len()</Ic>-funksjonen. Hvis lengden er null, vet vi at <Ic>hovedstad</Ic> ikke har endret seg siden vi initialiserte den til en tom streng, noe som betyr at vi ikke fant et land som matchet brukerinnputtet fra listen <Ic>landliste</Ic> i løkken over. Dermed må vi, med halen mellom beina, fortelle brukeren at vi ikke fant noen hovedstad. Ellers, hvis <Ic>hovedstad</Ic> ikke er tom, betyr det at vi må ha funnet et matchende land, og dermed en hovedstad - som vi så skriver ut til brukeren.
             <Db />
             Koden over fungerer fint, men det er et par ting vi kan tenke på å forbedre:
             <Db />
@@ -45,9 +45,9 @@ else:
             <Db />
             Nå kan det hende du tenker "men dét skjønner jeg jo, jeg kommer jo aldri til å gjøre noe så dumt som å endre på én av listene uten å endre den andre?". Sant nok. Dette er et forholdsvis enkelt eksempel hvor det er lett å se at det går galt når man bare endrer én liste, men i større eksempler kan det være mye vanskeligere å holde rede på sånne avhengigheter mellom f. eks. lister. Ideelt sett vil vi altså fjerne denne usynlige, implisitte relasjonen mellom de to listene, og heller gjøre den synlig, <i>eksplisitt</i>.
             <Db />
-            Dette er et tilfelle der vi kan bruke <i>tupler</i>. Tupler ligner på lister - men skrives med vanlige paranteser <Ic>()</Ic> i stedet for klammeparanteser <Ic>[]</Ic>. En annen forskjell er at tupler ikke kan endres, man kan hverken legge til, endre eller fjerne elementer fra en tuppel. Eksempler på tupler er <Ic>(1, 3)</Ic> og <Ic>(3, True, 1)</Ic>. Tupler kan ha så mange elemneter vi vil, men alle elementene må være med i det tuppelen blir definert, siden det ikke kan endres senere. 
+            Dette er et tilfelle der vi kan bruke <i>tupler</i>. Tupler ligner på lister; de inneholder en rekke elementer. Men til forskjell fra lister skrives de med vanlige paranteser <Ic>()</Ic> i stedet for klammeparanteser <Ic>[]</Ic>. <Ic>(1, 3)</Ic> og <Ic>(3, True, 1)</Ic> er to eksempler på tupler. En annen forskjell er at tupler ikke kan endres, man kan hverken legge til, endre eller fjerne elementer fra en tuppel. Tupler kan ha så mange elementer vi vil, men alle elementene må være med i det tuppelen blir definert, siden det ikke kan endres senere. 
             <Db />
-            Tupler er bra for å holde på et lite antall verdier som er relatert til hverandre, men verdiene kan ha forskjellig mening. For eksempel kan en tuppel med tre elementer representere en person ved å inneholde en streng for navn, et heltall for alder, og et flyttall for høyde. Dette står i motsetning til lister som fungerer best for å inneholde mange verdier som ikke nødvendigvis er relatert til hverandre, men som har samme betydning, som en deltagerliste for et arrangement eller en liste av de ti første primtallene.
+            Tupler er bra for å holde på et lite antall verdier som er relatert til hverandre, men som kan ha forskjellige betydninger. For eksempel kan en tuppel med tre elementer representere en person ved å inneholde en streng for navn, et heltall for alder, og et flyttall for høyde. Dette står i motsetning til lister som fungerer best for å inneholde mange verdier som ikke nødvendigvis er relatert til hverandre, men som har samme betydning, som en deltagerliste for et arrangement eller en liste av de ti første primtallene.
             <Db />
             Når vi har en tuppel, kan vi "splitte" det opp ved hjelp av <Ic>=</Ic>-operatoren slik:
             <CodeBlock>{`en_tuppel = (1, 2, 3)
@@ -100,10 +100,10 @@ tabell['c'] = 2
 
 print(tabell['b'])
 print(tabell)`}</CodeBlock>
-            Først definerer vi variabelen <Ic>tabell</Ic> som settes til <Ic>{`{}`}</Ic>, som bare er en tom tabell. Deretter bruker vi notasjonen <Ic>{`tabell[<indeks>] = <verdi>`}</Ic> til å sette verdier inn på ulike indekser i tabellen. Legg merke til at indeksene ikke trenger å eksistere i tabellen fra før for at man skal kunne legge noe på dem, i motsetning til indekser i lister. Her legges verdien <Ic>0</Ic> på indeks <Ic>'a'</Ic> (som er en streng), <Ic>1</Ic> på indeks <Ic>'b'</Ic> og <Ic>2</Ic> på indeks <Ic>'c'</Ic>. Utskriften fra programmet blir:
+            Først definerer vi variabelen <Ic>tabell</Ic> som settes til <Ic>{`{}`}</Ic>, som bare er en tom tabell. Deretter bruker vi notasjonen <Ic>{`tabell[<indeks>] = <verdi>`}</Ic> til å sette verdier inn på ulike indekser i tabellen. Legg merke til at indeksene ikke trenger å eksistere i tabellen fra før for at man skal kunne legge noe på dem, i motsetning til indekser i lister. Her legges verdien <Ic>0</Ic> på indeks <Ic>'a'</Ic>, <Ic>1</Ic> på indeks <Ic>'b'</Ic> og <Ic>2</Ic> på indeks <Ic>'c'</Ic>. Utskriften fra programmet blir:
             <CodeBlock>{`1
 {'a': 0, 'b': 1, 'c': 2}`}</CodeBlock>
-            Som forventet, får vi at elementet på indeks <Ic>'b'</Ic> er 1, og det siste <Ic>print()</Ic>-kallet viser at alle de tre indeks-verdi-parene ligger der som forventet.
+            Som forventet, får vi at elementet på indeks <Ic>'b'</Ic> er 1, og det siste <Ic>print()</Ic>-kallet viser at alle de tre indeks-verdi-parene ligger der.
             <Db />
             Merk at du kun kan ha én verdi assosiert med en indeks. Hvis du i koden etter eksempelet over hadde skrevet <Ic>tabell['a'] = 4</Ic>, ville du endt opp med tabellen <Ic>{`{'a': 4, 'b': 1, 'c': 2}`}</Ic>. Det er derimot ikke noe problem å ha flere like verdier i tabellen, så lenge indeksene er ulike.
             <Db />
@@ -122,7 +122,7 @@ else:
 
             Her har vi først konstruert tabellen <Ic>land_og_hovedsteder</Ic>, hvor vi assosierer hvert land med sin hovedstad. Dette gjør at f. eks. indeksoppslaget <Ic>land_og_hovedsteder['Norge']</Ic> gir <Ic>'Oslo'</Ic> som resultat. Deretter tar vi inn brukerinnputt som vanlig. 
             <Db />
-            Deretter kommer en stor forskjell fra den tidligere framgangsmåten vår: Vi itererer ikke igjennom tabellen for å finne objektet, men bruker en betingelse på formen <Ic>{`<indeks> in <tabell>`}</Ic>, som evalueres til <Ic>True</Ic> dersom indeks-verdien er en gyldig indeks i tabellen. Dermed vil betingelsen <Ic>land in land_og_hovedsteder</Ic> evalueres til sant dersom landet brukeren skrev inn er en indeks i tabellen (altså enten <Ic>'Norge'</Ic>, <Ic>'Sverige'</Ic> eller <Ic>'England'</Ic>), og usant dersom landet ikke finnes i tabellen. Vær obs på at <Ic>in</Ic>-operatoren bare sjekker om verdien på venstre er en <i>indeks</i> i tabellen, ikke om den finnes i tabellen som en <i>verdi</i>.
+            Deretter kommer en stor forskjell fra den tidligere framgangsmåten vår: Vi itererer ikke igjennom tabellen for å finne landet, men bruker en betingelse på formen <Ic>{`<indeks> in <tabell>`}</Ic>, som evalueres til <Ic>True</Ic> dersom indeks-verdien er en gyldig indeks i tabellen. Dermed vil betingelsen <Ic>land in land_og_hovedsteder</Ic> evalueres til sant dersom landet brukeren skrev inn er en indeks i tabellen (altså enten <Ic>'Norge'</Ic>, <Ic>'Sverige'</Ic> eller <Ic>'England'</Ic>), og usant dersom landet ikke finnes i tabellen. Vær obs på at <Ic>in</Ic>-operatoren bare sjekker om verdien på venstre er en <i>indeks</i> i tabellen, ikke om den finnes i tabellen som en <i>verdi</i>.
             <Db />
             Dersom betingelsen er sann, vet vi at vi har en hovedstad vi kan gi tilbake til brukeren, nemlig strengen vi får av tabelloppslaget <Ic>land_og_hovedsteder[land]</Ic>. Dersom landet ikke finnes i tabellen, og dermed betingelsen evalueres til usann, innrømmer vi overfor brukeren an vi ikke klarte å finne noe godt svar.
             <Db />
@@ -154,7 +154,7 @@ else:
 
             Det var alt for denne gang! Tupler og tabeller er ikke fryktelig avanserte konsepter, men kan gjøre koden din langt enklere om du bruker dem riktig.
             <Db />
-            I neste post tar vi for oss skriving og lesing av filer, som vil gjøre oss i stand til å gjøre mer interessante operasjoner på større mengder data.
+            I neste post tar vi for oss skriving og lesing av filer, som vil gjøre oss i stand til å laste og lagre større mengder data vi kan gjøre interessante ting med.
 
             <h2>Oppgaver</h2>
 
@@ -171,4 +171,4 @@ else:
     </>
 );
 
-export default DictionariesAndFilesNo;
+export default TuplesAndDictionariesNo;
