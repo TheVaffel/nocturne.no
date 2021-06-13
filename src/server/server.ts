@@ -49,12 +49,22 @@ function main(): void {
         res.sendFile(filename);
     }
 
+    const sendFileOptions = {
+        root: path.join(__dirname)
+    };
+
+    app.get('/files/*', (req: Request, res: Response) => {
+        const spl = req.url.split('/');
+        const filePath = 'files/' + decodeURI(spl[spl.length - 1]);
+        console.log("FilePath = " + filePath);
+        res.sendFile(filePath, sendFileOptions);
+    });
+
     app.get('/devblog_list', (req: Request, res: Response) => {
         res.send(metadataList[0]);
     });
 
     app.get('/tutorial_lists', (req: Request, res: Response) => {
-        console.log("Sending tutorial list");
         res.send([metadataList[1], metadataList[2]]);
     });
 
