@@ -165,7 +165,7 @@ else:
         <Db />
         3. Create a program that lets the user practice the capitals of the world: The program shows the name of countries one by one, and reads the user's input, which is their answer to what the capital of the country is. In the end, the program shows how many correct answers the user had. You can limit the program to the countries we have used in this post in case you find coming up with more too much effort.
         <Db />
-        4 (Difficult). Create a list with all tuples of integers <Ic>a</Ic>, <Ic>b</Ic> and <Ic>c</Ic> such that <Ic>a * a + b * b == c * c</Ic>, where <Ic>a</Ic>, <Ic>b</Ic> and <Ic>c</Ic> are less than 100. Tuples satisfying this equation are called Pythagorean triples. (Note - this is primarily an exercise about loops.)
+        4 (Difficult). Create a list with all tuples of positive integers <Ic>a</Ic>, <Ic>b</Ic> and <Ic>c</Ic> such that <Ic>a * a + b * b == c * c</Ic>, where <Ic>a</Ic>, <Ic>b</Ic> and <Ic>c</Ic> are less than 100. Tuples satisfying this equation are called Pythagorean triples. (Note - this is primarily an exercise about loops.)
         </PostWrapper>
     </>
 );

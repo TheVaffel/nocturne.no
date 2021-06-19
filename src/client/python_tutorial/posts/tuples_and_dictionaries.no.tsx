@@ -164,7 +164,7 @@ else:
             <Db />
             3. Lag et program som lar brukeren øve på verdens hovedsteder: Programmet viser navnet til ett og ett land og tar i mot brukerens innputt, som er deres svar på hva hovedstaden er. Til slutt viser programmet hvor mange riktige brukeren hadde. Du kan begrense deg til landene vi har brukt i denne posten, om du synes det er stressende å komme på flere.
             <Db />
-            4 (Vanskelig). Lag en liste med alle tupler av heltall <Ic>a</Ic>, <Ic>b</Ic> og <Ic>c</Ic> slik at <Ic>a * a + b * b == c * c</Ic>, der <Ic>a</Ic>, <Ic>b</Ic> og <Ic>c</Ic> er under 100. Tupler som oppfyller denne ligningen kalles <i>pytagoreiske tripler</i>. (Merk - dette er først og fremst en løkkeoppgave).
+            4 (Vanskelig). Lag en liste med alle tupler av positive heltall <Ic>a</Ic>, <Ic>b</Ic> og <Ic>c</Ic> slik at <Ic>a * a + b * b == c * c</Ic>, der <Ic>a</Ic>, <Ic>b</Ic> og <Ic>c</Ic> er under 100. Tupler som oppfyller denne ligningen kalles <i>pytagoreiske tripler</i>. (Merk - dette er først og fremst en løkkeoppgave).
             
 
         </PostWrapper>
