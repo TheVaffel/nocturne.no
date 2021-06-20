@@ -154,7 +154,7 @@ else:
 
             Det var alt for denne gang! Tupler og tabeller er ikke fryktelig avanserte konsepter, men kan gjøre koden din langt enklere om du bruker dem riktig.
             <Db />
-            I neste post tar vi for oss skriving og lesing av filer, som vil gjøre oss i stand til å laste og lagre større mengder data vi kan gjøre interessante ting med.
+            I neste post tar vi for oss skriving og lesing av filer, som vil gjøre oss i stand til å laste og lagre større mengder data vi kan gjøre interessante ting med. Vi drar også en liten tur innom feilhåndtering.
 
             <h2>Oppgaver</h2>
 

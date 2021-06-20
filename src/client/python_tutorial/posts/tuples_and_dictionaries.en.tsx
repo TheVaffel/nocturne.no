@@ -156,7 +156,7 @@ else:
 
         That's all for now! Tuples and dictionaries are not super advanced concepts, but may make the code far easier to read and write if used in the right settings.
         <Db />
-        In the next post, we will explore reading and writing files, which will make us able to do more interesting operations with larger amounts of data.
+        In the next post, we will explore reading and writing files, which will make us able to do more interesting operations with larger amounts of data. We'll also peek at error handling while we're at it.
 
         <h2>Exercises</h2>
         1. Create a <i>function</i> that takes a list as an argument and returns a dictionary with all the same elements that the list contains, but where key/value are reversed. In other words, the elements of the list will be keys in the dictionary, and the corresponding values in the dictionaries will be the index the element has in the list. As an example, if the function takes in the list <Ic>['a', 'b', 'c']</Ic>, it should return the dictionary <Ic>{`{'a': 0, 'b': 1, 'c': 2`}</Ic>.
