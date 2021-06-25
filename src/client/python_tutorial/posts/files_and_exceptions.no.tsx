@@ -9,22 +9,22 @@ import { Ic, CodeBlock } from '../../common/code_format.tsx';
 const FilesAndExceptionsNo = (props: TutorialPostProps) => (
     <>
         <PostWrapper metadata={props.metadata} >
-            Hei igjen! I denne posten skal vi se på filer og hvordan vi kan lage og bruke dem med Python. Hittil har vi belaget oss på at brukeren har sendt inn ekstern informasjon til programmet, men det er grenser for hvor lenge vi klarer å få en bruker til å sitte å mate programmet vårt. Her skal vi blant annet lære om hvordan vi kan lese informasjon fra filer, som vil la oss øke mengden data vi har å jobbe med dramatisk.
+            Hei igjen! I denne posten skal vi se på filer og hvordan vi kan lage og bruke dem med Python. Hittil har vi belaget oss på at brukeren har sendt inn ekstern informasjon til programmet, men det er grenser for hvor lenge vi klarer å få en bruker til å sitte og mate programmet vårt med data. Her skal vi blant annet lære om hvordan vi kan lese informasjon fra filer, som vil øke mengden data vi har mulighet til å jobbe med dramatisk.
             <Db />
-            Sannsynligvis har du allerede en formening om hva filer er i datasammenheng, ettersom hvert Python-program vi har skrevet må være lagret i en fil for å kunne kjøres. For denne postens formål kommer vi bare til å tenke på filer som en beholder med data som ligger på harddisken til maskinen og som har et eget navn. Filer kan inneholde data i et hvilket som helst format, for eksempel bilde, lyd eller regneark. Her kommer vi bare til å diskutere filer som inneholder ren tekst.
+            Sannsynligvis har du allerede en formening om hva filer er i datasammenheng, ettersom hvert Python-program vi har skrevet må være lagret i en fil for å kunne kjøres. For denne postens formål kommer vi bare til å tenke på filer som en navngitt beholder med data som ligger på harddisken til maskinen. Filer kan inneholde data i et hvilket som helst format, for eksempel bilde, lyd eller regneark. I denne posten kommer vi bare til å diskutere filer som inneholder ren tekst, men vi skal se på andre filtyper i neste post.
 
             <h2>Å lese en fil</h2>
             
-            For å lese innholdet av en fil og bruke det i programmet vårt, trenger vi først en fil å jobbe med. I dette eksempelet kommer vi til å bruke sangteksten til en klassiker, som du kan <a href="/files/8_filer_innputt.txt" download>laste ned her</a>. Legg denne filen i samme mappe som programkoden vi skal skrive under, ligger. Hvis du ikke vet hvor filen havnet da du lastet den ned, ligger den sannsynligvis i en mappe kalt <i>Nedlastninger</i> / <i>Downloads</i>. Legg merke til at filen kun inneholder ren tekst, uten noen form for formatering, skriftstørrelse, farger eller lignende, som man for eksempel ville hatt i en dokumentfil (f.eks. <Ic>.docx</Ic> eller <Ic>.pdf</Ic>). Dette er nemlig en <Ic>.txt</Ic>-fil, som ikke inneholder noe annet enn en rekke med menneskeleselige tegn og bokstaver. Denne enkle formen for filer egner seg godt for å demonstrere filoperasjoner i Python fordi innholdet kan behandles direkte som en streng.
+            For å lese innholdet i en fil og bruke det i programmet vårt, trenger vi først en fil å jobbe med. I dette eksempelet kommer vi til å bruke sangteksten til en klassiker, som du kan <a href="/files/sangtekst.txt" download>laste ned her</a>. Legg denne filen i samme mappe som programkoden vi skal skrive under. Hvis du ikke vet hvor filen havnet da du lastet den ned, ligger den sannsynligvis i en mappe kalt <i>Nedlastninger</i> eller <i>Downloads</i>. Legg merke til at filen er en <Ic>.txt</Ic>-fil som kun inneholder ren tekst, uten noen form for formatering, skriftstørrelse, farger eller lignende, som man for eksempel ville hatt i en dokumentfil (f.eks. <Ic>.docx</Ic> eller <Ic>.pdf</Ic>). <Ic>.txt</Ic>-filer inneholder nemlig ikke noe annet enn en rekke med menneskeleselige tegn og bokstaver. Denne enkle formen for filer egner seg godt for å demonstrere filoperasjoner i Python fordi innholdet kan behandles direkte som en streng.
             
             <Db />
             
-            Når vi skal skrive til eller lese fra en fil, må vi først <i>åpne</i> den. Dette signaliserer til operativsystemet at den skal åpne en "kanal" til eller fra filen og inn til programmet vårt, og gir oss en referanse til denne kanalen. For å åpne en fil kan vi kalle <Ic>{`open(<filnavn>)`}</Ic>. Kallet returnerer et "filobjekt" som vi kan bruke senere til å lese fra eller skrive til filen. Dersom filen ikke finnes, vil Python passe på å kaste en feilmelding på deg.
+            Når vi skal skrive til eller lese fra en fil, må vi først <i>åpne</i> den. Dette signaliserer til operativsystemet at den skal åpne en "kanal" til eller fra filen og inn til programmet vårt, og gir oss en referanse til denne kanalen. For å åpne en fil kan vi kalle <Ic>{`open(<filnavn>)`}</Ic>, der <Ic>{`<filnavn>`}</Ic> er en streng som inneholder navnet på filen vår. Kallet returnerer et "filobjekt" som vi kan bruke senere til å lese fra eller skrive til filen. Dersom filen ikke finnes, vil Python passe på å kaste en feilmelding på deg.
 
             <Db />
-            For å åpne fila vi lastet, kaller vi altså bruke
-            <CodeBlock>{`fil = open('8_filer_innputt.txt')`}</CodeBlock>
-            Nå har vi sagt ifra til operativsystemet at vi vil lese filen <Ic>8_filer_innputt.txt</Ic>, og mottatt et filobjekt som vi har lagt i variabelen <Ic>fil</Ic>. Herifra har vi flere muligheter for å lese innholdet i fila. 
+            For å åpne fila vi lastet ned, kan vi altså bruke
+            <CodeBlock>{`fil = open('sangtekst.txt')`}</CodeBlock>
+            Nå har vi sagt ifra til operativsystemet at vi vil lese filen <Ic>sangtekst.txt</Ic>, og mottatt et filobjekt som vi har lagt i variabelen <Ic>fil</Ic>. Herifra har vi flere muligheter for å lese innholdet i fila. 
             
             <h3>Les alt innholdet samtidig</h3>
 
@@ -34,18 +34,18 @@ const FilesAndExceptionsNo = (props: TutorialPostProps) => (
 
             Vi kan sjekke at <Ic>filinnhold</Ic> nå inneholder all teksten i fila ved å skrive den til skjerm med f.eks. <Ic>print(filinnhold)</Ic>.
             <Db />
-            Man bør være litt forsiktig når man bruker <Ic>read()</Ic>-funksjonen slik som vi har gjort over fordi det ber Python om å laste alt filinnholdet inn i minnet samtidig. Dersom filen tar mer plass enn du har tilgjengelig i minnet, kan du ende med at maskinen henger en stund før programmet til slutt krasjer. Det er ikke farlig, men kan være fryktelig irriterende. For moderne maskiner blir dette først et problem når jobber med filer på flere gigabyte, altså milliarder av tegn, noe som ikke skjer ofte.
+            Man bør være litt forsiktig når man bruker <Ic>read()</Ic>-funksjonen slik som vi har gjort over, fordi det ber Python om å laste alt filinnholdet inn i minnet samtidig. Dersom filen tar mer plass enn du har tilgjengelig i minnet, kan du ende med at maskinen henger en stund før programmet til slutt krasjer. Det er ikke farlig, men kan være fryktelig irriterende. For moderne maskiner blir dette først et problem når vi jobber med filer på flere gigabyte, altså milliarder av tegn, noe du antakeligvis ikke kommer til å gjøre med det første.
 
             <h3>Les én og én linje</h3>
 
             En alternativ måte å lese gjennom tekst-filer på, er å bruke <Ic>for</Ic>-løkker. Når vi bruker <Ic>for</Ic>-løkker direkte på filobjekter for tekstfiler, vil iterasjonsvariabelen settes til én og én linje i fila. 
             
-            <NoticeBlock>Obs: Du kan ikke bruke både <Ic>read()</Ic>-funksjonen og <Ic>for</Ic>-løkkeiterasjon på det samme filobjektet. Filobjektet "husker" hva som har blitt lest og fortsetter fra der den slapp i neste leseoperasjon. Derfor må du enten erstatte <Ic>read()</Ic>-kallet over med løkken, eller lukke fila og åpne en ny (se under).</NoticeBlock>
+            <NoticeBlock>Obs: Du kan ikke bruke både <Ic>read()</Ic>-funksjonen og <Ic>for</Ic>-løkkeiterasjon på det samme filobjektet. Filobjektet "husker" hva som har blitt lest og fortsetter fra der den slapp i neste leseoperasjon. Dersom du fortsetter fra koden over, må du derfor enten erstatte <Ic>read()</Ic>-kallet med løkken, eller lukke fila (se under) og åpne en ny.</NoticeBlock>
 
             Her er et eksempel hvor vi skriver filen over ut til skjerm ved hjelp av en <Ic>for</Ic>-løkke:
             <CodeBlock>{`for linje in fil:
     print(linje)`}</CodeBlock>
-            Resultatet skal bli det samme som da vi skrev ut filinnholdet i eksempelet over.
+            Resultatet skal bli nesten det samme som da vi skrev ut filinnholdet i eksempelet over, bortsett fra noen et ekstra linjeskift mellom hvert par av linjer; linjene vi får via <Ic>for</Ic>-løkka inneholder nemlig linjeskiftet på slutten.
 
             <h3>Lukk fila</h3>
 
@@ -57,14 +57,14 @@ const FilesAndExceptionsNo = (props: TutorialPostProps) => (
 
             Når vi kaller <Ic>open()</Ic> på en fil, må vi bestemme om fila skal åpnes for lesing eller skriving. Dette gjør vi ved å gi en verdi for det andre argumentet til <Ic>open()</Ic>, som spesifiserer <i>moduset</i> til fila. For å åpne fila for lesing, kan vi bruke <Ic>'r'</Ic> som andre argument. Dette er også standardverdien til dette argumentet, som er grunnen til at vi ikke trengte å bruke dette argumentet i eksempelet om fillesing over.
             <Db />
-            For å åpne en fil for <i>skriving</i>, må vi bruke modusargumentet <Ic>'w'</Ic>. Dersom fila som er spesifisert i første argument ikke eksisterer, kommer programmet til å lage fila først, og så åpne den for skriving. Vær forsiktig når du bruker modusargumentet <Ic>'w'</Ic> på filer som allerede eksisterer, ettersom det vil fullstending overskrive innholdet i fila selv om du ikke gjør noen skriveoperasjoner!
+            For å åpne en fil for <i>skriving</i>, må vi bruke modusargumentet <Ic>'w'</Ic>. Dersom fila som er spesifisert i første argument ikke eksisterer, kommer programmet til å lage fila først, og så åpne den for skriving. Vær forsiktig når du bruker modusargumentet <Ic>'w'</Ic> på filer som allerede eksisterer, ettersom det vil fjerne alt innholdet i fila selv om du ikke gjør noen skriveoperasjoner!
             <Db />
-            Når vi har åpnet en fil for skriving, kan vi bruke medlemsfunksjonen <Ic>write()</Ic>, med strengen vi vil skrive som argument. Merk at dette bare vil legge strengen direkte inn i filen, uten å legge til et linjeskift eller noe annet tegn på slutten. Om du vil ha med et linjeskift, kan du legge til <Ic>'\\n'</Ic> på slutten av strengen.
+            Når vi har åpnet en fil for skriving, kan vi bruke medlemsfunksjonen <Ic>write()</Ic> med strengen vi vil skrive som argument. Merk at dette bare vil legge strengen direkte inn i filen, uten å legge til et linjeskift eller noe annet tegn på slutten. Om du vil ha med et linjeskift, kan du legge til <Ic>'\n'</Ic> på slutten av strengen selv.
             <Db />
             Her er et eksempelprogram der vi leser fra fila vi brukte tidligere og lager en ny fil som inneholder annenhver linje fra den første fila:
-            <CodeBlock>{`innfil = open('8_filer_innputt.txt')
+            <CodeBlock>{`innfil = open('sangtekst.txt')
 
-inntekst = innfile.read()
+inntekst = innfil.read()
 
 innfil.close()
 
@@ -79,46 +79,53 @@ for i in range(len(inntekst_linjer)):
 utfil.close()`}
             </CodeBlock>
 
-            Her er det litt som skjer:
+            Her er det litt forskjellig som skjer:
             <Db />
-            Først åpner vi filen og leser ut innholdet, som vi legger i variabelen <Ic>inntekst</Ic>. Når vi har fått tak i innholdet, lukker vi fila. På dette tidspunktet er vi nemlig ferdige med å lese teksten inn i programmet, sånn at vi ikke trenger å bruke fila lenger. Så lager vi en ny fil - fila vi skal skrive resultatet vårt i. Her bruker vi modusargument <Ic>'w'</Ic> for å signalisere at vi skal skrive til fila.
+            Først åpner vi filen og leser ut innholdet, som vi legger i variabelen <Ic>inntekst</Ic>. Når vi har fått tak i innholdet, lukker vi fila. På dette tidspunktet er vi nemlig ferdige med å lese teksten inn i programmet, sånn at vi ikke trenger å bruke innputtfila lenger. Så lager vi en ny fil - fila vi skal skrive resultatet vårt i. Her bruker vi modusargument <Ic>'w'</Ic> for å signalisere at vi skal skrive til fila.
             <Db /> 
-            Deretter kaller vi <Ic>split()</Ic>-funksjonen på denne teksten. <Ic>split</Ic> deler opp strengen og returnerer en liste av strenger. Argumentet til <Ic>split</Ic> er <i>separatoren</i>, altså hvilket tegn som skal behandles som en splitt i strengen. Standardverdien for dette argumentet splitter strengen på alle <i>whitespace</i>-tegn, som inkluderer både mellomrom, ny linje og tab. I dette problemet vil vi splitte opp innputtstrengen i linjer, så vi bruker linjeskift (<Ic>'\\n'</Ic>) til å markere skillet mellom de nye strengene. Resultatet er en liste av strenger, hvor hver streng er en linje fra fila. Merk at strengene i lista <i>ikke</i> inneholder linjeskift.
+            Deretter kaller vi <Ic>split()</Ic>-funksjonen på teksten vi leste inn. <Ic>split</Ic> deler opp strengen og returnerer en liste av strenger. Argumentet til <Ic>split</Ic> er <i>separatoren</i>, altså hvilket tegn som skal behandles som en splitt i strengen. Standardverdien for dette argumentet splitter strengen på alle <i>whitespace</i>-tegn, som inkluderer både mellomrom, ny linje og tab. I dette problemet vil vi splitte opp innputtstrengen i linjer, så vi bruker linjeskift (<Ic>'\n'</Ic>) som separator. Resultatet er en liste av strenger, hvor hver streng er en linje fra fila. Merk at strengene i lista <i>ikke</i> inneholder linjeskiftet, som blir fjernet under splitting.
             <Db />
-            Deretter itererer vi gjennom den med en <Ic>for</Ic>-løkke på indekser, sånn at vi kan sjekke om indeksen er delelig på to. Siden annenhver indeks (0, 2, 4... osv.) er delelig på to, ender vi opp med å skrive annenhver linje fra den første fila inn i den andre. Siden strengene i lista <Ic>inntekst_linjer</Ic> ikke inneholder linjeskift, må vi legge til ett på slutten når vi skriver dem, for at de skal dukke opp som separate linjer i den ferdige fila. Helt til slutt lukker vi fila vi skrev til,
+            Deretter itererer vi gjennom den med en <Ic>for</Ic>-løkke på indekser, sånn at vi kan sjekke om indeksen er delelig på to. Siden annenhver indeks (0, 2, 4... osv.) er delelig på to, ender vi opp med å skrive annenhver linje fra den første fila inn i den andre. Siden strengene i lista <Ic>inntekst_linjer</Ic> ikke inneholder linjeskift, må vi legge til ett på slutten når vi skriver dem, for at de skal dukke opp som separate linjer i den ferdige fila. Helt til slutt lukker vi fila vi skrev til.
             <Db />
             Det er flere måter å løse denne oppgaven på. For eksempel kunne vi iterert gjennom fila linje for linje direkte med en <Ic>for</Ic>-løkke slik som vi gjorde tidligere, og lage en tellevariabel som vi øker for hver iterasjon og som vi kan bruke for å bare skrive annenhver linje til fila.
 
             <h3><Ic>with</Ic>-blokker</h3>
 
-            Python har en alternativ måte å lage objekter som trenger å lukkes etter bruk, slik som filer. Vi kan bruke <Ic>with</Ic>-blokker, som er på formen
+            Python har en egen syntaks for å lage objekter som trenger å lukkes etter bruk, slik som filer. Dette er <Ic>with</Ic>-blokker, som er på formen
             <CodeBlock>{`with <objektinitialisering> as <variabelnavn>:
     <with-blokk>`}</CodeBlock>
             
             Her vil <Ic>{`<objektinitialisering>`}</Ic> være f. eks. <Ic>open()</Ic>-kallet som vi har brukt tidligere. Det <Ic>with</Ic>-blokken gjør, er å automatisk lukke objektet som ble laget på <Ic>with</Ic>-linja når blokken er ferdig, som betyr at du slipper å huske på å kalle <Ic>close()</Ic> selv. I tillegg gjør det at det er helt tydelig i koden hvor filen kan brukes og ikke - man kan ikke bruke filen utenfor blokken, ettersom den vil være lukket.
             <Db />
+            Vi kan skrive om eksempelet over ved hjelp av en <Ic>with</Ic>-blokk. Mesteparten av koden er lik, men starten blir spicet opp litt:
+            <CodeBlock>{`with open('sangtekst.txt') as innfil:
+    inntekst = innfil.read()
+
+utfil = open('utfil.txt', 'w')
+
+<...>`}</CodeBlock>
             <Ic>with</Ic>-blokker er den foretrukne måten å bruke filer på i moderne Python av grunnene nevnt over, og det er denne måten vi kommer til å bruke i resten av posten.
             <Db />
-            Det er ikke bare filer som kan brukes med <Ic>with</Ic>-blokker. Mange andre objekter som interagerer tettere med operativsystemet, som for eksempel nettforbindelser, kan også brukes med <Ic>with</Ic>-blokker. Vi kommer bare til å bruke <Ic>with</Ic>-blokker med filer i hoveddelen av denne innføringen i Python.
+            Det er ikke bare filer som kan brukes med <Ic>with</Ic>-blokker. Mange andre objekter som interagerer tett med operativsystemet, som for eksempel nettforbindelser, kan også brukes med <Ic>with</Ic>-blokker. Vi kommer bare til å bruke <Ic>with</Ic>-blokker med filer i hoveddelen av denne innføringen i Python.
 
             <h2>Unntak</h2>
 
-            Noen ganger (kanskje oftere enn vi vil innrømme) oppstår det feil mens koden vår kjører, som hindrer den fra å gjøre det den skal. Ofte skyldes dette programmererens selv, for eksempel at vi feilstaver navnet på en variabel eller funksjon, at vi lager en uendelig løkke med et uhell, eller at vi rett og slett har en kode som gjør noe annet enn det vi vil. 
+            Noen ganger (oftere enn vi vil innrømme) oppstår det feil mens koden vår kjører, som hindrer den fra å gjøre det den skal. Ofte skyldes dette programmereren selv, for eksempel at vi feilstaver navnet på en variabel eller funksjon, at vi lager en uendelig løkke med et uhell, eller at vi rett og slett har en kode som gjør noe annet enn det vi vil. 
             <Db />
             På en annen siden finnes det feil som vi som programmerere ikke kan noe for. Dette gjelder i mange forskjellige sammenhenger, for eksempel hvis vi prøver å lese en fil som ikke finnes, eller hvis brukeren gir oss en tilfeldig streng når vi forventer et tall. 
             <Db />
-            Vanligvis vil Python bare gi opp når den møter på slike feil, og krasje programmet. Denne oppførselen er akseptabel når vi jobber med små programmer som er raske å starte på nytt, men kan gjøre stor skade om en slik feil skulle dukke opp i et større program midt under kjøring. I slike tilfeller vil det være et bedre alternativ for oss å håndtere feilen selv.
+            Vanligvis vil Python bare gi opp når den møter på slike feil, og krasje programmet. Denne oppførselen er akseptabel når vi jobber med små programmer som er raske å starte på nytt, men kan gjøre stor skade om en slik feil skulle dukke opp i et tidkrevende program midt under kjøring. I slike tilfeller vil det være et bedre alternativ for oss å håndtere feilen selv.
             <Db />
             En fellesbetegnelse for feil som oppstår under kjøring er <i>unntak</i> (engelsk: <b>exceptions</b>).
             <Db />
-            For å <i>håndtere</i> unntak i Python kan vi bruke <i>try-except</i>-blokker. <Ic>Try</Ic>-<Ic>except</Ic>-blokker ser ut som dette:
+            For å <i>håndtere</i> unntak i Python kan vi bruke <Ic>try</Ic>-<Ic>except</Ic>-blokker. <Ic>try</Ic>-<Ic>except</Ic>-blokker ser ut som dette:
 
             <CodeBlock>{`try:
     <try-blokk>
 except:
     <except-blokk>`}</CodeBlock>
             
-            Når Python kommer til en <Ic>try</Ic>-<Ic>except</Ic>-blokk, vil den kjøre koden i <Ic>try</Ic>-blokken som vanlig. Hvis det ikke oppstår noe unntak under kjøringen av <Ic>try</Ic>-blokken, vil den fortsette på koden etter <Ic>except</Ic>-blokken, altså ignorere hele <Ic>except</Ic>-blokken fullstendig.
+            Når Python kommer til et par <Ic>try</Ic>-<Ic>except</Ic>-blokker, vil den kjøre koden i <Ic>try</Ic>-blokken som vanlig. Hvis det ikke oppstår noe unntak under kjøringen av <Ic>try</Ic>-blokken, vil den fortsette på koden etter <Ic>except</Ic>-blokken, altså ignorere hele <Ic>except</Ic>-blokken fullstendig.
             <Db />
             Dersom det oppstår en feil i <Ic>try</Ic>-blokken, derimot, hopper Python direkte inn i <Ic>except</Ic>-blokken og kjører koden som ligger der. Etter at koden i <Ic>except</Ic>-blokken er kjørt, fortsetter Python med koden etter hele <Ic>try</Ic>-<Ic>except</Ic>-konstruksjonen som vanlig.
             <Db />
@@ -135,9 +142,9 @@ print('Hei,', navn)`}</CodeBlock>
 
             Dette programmet antar at navnet til brukeren står skrevet i <Ic>navn.txt</Ic> og prøver å lese ut navnet. Hvis forsøket på å hente ut navnet feiler av en eller annen grunn, skriver vi en feilmelding til skjerm og antar at navnet er Arne. 
             <Db />
-            Her ser vi altså et eksempel på hva en <Ic>except</Ic>-blokk kan inneholde - den kan brukes til å fylle inn en verdi i en variabel dersom vi mislyktes å fylle den inn på en annen måte.
+            Her ser vi altså et eksempel på hva en <Ic>except</Ic>-blokk kan inneholde - den kan brukes til å fylle inn en verdi i en variabel dersom vi mislyktes å fylle den inn på en annen måte, og til å fortelle brukeren (eller programmereren) at noe gikk galt.
 
-            <NoticeBlock>Dette er bare et eksempel. Du bør ikke anta at brukeren din heter Arne.</NoticeBlock>
+            <NoticeBlock>Dette er bare et eksempel. Du bør ikke anta at brukeren din heter Arne i kritiske applikasjoner.</NoticeBlock>
 
             <h3>Unntak i funksjonskall</h3>
 
@@ -147,7 +154,7 @@ print('Hei,', navn)`}</CodeBlock>
             <Db />
             Hvis den ikke lenger er inne i en funksjon (dvs. koden den ser på ikke er skrevet i noen funksjon), og dermed ikke kan hoppe bakover til et funksjonskall, kommer Python bare til å krasje programmet, som vi har latt det gjøre tidligere.
             <Db />
-            Hvis den omsider finner en <Ic>try</Ic>-blokk, vil den kjøre koden som ligger i den tilsvarende <Ic>except</Ic>-blokken og deretter fortsette på koden etter <Ic>except</Ic>-blokken. Den vil med andre ord hoppe over all kode som ellers ville kjørt etter stedet unntaket ble generert, og slutten på <Ic>try</Ic>-blokken Python fant.
+            Hvis den omsider finner en <Ic>try</Ic>-blokk, vil den kjøre koden som ligger i den tilsvarende <Ic>except</Ic>-blokken og deretter fortsette på koden etter <Ic>except</Ic>-blokken. Den vil med andre ord hoppe over all kode som ellers ville kjørt etter stedet unntaket ble generert, og from til <Ic>except</Ic>-blokken Python fant.
             <Db />
             For å se hvordan dette kan se ut i praksis, kan vi skrive om koden over til å bruke en funksjon:
             <CodeBlock>{`def finn_navn(filnavn):
@@ -166,7 +173,7 @@ print('Hei, ', navn)`}</CodeBlock>
 
         Her har vi lagt all koden for å lese navnet fra fila inn i en funksjon som tar inn filnavnet som argument. Når vi kjører denne koden og det oppstår en feil under åpningen eller lesingen av fila, genereres det et unntak og Python hopper tilbake til funksjonskallet <Ic>finn_navn(filnavn)</Ic> og finner <Ic>try</Ic>-blokken som omslutter den. Sett utenifra vil denne koden gjøre akkurat det samme som koden vi skrev over.
         <Db />
-        <Ic>try</Ic>-<Ic>except</Ic>-blokker kan med andre ord fange opp unntak som kastes fra dypt inne i et tårn av funksjonskall. De kan brukes til å dekke en stor mengde kode hvor du er usikker på hvor feilen kommer til å oppstå, men hvor du har en klar formening om hva du kan gjøre om et unntak skulle dukke opp.
+        <Ic>try</Ic>-<Ic>except</Ic>-blokker kan med andre ord fange opp unntak som kastes fra dypt inne i en kjede av funksjonskall. De kan brukes til å dekke en stor mengde kode hvor du er usikker på hvor feilen kommer til å oppstå, men hvor du har en klar formening om hva du kan gjøre om et unntak skulle dukke opp.
 
         <h3><Ic>try</Ic>-<Ic>except</Ic> for å gjenta en mislykket operasjon</h3>
 
@@ -183,7 +190,7 @@ print('Hei, ', navn)`}</CodeBlock>
 alder = hent_alder()
 print('Om to år er du', alder + 2, 'år gammel')`}</CodeBlock>
 
-        Inne i <Ic>hent_alder</Ic>-funksjonen har vi lagt koden som henter alderen fra brukeren inn i en <Ic>try</Ic>-blokk, som igjen ligger inne i en <Ic>while</Ic>-løkke. Dersom alderinnhentingen i <Ic>try</Ic>-blokken klarer å lese brukerinnputt uten problemer, vil koden komme fram til <Ic>return</Ic>-linja og sende alderen tilbake fra funksjonen. Hvis det oppstår et unntak, hopper Python inn i <Ic>except</Ic>-blokken og forteller brukeren at de må ta seg sammen. Etter at Python har hoppet ut av <Ic>except</Ic>-blokken igjen, kjøres løkkeblokken igjen og brukeren kan gjøre et nytt forsøk.
+        Inne i <Ic>hent_alder</Ic>-funksjonen har vi lagt koden som henter alderen fra brukeren inn i en <Ic>try</Ic>-blokk, som igjen ligger inne i en <Ic>while</Ic>-løkke. Dersom alderinnhentingen i <Ic>try</Ic>-blokken klarer å lese brukerinnputt uten problemer, vil koden komme fram til <Ic>return</Ic>-linja og sende alderen tilbake fra funksjonen. Hvis det oppstår et unntak, hopper Python inn i <Ic>except</Ic>-blokken og forteller brukeren at de må ta seg sammen. Etter at Python har hoppet ut av <Ic>except</Ic>-blokken, kjøres løkkeblokken igjen og brukeren kan gjøre et nytt forsøk.
 
         <h3>Ulike typer unntak</h3>
         
@@ -194,9 +201,9 @@ print('Om to år er du', alder + 2, 'år gammel')`}</CodeBlock>
     <try-blokk>
 except <unntakstype>:
     <except-blokk>`}</CodeBlock>
-        Når det nå genereres et unntak i <Ic>try</Ic>-blokken, vil Python lete etter en tilsvarende <Ic>except</Ic>-blokk som tar imot den unntakstypen som ble generert. Den søker bakover i funksjonskalltårnet til den enten finner en slik blokk eller forsvinner ut av programmet.
+        Når det nå genereres et unntak i <Ic>try</Ic>-blokken, vil Python lete etter en tilsvarende <Ic>except</Ic>-blokk som tar imot den unntakstypen som ble generert. Den søker bakover i funksjonskallkjeden til den enten finner en slik blokk eller forsvinner ut av programmet.
         <Db />
-        Så hvordan vet vi hvilken unntakstype vi er interessert i? Når det genereres et unntak som ikke blir håndtert i noen <Ic>except</Ic>-blokk, vil som sagt Python krasje programmet og spytte ut en feilmelding. Feilmeldingen inneholder navnet på unntakstypen. 
+        Så hvordan vet vi som programmerere hvilken unntakstype vi er interessert i? Når det genereres et unntak som ikke blir håndtert i noen <Ic>except</Ic>-blokk, vil som sagt Python krasje programmet og spytte ut en feilmelding. Feilmeldingen inneholder navnet på unntakstypen. 
         <Db />
         Hvis vi for eksempel prøver å åpne en fil som ikke finnes, vil Python si noe slikt som
         <CodeBlock>{`Traceback (most recent call last):
@@ -212,8 +219,6 @@ FileNotFoundError: [Errno 2] No such file or directory: 'john_cena.jpg'`}</CodeB
 except FileNotFoundError:
     print('Fant ikke John Cena')`}</CodeBlock>
         
-        Legg merke til at i denne koden vil ikke <Ic>close()</Ic> kjøre i det hele tatt dersom <Ic>open()</Ic> ender i et unntak. Python vil nemlig hoppe ovel den linjen og direkte inn i <Ic>except</Ic>-blokken.
-        <Db />
         Du kan også ta imot selve unntaket i en variabel. Det kan du gjøre ved å legge til en <Ic>{`as <variabelnavn>`}</Ic> etter unntakstypen. Du kan bruke denne variabelen til å skrive feilmeldingen til skjerm, samtidig som du håndterer unntaket selv:
         <CodeBlock>{`try:
     with open('john_cena.jpg') as fil:
@@ -235,7 +240,7 @@ Fant ikke John Cena`}</CodeBlock>
 except Exception as e:
     print('Fikk et unntak av typen', type(e))`}</CodeBlock>
 
-        Helt til slutt nevner vi at man kan sette opp flere <Ic>except</Ic>-blokker som fanger opp forskjellige unntakstyper for samme <Ic>try</Ic>-blokk. Dette ser omtrent slik ut:
+        Helt til slutt nevner vi at man kan sette opp flere <Ic>except</Ic>-blokker som fanger opp forskjellige unntakstyper for samme <Ic>try</Ic>-blokk. Dette ser for eksempel slik ut:
         <CodeBlock>{`try:
     <try-blokk>
 except <første unntakstype>:
@@ -243,6 +248,8 @@ except <første unntakstype>:
 except <andre unntakstype>:
     <andre except-blokk>
 ...`}</CodeBlock>
+
+        Det kan nok ta en stund før koden du skriver har nok kompleksitet til at du trenger <Ic>try</Ic>-blokker som dette, men... Her er den i hvertfall.
         
         <h2>Oppsummering</h2>
 
@@ -252,7 +259,7 @@ except <andre unntakstype>:
         <Db />
         Vi snakket også om unntakshåndtering, som kan være nyttig i større programmer med usikkerhetsmomenter for å sikre at Python ikke krasjer koden unødvendig. Ofte klarer man seg fint uten å håndtere unntak selv, men <Ic>try</Ic>-<Ic>except</Ic>-blokker er uansett fint å ha i bakhånd.
         <Db />
-        I neste post introduserer vi <i>moduler</i>, som lar oss bygge programmer ved hjelp av kode skrevet av andre. Dette åpner opp et hav av muligheter for hva programmene våre kan gjøre, og vi skal ta med en del varierte eksempler på moduler for å gi et inntrykk av hvilke pakker som finnes der ute.
+        I neste post introduserer vi <i>moduler</i>, som lar oss bygge programmer ved hjelp av kode skrevet av andre. Dette åpner opp et hav av muligheter for hva programmene våre kan gjøre, og vi skal ta med en del varierte eksempler på moduler for å gi et inntrykk av utvalget som finnes der ute.
 
         <h2>Oppgaver</h2>
 
