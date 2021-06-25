@@ -3,8 +3,8 @@
 	"title": "Tuples and Dictionaries",
 	"description": "We first jump into tuples and then introduce dictionaries, which is an alternative way of holding large amounts of data.",
 	"createDate": 1622977584799,
-	"updateDate": 1622978168582,
-	"hash": "daef83ec2282c6db97068a96d1c388a6",
+	"updateDate": 1624652519143,
+	"hash": "d553b2e4d781a58e30f2cc20ae641a43",
 	"fileName": "tuples_and_dictionaries.en.tsx",
 	"urlPath": "tuples_and_dictionaries"
 }
