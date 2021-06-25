@@ -89,6 +89,18 @@ utfil.close()`}
             <Db />
             Det er flere måter å løse denne oppgaven på. For eksempel kunne vi iterert gjennom fila linje for linje direkte med en <Ic>for</Ic>-løkke slik som vi gjorde tidligere, og lage en tellevariabel som vi øker for hver iterasjon og som vi kan bruke for å bare skrive annenhver linje til fila.
 
+            <h3><Ic>with</Ic>-blokker</h3>
+
+            Python har en alternativ måte å lage objekter som trenger å lukkes etter bruk, slik som filer. Vi kan bruke <Ic>with</Ic>-blokker, som er på formen
+            <CodeBlock>{`with <objektinitialisering> as <variabelnavn>:
+    <with-blokk>`}</CodeBlock>
+            
+            Her vil <Ic>{`<objektinitialisering>`}</Ic> være f. eks. <Ic>open()</Ic>-kallet som vi har brukt tidligere. Det <Ic>with</Ic>-blokken gjør, er å automatisk lukke objektet som ble laget på <Ic>with</Ic>-linja når blokken er ferdig, som betyr at du slipper å huske på å kalle <Ic>close()</Ic> selv. I tillegg gjør det at det er helt tydelig i koden hvor filen kan brukes og ikke - man kan ikke bruke filen utenfor blokken, ettersom den vil være lukket.
+            <Db />
+            <Ic>with</Ic>-blokker er den foretrukne måten å bruke filer på i moderne Python av grunnene nevnt over, og det er denne måten vi kommer til å bruke i resten av posten.
+            <Db />
+            Det er ikke bare filer som kan brukes med <Ic>with</Ic>-blokker. Mange andre objekter som interagerer tettere med operativsystemet, som for eksempel nettforbindelser, kan også brukes med <Ic>with</Ic>-blokker. Vi kommer bare til å bruke <Ic>with</Ic>-blokker med filer i hoveddelen av denne innføringen i Python.
+
             <h2>Unntak</h2>
 
             Noen ganger (kanskje oftere enn vi vil innrømme) oppstår det feil mens koden vår kjører, som hindrer den fra å gjøre det den skal. Ofte skyldes dette programmererens selv, for eksempel at vi feilstaver navnet på en variabel eller funksjon, at vi lager en uendelig løkke med et uhell, eller at vi rett og slett har en kode som gjør noe annet enn det vi vil. 
@@ -113,9 +125,8 @@ except:
             Her er et eksempel på hvordan en <Ic>try</Ic>-<Ic>except</Ic>-blokk kan se ut i praksis.
 
             <CodeBlock>{`try:
-    fil = open('navn.txt')
-    navn = fil.readline()
-    fil.close()
+    with open('navn.txt') as fil:
+        navn = fil.readline()
 except:
     print('Kunne ikke lese navnet fra navn.txt, antar at navnet er Arne.')
     navn = 'Arne'
@@ -140,9 +151,8 @@ print('Hei,', navn)`}</CodeBlock>
             <Db />
             For å se hvordan dette kan se ut i praksis, kan vi skrive om koden over til å bruke en funksjon:
             <CodeBlock>{`def finn_navn(filnavn):
-    fil = open(filnavn)
-    navn = fil.readline()
-    fil.close()
+    with open(filnavn) as fil:
+        navn = fil.readline()
 
 filnavn = 'navn.txt'
 
@@ -188,7 +198,7 @@ except <unntakstype>:
         <Db />
         Så hvordan vet vi hvilken unntakstype vi er interessert i? Når det genereres et unntak som ikke blir håndtert i noen <Ic>except</Ic>-blokk, vil som sagt Python krasje programmet og spytte ut en feilmelding. Feilmeldingen inneholder navnet på unntakstypen. 
         <Db />
-        Hvis vi for eksempel prøver å åpne en fil som ikke finnes, vil Python si
+        Hvis vi for eksempel prøver å åpne en fil som ikke finnes, vil Python si noe slikt som
         <CodeBlock>{`Traceback (most recent call last):
   File "except.py", line 6, in <module>
     open('john_cena.jpg')
@@ -197,13 +207,17 @@ FileNotFoundError: [Errno 2] No such file or directory: 'john_cena.jpg'`}</CodeB
         I starten av den nederste linja ser vi typen til unntaket som ble generert: <Ic>FileNotFoundError</Ic>. Dermed kan vi skrive følgende for å håndtere unntaket:
 
         <CodeBlock>{`try:
-    fil = open('john_cena.jpg')
+    with open('john_cena.jpg') as fil:
+        print(fil.name)
 except FileNotFoundError:
     print('Fant ikke John Cena')`}</CodeBlock>
         
+        Legg merke til at i denne koden vil ikke <Ic>close()</Ic> kjøre i det hele tatt dersom <Ic>open()</Ic> ender i et unntak. Python vil nemlig hoppe ovel den linjen og direkte inn i <Ic>except</Ic>-blokken.
+        <Db />
         Du kan også ta imot selve unntaket i en variabel. Det kan du gjøre ved å legge til en <Ic>{`as <variabelnavn>`}</Ic> etter unntakstypen. Du kan bruke denne variabelen til å skrive feilmeldingen til skjerm, samtidig som du håndterer unntaket selv:
         <CodeBlock>{`try:
-    fil = open('john_cena.jpg')
+    with open('john_cena.jpg') as fil:
+        print(fil.name)
 except FileNotFoundError as e:
     print('Melding i unntaket:', e)
     print('Fant ikke John Cena')`}</CodeBlock>
@@ -242,7 +256,17 @@ except <andre unntakstype>:
 
         <h2>Oppgaver</h2>
 
-
+        1. Skriv et program som leser en fil og skriver til en ny fil hvor alle linjene er i motsatt rekkefølge; siste linje i den originale fila kommer først in den nye fila osv.
+        <Db />
+        2. Lag et program som teller opp hvor mange ganger bokstaven 'e' finnes i en gitt fil.
+        <Db />
+        3. <a href='/files/countries_population.txt' download>Her er en fil</a> som inneholder alle verdens land (på engelsk) og korresponderende folketall per 2021 (kilde: <a href='http://www.worldometers.info'>worldometers.info</a>). Bruk dataene i denne fila og lag programmer som
+        <br />
+        a. Skriver ut landene til skjerm sortert alfabetisk
+        <br />
+        b. Skriver ut navn på alle land som har et folketall på mer enn 50 millioner.
+        <br />
+        c. Finner ut hvor mange mennesker det er totalt på denne planeten.
 
         </PostWrapper>
     </>
