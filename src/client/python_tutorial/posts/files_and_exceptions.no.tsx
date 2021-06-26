@@ -70,6 +70,7 @@ innfil.close()
 
 utfil = open('utfil.txt', 'w')
 
+inntekst = inntekst.strip()
 inntekst_linjer = inntekst.split('\\n')
 
 for i in range(len(inntekst_linjer)):
@@ -83,7 +84,9 @@ utfil.close()`}
             <Db />
             Først åpner vi filen og leser ut innholdet, som vi legger i variabelen <Ic>inntekst</Ic>. Når vi har fått tak i innholdet, lukker vi fila. På dette tidspunktet er vi nemlig ferdige med å lese teksten inn i programmet, sånn at vi ikke trenger å bruke innputtfila lenger. Så lager vi en ny fil - fila vi skal skrive resultatet vårt i. Her bruker vi modusargument <Ic>'w'</Ic> for å signalisere at vi skal skrive til fila.
             <Db /> 
-            Deretter kaller vi <Ic>split()</Ic>-funksjonen på teksten vi leste inn. <Ic>split</Ic> deler opp strengen og returnerer en liste av strenger. Argumentet til <Ic>split</Ic> er <i>separatoren</i>, altså hvilket tegn som skal behandles som en splitt i strengen. Standardverdien for dette argumentet splitter strengen på alle <i>whitespace</i>-tegn, som inkluderer både mellomrom, ny linje og tab. I dette problemet vil vi splitte opp innputtstrengen i linjer, så vi bruker linjeskift (<Ic>'\n'</Ic>) som separator. Resultatet er en liste av strenger, hvor hver streng er en linje fra fila. Merk at strengene i lista <i>ikke</i> inneholder linjeskiftet, som blir fjernet under splitting.
+            Etter å ha åpnet utputtfila kaller vi <Ic>strip()</Ic> på strengen vi leste inn og erstatter den originale innputteksten med resultatet. Resultatet fra <Ic>strip()</Ic> er det samme som den originale strengen, bortsett fra at usynlige tegn (whitespace-tegn) som for eksempel mellomrom og linjeskift i begge ender av strengen fjernes. Tekstfiler pleier nemlig ofte å inneholde minst ett linjeskift på slutten, som kan føre til at vi får et unødvendig element når vi splitter strengen på neste linje:
+            <Db />
+            Etter å ha strippet ned strengen, kaller vi <Ic>split()</Ic>-funksjonen på den. <Ic>split</Ic> deler opp strengen og returnerer en liste av strenger. Argumentet til <Ic>split</Ic> er <i>separatoren</i>, altså hvilket tegn som skal behandles som en splitt i strengen. Standardverdien for dette argumentet splitter strengen på alle <i>whitespace</i>-tegn, som inkluderer både mellomrom, ny linje og tab. I dette problemet vil vi splitte opp innputtstrengen i linjer, så vi bruker linjeskift (<Ic>'\n'</Ic>) som separator. Resultatet er en liste av strenger, hvor hver streng er en linje fra fila. Merk at strengene i lista <i>ikke</i> inneholder linjeskiftet, som blir fjernet under splitting.
             <Db />
             Deretter itererer vi gjennom den med en <Ic>for</Ic>-løkke på indekser, sånn at vi kan sjekke om indeksen er delelig på to. Siden annenhver indeks (0, 2, 4... osv.) er delelig på to, ender vi opp med å skrive annenhver linje fra den første fila inn i den andre. Siden strengene i lista <Ic>inntekst_linjer</Ic> ikke inneholder linjeskift, må vi legge til ett på slutten når vi skriver dem, for at de skal dukke opp som separate linjer i den ferdige fila. Helt til slutt lukker vi fila vi skrev til.
             <Db />
@@ -274,6 +277,8 @@ except <andre unntakstype>:
         b. Skriver ut navn på alle land som har et folketall på mer enn 50 millioner.
         <br />
         c. Finner ut hvor mange mennesker det er totalt på denne planeten.
+        <br />
+        Tips til splitting av linjene: I denne fila er det to mellomrom mellom hvert land og korresponderende folketall, mens det bare er ett mellomrom mellom ord i et navn som består av flere enn ett. 
 
         </PostWrapper>
     </>
