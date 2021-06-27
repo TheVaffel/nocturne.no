@@ -11,11 +11,13 @@ const FilesAndExceptionsNo = (props: TutorialPostProps) => (
         <PostWrapper metadata={props.metadata} >
             Hei igjen! I denne posten skal vi se på filer og hvordan vi kan lage og bruke dem med Python. Hittil har vi belaget oss på at brukeren har sendt inn ekstern informasjon til programmet, men det er grenser for hvor lenge vi klarer å få en bruker til å sitte og mate programmet vårt med data. Her skal vi blant annet lære om hvordan vi kan lese informasjon fra filer, som vil øke mengden data vi har mulighet til å jobbe med dramatisk.
             <Db />
+            Litt senere i posten tar vi også en kikk på feilhåndtering, som kan være spesielt nyttig når man jobber med filer.
+            <Db />
             Sannsynligvis har du allerede en formening om hva filer er i datasammenheng, ettersom hvert Python-program vi har skrevet må være lagret i en fil for å kunne kjøres. For denne postens formål kommer vi bare til å tenke på filer som en navngitt beholder med data som ligger på harddisken til maskinen. Filer kan inneholde data i et hvilket som helst format, for eksempel bilde, lyd eller regneark. I denne posten kommer vi bare til å diskutere filer som inneholder ren tekst, men vi skal se på andre filtyper i neste post.
 
             <h2>Å lese en fil</h2>
             
-            For å lese innholdet i en fil og bruke det i programmet vårt, trenger vi først en fil å jobbe med. I dette eksempelet kommer vi til å bruke sangteksten til en klassiker, som du kan <a href="/files/sangtekst.txt" download>laste ned her</a>. Legg denne filen i samme mappe som programkoden vi skal skrive under. Hvis du ikke vet hvor filen havnet da du lastet den ned, ligger den sannsynligvis i en mappe kalt <i>Nedlastninger</i> eller <i>Downloads</i>. Legg merke til at filen er en <Ic>.txt</Ic>-fil som kun inneholder ren tekst, uten noen form for formatering, skriftstørrelse, farger eller lignende, som man for eksempel ville hatt i en dokumentfil (f.eks. <Ic>.docx</Ic> eller <Ic>.pdf</Ic>). <Ic>.txt</Ic>-filer inneholder nemlig ikke noe annet enn en rekke med menneskeleselige tegn og bokstaver. Denne enkle formen for filer egner seg godt for å demonstrere filoperasjoner i Python fordi innholdet kan behandles direkte som en streng.
+            For å lese innholdet i en fil og bruke det i programmet vårt, trenger vi først en fil å jobbe med. I dette eksempelet kommer vi til å bruke sangteksten til en klassiker, som du kan <a href="/files/sangtekst.txt" download>laste ned her</a>. Legg denne filen i samme mappe som programkoden vi skal skrive under. Hvis du ikke vet hvor filen havnet da du lastet den ned, ligger den sannsynligvis i en mappe kalt <i>Nedlastninger</i> eller <i>Downloads</i>. Legg merke til at filen er en <Ic>.txt</Ic>-fil som kun inneholder ren tekst, uten noen form for informasjon om formatering, skriftstørrelse, farger eller lignende, som man for eksempel ville hatt i en dokumentfil (f.eks. <Ic>.docx</Ic> eller <Ic>.pdf</Ic>). <Ic>.txt</Ic>-filer inneholder nemlig ikke noe annet enn en rekke med menneskeleselige tegn og bokstaver. Denne enkle formen for filer egner seg godt for å demonstrere filoperasjoner i Python fordi innholdet kan behandles direkte som en streng.
             
             <Db />
             
@@ -24,7 +26,7 @@ const FilesAndExceptionsNo = (props: TutorialPostProps) => (
             <Db />
             For å åpne fila vi lastet ned, kan vi altså bruke
             <CodeBlock>{`fil = open('sangtekst.txt')`}</CodeBlock>
-            Nå har vi sagt ifra til operativsystemet at vi vil lese filen <Ic>sangtekst.txt</Ic>, og mottatt et filobjekt som vi har lagt i variabelen <Ic>fil</Ic>. Herifra har vi flere muligheter for å lese innholdet i fila. 
+            Nå har vi sagt ifra til operativsystemet at vi vil lese filen <Ic>sangtekst.txt</Ic>, og mottatt et filobjekt som vi har lagt i variabelen <Ic>fil</Ic>. Hvis du får en feilmelding av dette kallet alene, har du antakeligvis ikke lagt fila i samme mappe som koden din ligger i, eller feilstavet navnet på fila. Herifra har vi flere muligheter for å lese innholdet i fila. 
             
             <h3>Les alt innholdet samtidig</h3>
 
@@ -38,11 +40,11 @@ const FilesAndExceptionsNo = (props: TutorialPostProps) => (
 
             <h3>Les én og én linje</h3>
 
-            En alternativ måte å lese gjennom tekst-filer på, er å bruke <Ic>for</Ic>-løkker. Når vi bruker <Ic>for</Ic>-løkker direkte på filobjekter for tekstfiler, vil iterasjonsvariabelen settes til én og én linje i fila. 
+            En alternativ måte å lese gjennom tekstfiler på, er å bruke <Ic>for</Ic>-løkker. Når vi bruker <Ic>for</Ic>-løkker direkte på filobjekter for tekstfiler, vil iterasjonsvariabelen settes til én og én linje i fila. 
             
-            <NoticeBlock>Obs: Du kan ikke bruke både <Ic>read()</Ic>-funksjonen og <Ic>for</Ic>-løkkeiterasjon på det samme filobjektet. Filobjektet "husker" hva som har blitt lest og fortsetter fra der den slapp i neste leseoperasjon. Dersom du fortsetter fra koden over, må du derfor enten erstatte <Ic>read()</Ic>-kallet med løkken, eller lukke fila (se under) og åpne en ny.</NoticeBlock>
+            <NoticeBlock>Obs: Du kan ikke bruke både <Ic>read()</Ic>-funksjonen og <Ic>for</Ic>-løkkeiterasjon på det samme filobjektet. Filobjektet "husker" hva som har blitt lest og fortsetter fra der den slapp i neste leseoperasjon. Dersom du fortsetter fra koden over, må du derfor enten erstatte <Ic>read()</Ic>-kallet med løkken, eller lukke fila (se under) og åpne den på nytt.</NoticeBlock>
 
-            Her er et eksempel hvor vi skriver filen over ut til skjerm ved hjelp av en <Ic>for</Ic>-løkke:
+            Her er et eksempel hvor vi skriver filen ut til skjerm ved hjelp av en <Ic>for</Ic>-løkke:
             <CodeBlock>{`for linje in fil:
     print(linje)`}</CodeBlock>
             Resultatet skal bli nesten det samme som da vi skrev ut filinnholdet i eksempelet over, bortsett fra noen et ekstra linjeskift mellom hvert par av linjer; linjene vi får via <Ic>for</Ic>-løkka inneholder nemlig linjeskiftet på slutten.
@@ -51,7 +53,7 @@ const FilesAndExceptionsNo = (props: TutorialPostProps) => (
 
             Når man er ferdig med operasjonene man skal gjøre på en fil, bør man <i>lukke</i> den. Dette gjør vi ved å kalle medlemsfunksjonen <Ic>close()</Ic> på filobjektet:
             <CodeBlock>{`fil.close()`}</CodeBlock>
-            Dette er for å be operativsystemet om å stenge "kanalen" mellom fila og programmet vårt, og for å sørge for at alle operasjoner på fila er avsluttet. I moderne operativsystemer er det sjeldent at det fører til problemer når man glemmer å lukke en fil etter bruk ettersom den blir lukket med makt automatisk når programmet er ferdig. Det er likevel lurt å huske å lukke fila, spesielt etter skriveoperasjoner, for å sørge for at alt som skulle skrives til fila faktisk blir skrevet. 
+            Dette er for å be operativsystemet om å stenge "kanalen" mellom fila på harddisken og programmet vårt, og for å sørge for at alle operasjoner på fila er avsluttet. I moderne operativsystemer er det sjeldent at det fører til problemer når man glemmer å lukke en fil etter bruk ettersom den blir lukket med makt automatisk når programmet er ferdig. Det er likevel lurt å huske å lukke fila, spesielt etter skriveoperasjoner, for å sørge for at alt som skulle skrives til fila faktisk blir skrevet. 
             
             <h2>Å skrive til en fil</h2>
 
@@ -59,7 +61,7 @@ const FilesAndExceptionsNo = (props: TutorialPostProps) => (
             <Db />
             For å åpne en fil for <i>skriving</i>, må vi bruke modusargumentet <Ic>'w'</Ic>. Dersom fila som er spesifisert i første argument ikke eksisterer, kommer programmet til å lage fila først, og så åpne den for skriving. Vær forsiktig når du bruker modusargumentet <Ic>'w'</Ic> på filer som allerede eksisterer, ettersom det vil fjerne alt innholdet i fila selv om du ikke gjør noen skriveoperasjoner!
             <Db />
-            Når vi har åpnet en fil for skriving, kan vi bruke medlemsfunksjonen <Ic>write()</Ic> med strengen vi vil skrive som argument. Merk at dette bare vil legge strengen direkte inn i filen, uten å legge til et linjeskift eller noe annet tegn på slutten. Om du vil ha med et linjeskift, kan du legge til <Ic>'\n'</Ic> på slutten av strengen selv.
+            Når vi har åpnet en fil for skriving, kan vi bruke medlemsfunksjonen <Ic>write()</Ic> med strengen vi vil skrive som argument for å skrive til filen. Merk at dette bare vil legge strengen direkte inn i filen, uten å legge til et linjeskift eller noe annet tegn på slutten. Om du vil ha med et linjeskift, kan du legge til <Ic>'\n'</Ic> på slutten av strengen selv.
             <Db />
             Her er et eksempelprogram der vi leser fra fila vi brukte tidligere og lager en ny fil som inneholder annenhver linje fra den første fila:
             <CodeBlock>{`innfil = open('sangtekst.txt')
@@ -84,11 +86,11 @@ utfil.close()`}
             <Db />
             Først åpner vi filen og leser ut innholdet, som vi legger i variabelen <Ic>inntekst</Ic>. Når vi har fått tak i innholdet, lukker vi fila. På dette tidspunktet er vi nemlig ferdige med å lese teksten inn i programmet, sånn at vi ikke trenger å bruke innputtfila lenger. Så lager vi en ny fil - fila vi skal skrive resultatet vårt i. Her bruker vi modusargument <Ic>'w'</Ic> for å signalisere at vi skal skrive til fila.
             <Db /> 
-            Etter å ha åpnet utputtfila kaller vi <Ic>strip()</Ic> på strengen vi leste inn og erstatter den originale innputteksten med resultatet. Resultatet fra <Ic>strip()</Ic> er det samme som den originale strengen, bortsett fra at usynlige tegn (whitespace-tegn) som for eksempel mellomrom og linjeskift i begge ender av strengen fjernes. Tekstfiler pleier nemlig ofte å inneholde minst ett linjeskift på slutten, som kan føre til at vi får et unødvendig element når vi splitter strengen på neste linje:
+            Etter å ha åpnet utputtfila kaller vi <Ic>strip()</Ic> på strengen vi leste inn og erstatter den originale innputteksten med resultatet. Resultatet fra <Ic>strip()</Ic> er det samme som den originale strengen, bortsett fra at usynlige tegn (whitespace-tegn) som for eksempel mellomrom og linjeskift i begge ender av strengen fjernes. Tekstfiler pleier nemlig ofte å inneholde minst ett ekstra linjeskift på slutten, som, hvis det ikke fjernes, kan føre til at vi får et unødvendig element når vi splitter strengen på neste kodelinje:
             <Db />
-            Etter å ha strippet ned strengen, kaller vi <Ic>split()</Ic>-funksjonen på den. <Ic>split</Ic> deler opp strengen og returnerer en liste av strenger. Argumentet til <Ic>split</Ic> er <i>separatoren</i>, altså hvilket tegn som skal behandles som en splitt i strengen. Standardverdien for dette argumentet splitter strengen på alle <i>whitespace</i>-tegn, som inkluderer både mellomrom, ny linje og tab. I dette problemet vil vi splitte opp innputtstrengen i linjer, så vi bruker linjeskift (<Ic>'\n'</Ic>) som separator. Resultatet er en liste av strenger, hvor hver streng er en linje fra fila. Merk at strengene i lista <i>ikke</i> inneholder linjeskiftet, som blir fjernet under splitting.
+            Etter å ha strippet ned strengen, kaller vi <Ic>split()</Ic>-funksjonen på den. <Ic>split</Ic> deler opp strengen og returnerer en liste av strenger. Argumentet til <Ic>split</Ic> er <i>separatoren</i>, altså hvilken tekststreng som skal behandles som en splitt i strengen vi vil dele opp. Standardverdien for dette argumentet splitter strengen på alle <i>whitespace</i>-tegn, som inkluderer både mellomrom, ny linje og tab. I dette problemet vil vi splitte opp innputtstrengen i linjer, så vi bruker linjeskift (<Ic>'\n'</Ic>) som separator. Resultatet er en liste av strenger, hvor hver streng er en linje fra fila. Merk at strengene i lista <i>ikke</i> inneholder linjeskiftet, som blir fjernet under splitting.
             <Db />
-            Deretter itererer vi gjennom den med en <Ic>for</Ic>-løkke på indekser, sånn at vi kan sjekke om indeksen er delelig på to. Siden annenhver indeks (0, 2, 4... osv.) er delelig på to, ender vi opp med å skrive annenhver linje fra den første fila inn i den andre. Siden strengene i lista <Ic>inntekst_linjer</Ic> ikke inneholder linjeskift, må vi legge til ett på slutten når vi skriver dem, for at de skal dukke opp som separate linjer i den ferdige fila. Helt til slutt lukker vi fila vi skrev til.
+            Deretter itererer vi gjennom den med en <Ic>for</Ic>-løkke på indekser, sånn at vi kan sjekke om indeksen er delelig på to. Siden annenhver indeks (0, 2, 4... osv.) er delelig på to, ender vi opp med å skrive annenhver linje fra den første fila inn i den andre. Siden strengene i lista <Ic>inntekst_linjer</Ic> ikke inneholder linjeskift, må vi legge til ett på slutten når vi skriver dem, for at de skal dukke opp som separate linjer i fila. Helt til slutt lukker vi fila vi skrev til.
             <Db />
             Det er flere måter å løse denne oppgaven på. For eksempel kunne vi iterert gjennom fila linje for linje direkte med en <Ic>for</Ic>-løkke slik som vi gjorde tidligere, og lage en tellevariabel som vi øker for hver iterasjon og som vi kan bruke for å bare skrive annenhver linje til fila.
 
@@ -104,9 +106,10 @@ utfil.close()`}
             <CodeBlock>{`with open('sangtekst.txt') as innfil:
     inntekst = innfil.read()
 
-utfil = open('utfil.txt', 'w')
-
-<...>`}</CodeBlock>
+with open('utfil.txt', 'w') as utfil:
+    <...>`}</CodeBlock>
+            Resten av koden blir intendert, sånn at det blir liggende som en del av <Ic>with</Ic>-blokken. I tillegg trenger vi heller ikke å lukke <Ic>utfil</Ic> på slutten av programmet.
+            <Db />
             <Ic>with</Ic>-blokker er den foretrukne måten å bruke filer på i moderne Python av grunnene nevnt over, og det er denne måten vi kommer til å bruke i resten av posten.
             <Db />
             Det er ikke bare filer som kan brukes med <Ic>with</Ic>-blokker. Mange andre objekter som interagerer tett med operativsystemet, som for eksempel nettforbindelser, kan også brukes med <Ic>with</Ic>-blokker. Vi kommer bare til å bruke <Ic>with</Ic>-blokker med filer i hoveddelen av denne innføringen i Python.
@@ -130,7 +133,7 @@ except:
             
             Når Python kommer til et par <Ic>try</Ic>-<Ic>except</Ic>-blokker, vil den kjøre koden i <Ic>try</Ic>-blokken som vanlig. Hvis det ikke oppstår noe unntak under kjøringen av <Ic>try</Ic>-blokken, vil den fortsette på koden etter <Ic>except</Ic>-blokken, altså ignorere hele <Ic>except</Ic>-blokken fullstendig.
             <Db />
-            Dersom det oppstår en feil i <Ic>try</Ic>-blokken, derimot, hopper Python direkte inn i <Ic>except</Ic>-blokken og kjører koden som ligger der. Etter at koden i <Ic>except</Ic>-blokken er kjørt, fortsetter Python med koden etter hele <Ic>try</Ic>-<Ic>except</Ic>-konstruksjonen som vanlig.
+            Dersom det oppstår en feil i <Ic>try</Ic>-blokken, derimot, hopper Python direkte inn i <Ic>except</Ic>-blokken fra der feilen skjedde, og kjører koden som ligger i <Ic>except</Ic>-blokken. Etter at koden i <Ic>except</Ic>-blokken er kjørt, fortsetter Python med koden etter hele <Ic>try</Ic>-<Ic>except</Ic>-konstruksjonen som vanlig.
             <Db />
             Her er et eksempel på hvordan en <Ic>try</Ic>-<Ic>except</Ic>-blokk kan se ut i praksis.
 
@@ -258,7 +261,7 @@ except <andre unntakstype>:
 
         Det var alt for denne gang! 
         <Db />
-        Da vi snakket om filer i denne posten, begrenset vi oss til tekstfiler. Man kan gjøre mange interessante ting med tekstfiler alene, men horisonten for hva som er mulig med filer kommer til å utvides kraftig i neste post, der vi skal innom flere forskjellige typer filer.
+        Da vi snakket om filer i denne posten, begrenset vi oss til tekstfiler. Man kan gjøre mange interessante ting med tekstfiler alene, men horisonten for hva som er mulig med filer kommer til å utvides i neste post, der vi skal innom flere forskjellige typer filer.
         <Db />
         Vi snakket også om unntakshåndtering, som kan være nyttig i større programmer med usikkerhetsmomenter for å sikre at Python ikke krasjer koden unødvendig. Ofte klarer man seg fint uten å håndtere unntak selv, men <Ic>try</Ic>-<Ic>except</Ic>-blokker er uansett fint å ha i bakhånd.
         <Db />
@@ -274,11 +277,11 @@ except <andre unntakstype>:
         <br />
         a. Skriver ut landene til skjerm sortert alfabetisk
         <br />
-        b. Skriver ut navn på alle land som har et folketall på mer enn 50 millioner.
+        b. Skriver ut navn på alle land som har et folketall på mer enn 10 millioner.
         <br />
         c. Finner ut hvor mange mennesker det er totalt på denne planeten.
         <br />
-        Tips til splitting av linjene: I denne fila er det to mellomrom mellom hvert land og korresponderende folketall, mens det bare er ett mellomrom mellom ord i et navn som består av flere enn ett. 
+        Tips til splitting av linjene: I denne fila er det to mellomrom mellom hvert land og korresponderende folketall, mens det bare er ett mellomrom mellom ord i et landsnavn som består av flere enn ett ord. 
 
         </PostWrapper>
     </>
