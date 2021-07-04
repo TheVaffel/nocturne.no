@@ -78,8 +78,50 @@ tilfeldig_tall = randint(1, 6)`}</CodeBlock>
     
             {/* Husk å snakke om installasjon av eksterne moduler */ }
             <h2>JSON-filer</h2>
+            
+            JSON (<b>J</b>ava<b>s</b>cript <b>O</b>bject <b>N</b>otation) er et filformat som brukes for å lagre strukturert informasjon av én eller annen form. JSON-filer har filendelsen <Ic>.json</Ic>.
+            <Db />
+            Innholdet i en JSON-fil er til forveksling veldig lik hvordan vi definerer en tabell i Python; krøllparanteser som omslutter en serie med komma-separerte indeks-verdi-par. En JSON-fil som inneholder informasjon om en by kan for eksempel se slik ut:
+            
+            <CodeBlock>{`{
+    "navn": "London",
+    "befolkning": 8500000,
+    "land": "England"
+}`}
+            </CodeBlock>
+            I en JSON-fil har ikke ekstra mellomrom, indentering eller linjeskift noen betydning. Én viktig forskjell fra tabeller i Python, er at et slikt objekt i en JSON-fil kun kan ha strenger som indekser. Filinnholdet trenger ikke bare være et objekt, men kan også være en liste. Lister skrives med klammeparanteser (<Ic>[]</Ic>), akkurat slik som de defineres i Python. I tillegg kan verdiene inne i objektet/tabellen også være objekter og lister, i tillegg til de "primitive" datatypene streng og tall, som gjør at vi kan få nokså komplekse konstruksjoner i JSON-fila. Her er et annet eksempel på innhold i en JSON-fil: En liste av karakterer fra Harry Potter og diverse informasjon om dem:
+            <CodeBlock>{`[
+    {
+        "navn": "Harry",
+        "skostørrelse": 43,
+        "venner": ["Ronny", "Hermine"]
+    },
+    {
+        "navn": "Ronny",
+        "skostørrelse": 44,
+        "venner": ["Harry", "Hermine"]
+    },
+    {
+        "navn": "Hermine",
+        "skostørrelse": 41,
+        "venner": ["Harry", "Ronny"]
+    },
+    {
+        "navn": "Slur",
+        "skostørrelse": 46,
+        "venner": []
+    }
+]`}</CodeBlock>
+            
+            <h3><Ic>json</Ic>-modulen</h3>
 
-            <h2>Nettverk</h2>
+            Mulig du allerede har lurt på hvorfor vi plutselig snakker om JSON. Det er fordi det er et vanlig format å bruke for å overføre informasjon på Internett, og fordi vi har en modul i Python som gjør lesing og tolking av en JSON-fil veldig lett, nemlig <Ic>json</Ic>-modulen.
+
+            <Db />
+            
+            
+
+            <h2>Web-forespørsler</h2>
 
             <h2>Bilder</h2>
             
