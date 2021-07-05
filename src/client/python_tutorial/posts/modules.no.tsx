@@ -89,7 +89,7 @@ tilfeldig_tall = randint(1, 6)`}</CodeBlock>
     "land": "England"
 }`}
             </CodeBlock>
-            I en JSON-fil har ikke ekstra mellomrom, indentering eller linjeskift noen betydning. Én viktig forskjell fra tabeller i Python, er at et slikt objekt i en JSON-fil kun kan ha strenger som indekser. Filinnholdet trenger ikke bare være et objekt, men kan også være en liste. Lister skrives med klammeparanteser (<Ic>[]</Ic>), akkurat slik som de defineres i Python. I tillegg kan verdiene inne i objektet/tabellen også være objekter og lister, i tillegg til de "primitive" datatypene streng og tall, som gjør at vi kan få nokså komplekse konstruksjoner i JSON-fila. Her er et annet eksempel på innhold i en JSON-fil: En liste av karakterer fra Harry Potter og diverse informasjon om dem:
+            I en JSON-fil har ikke ekstra mellomrom, indentering eller linjeskift noen betydning. De er bare slik de er for å gjøre JSON-fila lettere å lese for mennesker. Én viktig forskjell fra tabeller i Python, er at et slikt objekt i en JSON-fil kun kan ha strenger som indekser. Filinnholdet trenger ikke bare være et objekt, men kan også være en liste. Lister skrives med klammeparanteser (<Ic>[]</Ic>), akkurat slik som de defineres i Python. I tillegg kan verdiene inne i objektet/tabellen også være objekter og lister, i tillegg til de "primitive" datatypene streng og tall, som gjør at vi kan få nokså komplekse konstruksjoner i JSON-fila. Her er et annet eksempel på innhold i en JSON-fil: En liste av karakterer fra Harry Potter og diverse informasjon om dem:
             <CodeBlock>{`[
     {
         "navn": "Harry",
@@ -119,7 +119,26 @@ tilfeldig_tall = randint(1, 6)`}</CodeBlock>
 
             <Db />
             
+            <Ic>json</Ic>-modulen har hovedsakelig to oppgaver: Lese JSON-innhold og oversette til et objekt vi kan bruke direkte i Python, og å skrive et Python-objekt (en tabell eller liste) til JSON-format. Dokumentasjonen for modulen kan du finne på <a href="https://docs.python.org/3/library/json.html">https://docs.python.org/3/library/json.html</a>, men vi skal gå igjennom hvordan den brukes her også.
+            <Db />
+            For å demonstrere hvordan modulen fungerer, trenger vi JSON-filer å jobbe med. Legg de to JSON-eksemplene vi skrev over inn i to forskjellige filer. Hvis du bruker IDLE, kan du gjøre dette ved å lage en ny fil, kopiere innholdet med Ctrl-C og lime det inn med Ctrl-V. Når du lagrer filen, husk å velge alle filtyper og legge på <Ic>.json</Ic> på slutten av navnet. I våre eksempler kommer vi til å kalle de to filene henholdsvis <Ic>by.json</Ic> og <Ic>karakterer.json</Ic>.
+            <Db />
+            La oss prøve å lese den første fila. Til dét kan vi bruke <Ic>load</Ic>-funksjonen i <Ic>json</Ic>-modulen. <Ic>load</Ic>-funksjonen tar inn et <i>filobjekt</i>, som betyr at vi må åpne fila vi vil lese, før vi sender den til <Ic>load</Ic>-funksjonen. Her er et eksempel der vi leser den første av de to filene:
+            <CodeBlock>{`import json
+
+with open('by.json') as fil:
+    json_objekt = json.load(fil)
+    
+print(json_objekt['navn'], 'er en by i', json_objekt['land'], 'med', json_objekt['befolkning'], 'mennesker')`}</CodeBlock>
             
+            Først importerer vi modulen, så åpner vi filen, og deretter lar vi <Ic>json.load</Ic>-funksjonen gjøre magien sin for å oversette filinnholdet til et Python-objekt. Her ser vi at vi kan bruke objektet direkte som en tabell etter å ha lest det ut. 
+            <Db />
+            Vi tar med et eksempel der vi først leser et objekt fra en JSON-fil, endrer objektet, og skriver det til en annen JSON-fil. Her bruker vi også <Ic>dump</Ic>-funksjonen, som gjør det omvendte av <Ic>load</Ic> - den skriver et Python-objekt til fil.
+            <CodeBlock>{`import json
+            
+with open('karakterer.json') as fil:
+    json_objekt = json.load(fil)
+    </CodeBlock>
 
             <h2>Web-forespørsler</h2>
 
