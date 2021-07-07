@@ -133,14 +133,32 @@ print(json_objekt['navn'], 'er en by i', json_objekt['land'], 'med', json_objekt
             
             Først importerer vi modulen, så åpner vi filen, og deretter lar vi <Ic>json.load</Ic>-funksjonen gjøre magien sin for å oversette filinnholdet til et Python-objekt. Her ser vi at vi kan bruke objektet direkte som en tabell etter å ha lest det ut. 
             <Db />
-            Vi tar med et eksempel der vi først leser et objekt fra en JSON-fil, endrer objektet, og skriver det til en annen JSON-fil. Her bruker vi også <Ic>dump</Ic>-funksjonen, som gjør det omvendte av <Ic>load</Ic> - den skriver et Python-objekt til fil.
+            Vi tar med et eksempel der vi først leser et objekt fra en JSON-fil, endrer objektet, og skriver det til en annen JSON-fil. Her bruker vi også <Ic>dump</Ic>-funksjonen, som gjør det omvendte av <Ic>load</Ic> - den skriver et Python-objekt til en fil.
             <CodeBlock>{`import json
             
 with open('karakterer.json') as fil:
-    json_objekt = json.load(fil)
+    karakterliste = json.load(fil)
+
+for karakter in karakterliste:
+    if karakter['navn'] == 'Slur':
+        karakter['venner'].append('Humlesnurr')
+
+with open('oppdaterte_karakterer.json', 'w') as fil:
+    json.dump(karakterliste, fil)`}
     </CodeBlock>
+            Her har vi først lest ut karakterene, deretter går vi igjennom alle karakterene og passer på at karakteren ved navn Slur har en venn. Deretter åpner vi en ny fil for skriving, og bruker <Ic>dump</Ic> til å skrive den lista med det oppdaterte objektet til filen.
+            <Db />
+            <Ic>json</Ic> er vel og bra å kunne, men hvor er det man finner JSON-filer? Det ser vi på i neste seksjon:
 
             <h2>Web-forespørsler</h2>
+
+            Internett er et rart sted, men det går an å finne nyttig informasjon der også, og denne informasjonen kan vi bruke Python til å hente ut! I denne seksjonen skal vi se på hvordan vi kan vise en værmelding til brukeren for dagen i dag på et spesifikt sted, ved å sende en forespørsel over Internett.
+            <Db />
+            For å sende forespørsler over Internett, kan vi bruke pakken <Ic>requests</Ic>. <Ic>requests</Ic> kommer ikke ferdig installert med de fleste Python-installasjoner, slik at du nå blir nødt til å installere den på maskinen din før vi kan importere den i et program.
+
+            <h3>Installere pakker</h3>
+
+            For å installere en pakke, vil vi trenge å bruke terminalen. Hvordan terminalen fungerer, varierer litt fra plattform til plattform.
 
             <h2>Bilder</h2>
             
