@@ -57,9 +57,9 @@ const HelloWorldNo = (props: TutorialPostProps) => (
     Når du har klikket på installasjonsfilen, vil du få opp et vindu som hjelper deg med installasjonen. Merk at
     du trenger administratortillatelse for å installere Python. Dersom du vil tilpasse installasjonen ("Customize Installation"),
     bør du være obs på at senere kapitler i denne innføringen kommer til å bruke IDLE og Pip, slik at du bør passe på at disse er blant komponentene du installerer.
-    Hvis du vil bruke Python fra kommandolinjen, må du passe på at "Add Python 3.X to PATH"-boksen nederst i vinduet er sjekket. 
-    Dette er ikke nødvendig for å følge denne introduksjonen til Python. Du kan trykke
-    "Install Now" dersom du ikke har noen sterk formening om hvor eller hvilke komponenter som skal installeres. 
+    Pass på at "Add Python 3.X to PATH"-boksen nederst i vinduet er sjekket. 
+    Vi kommer til å trenge dette mot slutten av bloggen, når vi skal installere moduler. Du kan trykke
+    "Install Now" dersom du ellers ikke har noen sterk formening om hvor eller hvilke komponenter som skal installeres. 
     <Db />
     Etter å ha godkjent installasjonen som administrator, vil programmet utføre installasjonsprosessen på egen hånd.
     Du kan lukke programmet når det er ferdig. 

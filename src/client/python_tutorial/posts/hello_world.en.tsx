@@ -61,8 +61,8 @@ const HelloWorldEn = (props: TutorialPostProps) => (
     Note that you will need administrator privileges to install Python. If you want to customize the installation,
     that is, choose where and what components to install, you can choose to do that here. If you do so,
     however, know that later posts will assume that you have installed IDLE and Pip in this step, so make sure
-    to get those as well. If you intend to use Python on the command line, make sure that "Add Python 3.X to PATH" is
-    selected at the bottom of the window. This is not necessary for this tutorial.
+    to get those as well. Make sure that "Add Python 3.X to PATH" is
+    selected at the bottom of the window. We will need this near the end of this tutorial, when we are going to install modules.
     You can press "Install now" if you have no strong opinions on how you want to install Python, 
     which likely goes most users.
     <Db />
