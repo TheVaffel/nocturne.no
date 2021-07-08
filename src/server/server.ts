@@ -53,6 +53,14 @@ function main(): void {
         root: path.join(__dirname)
     };
 
+    app.get('/hei', (req: Request, res: Response) => {
+        res.send({ melding: 'Gratulerer, du fikk tak i denne meldingen!' });
+    });
+
+    app.get('/hey', (req: Request, res: Response) => {
+        res.send({ message: 'Congratulation, you got this message!' });
+    });
+
     app.get('/files/*', (req: Request, res: Response) => {
         const spl = req.url.split('/');
         const filePath = 'files/' + decodeURI(spl[spl.length - 1]);
