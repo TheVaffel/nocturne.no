@@ -154,11 +154,41 @@ with open('oppdaterte_karakterer.json', 'w') as fil:
 
             Internett er et rart sted, men det går an å finne nyttig informasjon der også, og denne informasjonen kan vi bruke Python til å hente ut! I denne seksjonen skal vi se på hvordan vi kan vise en værmelding til brukeren for dagen i dag på et spesifikt sted, ved å sende en forespørsel over Internett.
             <Db />
-            For å sende forespørsler over Internett, kan vi bruke pakken <Ic>requests</Ic>. <Ic>requests</Ic> kommer ikke ferdig installert med de fleste Python-installasjoner, slik at du nå blir nødt til å installere den på maskinen din før vi kan importere den i et program.
+            For å sende forespørsler over Internett, kan vi bruke pakken <Ic>requests</Ic>. Men dersom du nå skriver <Ic>import requests</Ic> øverst i et program og kjører det, får du fort beskjed om at pakken ikke er installert. <Ic>requests</Ic> kommer nemlig ikke ferdig installert med de fleste Python-installasjoner, slik at du nå blir nødt til å installere den på maskinen din før vi kan bruke den.
 
             <h3>Installere pakker</h3>
 
-            For å installere en pakke, vil vi trenge å bruke terminalen. Hvordan terminalen fungerer, varierer litt fra plattform til plattform.
+            For å installere en pakke, vil vi trenge å bruke terminalen. Hvordan terminalen fungerer, varierer litt fra plattform til plattform. Her gjengir vi kort hvordan du finner fram til terminalen på forskjellige plattformer:
+
+            <h4>Windows</h4>
+            Trykk start-knappen nederst til venstre på skjermen og søk på <i>cmd</i> eller <i>ledetekst</i> (eller engelsk: <b>Command Prompt</b>). Trykk enter, og du skal få opp et svart vindu med litt tekst i.
+
+            <h4>MacOS</h4>
+
+            Trykk på Launchpad-ikonet på programlinjen nederst på skjermen (eller hvor du enn har gjort av den) og søk på "Terminal". Når du starter den, skal du få opp et vindu med litt tekst i.
+
+            <h4>Linux</h4>
+
+            Trykk på startmenyen og søk på "Terminal" og trykk på programmet for å starte det.
+
+            <h4>Test terminalen</h4>
+
+            For å teste terminalen (uansett hvilket operativsystem du bruker), skriv <Ic>python3</Ic> på terminalen og trykk linjeskift. Hvis du får opp litt tekst og en <Ic>{`>>>`}</Ic>, som i den interaktive Python-konsollen, så kan du være sikker på at det fungerer, og du kan gå ut av Python-konsollen (skriv <Ic>exit()</Ic>), og fortsett på instruksjonene under. Hvis du derimot får beskjed om at programmet ikke ble funnet, tyder det på at Python ikke ble lagt til i <Ic>PATH</Ic>-variabelen ved installasjon. Dersom dette er tilfellet, vil den enkleste løsningen være Python på nytt, og sørge for at du legger til Python i <Ic>PATH</Ic> som en del av installasjonen ved å følge instruksjonene i starten av denne bloggen.
+            
+            <NoticeBlock>I Windows risikerer du å oppleve et tredje alternativ: Windows åpner opp Microseft Store for å laste ned Python. Dersom dette skjer, må du følge instruksjonene i Microsoft Store-vinduet; de ber deg om å gå til startmenyen og finne "Administrer appkjøringsaliaser" (engelsk: <b>Manage App Execution Aliases</b>), og der skru av aliaser for Python og Python3. Etter å ha gjort dét, kan du lukke terminalen du startet og åpne en ny en, og prøve å skrive <Ic>python3</Ic> på nytt.</NoticeBlock>
+            
+            <h4><Ic>pip</Ic></h4>
+            Den vanligste måten å installere pakker på i Python, er ved å bruke programmet <Ic>pip</Ic> som blir installert samtidig med Python. <Ic>pip</Ic> er et kommandolinjeprogram, som betyr at vi kjører det fra terminalen, og får ikke opp noe eget vindu med et brukergrensesnitt. Dersom du skriver <Ic>pip</Ic> i terminalen og trykker linjeskift, får du opp instruksjoner om hvordan programmet kan brukes. Ikke få panikk om du ikke skjønner bæret - vi går nå igjennom hvordan vi installerer en pakke:
+            <Db />
+            Pakken vi skal bruke for web-forespørsler, heter som nevnt <Ic>requests</Ic>. For å installere den med pip, skriver vi rett og slett 
+            <CodeBlock>{`pip install requests`}</CodeBlock>
+            i terminalen og trykker enter. Dersom du er heldig, vil nå <Ic>pip</Ic> si at den laster ned <Ic>requests</Ic> og noen andre pakker. Årsaken til at den laster ned mer enn bare <Ic>requests</Ic>, er at <Ic>requests</Ic> er avhengig av disse pakkene for å kunne fungere. Dersom <Ic>pip</Ic> gir deg en feilmelding, er det beste håpet ditt å bruke feilmeldingen som søketekst på Internett og se om noen har et godt svar på problemet.
+            <Db />
+            Dersom det foregående steget fungerte, gratulerer! <Ic>requests</Ic> er blitt installert. Kommandolinjeprogrammer som <Ic>pip</Ic> kan virke skumle i starten, men de er ekstremt effektive når du vet hvordan du bruker dem.
+
+            <h3>Sende en forespørsel</h3>
+
+            La oss sette i gang med å sende en forespørsel! 
 
             <h2>Bilder</h2>
             
