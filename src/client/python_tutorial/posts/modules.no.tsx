@@ -188,11 +188,51 @@ with open('oppdaterte_karakterer.json', 'w') as fil:
 
             <h3>Sende en forespørsel</h3>
 
-            La oss sette i gang med å sende en forespørsel! 
-
-            <h2>Bilder</h2>
+            Vi begynner med å sende en enkel HTTP GET-forespørsel til nocturne.no. Ikke vær redd om disse begrepene er fremmede for deg - nettverk og forespørsler kunne vært et eget kapittel i denne bloggen. Her hopper vi over alle detaljer og viser bare hvordan vi kan sende enkle forespørsler. Om du er interessert, kan du lese dokumentasjonen til <Ic>requests</Ic> her: <a href="https://docs.python-requests.org/en/master/index.html">https://docs.python-requests.org/en/master/index.html</a>.
+            <Db />
+            For å sende en GET-forespørsel, bruker vi bare funksjonen <Ic>get()</Ic> i <Ic>requests</Ic>-modulen. <Ic>get</Ic>-funksjonen kan ta flere argumenter, men bare ett er obligatorisk: URLen. URL (<b>U</b>niform <b>R</b>esource <b>L</b>ocator) er rett og slett bare en nettadresse, slik som dem man skriver inn i nettleseren for å komme til en nettside. URLen vi skal bruke i dette eksempelet er <Ic>https://nocturne.no/hei</Ic>. Her er <Ic>nocturne.no</Ic> <i>domenenavnet</i> og <Ic>/hei</Ic> er stien (engelsk: <b>path</b>). Stien er ikke tilfeldig, serveren som er vert for <Ic>nocturne.no</Ic> er programmert til å gi en respons når noen sender en GET-forespørsel til <Ic>/hei</Ic>-stien. Nok snakk - på tide med litt kode:
+            <CodeBlock>{`import requests
             
+respons = requests.get('https://nocturne.no/hei')
+
+meldingsobjekt = respons.json()
+print('Meldingen er:', meldingsobjekt['melding'])`}</CodeBlock>
+            
+            Vi har sendt en forespørsel, og med litt flaks, fått et svar fra serveren. Svaret vi får er et respons-objekt, som vi lagrer i variabelen <Ic>respons</Ic>. Responsevariabelen inneholder diverse informasjon i tillegg til selve responsdataen. For denne forespørselen forventer vi å få en responsdata som inneholder et JSON-objekt med en et felt som heter <Ic>melding</Ic>. For å hente ut dette bruker vi <Ic>.json()</Ic>-medlemsfunksjonen på responsobjektet, som automatisk oversetter JSON-innholdet til en Python-tabell. Til slutt skriver vi meldingen vi fikk ut på skjermen. Prøv koden over selv og se om du får ut meldingen!
+            <Db />
+            La oss prøve å få tak i en værmelding ved hjelp av <Ic>requests</Ic>-modulen. For å få til det skal vi sende en forespørsel til met.no, eid av metereologisk institutt. I tillegg til en vanlig nettside, har met.no nemlig et <i>API</i> (<b>A</b>pplication <b>P</b>rogramming <b>I</b>nterface), altså et sett med stier man kan sende forespørsler til, beregnet for programmer i motsetning til menneskelige brukere. 
+            <Db />
+            Her er en oversikt over de forskjellige stiene vi kan bruke for å hente data fra met.no: <a href="https://api.met.no/weatherapi/locationforecast/2.0/#!/data/get_compact">https://api.met.no/weatherapi/locationforecast/2.0/#!/data/get_compact</a>. Slike stier kaller vi også <i>endepunkter</i>. Vi skal bruke endepunktet <Ic>/compact</Ic> i eksempelet vårt. Beskrivelsen kan være litt uoversiktelig i starten, men <Ic>/compact</Ic> lar oss sende inn koordinater for en hvilken som helst plass på jorda, og få tilbake værdata for dette stedet. Vi kommer til å bruke Oslo som eksempel, som har koordinater 59.913889, 10.752222 (koordinatene må være på desimalform, i motsetning til DMS-format som stykker opp koordinatene i grader, minutter og sekunder).
+            <Db />
+            Før vi går i gang, bør du være oppmerksom på <a href="https://developer.yr.no/doc/TermsOfService/">brukerveiledning for APIet til Metereologisk Institutt</a>. I grove trekk går det ut på at du ikke skal sende overdrevent mange forespørsler, og at du må identifisere deg. Vi går igjennom identifikasjonsbiten snart, men den første delen må du passe på selv. "Overdrevent mange forespørsler" er selvfølgelig ikke veldig presist formulert. Det du først og fremst må passe deg for, er å sende forespørsler igjen og igjen i en løkke uten noen form for venting mellom hver forespørsel. Som en tommelfingerregel bør du ikke sende mer enn én forespørsel hvert tiende sekund når du tester endepunktene, så lenge du ikke vil ha din egen plass på svartelista til Meteorologisk Institutt.
+            <Db />
+            Til identifikasjon kan du rett og slett bruke din private e-postadresse. E-postadressen setter vi inn i <i>headeren</i> til forespørselen vår. Headerene er en rekke indeks-verdi-par som sendes i forespørselen. E-postadressen vil legges på headeren <Ic>'User-Agent'</Ic>. I tillegg skal vi eksplisitt be om å få et JSON-objekt tilbake, i motsetning til andre formater de kunne finne på å returnere. Dette gjør vi ved å sette headeren <Ic>'Accept'</Ic> til <Ic>application/json</Ic>. Vi kommer til å spesifisere headerne ved hjelp av en Python-tabell, og det samme med koordinatene vi sender ved som parametere. Koden for å sende forespørselen blir da seende slik ut (husk å bytte ut e-postadressen om du kopierer denne koden!):
+
+            <CodeBlock>{`import requests
+
+headere = { 'User-Agent': <e-postadresse>, 'Accept': 'application/json' }
+parametere = { 'lat': 59.913889, 'lon': 10.752222}
+respons = requests.get('https://api.met.no/weatherapi/locationforecast/2.0/compact', headers=headere, params=parametere)`}</CodeBlock>
+
+            Flott, men hvordan vet vi hva vi får i responsen? Oversikten over endepunkter inneholder et eksempel for en respons, som er et stort JSON-objekt. Det er et objekt med et <Ic>'properties'</Ic>-felt, som igjen inneholder et felt som heter <Ic>'timeseries'</Ic>, som er en liste. Denne lista inneholder værmelding for det gitte stedet for en rekke tidspunkter. Objektet som gir oss informasjon om været akkurat nå finner vi igjen i <Ic>['data']['instant']['details']</Ic>. Som et eksempel kan vi hente ut nåværende temperatur og tidspunkt for meldingen fra responsen vi fikk over ved å skrive:
+            <CodeBlock>{`data = respons.json()
+
+nåværende_temperatur = data['properties']['timeseries'][0]['data']['instant']['details']['air_temperature']
+tidspunkt = data['properties']['timeseries'][0]['time']
+
+print('På tidspunktet', tidspunkt, 'var temperaturen', nåværende_temperatur, 'i Oslo')`}</CodeBlock>
+            
+            Om alt klaffer, skal du ha fått en meldingsutskrift som ser omtrent slik ut:
+            <CodeBlock>{`På tidspunktet 2021-07-11T11:00:00Z var temperaturen 22.5 i Oslo`}</CodeBlock>
+            Tidspunktet her er formatert på UTC-format. Det er forholdsvis lett å lese, men husk at tiden i UTC alltid oppgis for Greenwich i England, som betyr at du må legge til én eller to timer (avhengig av om det er vinter-/sommertid) for å få tilsvarende tidspunkt i Norge.
+            <Db />
+            Sånn! Det var en lang og sammensatt seksjon, men forhåpentlig fikk du noe fornuftig ut av det! Det er mange andre nettsteder som tilbyr tilsvarende APIer, noe som gjør det mulig å bruke mye forskjellige informasjon i programmene dine. Det er bare å fyre opp favorittsøkemotoren din for å finne ut om det er et API der ute som gir deg akkurat den dataen du vil ha!
+
             <h2>Vinduer</h2>
+
+            Til slutt skal vi ta en rask kikk på hvordan man kan lage vindubaserte programmer i Python. Dette gjør det mulig å lage programmer som er lettere og mer intuitive å bruke, i tillegg til at man kan presentere visuell informasjon. I dette eksempelet skal vi bruke modulen <Ic>tkinter</Ic> for å lage et vindu. Den offisielle dokumentasjonen for <Ic>tkinter</Ic> kan du finne <a href="https://docs.python.org/3/library/tkinter.html">her</a>. <Ic>tkinter</Ic> kommer ofte ferdig installert med Python. Dersom dette ikke er tilfellet for ditt oppsett, må du installere <Ic>tkinter</Ic> ved hjelp av <Ic>pip</Ic>, slik vi gjorde med <Ic>requests</Ic>-modulen over.
+            <Db />
+            
 
             <h2>Å stykke opp et program i moduler</h2>
 
