@@ -230,9 +230,34 @@ print('På tidspunktet', tidspunkt, 'var temperaturen', nåværende_temperatur, 
 
             <h2>Vinduer</h2>
 
-            Til slutt skal vi ta en rask kikk på hvordan man kan lage vindubaserte programmer i Python. Dette gjør det mulig å lage programmer som er lettere og mer intuitive å bruke, i tillegg til at man kan presentere visuell informasjon. I dette eksempelet skal vi bruke modulen <Ic>tkinter</Ic> for å lage et vindu. Den offisielle dokumentasjonen for <Ic>tkinter</Ic> kan du finne <a href="https://docs.python.org/3/library/tkinter.html">her</a>. <Ic>tkinter</Ic> kommer ofte ferdig installert med Python. Dersom dette ikke er tilfellet for ditt oppsett, må du installere <Ic>tkinter</Ic> ved hjelp av <Ic>pip</Ic>, slik vi gjorde med <Ic>requests</Ic>-modulen over.
+            Til slutt skal vi ta en rask kikk på hvordan man kan lage vindubaserte programmer i Python. Dette gjør det mulig å lage programmer som er lettere og mer intuitive å bruke, i tillegg til at man kan presentere visuell informasjon. I dette eksempelet skal vi bruke modulen <Ic>tkinter</Ic> for å lage et vindu. Den offisielle dokumentasjonen for <Ic>tkinter</Ic> kan du finne <a href="https://docs.python.org/3/library/tkinter.html">her</a>. Dessverre vil antakeligvis dokumentasjonen være vanskelig å lese, ettersom den benytter seg mye av <i>klasser</i>, som er et Python-konsept vi ikke har sett på i denne innføringen. 
+            <Db />
+            <Ic>tkinter</Ic> kommer ofte ferdig installert med Python. Dersom dette ikke er tilfellet for ditt oppsett, må du installere <Ic>tkinter</Ic> ved hjelp av <Ic>pip</Ic>, slik vi gjorde med <Ic>requests</Ic>-modulen over.
+            <Db />
+            Den vanligste måten å importere <Ic>tkinter</Ic> på, er slik som dette:
+            <CodeBlock>{`import tkinter as tk`}</CodeBlock>
+            Når vi legger på <Ic>as tk</Ic> etter modulnavnet, forteller vi Python at vi vil bruke navnet <Ic>tk</Ic> for å referere til modulen. Dette er litt kortere å skrive, og det gjør det mer behagelig å skrive programmet, for vi kommer til å referere til modulen flere ganger.
+            <Db />
+
+            <Ic>tkinter</Ic> inneholder objekter og funksjoner for å konstruere vinduer og komponenter du kan plassere i vinduet, som tekst og knapper. For å lage et vindu bruker vi 
+            <CodeBlock>{`vindu = tk.Tk()`}</CodeBlock>
+            Legg merge til at funksjonen <Ic>Tk()</Ic> staves med stor forbokstav. I Python er dette en vanlig konvensjon for <i>konstruktører</i>, som er funksjoner som lager og returnerer <i>instanser</i> av <i>klasser</i>. Dette er konsepter som vi ikke vil gå igjennom her; for våre formål holder det å tenke på konstruktører som vanlige funksjoner som returnerer objekter.
+            <Db />
+            Når vi har et <Ic>Tk</Ic>-objekt, har vi alledere et vindu vi kan vise fram på skjermen. Men kjører du programmet over, vil det avsluttes nesten umiddelbart uten at vinduet dukker opp. For å vise vinduet, må vi kalle <Ic>mainloop()</Ic>-medlemsfunksjonen på <Ic>Tk</Ic>-objektet. <Ic>mainloop()</Ic> "fanger" Python, slik at den ikke leser videre på koden før vinduet blir lukket. Så et helt fundamentalt vindusprogram kan se slik ut:
+            <CodeBlock>{`import tkinter as tk
+
+vindu = tk.Tk()
+vindu.mainloop()`}</CodeBlock>
+
+            Kjører man denne koden, får man opp et tomt vindu på skjermen. En god start!
             <Db />
             
+            La oss gjøre noen kosmetiske endringer på vinduet. Først kan vi kalle medlemsfunksjonen <Ic>title()</Ic> på vinduet med et strengargument for å gi det en tittel som vil vises på den øverste kanten av vinduet. Noen egenskaper ved vinduet kan vi også endre ved å indeksere på strenger i objektet som om det var en tabell. For å endre bakgrunnsfargen til vinduet kan vi for eksempel sette verdien på indeks <Ic>'bg'</Ic> til for eksempel <Ic>'red'</Ic>. Skrevet rett ut blir de to eksemplene over seende slik ut:
+            <CodeBlock>{`vindu.title('Dette er en tittel!')
+vindu['bg'] = 'red'`}</CodeBlock>
+            Husk å legge disse to linjene før du kaller <Ic>mainloop</Ic>, ellers vil de ikke kjøres før etter vinduet er lukket!
+            
+            <Db />
 
             <h2>Å stykke opp et program i moduler</h2>
 
