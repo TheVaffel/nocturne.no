@@ -9,13 +9,13 @@ import { Ic, CodeBlock } from '../../common/code_format.tsx';
 const ModulesNo = (props: TutorialPostProps) => (
     <>
         <PostWrapper metadata={props.metadata} >
-            Hei igjen! Dette blir den siste posten i denne serien hvor vi fokuserer på å introdusere nye elementer. I neste post kommer vi til å lage et mer sammensatt eksempel hvor vi bruker mye av det vi har lært i et eget prosjekt.
+            Hei igjen! Dette blir den siste posten hvor vi fokuserer på å introdusere nye elementer i denne serien. I neste post kommer vi til å lage et mer sammensatt eksempel hvor vi bruker mye av det vi har lært i et sammensatt prosjekt.
             <Db />
             Men før det må vi gå igjennom <i>moduler</i>. Moduler er døråpneren som lar oss lage alle mulige slags programmer ved å ta i bruk kode skrevet av andre. Moduler eller lignende konsepter finnes i alle seriøse programmeringsspråk og går ofte under navnet <i>biblioteker</i> (engelsk: <b>libraries</b>).
             <Db />
             I denne posten skal vi først snakke litt overordnet om hva en modul er og helt konkret bruke <Ic>random</Ic>-modulen for å demonstrere hvordan vi jobber med moduler. Deretter går vi igjennom forskjellige vanlige moduler og viser hvordan de fungerer. Dette er bare et veldig beskjedent utvalg av alle modulene som finnes der ute.
             <Db />
-            Vi kommer til å introdusere noen nye konsepter relatert til spesifikke moduler, i tillegg til modulene selv, i seksjonene under. Vi kommer ikke til å gå i detalj på disse konseptene, ettersom det fort blir mye stoff å ta tak i. Du er oppfordret til å lese mer om modulene og tilhørende konsepter som du synes virker interessante eller relevante for ideer du har eller får i framtiden!
+            Vi kommer til å introdusere noen nye konsepter relatert til spesifikke moduler i tillegg til modulene selv, i seksjonene under. Vi kommer ikke til å gå i detalj på disse konseptene, ettersom det fort blir mye stoff å ta tak i. Du er oppfordret til å lese mer om modulene og tilhørende konsepter som du synes virker interessante eller relevante for ideer du har eller får i framtiden!
 
             <h2>En enkel modul: <Ic>random</Ic></h2>
 
@@ -40,7 +40,7 @@ const ModulesNo = (props: TutorialPostProps) => (
             <Db />
             For å se hvilke funksjoner og andre ting en modul inneholder, er det best å slå opp i <i>dokumentasjonen</i> til modulen. Dokumentasjonen er som regel lett tilgjengelig på Internett. I vårt tilfelle vil et kjapt søk i en søkemotor med f. eks. <i>python random documentation</i> fortelle oss at dokumentasjonen for <Ic>random</Ic>-funksjonen befinner seg på  <a href="https://docs.python.org/3/library/random.html">https://docs.python.org/3/library/random.html</a>. 
             <Db />
-            Det å lese dokumentasjon kan føles tungt og lite intuitivt i starten - men det er noe man fort vender seg til. Husk: Du trenger kun lese de delene som er relevante for oppgaven du har for hånden. Majoriteten av all dokumentasjon for programmeringsrelaterte temaer finnes bare på engelsk.
+            Det å lese dokumentasjon kan føles tungt og lite intuitivt i starten - men det er noe man fort vender seg til. Husk: Du trenger kun lese de delene som er relevante for oppgaven du har for hånden. Dessverre (?) finnes majoriteten av all dokumentasjon for programmeringsrelaterte temaer bare på engelsk.
             <Db />
             Dokumentasjonen for <Ic>random</Ic> starter med en overordnet forklaring av innholdet i modulen. Ikke få panikk om det er mange uforståelige ord i teksten, det er vanlig at dokumentasjon inneholder veldig spesifikk informasjon for avanserte brukere. For nybegynnere og generelt uinnvidde er det viktig å holde tunga rett i munnen og klare å lete seg fram til kun informasjonen vi vil ha og klarer å forstå.
             <Db />
@@ -57,12 +57,13 @@ const ModulesNo = (props: TutorialPostProps) => (
 tilfeldig_tall = random.randint(1, 6)
 print('Du kastet en terning og fikk tallet', tilfeldig_tall)`}</CodeBlock>
 
+            Det er alt! Det er altså ikke mye som skal til hvis du vil lage litt spenning i hverdagen til brukerne dine, eller av en eller annen grunn ikke vil at et program skal være deterministisk.
 
             <NoticeBlock>
-                Strengt tatt vil programmene våre fortsatt være deterministiske selv om vi bruker <Ic>random</Ic>-modulen. Datamaskiner er fundamentalt deterministiske, som betyr at vi ikke kan be den "velge" noe tilfeldig. <Ic>random</Ic>-modulen starter med et tall som <i>ser</i> tilfeldig ut, typisk klokkeslettet i nanosekunder på datamaskinen, og gjør en rekke innfløkte matematiske operasjoner på dette tallet for å lage tall som ser tilfeldige ut for brukeren. Slik oppførsel kalles <i>pseudotilfeldig</i> (engelsk: <b>pseudorandom</b>), og er den vanlige måten å lage tilfeldig oppførsel på.
+                Strengt tatt vil programmene våre fortsatt være deterministiske selv om vi bruker <Ic>random</Ic>-modulen. Datamaskiner er fundamentalt deterministiske, som betyr at vi ikke kan be den "velge" noe tilfeldig. <Ic>random</Ic>-modulen starter med et tall som <i>ser</i> tilfeldig ut, typisk klokkeslettet i nanosekunder på datamaskinen, og gjør en rekke innfløkte matematiske operasjoner på dette tallet for å lage nye tall som ser tilfeldige ut for brukeren. Slik oppførsel kalles <i>pseudotilfeldig</i> (engelsk: <b>pseudorandom</b>), og er den vanlige måten å lage tilfeldig oppførsel på.
             </NoticeBlock>
 
-            Dersom vi skulle brukt <Ic>randint</Ic> mange ganger, ville vi antakeligvis blitt leie av å skrive <Ic>random</Ic> foran hele tiden. I Python kan man importere modulinnhold som enkeltstående variabler med syntaksen
+            Dersom vi skulle brukt <Ic>randint</Ic> mange ganger, ville vi antakeligvis blitt lei av å skrive <Ic>random</Ic> foran hele tiden. I Python kan man importere modulinnhold som enkeltstående variabler med syntaksen
             <CodeBlock>{`from <modulnavn> import <funksjonsnavn1>, <funksjonsnavn2> ...`}</CodeBlock>
             slik at de to øverste linjene i programmet over kunne skrives som
             <CodeBlock>{`from random import randint
@@ -74,7 +75,7 @@ tilfeldig_tall = randint(1, 6)`}</CodeBlock>
             
             <h2>Modulen <Ic>math</Ic></h2>
 
-            <Ic>math</Ic> er en modul det er veldig nyttig å kjenne til. Den inneholder alt mulig av vanlige matematiske operasjoner som for eksempel kvadratrot (<Ic>math.sqrt</Ic>), logaritmer (<Ic>math.log</Ic>, <Ic>math.log2</Ic>, <Ic>math.log10</Ic>) og trigonometriske funksjoner (<Ic>math.sin</Ic>, <Ic>math.cos</Ic> osv..). Dokumentasjonen for <Ic>math</Ic>-modulen kan du finne <a href="https://docs.python.org/3/library/math.html">her</a>.
+            Vi nevner <Ic>math</Ic>-modulen litt kjapt i forbifarten for interesserte brukere: <Ic>math</Ic>  inneholder alt mulig av vanlige matematiske operasjoner som for eksempel kvadratrot (<Ic>math.sqrt</Ic>), logaritmer (<Ic>math.log</Ic>, <Ic>math.log2</Ic>, <Ic>math.log10</Ic>) og trigonometriske funksjoner (<Ic>math.sin</Ic>, <Ic>math.cos</Ic> osv..). Dokumentasjonen for <Ic>math</Ic>-modulen kan du finne <a href="https://docs.python.org/3/library/math.html">her</a>.
     
             {/* Husk å snakke om installasjon av eksterne moduler */ }
             <h2>JSON-filer</h2>
@@ -89,7 +90,9 @@ tilfeldig_tall = randint(1, 6)`}</CodeBlock>
     "land": "England"
 }`}
             </CodeBlock>
-            I en JSON-fil har ikke ekstra mellomrom, indentering eller linjeskift noen betydning. De er bare slik de er for å gjøre JSON-fila lettere å lese for mennesker. Én viktig forskjell fra tabeller i Python, er at et slikt objekt i en JSON-fil kun kan ha strenger som indekser. Filinnholdet trenger ikke bare være et objekt, men kan også være en liste. Lister skrives med klammeparanteser (<Ic>[]</Ic>), akkurat slik som de defineres i Python. I tillegg kan verdiene inne i objektet/tabellen også være objekter og lister, i tillegg til de "primitive" datatypene streng og tall, som gjør at vi kan få nokså komplekse konstruksjoner i JSON-fila. Her er et annet eksempel på innhold i en JSON-fil: En liste av karakterer fra Harry Potter og diverse informasjon om dem:
+            I en JSON-fil har ikke ekstra mellomrom, indentering eller linjeskift noen betydning. De er bare slik de er for å gjøre JSON-fila lettere å lese for mennesker. Én viktig forskjell fra tabeller i Python, er at et slikt objekt i en JSON-fil kun kan ha strenger som indekser. 
+            <Db />
+            Filinnholdet trenger ikke bare være en tabell, men kan også være en liste. Lister skrives med klammeparanteser (<Ic>[]</Ic>), akkurat slik som de defineres i Python. I tillegg kan verdiene inne i objektet/tabellen også være objekter og lister, i tillegg til de "primitive" datatypene streng og tall, som gjør at vi kan få nokså komplekse konstruksjoner i JSON-fila. Her er et annet eksempel på innhold i en JSON-fil: En liste av karakterer fra Harry Potter og diverse informasjon om dem:
             <CodeBlock>{`[
     {
         "navn": "Harry",
@@ -121,17 +124,18 @@ tilfeldig_tall = randint(1, 6)`}</CodeBlock>
             
             <Ic>json</Ic>-modulen har hovedsakelig to oppgaver: Lese JSON-innhold og oversette til et objekt vi kan bruke direkte i Python, og å skrive et Python-objekt (en tabell eller liste) til JSON-format. Dokumentasjonen for modulen kan du finne på <a href="https://docs.python.org/3/library/json.html">https://docs.python.org/3/library/json.html</a>, men vi skal gå igjennom hvordan den brukes her også.
             <Db />
-            For å demonstrere hvordan modulen fungerer, trenger vi JSON-filer å jobbe med. Legg de to JSON-eksemplene vi skrev over inn i to forskjellige filer. Hvis du bruker IDLE, kan du gjøre dette ved å lage en ny fil, kopiere innholdet med Ctrl-C og lime det inn med Ctrl-V. Når du lagrer filen, husk å velge alle filtyper og legge på <Ic>.json</Ic> på slutten av navnet. I våre eksempler kommer vi til å kalle de to filene henholdsvis <Ic>by.json</Ic> og <Ic>karakterer.json</Ic>.
+            For å demonstrere hvordan modulen fungerer, trenger vi JSON-filer å jobbe med. Legg de to JSON-eksemplene vi skrev over inn i to forskjellige filer. Hvis du bruker IDLE, kan du gjøre dette ved å lage en ny fil, kopiere innholdet med Ctrl-C og lime det inn med Ctrl-V (eller tilsvarende på Mac). Når du lagrer filen, husk å velge "alle filtyper" og legge på <Ic>.json</Ic> på slutten av navnet. I våre eksempler kommer vi til å kalle de to filene henholdsvis <Ic>by.json</Ic> og <Ic>karakterer.json</Ic>.
             <Db />
             La oss prøve å lese den første fila. Til dét kan vi bruke <Ic>load</Ic>-funksjonen i <Ic>json</Ic>-modulen. <Ic>load</Ic>-funksjonen tar inn et <i>filobjekt</i>, som betyr at vi må åpne fila vi vil lese, før vi sender den til <Ic>load</Ic>-funksjonen. Her er et eksempel der vi leser den første av de to filene:
             <CodeBlock>{`import json
 
 with open('by.json') as fil:
-    json_objekt = json.load(fil)
+    bytabell = json.load(fil)
     
-print(json_objekt['navn'], 'er en by i', json_objekt['land'], 'med', json_objekt['befolkning'], 'mennesker')`}</CodeBlock>
+print(bytabell['navn'], 'er en by i', bytabell['land'], 'med', \\
+    bytabell['befolkning'], 'mennesker')`}</CodeBlock>
             
-            Først importerer vi modulen, så åpner vi filen, og deretter lar vi <Ic>json.load</Ic>-funksjonen gjøre magien sin for å oversette filinnholdet til et Python-objekt. Her ser vi at vi kan bruke objektet direkte som en tabell etter å ha lest det ut. 
+            (Bakoverskråstreken <Ic>{`\\`}</Ic> har kun den funksjonen at den lar oss splitte et funksjonskall over flere linjer.) Først importerer vi modulen, så åpner vi filen, og deretter lar vi <Ic>json.load</Ic>-funksjonen gjøre magien sin for å oversette filinnholdet til et Python-objekt. Her ser vi at vi kan bruke objektet direkte som en tabell etter å ha lest det ut. 
             <Db />
             Vi tar med et eksempel der vi først leser et objekt fra en JSON-fil, endrer objektet, og skriver det til en annen JSON-fil. Her bruker vi også <Ic>dump</Ic>-funksjonen, som gjør det omvendte av <Ic>load</Ic> - den skriver et Python-objekt til en fil.
             <CodeBlock>{`import json
@@ -146,15 +150,15 @@ for karakter in karakterliste:
 with open('oppdaterte_karakterer.json', 'w') as fil:
     json.dump(karakterliste, fil)`}
     </CodeBlock>
-            Her har vi først lest ut karakterene, deretter går vi igjennom alle karakterene og passer på at karakteren ved navn Slur har en venn. Deretter åpner vi en ny fil for skriving, og bruker <Ic>dump</Ic> til å skrive den lista med det oppdaterte objektet til filen.
+            Her har vi først lest ut karakterene, deretter går vi igjennom alle karakterene og passer på at Slur har en venn. Deretter åpner vi en ny fil for skriving, og bruker <Ic>dump</Ic> til å skrive den lista med det oppdaterte objektet til filen.
             <Db />
             <Ic>json</Ic> er vel og bra å kunne, men hvor er det man finner JSON-filer? Det ser vi på i neste seksjon:
 
             <h2>Web-forespørsler</h2>
 
-            Internett er et rart sted, men det går an å finne nyttig informasjon der også, og denne informasjonen kan vi bruke Python til å hente ut! I denne seksjonen skal vi se på hvordan vi kan vise en værmelding til brukeren for dagen i dag på et spesifikt sted, ved å sende en forespørsel over Internett.
+            Internett er et rart sted, men det går an å finne nyttig informasjon der også. Og denne informasjonen kan vi bruke Python til å hente ut! I denne seksjonen skal vi se på hvordan vi kan vise en værmelding til brukeren for dagen i dag på et spesifikt sted, ved å sende en forespørsel over Internett.
             <Db />
-            For å sende forespørsler over Internett, kan vi bruke pakken <Ic>requests</Ic>. Men dersom du nå skriver <Ic>import requests</Ic> øverst i et program og kjører det, får du fort beskjed om at pakken ikke er installert. <Ic>requests</Ic> kommer nemlig ikke ferdig installert med de fleste Python-installasjoner, slik at du nå blir nødt til å installere den på maskinen din før vi kan bruke den.
+            For å sende forespørsler over Internett, kan vi bruke pakken <Ic>requests</Ic>. Men dersom du nå skriver <Ic>import requests</Ic> øverst i et program og kjører det, får du fort beskjed om at pakken ikke finnes. <Ic>requests</Ic> kommer nemlig ikke ferdig installert med de fleste Python-installasjoner, slik at du nå blir nødt til å installere den på maskinen din før vi kan bruke den.
 
             <h3>Installere pakker</h3>
 
@@ -173,9 +177,9 @@ with open('oppdaterte_karakterer.json', 'w') as fil:
 
             <h4>Test terminalen</h4>
 
-            For å teste terminalen (uansett hvilket operativsystem du bruker), skriv <Ic>python3</Ic> på terminalen og trykk linjeskift. Hvis du får opp litt tekst og en <Ic>{`>>>`}</Ic>, som i den interaktive Python-konsollen, så kan du være sikker på at det fungerer, og du kan gå ut av Python-konsollen (skriv <Ic>exit()</Ic>), og fortsett på instruksjonene under. Hvis du derimot får beskjed om at programmet ikke ble funnet, tyder det på at Python ikke ble lagt til i <Ic>PATH</Ic>-variabelen ved installasjon. Dersom dette er tilfellet, vil den enkleste løsningen være Python på nytt, og sørge for at du legger til Python i <Ic>PATH</Ic> som en del av installasjonen ved å følge instruksjonene i starten av denne bloggen.
+            For å teste terminalen (uansett hvilket operativsystem du bruker), skriv <Ic>python3</Ic> på terminalen og trykk linjeskift. Hvis du får opp litt tekst og en <Ic>{`>>>`}</Ic>, som i den interaktive Python-konsollen, så kan du være sikker på at det fungerer, og du kan gå ut av Python-konsollen (skriv <Ic>exit()</Ic>), og fortsette på instruksjonene under. Hvis du derimot får beskjed om at programmet ikke ble funnet, tyder det på at Python ikke ble lagt til i <Ic>PATH</Ic>-variabelen ved installasjon. Dersom dette er tilfellet, vil den enkleste løsningen være å installere Python på nytt, og sørge for at du legger til Python i <Ic>PATH</Ic> som en del av installasjonen ved å følge instruksjonene i starten av denne bloggen. Ikke vær redd om du må gjøre dette - ingen av programmene du har skrevet hittil kommer til å forsvinne, så lenge du ikke har lagt dem akkurat der Python er installert!
             
-            <NoticeBlock>I Windows risikerer du å oppleve et tredje alternativ: Windows åpner opp Microseft Store for å laste ned Python. Dersom dette skjer, må du følge instruksjonene i Microsoft Store-vinduet; de ber deg om å gå til startmenyen og finne "Administrer appkjøringsaliaser" (engelsk: <b>Manage App Execution Aliases</b>), og der skru av aliaser for Python og Python3. Etter å ha gjort dét, kan du lukke terminalen du startet og åpne en ny en, og prøve å skrive <Ic>python3</Ic> på nytt.</NoticeBlock>
+            <NoticeBlock>I Windows risikerer du å oppleve et tredje alternativ: Windows åpner opp Microsoft Store for å laste ned Python. Dersom dette skjer, må du følge instruksjonene et stykke ned i Microsoft Store-vinduet; de ber deg om å gå til startmenyen og finne "Administrer appkjøringsaliaser" (engelsk: <b>Manage App Execution Aliases</b>), og der skru av aliaser for Python og Python3. Etter å ha gjort dét, kan du lukke terminalen du startet og åpne en ny en, og prøve å skrive <Ic>python3</Ic> på nytt.</NoticeBlock>
             
             <h4><Ic>pip</Ic></h4>
             Den vanligste måten å installere pakker på i Python, er ved å bruke programmet <Ic>pip</Ic> som blir installert samtidig med Python. <Ic>pip</Ic> er et kommandolinjeprogram, som betyr at vi kjører det fra terminalen, og får ikke opp noe eget vindu med et brukergrensesnitt. Dersom du skriver <Ic>pip</Ic> i terminalen og trykker linjeskift, får du opp instruksjoner om hvordan programmet kan brukes. Ikke få panikk om du ikke skjønner bæret - vi går nå igjennom hvordan vi installerer en pakke:
@@ -184,7 +188,7 @@ with open('oppdaterte_karakterer.json', 'w') as fil:
             <CodeBlock>{`pip install requests`}</CodeBlock>
             i terminalen og trykker enter. Dersom du er heldig, vil nå <Ic>pip</Ic> si at den laster ned <Ic>requests</Ic> og noen andre pakker. Årsaken til at den laster ned mer enn bare <Ic>requests</Ic>, er at <Ic>requests</Ic> er avhengig av disse pakkene for å kunne fungere. Dersom <Ic>pip</Ic> gir deg en feilmelding, er det beste håpet ditt å bruke feilmeldingen som søketekst på Internett og se om noen har et godt svar på problemet.
             <Db />
-            Dersom det foregående steget fungerte, gratulerer! <Ic>requests</Ic> er blitt installert. Kommandolinjeprogrammer som <Ic>pip</Ic> kan virke skumle i starten, men de er ekstremt effektive når du vet hvordan du bruker dem.
+            Dersom det foregående steget fungerte, gratulerer! <Ic>requests</Ic> er blitt installert! Kommandolinjeprogrammer som <Ic>pip</Ic> kan virke skumle i starten, men de er ekstremt effektive når du vet hvordan du bruker dem.
 
             <h3>Sende en forespørsel</h3>
 
@@ -198,26 +202,28 @@ respons = requests.get('https://nocturne.no/hei')
 meldingsobjekt = respons.json()
 print('Meldingen er:', meldingsobjekt['melding'])`}</CodeBlock>
             
-            Vi har sendt en forespørsel, og med litt flaks, fått et svar fra serveren. Svaret vi får er et respons-objekt, som vi lagrer i variabelen <Ic>respons</Ic>. Responsevariabelen inneholder diverse informasjon i tillegg til selve responsdataen. For denne forespørselen forventer vi å få en responsdata som inneholder et JSON-objekt med en et felt som heter <Ic>melding</Ic>. For å hente ut dette bruker vi <Ic>.json()</Ic>-medlemsfunksjonen på responsobjektet, som automatisk oversetter JSON-innholdet til en Python-tabell. Til slutt skriver vi meldingen vi fikk ut på skjermen. Prøv koden over selv og se om du får ut meldingen!
+            Vi har sendt en forespørsel, og med litt flaks, fått et svar fra serveren. Svaret vi får er et respons-objekt, som vi lagrer i variabelen <Ic>respons</Ic>. Responsvariabelen inneholder diverse informasjon i tillegg til selve responsdataen, men her er det bare dataen vi er interessert i. For denne forespørselen forventer vi å få en responsdata som inneholder et JSON-objekt med en et felt som heter <Ic>melding</Ic>. For å hente ut dette bruker vi <Ic>.json()</Ic>-medlemsfunksjonen på responsobjektet, som automatisk oversetter JSON-innholdet til en Python-tabell. Til slutt skriver vi meldingen vi fikk ut på skjermen. Prøv koden over selv og se om du får ut meldingen!
             <Db />
-            La oss prøve å få tak i en værmelding ved hjelp av <Ic>requests</Ic>-modulen. For å få til det skal vi sende en forespørsel til met.no, eid av metereologisk institutt. I tillegg til en vanlig nettside, har met.no nemlig et <i>API</i> (<b>A</b>pplication <b>P</b>rogramming <b>I</b>nterface), altså et sett med stier man kan sende forespørsler til, beregnet for programmer i motsetning til menneskelige brukere. 
+            La oss prøve å få tak i en værmelding ved hjelp av <Ic>requests</Ic>-modulen. For å få til det skal vi sende en forespørsel til <a href="met.no">met.no</a>, eid av Meteorologisk Institutt. I tillegg til en vanlig nettside, har met.no nemlig et <i>API</i> (<b>A</b>pplication <b>P</b>rogramming <b>I</b>nterface), altså et sett med stier man kan sende forespørsler til, beregnet for programmer i motsetning til menneskelige brukere. 
             <Db />
-            Her er en oversikt over de forskjellige stiene vi kan bruke for å hente data fra met.no: <a href="https://api.met.no/weatherapi/locationforecast/2.0/#!/data/get_compact">https://api.met.no/weatherapi/locationforecast/2.0/#!/data/get_compact</a>. Slike stier kaller vi også <i>endepunkter</i>. Vi skal bruke endepunktet <Ic>/compact</Ic> i eksempelet vårt. Beskrivelsen kan være litt uoversiktelig i starten, men <Ic>/compact</Ic> lar oss sende inn koordinater for en hvilken som helst plass på jorda, og få tilbake værdata for dette stedet. Vi kommer til å bruke Oslo som eksempel, som har koordinater 59.913889, 10.752222 (koordinatene må være på desimalform, i motsetning til DMS-format som stykker opp koordinatene i grader, minutter og sekunder).
+            Her er en oversikt over de forskjellige stiene vi kan bruke for å hente data fra met.no: <a href="https://api.met.no/weatherapi/locationforecast/2.0/#!/data/get_compact">https://api.met.no/weatherapi/locationforecast/2.0/#!/data/get_compact</a>. Slike stier kaller vi også <i>endepunkter</i>. Vi skal bruke endepunktet <Ic>/compact</Ic> i eksempelet vårt. Beskrivelsen kan være litt uoversiktelig i starten, men <Ic>/compact</Ic> lar oss sende inn koordinater for en hvilken som helst plass på jorda, og få tilbake værdata for dette stedet. Vi kommer til å bruke Oslo, som har koordinater 59.913889, 10.752222, som eksempel (koordinatene må være på desimalform, i motsetning til DMS-format som stykker opp koordinatene i grader, minutter og sekunder).
             <Db />
-            Før vi går i gang, bør du være oppmerksom på <a href="https://developer.yr.no/doc/TermsOfService/">brukerveiledning for APIet til Metereologisk Institutt</a>. I grove trekk går det ut på at du ikke skal sende overdrevent mange forespørsler, og at du må identifisere deg. Vi går igjennom identifikasjonsbiten snart, men den første delen må du passe på selv. "Overdrevent mange forespørsler" er selvfølgelig ikke veldig presist formulert. Det du først og fremst må passe deg for, er å sende forespørsler igjen og igjen i en løkke uten noen form for venting mellom hver forespørsel. Som en tommelfingerregel bør du ikke sende mer enn én forespørsel hvert tiende sekund når du tester endepunktene, så lenge du ikke vil ha din egen plass på svartelista til Meteorologisk Institutt.
+            Før vi går i gang, bør du være oppmerksom på <a href="https://developer.yr.no/doc/TermsOfService/">brukerveiledning for APIet til Meteorologisk Institutt</a>. I grove trekk går det ut på at du ikke skal sende overdrevent mange forespørsler, og at du må identifisere deg. Vi går igjennom identifikasjonsbiten snart, men den første delen må du passe på selv. "Overdrevent mange forespørsler" er selvfølgelig ikke veldig presist formulert. Det du først og fremst må passe deg for, er å ikke sende forespørsler igjen og igjen i en løkke uten noen form for venting mellom hver forespørsel. Som en tommelfingerregel bør du ikke sende mer enn én forespørsel hvert tiende sekund når du tester endepunktene, så lenge du ikke vil ha din egen plass på svartelista til Meteorologisk Institutt.
             <Db />
-            Til identifikasjon kan du rett og slett bruke din private e-postadresse. E-postadressen setter vi inn i <i>headeren</i> til forespørselen vår. Headerene er en rekke indeks-verdi-par som sendes i forespørselen. E-postadressen vil legges på headeren <Ic>'User-Agent'</Ic>. I tillegg skal vi eksplisitt be om å få et JSON-objekt tilbake, i motsetning til andre formater de kunne finne på å returnere. Dette gjør vi ved å sette headeren <Ic>'Accept'</Ic> til <Ic>application/json</Ic>. Vi kommer til å spesifisere headerne ved hjelp av en Python-tabell, og det samme med koordinatene vi sender ved som parametere. Koden for å sende forespørselen blir da seende slik ut (husk å bytte ut e-postadressen om du kopierer denne koden!):
+            Til identifikasjon kan du rett og slett bruke din private e-postadresse. E-postadressen setter vi inn i <i>headeren</i> til forespørselen vår. Headerene er en rekke indeks-verdi-par som sendes som en del av  forespørselen. E-postadressen vil legges på headeren <Ic>'User-Agent'</Ic>. I tillegg skal vi eksplisitt be om å få et JSON-objekt tilbake, i motsetning til andre formater de kunne finne på å returnere. Dette gjør vi ved å sette headeren <Ic>'Accept'</Ic> til <Ic>application/json</Ic>. Vi kommer til å spesifisere headerne ved hjelp av en Python-tabell, og det samme med koordinatene vi sender ved som parametere. Koden for å sende forespørselen blir da seende slik ut (husk å bytte ut e-postadressen om du kopierer denne koden!):
 
             <CodeBlock>{`import requests
 
 headere = { 'User-Agent': <e-postadresse>, 'Accept': 'application/json' }
 parametere = { 'lat': 59.913889, 'lon': 10.752222}
-respons = requests.get('https://api.met.no/weatherapi/locationforecast/2.0/compact', headers=headere, params=parametere)`}</CodeBlock>
+respons = requests.get('https://api.met.no/weatherapi/locationforecast/2.0/compact', \\
+    headers=headere, params=parametere)`}</CodeBlock>
 
             Flott, men hvordan vet vi hva vi får i responsen? Oversikten over endepunkter inneholder et eksempel for en respons, som er et stort JSON-objekt. Det er et objekt med et <Ic>'properties'</Ic>-felt, som igjen inneholder et felt som heter <Ic>'timeseries'</Ic>, som er en liste. Denne lista inneholder værmelding for det gitte stedet for en rekke tidspunkter. Objektet som gir oss informasjon om været akkurat nå finner vi igjen i <Ic>['data']['instant']['details']</Ic>. Som et eksempel kan vi hente ut nåværende temperatur og tidspunkt for meldingen fra responsen vi fikk over ved å skrive:
             <CodeBlock>{`data = respons.json()
 
-nåværende_temperatur = data['properties']['timeseries'][0]['data']['instant']['details']['air_temperature']
+nåværende_temperatur = data['properties']['timeseries'][0]['data'] \\
+    ['instant']['details']['air_temperature']
 tidspunkt = data['properties']['timeseries'][0]['time']
 
 print('På tidspunktet', tidspunkt, 'var temperaturen', nåværende_temperatur, 'i Oslo')`}</CodeBlock>
@@ -230,7 +236,7 @@ print('På tidspunktet', tidspunkt, 'var temperaturen', nåværende_temperatur, 
 
             <h2>Vinduer</h2>
 
-            Til slutt skal vi ta en rask kikk på hvordan man kan lage vindubaserte programmer i Python. Dette gjør det mulig å lage programmer som er lettere og mer intuitive å bruke, i tillegg til at man kan presentere visuell informasjon. I dette eksempelet skal vi bruke modulen <Ic>tkinter</Ic> for å lage et vindu. Den offisielle dokumentasjonen for <Ic>tkinter</Ic> kan du finne <a href="https://docs.python.org/3/library/tkinter.html">her</a>. Dessverre vil antakeligvis dokumentasjonen være vanskelig å lese, ettersom den benytter seg mye av <i>klasser</i>, som er et Python-konsept vi ikke har sett på i denne innføringen. 
+            Vi rasker med oss en modul til: Vi tar en kjapp kikk på hvordan man kan lage vindubaserte programmer i Python. Dette gjør det mulig å lage programmer som er lettere og mer intuitive å bruke, i tillegg til at man kan presentere visuell informasjon. I dette eksempelet skal vi bruke modulen <Ic>tkinter</Ic> for å lage et vindu. Den offisielle dokumentasjonen for <Ic>tkinter</Ic> kan du finne <a href="https://docs.python.org/3/library/tkinter.html">her</a>. Dessverre vil antakeligvis dokumentasjonen være vanskelig å lese, ettersom den benytter seg mye av <i>klasser</i>, som er et Python-konsept vi ikke har sett på i denne innføringen. 
             <Db />
             <Ic>tkinter</Ic> kommer ofte ferdig installert med Python. Dersom dette ikke er tilfellet for ditt oppsett, må du installere <Ic>tkinter</Ic> ved hjelp av <Ic>pip</Ic>, slik vi gjorde med <Ic>requests</Ic>-modulen over.
             <Db />
@@ -261,7 +267,7 @@ vindu['bg'] = 'red'`}</CodeBlock>
             
             La oss legge til en knapp. Når vi lager en knapp bruker vi <Ic>Button</Ic>-funksjonen. Den tar ett argument, nemlig vinduet knappen skal vises i. Hvis vi fortsetter på programmet over, kan vi altså lage knappen slik: 
             <CodeBlock>{`knapp = tk.Button(vindu)`}</CodeBlock>
-            Dette alene er ikke nok for at knappen skal vises i vinduet. Til dét trenger vi å spesifisere <i>hvordan</i> knappen skal plasseres i vinduet. Her skal vi gjøre det ved hjelp av medlemsfunksjonen <Ic>pack</Ic>. Vi kan kalle <Ic>pack</Ic> uten argumenter slik:
+            Dette alene er ikke nok for at knappen skal vises i vinduet. Til dét trenger vi å spesifisere <i>hvordan</i> knappen skal plasseres. Her skal vi gjøre det ved hjelp av medlemsfunksjonen <Ic>pack</Ic>. Vi kan kalle <Ic>pack</Ic> uten argumenter slik:
             <CodeBlock>{`knapp.pack()`}</CodeBlock>
             Dette vil plassere knappen, som akkurat nå bare er en liten grå firkant, midt på toppen av vinduet. Pass på at både initialiseringen av <Ic>knapp</Ic> og <Ic>pack</Ic>-kallet må gjøres før kallet til <Ic>mainloop</Ic>.
             <Db />
@@ -334,17 +340,17 @@ superhei.superhei(5)`}</CodeBlock>
             Som skriver en forvirret hilsen på skjermen fem ganger.
 
             <Db />
-            Det å splitte opp programmet ditt i flere filer er sannsynligvis ikke noe du trenger å tenke på med det første. Det er når koden begynner å bli stor og uoversiktlig at man kan begynne å tenke på kategorisere koden i flere filer for å gjøre det enklere å jobbe med den.
+            Det å splitte opp programmet ditt i flere filer er sannsynligvis ikke noe du trenger å tenke på med det første. Det er når koden begynner å bli stor og uoversiktlig at man kan begynne å tenke på kategorisere den i flere filer for å gjøre det enklere å jobbe med den.
 
             <h2>Oppsummering</h2>
 
-            Det var et monster av en post! Uansett om du leste alt eller ikke, håper jeg du fant <i>noe</i> fornuftig i mylderet over. Generelt er dét å bruke moduler sentralt for dét å programmere. Derfor har vi prøvd å vise fram både hvordan moduler fungerer og hvordan man finner dokumentasjon. Det kan være stor forskjell i hvor enkelt det er å forstå og hvor veldokumenterte moduler er, men man blir mye mer komfortabel med å jobbe med moduler jo mer man... Jobber med moduler.
+            Det var et monster av en post! Uansett om du leste alt eller ikke, håper jeg du fant <i>noe</i> fornuftig i mylderet over. Generelt er dét å bruke moduler sentralt for å kunne programmere. Derfor har vi prøvd å vise fram både hvordan moduler fungerer og hvordan man finner dokumentasjon. Det kan være stor forskjell i hvor enkelt det er å forstå og hvor veldokumenterte moduler er, men man blir mye mer komfortabel med å jobbe med moduler jo mer man... Jobber med moduler.
             <Db />
-            Som nevnt er dette bare en liten smakebit på det som finnes der ute. Det finnes moduler for alle mulige formål der ute, så dersom du har en idé for et programmeringsprosjekt er det en stor sjanse for at du finner noe som kan hjelpe deg!
+            Som nevnt er dette bare en liten smakebit på det som finnes der ute. Det finnes moduler for alle mulige formål, så dersom du har en idé for et programmeringsprosjekt er det en stor sjanse for at du finner en modul som kan hjelpe deg!
             <Db />
             Dette markerer slutten for hoveddelen av denne innføringen i Python. Vi har i prinsippet gått igjennom alt som skal til for å lage et hav av forskjellige programmer - hovedutfordringen vil være å bli mer komfortabel med språket og tenkemåten, og der er det lite annet å gjøre enn å ta tiden til hjelp. 
             <Db />
-            Etter dette vil det komme minst én bonuspost der vi går igjennom et spesifikt prosjekt og viser hvordan man kan gå fra en idé til et enkelt program ved å bruke det vi har lært tidligere.
+            Etter dette vil det komme minst én bonuspost der vi går igjennom et spesifikt prosjekt og viser hvordan man kan gå fra en idé til et enkelt program ved å bruke det vi har lært så langt.
             <Db />
             Forfatteren av denne bloggen håper du har fått nytte av det som har stått her, at det har vært lærerikt og interessant, og kanskje til og med gøy? Uansett håper jeg ikke programmeringseventyret ditt stopper her, men at du bruker kunnskapen til å utforske videre og får brukt koding til noe du drar nytte eller kan være stolt av!
 
@@ -352,13 +358,13 @@ superhei.superhei(5)`}</CodeBlock>
             
             Om du ikke har noen programmeringsideer selv ennå, kan du alltids starte her! Noen av disse oppgavene vil være litt mer utfordrende enn de vi har sett tidligere, først og fremst fordi de vil kreve at du leser deg opp på dokumentasjon av andre moduler for å kunne bruke dem. Ikke føl at du må gjøre alle sammen - velg deg de du synes virker mest interessante og relevante. Og ta deg tiden du trenger - du får nok av tid til å være stresset senere.
             <Db />
-            1. Simulér et enkelt terningspill - se hvor mange ganger du får f. eks. seks på terningen av å kaste den én million ganger. Stemmer det med intuisjonen? Hvis du kan litt matematikk: Finn ut omtrent hvor stor sannsynlighet det er for å få minst 15 i sum når du kaster tre terninger.
+            1. Simulér et enkelt terningspill - se hvor mange ganger du får f. eks. seks på terningen av å kaste den én million ganger. Stemmer det med intuisjonen? Hvis du kan litt matematikk: Finn ut omtrent hvor stor sannsynlighet det er for å få minst 15 i sum når du kaster tre terninger ved å bruke simuleringer.
             <Db />
             2. Prøv ut <a href="https://data.ssb.no/api/v0/dataset/?lang=en">APIet til ssb.no</a> for å hente ut statistikk om noe som interesserer deg.
             <Db />
             3. Lag en gjettelek med et vindu. Velg et tilfeldig tall med <Ic>random</Ic>-modulen og bruk <Ic>tkinter</Ic> for å lage et brukergrensesnitt med et tekstfelt og en knapp for å gjette, pluss tekst som forteller brukeren om de gjettet for høyt eller for lavt. Du kan bruke <Ic>tk.Entry()</Ic>-funksjonen for å lage innputtekstfelt og <Ic>tk.Text()</Ic> for å lage tekst som skal vises.
             <Db />
-            4. Dersom du interesserer deg for statistikk, kan du prøve ut <a href="https://matplotlib.org/stable/index.html">matplotlib</a> for å lage diagrammer og plott for å vise fram data! Hvis du ser i <a href="https://matplotlib.org/stable/gallery/index.html">galleriet</a> finner du mange eksempler på hva man kan lage. Om du føler deg eventyrlysten, kan du kombinere dette med utfallet av terningsimuleringen i oppgave 1 eller statistikk fra SSB, se oppgave 2.
+            4. Dersom du interesserer deg for statistikk, kan du prøve ut <a href="https://matplotlib.org/stable/index.html">matplotlib</a> for å lage diagrammer og plott for å vise fram data! Hvis du ser i <a href="https://matplotlib.org/stable/gallery/index.html">galleriet</a> finner du mange eksempler på hva man kan lage. Om du føler deg eventyrlysten, kan du kombinere dette med utfallet av terningsimuleringen i oppgave 1 eller statistikk fra SSB fra oppgave 2.
             <Db />
             5. Bruk modulen <a href="https://docs.python.org/3/library/turtle.html#module-turtle">turtle</a> til å lage noen interessante tegninger!
 
