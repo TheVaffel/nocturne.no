@@ -255,12 +255,114 @@ vindu.mainloop()`}</CodeBlock>
             La oss gjøre noen kosmetiske endringer på vinduet. Først kan vi kalle medlemsfunksjonen <Ic>title()</Ic> på vinduet med et strengargument for å gi det en tittel som vil vises på den øverste kanten av vinduet. Noen egenskaper ved vinduet kan vi også endre ved å indeksere på strenger i objektet som om det var en tabell. For å endre bakgrunnsfargen til vinduet kan vi for eksempel sette verdien på indeks <Ic>'bg'</Ic> til for eksempel <Ic>'red'</Ic>. Skrevet rett ut blir de to eksemplene over seende slik ut:
             <CodeBlock>{`vindu.title('Dette er en tittel!')
 vindu['bg'] = 'red'`}</CodeBlock>
-            Husk å legge disse to linjene før du kaller <Ic>mainloop</Ic>, ellers vil de ikke kjøres før etter vinduet er lukket!
+            Husk å legge disse to linjene før du kaller <Ic>mainloop</Ic>, ellers vil de ikke kjøres før etter vinduet er lukket.
             
             <Db />
+            
+            La oss legge til en knapp. Når vi lager en knapp bruker vi <Ic>Button</Ic>-funksjonen. Den tar ett argument, nemlig vinduet knappen skal vises i. Hvis vi fortsetter på programmet over, kan vi altså lage knappen slik: 
+            <CodeBlock>{`knapp = tk.Button(vindu)`}</CodeBlock>
+            Dette alene er ikke nok for at knappen skal vises i vinduet. Til dét trenger vi å spesifisere <i>hvordan</i> knappen skal plasseres i vinduet. Her skal vi gjøre det ved hjelp av medlemsfunksjonen <Ic>pack</Ic>. Vi kan kalle <Ic>pack</Ic> uten argumenter slik:
+            <CodeBlock>{`knapp.pack()`}</CodeBlock>
+            Dette vil plassere knappen, som akkurat nå bare er en liten grå firkant, midt på toppen av vinduet. Pass på at både initialiseringen av <Ic>knapp</Ic> og <Ic>pack</Ic>-kallet må gjøres før kallet til <Ic>mainloop</Ic>.
+            <Db />
+            Dersom vi vil være mer kreative med plasseringen av knappen, kan vi spesifisere hvilken av de fire sidene vi vil plassere knappen på ved hjelp av <Ic>side</Ic>-argumentet. Vi kan også legge inn mellomrom på sidene og over og under knappen henholdsvis med argumentene <Ic>padx</Ic> og <Ic>pady</Ic>. Verdien til <Ic>padx</Ic> og <Ic>pady</Ic> oppgis i antall piksler. For å plassere knappen til venstre, med litt mellomrom fra kanten, kan vi i stedet for kallet over bruke
+            <CodeBlock>{`knapp.pack(side='left', padx='30')`}</CodeBlock>
+
+            Et tomt rektangel er ganske intetsigende. For å gjøre den mer informativ kan vi bruke <Ic>'text'</Ic>-attributtet. Vi setter dette attributtet på samme måte som vi satte bakgrunnsfarge på vinduet over:
+            <CodeBlock>{`knapp['text'] = 'Dette er en knapp!'`}</CodeBlock>
+            Andre attributter man kan sette på knapper inkluderer bredde og høyde (<Ic>'width'</Ic> og <Ic>'height'</Ic>, oppgis i piksler) og <Ic>'fg'</Ic> og <Ic>'bg'</Ic>, som styrer henholdsvis tekstfarge og farge på resten av knappen.
+            <Db />
+            Naturligvis vil vi gjerne at knappen skal gjøre mer enn å bare ligge stille og se søt ut. Hvordan bestemmer vi hva som skjer når en bruker trykker på knappen? Svaret er attributtet <Ic>'command'</Ic>, hvis verdi er en funksjon. Når brukeren trykker på knappen, kjøres funksjonen.
+            <Db />
+            Her er knappen koblet opp med en enkel funksjon:
+            <CodeBlock>{`def hei():
+    print('Hallo!')
+
+knapp['command'] = hei`}</CodeBlock>
+            Legg merke til at når vi setter <Ic>'command'</Ic>-attributtet, skriver vi <Ic>hei</Ic> og ikke <Ic>hei()</Ic>. Dette er fordi vi vil referere til funksjonen selv og <i>ikke</i> kalle den og referere til returverdien (som i dette tilfellet ville vært ingenting). Prøv å legge inn dette i programmet (fortsatt før <Ic>mainloop</Ic>-kallet), og sjekk at du får ut tekst hver gang du trykker på knappen! 
+            <Db />
+            Til slutt tar vi et litt mer sammensatt eksempel der vi bruker det vi har sett i denne seksjonen kombinert med <Ic>random</Ic>-modulen:
+            <CodeBlock>{`from random import randint
+import tkinter as tk
+
+vindu = tk.Tk()
+
+knapp = tk.Button(vindu)
+knapp['text'] = 'Bytt farge'
+
+def bytt_farge():
+    farger = ['red', 'blue', 'yellow', 'green', 'brown', 'black', 'white', 'gray', 'turquoise']
+
+    siste_indeks = len(farger) - 1
+    valgt_indeks = randint(0, siste_indeks)
+    valgt_farge = farger[valgt_indeks]
+    vindu['bg'] = valgt_farge
+
+knapp['command'] = bytt_farge
+knapp.pack(side='top', pady=40)
+
+vindu.mainloop()`}</CodeBlock>
+
+            Vi har gått igjennom alle konseptene som er brukt i dette programmet, men det er mer sammensatt enn det meste vi har sett før. Kjør det og les koden og se om du forstår hva som skjer og hvordan det fungerer!
 
             <h2>Å stykke opp et program i moduler</h2>
 
+            Helt til slutt nevner vi et annet formål med moduler:
+            <Db />
+            Modulkonseptet kan brukes til å stykke opp programmene dine i flere filer. Når programmet består av flere Python-filer, vil én av filene være "hovedfila" som du kjører som vanlig. De andre filene kan inneholde funksjoner og variabler som kan brukes fra hovedfila. 
+            <Db />
+            For å importere andre Python-filer, la oss si <Ic>kule_funksjoner.py</Ic>, trenger du at denne fila og fila det importeres fra ligger i samme mappe. Deretter trenger du bare å skrive 
+            <CodeBlock>{`import kule_funksjoner`}</CodeBlock>
+            Legg merke til at vi bare skriver <Ic>kule_funksjoner</Ic> uten <Ic>.py</Ic> på slutten. Det er alt! Nå kan du bruke funksjonene fra <Ic>kule_funksjoner.py</Ic> i fila der du skrev linja over!
+            <Db />
+            Du kan også importere filer inn i andre filer enn hovedfila også. Hvis du for eksempel har en fil som heter <Ic>hei.py</Ic> som inneholder en funksjon: 
+            <CodeBlock>{`def si_hei():
+    print('Hei?')`}</CodeBlock>
+            
+            Og en annen fil som heter <Ic>superhei.py</Ic> med innholdet 
+            <CodeBlock>{`import hei
+
+def superhei(antall):
+    for i in range(antall):
+        hei.si_hei()`}
+            </CodeBlock>
+            
+            så kan du lage en hovedfil, f. eks. <Ic>hoved.py</Ic> som ser slik ut:
+            <CodeBlock>{`import superhei
+
+superhei.superhei(5)`}</CodeBlock>
+            Som skriver en forvirret hilsen på skjermen fem ganger.
+
+            <Db />
+            Det å splitte opp programmet ditt i flere filer er sannsynligvis ikke noe du trenger å tenke på med det første. Det er når koden begynner å bli stor og uoversiktlig at man kan begynne å tenke på kategorisere koden i flere filer for å gjøre det enklere å jobbe med den.
+
+            <h2>Oppsummering</h2>
+
+            Det var et monster av en post! Uansett om du leste alt eller ikke, håper jeg du fant <i>noe</i> fornuftig i mylderet over. Generelt er dét å bruke moduler sentralt for dét å programmere. Derfor har vi prøvd å vise fram både hvordan moduler fungerer og hvordan man finner dokumentasjon. Det kan være stor forskjell i hvor enkelt det er å forstå og hvor veldokumenterte moduler er, men man blir mye mer komfortabel med å jobbe med moduler jo mer man... Jobber med moduler.
+            <Db />
+            Som nevnt er dette bare en liten smakebit på det som finnes der ute. Det finnes moduler for alle mulige formål der ute, så dersom du har en idé for et programmeringsprosjekt er det en stor sjanse for at du finner noe som kan hjelpe deg!
+            <Db />
+            Dette markerer slutten for hoveddelen av denne innføringen i Python. Vi har i prinsippet gått igjennom alt som skal til for å lage et hav av forskjellige programmer - hovedutfordringen vil være å bli mer komfortabel med språket og tenkemåten, og der er det lite annet å gjøre enn å ta tiden til hjelp. 
+            <Db />
+            Etter dette vil det komme minst én bonuspost der vi går igjennom et spesifikt prosjekt og viser hvordan man kan gå fra en idé til et enkelt program ved å bruke det vi har lært tidligere.
+            <Db />
+            Forfatteren av denne bloggen håper du har fått nytte av det som har stått her, at det har vært lærerikt og interessant, og kanskje til og med gøy? Uansett håper jeg ikke programmeringseventyret ditt stopper her, men at du bruker kunnskapen til å utforske videre og får brukt koding til noe du drar nytte eller kan være stolt av!
+
+            <h2>Oppgaver</h2>
+            
+            Om du ikke har noen programmeringsideer selv ennå, kan du alltids starte her! Noen av disse oppgavene vil være litt mer utfordrende enn de vi har sett tidligere, først og fremst fordi de vil kreve at du leser deg opp på dokumentasjon av andre moduler for å kunne bruke dem. Ikke føl at du må gjøre alle sammen - velg deg de du synes virker mest interessante og relevante. Og ta deg tiden du trenger - du får nok av tid til å være stresset senere.
+            <Db />
+            1. Simulér et enkelt terningspill - se hvor mange ganger du får f. eks. seks på terningen av å kaste den én million ganger. Stemmer det med intuisjonen? Hvis du kan litt matematikk: Finn ut omtrent hvor stor sannsynlighet det er for å få minst 15 i sum når du kaster tre terninger.
+            <Db />
+            2. Prøv ut <a href="https://data.ssb.no/api/v0/dataset/?lang=en">APIet til ssb.no</a> for å hente ut statistikk om noe som interesserer deg.
+            <Db />
+            3. Lag en gjettelek med et vindu. Velg et tilfeldig tall med <Ic>random</Ic>-modulen og bruk <Ic>tkinter</Ic> for å lage et brukergrensesnitt med et tekstfelt og en knapp for å gjette, pluss tekst som forteller brukeren om de gjettet for høyt eller for lavt. Du kan bruke <Ic>tk.Entry()</Ic>-funksjonen for å lage innputtekstfelt og <Ic>tk.Text()</Ic> for å lage tekst som skal vises.
+            <Db />
+            4. Dersom du interesserer deg for statistikk, kan du prøve ut <a href="https://matplotlib.org/stable/index.html">matplotlib</a> for å lage diagrammer og plott for å vise fram data! Hvis du ser i <a href="https://matplotlib.org/stable/gallery/index.html">galleriet</a> finner du mange eksempler på hva man kan lage. Om du føler deg eventyrlysten, kan du kombinere dette med utfallet av terningsimuleringen i oppgave 1 eller statistikk fra SSB, se oppgave 2.
+            <Db />
+            5. Bruk modulen <a href="https://docs.python.org/3/library/turtle.html#module-turtle">turtle</a> til å lage noen interessante tegninger!
+
+            { /* TODO: Skriv ferdig denne (ikke så mange setninger), kjør på med noen oppgaver, og så er det å lese igjennommmmm */ }
         </PostWrapper>
     </>
 );
