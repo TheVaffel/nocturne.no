@@ -20,7 +20,8 @@ const noticeOuterStyle: React.CSSProperties = {
     width: "100%",
     textAlign: 'center',
     alignItems: 'center',
-    marginTop: '20px'
+    marginTop: '20px',
+    marginBottom: '20px'
 };
 
 export const PostListEntry: React.FunctionComponent<{metadata: Metadata, blogUrl: string}> = (props) => (
