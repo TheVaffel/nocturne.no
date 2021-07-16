@@ -367,8 +367,6 @@ superhei.superhei(5)`}</CodeBlock>
             4. Dersom du interesserer deg for statistikk, kan du prøve ut <a href="https://matplotlib.org/stable/index.html">matplotlib</a> for å lage diagrammer og plott for å vise fram data! Hvis du ser i <a href="https://matplotlib.org/stable/gallery/index.html">galleriet</a> finner du mange eksempler på hva man kan lage. Om du føler deg eventyrlysten, kan du kombinere dette med utfallet av terningsimuleringen i oppgave 1 eller statistikk fra SSB fra oppgave 2.
             <Db />
             5. Bruk modulen <a href="https://docs.python.org/3/library/turtle.html#module-turtle">turtle</a> til å lage noen interessante tegninger!
-
-            { /* TODO: Skriv ferdig denne (ikke så mange setninger), kjør på med noen oppgaver, og så er det å lese igjennommmmm */ }
         </PostWrapper>
     </>
 );
