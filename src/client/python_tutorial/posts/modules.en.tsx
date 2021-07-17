@@ -112,7 +112,7 @@ random_number = randint(1, 6)`}</CodeBlock>
         "shoesize": 46,
         "friends": []
     }
-}`}</CodeBlock>
+]`}</CodeBlock>
 
             <h3>The <Ic>json</Ic> Module</h3>
 
@@ -143,7 +143,7 @@ with open('characters.json') as file:
     character_list = json.load(file)
     
 for character in character_list:
-    if character['name'] == 'Snape'
+    if character['name'] == 'Snape':
         character['friends'].append('Dumbledore')
         
 with open('updated_characters.json', 'w') as file:
