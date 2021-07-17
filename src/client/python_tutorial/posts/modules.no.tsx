@@ -13,7 +13,7 @@ const ModulesNo = (props: TutorialPostProps) => (
             <Db />
             Men før det må vi gå igjennom <i>moduler</i>. Moduler er døråpneren som lar oss lage alle mulige slags programmer ved å ta i bruk kode skrevet av andre. Moduler eller lignende konsepter finnes i alle seriøse programmeringsspråk og går ofte under navnet <i>biblioteker</i> (engelsk: <b>libraries</b>).
             <Db />
-            I denne posten skal vi først snakke litt overordnet om hva en modul er og helt konkret bruke <Ic>random</Ic>-modulen for å demonstrere hvordan vi jobber med moduler. Deretter går vi igjennom forskjellige vanlige moduler og viser hvordan de fungerer. Dette er bare et veldig beskjedent utvalg av alle modulene som finnes der ute.
+            I denne posten skal vi først snakke litt overordnet om hva en modul er og helt konkret bruke <Ic>random</Ic>-modulen for å demonstrere hvordan vi jobber med moduler. Deretter går vi igjennom forskjellige vanlige moduler og viser hvordan vi kan bruke dem. Dette er bare et veldig beskjedent utvalg av alle modulene som finnes der ute.
             <Db />
             Vi kommer til å introdusere noen nye konsepter relatert til spesifikke moduler i tillegg til modulene selv, i seksjonene under. Vi kommer ikke til å gå i detalj på disse konseptene, ettersom det fort blir mye stoff å ta tak i. Du er oppfordret til å lese mer om modulene og tilhørende konsepter som du synes virker interessante eller relevante for ideer du har eller får i framtiden!
 
@@ -38,7 +38,7 @@ const ModulesNo = (props: TutorialPostProps) => (
             <Db />
             I dette eksempelet lager vi bare et enkelt program for å simulere resultatet av å kaste en terning. Hver gang programmet startes, genereres det et tilfeldig tall mellom 1 og 6 som skrives ut til brukeren. Det kommer kanskje ikke som en overraskelse at <Ic>random</Ic>-modulen kan hjelpe oss med å lage det tilfeldige tallet, men hvordan vet vi hva <Ic>random</Ic> tilbyr, som vi kan bruke?
             <Db />
-            For å se hvilke funksjoner og andre ting en modul inneholder, er det best å slå opp i <i>dokumentasjonen</i> til modulen. Dokumentasjonen er som regel lett tilgjengelig på Internett. I vårt tilfelle vil et kjapt søk i en søkemotor med f. eks. <i>python random documentation</i> fortelle oss at dokumentasjonen for <Ic>random</Ic>-funksjonen befinner seg på  <a href="https://docs.python.org/3/library/random.html">https://docs.python.org/3/library/random.html</a>. 
+            For å se hvilke funksjoner og andre ting en modul inneholder, er det best å slå opp i <i>dokumentasjonen</i> til modulen. Dokumentasjonen er som regel lett tilgjengelig på Internett. I vårt tilfelle vil et kjapt søk i en søkemotor med f. eks. <i>python random documentation</i> fortelle oss at dokumentasjonen for <Ic>random</Ic>-modulen befinner seg på  <a href="https://docs.python.org/3/library/random.html">https://docs.python.org/3/library/random.html</a>. 
             <Db />
             Det å lese dokumentasjon kan føles tungt og lite intuitivt i starten - men det er noe man fort vender seg til. Husk: Du trenger kun lese de delene som er relevante for oppgaven du har for hånden. Dessverre (?) finnes majoriteten av all dokumentasjon for programmeringsrelaterte temaer bare på engelsk.
             <Db />
@@ -75,9 +75,8 @@ tilfeldig_tall = randint(1, 6)`}</CodeBlock>
             
             <h2>Modulen <Ic>math</Ic></h2>
 
-            Vi nevner <Ic>math</Ic>-modulen litt kjapt i forbifarten for interesserte brukere: <Ic>math</Ic>  inneholder alt mulig av vanlige matematiske operasjoner som for eksempel kvadratrot (<Ic>math.sqrt</Ic>), logaritmer (<Ic>math.log</Ic>, <Ic>math.log2</Ic>, <Ic>math.log10</Ic>) og trigonometriske funksjoner (<Ic>math.sin</Ic>, <Ic>math.cos</Ic> osv..). Dokumentasjonen for <Ic>math</Ic>-modulen kan du finne <a href="https://docs.python.org/3/library/math.html">her</a>.
+            Vi nevner <Ic>math</Ic>-modulen litt kjapt i forbifarten for interesserte lesere: <Ic>math</Ic> inneholder alt mulig av vanlige matematiske operasjoner som for eksempel kvadratrot (<Ic>math.sqrt</Ic>), logaritmer (<Ic>math.log</Ic>, <Ic>math.log2</Ic>, <Ic>math.log10</Ic>) og trigonometriske funksjoner (<Ic>math.sin</Ic>, <Ic>math.cos</Ic> osv..). Dokumentasjonen for <Ic>math</Ic>-modulen kan du finne <a href="https://docs.python.org/3/library/math.html">her</a>.
     
-            {/* Husk å snakke om installasjon av eksterne moduler */ }
             <h2>JSON-filer</h2>
             
             JSON (<b>J</b>ava<b>s</b>cript <b>O</b>bject <b>N</b>otation) er et filformat som brukes for å lagre strukturert informasjon av én eller annen form. JSON-filer har filendelsen <Ic>.json</Ic>.
@@ -92,7 +91,7 @@ tilfeldig_tall = randint(1, 6)`}</CodeBlock>
             </CodeBlock>
             I en JSON-fil har ikke ekstra mellomrom, indentering eller linjeskift noen betydning. De er bare slik de er for å gjøre JSON-fila lettere å lese for mennesker. Én viktig forskjell fra tabeller i Python, er at et slikt objekt i en JSON-fil kun kan ha strenger som indekser. 
             <Db />
-            Filinnholdet trenger ikke bare være en tabell, men kan også være en liste. Lister skrives med klammeparanteser (<Ic>[]</Ic>), akkurat slik som de defineres i Python. I tillegg kan verdiene inne i objektet/tabellen også være objekter og lister, i tillegg til de "primitive" datatypene streng og tall, som gjør at vi kan få nokså komplekse konstruksjoner i JSON-fila. Her er et annet eksempel på innhold i en JSON-fil: En liste av karakterer fra Harry Potter og diverse informasjon om dem:
+            Filinnholdet trenger ikke bare være en tabell, men kan også være en liste. Lister skrives med klammeparanteser (<Ic>[]</Ic>), akkurat slik som de defineres i Python. I tillegg kan verdiene inne i objektet/tabellen også være objekter og lister, og ikke bare de "primitive" datatypene streng og tall, som gjør at vi kan få nokså komplekse konstruksjoner i JSON-fila. Her er et annet eksempel på innhold i en JSON-fil: En liste av karakterer fra Harry Potter og diverse informasjon om dem:
             <CodeBlock>{`[
     {
         "navn": "Harry",
@@ -124,7 +123,7 @@ tilfeldig_tall = randint(1, 6)`}</CodeBlock>
             
             <Ic>json</Ic>-modulen har hovedsakelig to oppgaver: Lese JSON-innhold og oversette til et objekt vi kan bruke direkte i Python, og å skrive et Python-objekt (en tabell eller liste) til JSON-format. Dokumentasjonen for modulen kan du finne på <a href="https://docs.python.org/3/library/json.html">https://docs.python.org/3/library/json.html</a>, men vi skal gå igjennom hvordan den brukes her også.
             <Db />
-            For å demonstrere hvordan modulen fungerer, trenger vi JSON-filer å jobbe med. Legg de to JSON-eksemplene vi skrev over inn i to forskjellige filer. Hvis du bruker IDLE, kan du gjøre dette ved å lage en ny fil, kopiere innholdet med Ctrl-C og lime det inn med Ctrl-V (eller tilsvarende på Mac). Når du lagrer filen, husk å velge "alle filtyper" og legge på <Ic>.json</Ic> på slutten av navnet. I våre eksempler kommer vi til å kalle de to filene henholdsvis <Ic>by.json</Ic> og <Ic>karakterer.json</Ic>.
+            For å demonstrere hvordan modulen fungerer, trenger vi JSON-filer å jobbe med. Legg de to JSON-eksemplene vi skrev over inn i to forskjellige filer. Hvis du bruker IDLE (eller en forholdsvis normal editor), kan du gjøre dette ved å lage en ny fil, markere og kopiere JSON-innholdet med Ctrl-C og lime det inn med Ctrl-V (eller tilsvarende på Mac). Når du lagrer filen, husk å velge "alle filtyper" og legge på <Ic>.json</Ic> på slutten av navnet. I våre eksempler kommer vi til å kalle de to filene henholdsvis <Ic>by.json</Ic> og <Ic>karakterer.json</Ic>.
             <Db />
             La oss prøve å lese den første fila. Til dét kan vi bruke <Ic>load</Ic>-funksjonen i <Ic>json</Ic>-modulen. <Ic>load</Ic>-funksjonen tar inn et <i>filobjekt</i>, som betyr at vi må åpne fila vi vil lese, før vi sender den til <Ic>load</Ic>-funksjonen. Her er et eksempel der vi leser den første av de to filene:
             <CodeBlock>{`import json
@@ -135,7 +134,9 @@ with open('by.json') as fil:
 print(bytabell['navn'], 'er en by i', bytabell['land'], 'med', \\
     bytabell['befolkning'], 'mennesker')`}</CodeBlock>
             
-            (Bakoverskråstreken <Ic>{`\\`}</Ic> har kun den funksjonen at den lar oss splitte et funksjonskall over flere linjer.) Først importerer vi modulen, så åpner vi filen, og deretter lar vi <Ic>json.load</Ic>-funksjonen gjøre magien sin for å oversette filinnholdet til et Python-objekt. Her ser vi at vi kan bruke objektet direkte som en tabell etter å ha lest det ut. 
+            (Bakoverskråstreken <Ic>{`\\`}</Ic> har kun den funksjonen at den lar oss splitte et funksjonskall over flere linjer.)
+            <Db />
+            Først importerer vi modulen, så åpner vi filen, og deretter lar vi <Ic>json.load</Ic>-funksjonen gjøre magien sin for å oversette filinnholdet til et Python-objekt. Her ser vi at vi kan bruke objektet direkte som en tabell etter å ha lest det ut. 
             <Db />
             Vi tar med et eksempel der vi først leser et objekt fra en JSON-fil, endrer objektet, og skriver det til en annen JSON-fil. Her bruker vi også <Ic>dump</Ic>-funksjonen, som gjør det omvendte av <Ic>load</Ic> - den skriver et Python-objekt til en fil.
             <CodeBlock>{`import json
@@ -150,19 +151,19 @@ for karakter in karakterliste:
 with open('oppdaterte_karakterer.json', 'w') as fil:
     json.dump(karakterliste, fil)`}
     </CodeBlock>
-            Her har vi først lest ut karakterene, deretter går vi igjennom alle karakterene og passer på at Slur har en venn. Deretter åpner vi en ny fil for skriving, og bruker <Ic>dump</Ic> til å skrive den lista med det oppdaterte objektet til filen.
+            Her har vi først lest ut karakterene, deretter går vi igjennom alle karakterene og passer på at Slur har en venn. Deretter åpner vi en ny fil for skriving, og bruker <Ic>dump</Ic> til å skrive lista med det oppdaterte objektet til filen.
             <Db />
-            <Ic>json</Ic> er vel og bra å kunne, men hvor er det man finner JSON-filer? Det ser vi på i neste seksjon:
+            <Ic>json</Ic> er vel og bra å kunne, fordi det forenkler prosessen med å lagre kompleks informasjon fra kjøringen av et program og lese det når programmet kjøres senere, for eksempel for å lagre noe brukeren har gjort. Men det er flere steder vi kan finne JSON-filer. Det ser vi på i neste seksjon:
 
             <h2>Web-forespørsler</h2>
 
-            Internett er et rart sted, men det går an å finne nyttig informasjon der også. Og denne informasjonen kan vi bruke Python til å hente ut! I denne seksjonen skal vi se på hvordan vi kan vise en værmelding til brukeren for dagen i dag på et spesifikt sted, ved å sende en forespørsel over Internett.
+            Internett er et rart sted, men det går an å finne nyttig informasjon der også. Og denne informasjonen kan vi bruke Python til å hente ut! I denne seksjonen skal vi se på hvordan vi kan få en værmelding for dagen i dag på et spesifikt sted, ved å sende en forespørsel over Internett.
             <Db />
-            For å sende forespørsler over Internett, kan vi bruke pakken <Ic>requests</Ic>. Men dersom du nå skriver <Ic>import requests</Ic> øverst i et program og kjører det, får du fort beskjed om at pakken ikke finnes. <Ic>requests</Ic> kommer nemlig ikke ferdig installert med de fleste Python-installasjoner, slik at du nå blir nødt til å installere den på maskinen din før vi kan bruke den.
+            For å sende forespørsler over Internett, kan vi bruke pakken <Ic>requests</Ic>. Men dersom du nå skriver <Ic>import requests</Ic> øverst i et program og kjører det, får du fort beskjed om at pakken ikke finnes. <Ic>requests</Ic> kommer nemlig ikke ferdig installert med de fleste Python-installasjoner, slik at du nå blir nødt til å installere den på maskinen din før vi kan bruke den. Vi går igjennom prosessen for installasjon her:
 
             <h3>Installere pakker</h3>
 
-            For å installere en pakke, vil vi trenge å bruke terminalen. Hvordan terminalen fungerer, varierer litt fra plattform til plattform. Her gjengir vi kort hvordan du finner fram til terminalen på forskjellige plattformer:
+            Moduler er inneholdt i <i>pakker</i>, og det er pakker vi installerer når vi skal ha tak i nye moduler. For å installere en pakke, vil vi trenge å bruke terminalen. Hvordan terminalen fungerer, varierer litt fra operativsystem til operativsystem. Her gjengir vi kort hvordan du finner fram til terminalen på forskjellige plattformer:
 
             <h4>Windows</h4>
             Trykk start-knappen nederst til venstre på skjermen og søk på <i>cmd</i> eller <i>ledetekst</i> (eller engelsk: <b>Command Prompt</b>). Trykk enter, og du skal få opp et svart vindu med litt tekst i.
@@ -171,7 +172,7 @@ with open('oppdaterte_karakterer.json', 'w') as fil:
 
             Trykk på Launchpad-ikonet på programlinjen nederst på skjermen (eller hvor du enn har gjort av den) og søk på "Terminal". Når du starter den, skal du få opp et vindu med litt tekst i.
 
-            <h4>Linux</h4>
+            <h4>Linux (Ubuntu)</h4>
 
             Trykk på startmenyen og søk på "Terminal" og trykk på programmet for å starte det.
 
@@ -184,7 +185,7 @@ with open('oppdaterte_karakterer.json', 'w') as fil:
             <h4><Ic>pip</Ic></h4>
             Den vanligste måten å installere pakker på i Python, er ved å bruke programmet <Ic>pip</Ic> som blir installert samtidig med Python. <Ic>pip</Ic> er et kommandolinjeprogram, som betyr at vi kjører det fra terminalen, og får ikke opp noe eget vindu med et brukergrensesnitt. Dersom du skriver <Ic>pip</Ic> i terminalen og trykker linjeskift, får du opp instruksjoner om hvordan programmet kan brukes. Ikke få panikk om du ikke skjønner bæret - vi går nå igjennom hvordan vi installerer en pakke:
             <Db />
-            Pakken vi skal bruke for web-forespørsler, heter som nevnt <Ic>requests</Ic>. For å installere den med pip, skriver vi rett og slett 
+            Modulen vi skal bruke for web-forespørsler, heter som nevnt <Ic>requests</Ic>, og pakken den ligger i går under samme navn. For å installere den med <Ic>pip</Ic>, skriver vi rett og slett 
             <CodeBlock>{`pip install requests`}</CodeBlock>
             i terminalen og trykker enter. Dersom du er heldig, vil nå <Ic>pip</Ic> si at den laster ned <Ic>requests</Ic> og noen andre pakker. Årsaken til at den laster ned mer enn bare <Ic>requests</Ic>, er at <Ic>requests</Ic> er avhengig av disse pakkene for å kunne fungere. Dersom <Ic>pip</Ic> gir deg en feilmelding, er det beste håpet ditt å bruke feilmeldingen som søketekst på Internett og se om noen har et godt svar på problemet.
             <Db />
@@ -194,7 +195,7 @@ with open('oppdaterte_karakterer.json', 'w') as fil:
 
             Vi begynner med å sende en enkel HTTP GET-forespørsel til nocturne.no. Ikke vær redd om disse begrepene er fremmede for deg - nettverk og forespørsler kunne vært et eget kapittel i denne bloggen. Her hopper vi over alle detaljer og viser bare hvordan vi kan sende enkle forespørsler. Om du er interessert, kan du lese dokumentasjonen til <Ic>requests</Ic> her: <a href="https://docs.python-requests.org/en/master/index.html">https://docs.python-requests.org/en/master/index.html</a>.
             <Db />
-            For å sende en GET-forespørsel, bruker vi bare funksjonen <Ic>get()</Ic> i <Ic>requests</Ic>-modulen. <Ic>get</Ic>-funksjonen kan ta flere argumenter, men bare ett er obligatorisk: URLen. URL (<b>U</b>niform <b>R</b>esource <b>L</b>ocator) er rett og slett bare en nettadresse, slik som dem man skriver inn i nettleseren for å komme til en nettside. URLen vi skal bruke i dette eksempelet er <Ic>https://nocturne.no/hei</Ic>. Her er <Ic>nocturne.no</Ic> <i>domenenavnet</i> og <Ic>/hei</Ic> er stien (engelsk: <b>path</b>). Stien er ikke tilfeldig, serveren som er vert for <Ic>nocturne.no</Ic> er programmert til å gi en respons når noen sender en GET-forespørsel til <Ic>/hei</Ic>-stien. Nok snakk - på tide med litt kode:
+            For å sende en GET-forespørsel, bruker vi bare funksjonen <Ic>get()</Ic> i <Ic>requests</Ic>-modulen. <Ic>get</Ic>-funksjonen kan ta flere argumenter, men bare ett er obligatorisk: URLen. URL (<b>U</b>niform <b>R</b>esource <b>L</b>ocator) er rett og slett bare en nettadresse, slik som dem man skriver inn i nettleseren for å komme til en nettside. URLen vi skal bruke i dette eksempelet er <Ic>https://nocturne.no/hei</Ic>. Her er <Ic>nocturne.no</Ic> <i>domenenavnet</i> og <Ic>/hei</Ic> er <i>stien</i> (engelsk: <b>path</b>). Stien er ikke tilfeldig, serveren som er vert for nocturne.no er programmert til å gi en respons når noen sender en GET-forespørsel til <Ic>/hei</Ic>-stien. Nok snakk - på tide med litt kode:
             <CodeBlock>{`import requests
             
 respons = requests.get('https://nocturne.no/hei')
@@ -202,15 +203,15 @@ respons = requests.get('https://nocturne.no/hei')
 meldingsobjekt = respons.json()
 print('Meldingen er:', meldingsobjekt['melding'])`}</CodeBlock>
             
-            Vi har sendt en forespørsel, og med litt flaks, fått et svar fra serveren. Svaret vi får er et respons-objekt, som vi lagrer i variabelen <Ic>respons</Ic>. Responsvariabelen inneholder diverse informasjon i tillegg til selve responsdataen, men her er det bare dataen vi er interessert i. For denne forespørselen forventer vi å få en responsdata som inneholder et JSON-objekt med en et felt som heter <Ic>melding</Ic>. For å hente ut dette bruker vi <Ic>.json()</Ic>-medlemsfunksjonen på responsobjektet, som automatisk oversetter JSON-innholdet til en Python-tabell. Til slutt skriver vi meldingen vi fikk ut på skjermen. Prøv koden over selv og se om du får ut meldingen!
+            Vi har sendt en forespørsel, og med litt flaks, fått et svar fra serveren. Svaret vi får er et respons-objekt, som vi lagrer i variabelen <Ic>respons</Ic>. Responsvariabelen inneholder diverse informasjon i tillegg til selve responsdataen, men her er det bare dataen vi er interessert i. For denne forespørselen forventer vi å få en responsdata som inneholder et JSON-objekt med et felt som heter <Ic>melding</Ic>. For å hente ut dette bruker vi <Ic>.json()</Ic>-medlemsfunksjonen på responsobjektet, som automatisk oversetter JSON-innholdet til en Python-tabell. Til slutt skriver vi meldingen vi fikk ut på skjermen. Prøv koden over selv og se om du får ut meldingen!
             <Db />
-            La oss prøve å få tak i en værmelding ved hjelp av <Ic>requests</Ic>-modulen. For å få til det skal vi sende en forespørsel til <a href="met.no">met.no</a>, eid av Meteorologisk Institutt. I tillegg til en vanlig nettside, har met.no nemlig et <i>API</i> (<b>A</b>pplication <b>P</b>rogramming <b>I</b>nterface), altså et sett med stier man kan sende forespørsler til, beregnet for programmer i motsetning til menneskelige brukere. 
+            La oss prøve å få tak i litt værdata ved hjelp av <Ic>requests</Ic>-modulen. For å få til det skal vi sende en forespørsel til <a href="met.no">met.no</a>, eid av Meteorologisk Institutt. I tillegg til en vanlig nettside, har met.no nemlig et <i>API</i> (<b>A</b>pplication <b>P</b>rogramming <b>I</b>nterface), som er et sett med stier man kan sende forespørsler til, beregnet for programmer i motsetning til menneskelige brukere. 
             <Db />
-            Her er en oversikt over de forskjellige stiene vi kan bruke for å hente data fra met.no: <a href="https://api.met.no/weatherapi/locationforecast/2.0/#!/data/get_compact">https://api.met.no/weatherapi/locationforecast/2.0/#!/data/get_compact</a>. Slike stier kaller vi også <i>endepunkter</i>. Vi skal bruke endepunktet <Ic>/compact</Ic> i eksempelet vårt. Beskrivelsen kan være litt uoversiktelig i starten, men <Ic>/compact</Ic> lar oss sende inn koordinater for en hvilken som helst plass på jorda, og få tilbake værdata for dette stedet. Vi kommer til å bruke Oslo, som har koordinater 59.913889, 10.752222, som eksempel (koordinatene må være på desimalform, i motsetning til DMS-format som stykker opp koordinatene i grader, minutter og sekunder).
+            Her er en oversikt over de forskjellige stiene vi kan bruke for å hente data fra met.no: <a href="https://api.met.no/weatherapi/locationforecast/2.0/#!/data/get_compact">https://api.met.no/weatherapi/locationforecast/2.0/#!/data/get_compact</a>. Slike stier kaller vi også <i>endepunkter</i>. Vi skal bruke endepunktet <Ic>/compact</Ic> i eksempelet vårt. Beskrivelsen kan være litt uoversiktelig i starten, men kort fortalt lar <Ic>/compact</Ic> oss sende inn koordinater for en hvilken som helst plass på jorda, og få tilbake værdata for dette stedet. Vi kommer til å bruke Oslo, som har koordinater 59.913889, 10.752222, som eksempel (koordinatene må være på desimalform, i motsetning til DMS-format som stykker opp koordinatene i grader, minutter og sekunder).
             <Db />
             Før vi går i gang, bør du være oppmerksom på <a href="https://developer.yr.no/doc/TermsOfService/">brukerveiledning for APIet til Meteorologisk Institutt</a>. I grove trekk går det ut på at du ikke skal sende overdrevent mange forespørsler, og at du må identifisere deg. Vi går igjennom identifikasjonsbiten snart, men den første delen må du passe på selv. "Overdrevent mange forespørsler" er selvfølgelig ikke veldig presist formulert. Det du først og fremst må passe deg for, er å ikke sende forespørsler igjen og igjen i en løkke uten noen form for venting mellom hver forespørsel. Som en tommelfingerregel bør du ikke sende mer enn én forespørsel hvert tiende sekund når du tester endepunktene, så lenge du ikke vil ha din egen plass på svartelista til Meteorologisk Institutt.
             <Db />
-            Til identifikasjon kan du rett og slett bruke din private e-postadresse. E-postadressen setter vi inn i <i>headeren</i> til forespørselen vår. Headerene er en rekke indeks-verdi-par som sendes som en del av  forespørselen. E-postadressen vil legges på headeren <Ic>'User-Agent'</Ic>. I tillegg skal vi eksplisitt be om å få et JSON-objekt tilbake, i motsetning til andre formater de kunne finne på å returnere. Dette gjør vi ved å sette headeren <Ic>'Accept'</Ic> til <Ic>application/json</Ic>. Vi kommer til å spesifisere headerne ved hjelp av en Python-tabell, og det samme med koordinatene vi sender ved som parametere. Koden for å sende forespørselen blir da seende slik ut (husk å bytte ut e-postadressen om du kopierer denne koden!):
+            Til identifikasjon kan du rett og slett bruke din private e-postadresse. E-postadressen setter vi inn i <i>headeren</i> til forespørselen vår. Headerene er en rekke indeks-verdi-par som sendes som en del av forespørselen. E-postadressen vil legges på headeren <Ic>'User-Agent'</Ic>. I tillegg skal vi eksplisitt be om å få et JSON-objekt tilbake, i motsetning til andre formater de kunne finne på å returnere. Dette gjør vi ved å sette headeren <Ic>'Accept'</Ic> til <Ic>application/json</Ic>. Vi kommer til å spesifisere headerne ved hjelp av en Python-tabell, og det samme med koordinatene vi sender ved som parametere. Koden for å sende forespørselen blir da seende slik ut (husk å bytte ut e-postadressen om du kopierer denne koden!):
 
             <CodeBlock>{`import requests
 
@@ -219,14 +220,14 @@ parametere = { 'lat': 59.913889, 'lon': 10.752222}
 respons = requests.get('https://api.met.no/weatherapi/locationforecast/2.0/compact', \\
     headers=headere, params=parametere)`}</CodeBlock>
 
-            Flott, men hvordan vet vi hva vi får i responsen? Oversikten over endepunkter inneholder et eksempel for en respons, som er et stort JSON-objekt. Det er et objekt med et <Ic>'properties'</Ic>-felt, som igjen inneholder et felt som heter <Ic>'timeseries'</Ic>, som er en liste. Denne lista inneholder værmelding for det gitte stedet for en rekke tidspunkter. Objektet som gir oss informasjon om været akkurat nå finner vi igjen i <Ic>['data']['instant']['details']</Ic>. Som et eksempel kan vi hente ut nåværende temperatur og tidspunkt for meldingen fra responsen vi fikk over ved å skrive:
+            Flott, men hvordan vet vi hva vi får i responsen? Oversikten over endepunkter inneholder et eksempel for en respons fra <Ic>/compact</Ic>-endepunktet, som er et stort JSON-objekt. Det er et objekt med et <Ic>'properties'</Ic>-felt, som igjen inneholder et felt som heter <Ic>'timeseries'</Ic> som er en liste. Denne lista inneholder værmeldinger for det gitte stedet for en rekke tidspunkter. Objektet som gir oss informasjon om været akkurat nå finner vi igjen i <Ic>['data']['instant']['details']</Ic>. Som et eksempel kan vi hente ut en temperatur og korresponderende tidspunkt fra responsen vi fikk over ved å skrive:
             <CodeBlock>{`data = respons.json()
 
-nåværende_temperatur = data['properties']['timeseries'][0]['data'] \\
+temperatur = data['properties']['timeseries'][0]['data'] \\
     ['instant']['details']['air_temperature']
 tidspunkt = data['properties']['timeseries'][0]['time']
 
-print('På tidspunktet', tidspunkt, 'var temperaturen', nåværende_temperatur, 'i Oslo')`}</CodeBlock>
+print('På tidspunktet', tidspunkt, 'var temperaturen', temperatur, 'i Oslo')`}</CodeBlock>
             
             Om alt klaffer, skal du ha fått en meldingsutskrift som ser omtrent slik ut:
             <CodeBlock>{`På tidspunktet 2021-07-11T11:00:00Z var temperaturen 22.5 i Oslo`}</CodeBlock>
