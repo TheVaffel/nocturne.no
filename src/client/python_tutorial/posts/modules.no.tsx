@@ -237,7 +237,7 @@ print('På tidspunktet', tidspunkt, 'var temperaturen', temperatur, 'i Oslo')`}<
 
             <h2>Vinduer</h2>
 
-            Vi rasker med oss en modul til: Vi tar en kjapp kikk på hvordan man kan lage vindubaserte programmer i Python. Dette gjør det mulig å lage programmer som er lettere og mer intuitive å bruke, i tillegg til at man kan presentere visuell informasjon. I dette eksempelet skal vi bruke modulen <Ic>tkinter</Ic> for å lage et vindu. Den offisielle dokumentasjonen for <Ic>tkinter</Ic> kan du finne <a href="https://docs.python.org/3/library/tkinter.html">her</a>. Dessverre vil antakeligvis dokumentasjonen være vanskelig å lese, ettersom den benytter seg mye av <i>klasser</i>, som er et Python-konsept vi ikke har sett på i denne innføringen. 
+            Vi rasker med oss en modul til: Vi tar en kjapp kikk på hvordan man kan lage vindubaserte programmer i Python. Dette gjør det mulig å lage programmer som er lettere og mer intuitive å bruke, i tillegg til at man kan presentere visuell informasjon. Det er flere moduler der ute som kan brukes for å lage vinduer, men i dette eksempelet skal vi bruke modulen <Ic>tkinter</Ic>. Den offisielle dokumentasjonen for <Ic>tkinter</Ic> kan du finne <a href="https://docs.python.org/3/library/tkinter.html">her</a>. Dessverre vil antakeligvis dokumentasjonen være vanskelig å lese, ettersom den benytter seg mye av <i>klasser</i>, som er et Python-konsept vi ikke har sett på i denne innføringen. 
             <Db />
             <Ic>tkinter</Ic> kommer ofte ferdig installert med Python. Dersom dette ikke er tilfellet for ditt oppsett, må du installere <Ic>tkinter</Ic> ved hjelp av <Ic>pip</Ic>, slik vi gjorde med <Ic>requests</Ic>-modulen over.
             <Db />
@@ -259,7 +259,7 @@ vindu.mainloop()`}</CodeBlock>
             Kjører man denne koden, får man opp et tomt vindu på skjermen. En god start!
             <Db />
             
-            La oss gjøre noen kosmetiske endringer på vinduet. Først kan vi kalle medlemsfunksjonen <Ic>title()</Ic> på vinduet med et strengargument for å gi det en tittel som vil vises på den øverste kanten av vinduet. Noen egenskaper ved vinduet kan vi også endre ved å indeksere på strenger i objektet som om det var en tabell. For å endre bakgrunnsfargen til vinduet kan vi for eksempel sette verdien på indeks <Ic>'bg'</Ic> til for eksempel <Ic>'red'</Ic>. Skrevet rett ut blir de to eksemplene over seende slik ut:
+            La oss gjøre noen kosmetiske endringer på vinduet. Først kan vi kalle medlemsfunksjonen <Ic>title()</Ic> på vinduet med et strengargument for å gi det en tittel som vil vises på den øverste kanten av vinduet. Noen egenskaper ved vinduet kan vi også endre ved å indeksere på strenger i objektet som om det var en tabell. For å for eksempel endre bakgrunnsfargen til vinduet kan vi sette verdien på indeks <Ic>'bg'</Ic> til for eksempel <Ic>'red'</Ic>. Skrevet rett ut blir de to eksemplene over seende slik ut:
             <CodeBlock>{`vindu.title('Dette er en tittel!')
 vindu['bg'] = 'red'`}</CodeBlock>
             Husk å legge disse to linjene før du kaller <Ic>mainloop</Ic>, ellers vil de ikke kjøres før etter vinduet er lukket.
@@ -270,7 +270,7 @@ vindu['bg'] = 'red'`}</CodeBlock>
             <CodeBlock>{`knapp = tk.Button(vindu)`}</CodeBlock>
             Dette alene er ikke nok for at knappen skal vises i vinduet. Til dét trenger vi å spesifisere <i>hvordan</i> knappen skal plasseres. Her skal vi gjøre det ved hjelp av medlemsfunksjonen <Ic>pack</Ic>. Vi kan kalle <Ic>pack</Ic> uten argumenter slik:
             <CodeBlock>{`knapp.pack()`}</CodeBlock>
-            Dette vil plassere knappen, som akkurat nå bare er en liten grå firkant, midt på toppen av vinduet. Pass på at både initialiseringen av <Ic>knapp</Ic> og <Ic>pack</Ic>-kallet må gjøres før kallet til <Ic>mainloop</Ic>.
+            Dette vil plassere knappen, som akkurat nå bare er en liten grå firkant, midt på toppen av vinduet. Pass på at både initialiseringen av <Ic>knapp</Ic> og <Ic>pack</Ic>-kallet gjøres før kallet til <Ic>mainloop</Ic>.
             <Db />
             Dersom vi vil være mer kreative med plasseringen av knappen, kan vi spesifisere hvilken av de fire sidene vi vil plassere knappen på ved hjelp av <Ic>side</Ic>-argumentet. Vi kan også legge inn mellomrom på sidene og over og under knappen henholdsvis med argumentene <Ic>padx</Ic> og <Ic>pady</Ic>. Verdien til <Ic>padx</Ic> og <Ic>pady</Ic> oppgis i antall piksler. For å plassere knappen til venstre, med litt mellomrom fra kanten, kan vi i stedet for kallet over bruke
             <CodeBlock>{`knapp.pack(side='left', padx='30')`}</CodeBlock>
@@ -312,13 +312,21 @@ vindu.mainloop()`}</CodeBlock>
 
             Vi har gått igjennom alle konseptene som er brukt i dette programmet, men det er mer sammensatt enn det meste vi har sett før. Kjør det og les koden og se om du forstår hva som skjer og hvordan det fungerer!
 
+            <h2>Litt om det å Finne ut Hvordan man Gjør Ting™</h2>
+            
+            Hvis to tok et titt på noen av dokumentasjonslenkene i denne posten, kan det hende at du allerede har mistet all lyst til å prøve å finne pakker du har lyst til å bruke, og ikke minst finne ut hvordan du bruker dem. Heldigvis er det ofte en mye enklere måte å finne svar på spørsmålene du måtte ha.
+            <Db />
+            Løsningen er rett og slett å søke etter svar på Internett. La oss ta et eksempel - i den foregånde seksjonen snakket vi ikke om hvordan vi kan endre størrelse på teksten i knappen vi lagd. Denne informasjonen er heller ikke lett tilgjengelig i dokumentasjonen. I stedet kan vi ta i bruk en søkemotor og bruke for eksempel søketeksten "tkinter button text size" og se om vi finner noen andre som har lurt på dette tidligere. I dette spesifikke eksempelet blir du kanskje ledet fram til nettsiden <a href="https://stackoverflow.com/questions/20588417/how-to-change-font-and-size-of-buttons-and-frame-in-tkinter-using-python">https://stackoverflow.com/questions/20588417/how-to-change-font-and-size-of-buttons-and-frame-in-tkinter-using-python</a>, som gir deg et eksempel på hvordan du kan sette skriftstørrelsen på knappen.
+            <Db />
+            Det er ingen skam i å finne svar på alt mulig du måtte lure på på denne måten, i stedet for å prøve å finne svar på spesifikke spørsmål i dokumentasjonen. Denne måten er som regel langt raskere og enklere enn alternativet, og er faktisk også den vanligste metoden å finne ut hvordan man utfører enkelte oppgaver selv for profesjonelle programmerer.
+
             <h2>Å stykke opp et program i moduler</h2>
 
             Helt til slutt nevner vi et annet formål med moduler:
             <Db />
             Modulkonseptet kan brukes til å stykke opp programmene dine i flere filer. Når programmet består av flere Python-filer, vil én av filene være "hovedfila" som du kjører som vanlig. De andre filene kan inneholde funksjoner og variabler som kan brukes fra hovedfila. 
             <Db />
-            For å importere andre Python-filer, la oss si <Ic>kule_funksjoner.py</Ic>, trenger du at denne fila og fila det importeres fra ligger i samme mappe. Deretter trenger du bare å skrive 
+            For å importere andre Python-filer, la oss si <Ic>kule_funksjoner.py</Ic>, trenger du at denne fila og fila det importeres inn i ligger i samme mappe. Deretter trenger du bare å skrive 
             <CodeBlock>{`import kule_funksjoner`}</CodeBlock>
             Legg merke til at vi bare skriver <Ic>kule_funksjoner</Ic> uten <Ic>.py</Ic> på slutten. Det er alt! Nå kan du bruke funksjonene fra <Ic>kule_funksjoner.py</Ic> i fila der du skrev linja over!
             <Db />
@@ -347,7 +355,10 @@ superhei.superhei(5)`}</CodeBlock>
 
             Det var et monster av en post! Uansett om du leste alt eller ikke, håper jeg du fant <i>noe</i> fornuftig i mylderet over. Generelt er dét å bruke moduler sentralt for å kunne programmere. Derfor har vi prøvd å vise fram både hvordan moduler fungerer og hvordan man finner dokumentasjon. Det kan være stor forskjell i hvor enkelt det er å forstå og hvor veldokumenterte moduler er, men man blir mye mer komfortabel med å jobbe med moduler jo mer man... Jobber med moduler.
             <Db />
+            Og ikke vær redd for å benytte en søkemotor når enn du trenger det!
+            <Db />
             Som nevnt er dette bare en liten smakebit på det som finnes der ute. Det finnes moduler for alle mulige formål, så dersom du har en idé for et programmeringsprosjekt er det en stor sjanse for at du finner en modul som kan hjelpe deg!
+            <Db />
             <Db />
             Dette markerer slutten for hoveddelen av denne innføringen i Python. Vi har i prinsippet gått igjennom alt som skal til for å lage et hav av forskjellige programmer - hovedutfordringen vil være å bli mer komfortabel med språket og tenkemåten, og der er det lite annet å gjøre enn å ta tiden til hjelp. 
             <Db />
@@ -359,11 +370,11 @@ superhei.superhei(5)`}</CodeBlock>
             
             Om du ikke har noen programmeringsideer selv ennå, kan du alltids starte her! Noen av disse oppgavene vil være litt mer utfordrende enn de vi har sett tidligere, først og fremst fordi de vil kreve at du leser deg opp på dokumentasjon av andre moduler for å kunne bruke dem. Ikke føl at du må gjøre alle sammen - velg deg de du synes virker mest interessante og relevante. Og ta deg tiden du trenger - du får nok av tid til å være stresset senere.
             <Db />
-            1. Simulér et enkelt terningspill - se hvor mange ganger du får f. eks. seks på terningen av å kaste den én million ganger. Stemmer det med intuisjonen? Hvis du kan litt matematikk: Finn ut omtrent hvor stor sannsynlighet det er for å få minst 15 i sum når du kaster tre terninger ved å bruke simuleringer.
+            1. Simulér et enkelt terningspill - se hvor mange ganger du får f. eks. seks på terningen av å kaste den én million ganger. Stemmer resultatet med intuisjonen? Hvis du kan litt matematikk: Finn ut omtrent hvor stor sannsynlighet det er for å få minst 15 i sum når du kaster tre terninger ved å bruke simuleringer.
             <Db />
             2. Prøv ut <a href="https://data.ssb.no/api/v0/dataset/?lang=en">APIet til ssb.no</a> for å hente ut statistikk om noe som interesserer deg.
             <Db />
-            3. Lag en gjettelek med et vindu. Velg et tilfeldig tall med <Ic>random</Ic>-modulen og bruk <Ic>tkinter</Ic> for å lage et brukergrensesnitt med et tekstfelt og en knapp for å gjette, pluss tekst som forteller brukeren om de gjettet for høyt eller for lavt. Du kan bruke <Ic>tk.Entry()</Ic>-funksjonen for å lage innputtekstfelt og <Ic>tk.Text()</Ic> for å lage tekst som skal vises.
+            3. Lag en gjettelek med et vindu. Velg et tilfeldig tall med <Ic>random</Ic>-modulen og bruk <Ic>tkinter</Ic> for å lage et brukergrensesnitt med et tekstfelt og en knapp for å gjette, pluss tekst som forteller brukeren om de gjettet for høyt eller for lavt. Du kan bruke <Ic>tk.Entry()</Ic>-funksjonen for å lage innputtekstfelt og <Ic>tk.Text()</Ic> for å lage tekst som skal vises til brukeren.
             <Db />
             4. Dersom du interesserer deg for statistikk, kan du prøve ut <a href="https://matplotlib.org/stable/index.html">matplotlib</a> for å lage diagrammer og plott for å vise fram data! Hvis du ser i <a href="https://matplotlib.org/stable/gallery/index.html">galleriet</a> finner du mange eksempler på hva man kan lage. Om du føler deg eventyrlysten, kan du kombinere dette med utfallet av terningsimuleringen i oppgave 1 eller statistikk fra SSB fra oppgave 2.
             <Db />
