@@ -152,7 +152,7 @@ with open('updated_characters.json', 'w') as file:
             We first read the characters from the file, then go through them one by one and make sure that Snape has a friend. Then we open a new file for writing, and use <Ic>dump</Ic> to write the list with the updated object to the file.
             <Db />
             <Ic>json</Ic> is good to know about, because it simplifies storing complex information from a program and read it when running the program later to e.g. save something the user has done. But JSON files occur under other circumstances as well:
-            <Db />
+
             <h2>Web requests</h2>
 
             Internet is a weird place, but it is possible to find useful information there as well. And we can use Python to get this information! In this section we will see how we can show weather data for today at a specific place, by sending a request through the Internet.
@@ -237,6 +237,147 @@ print('At the timestamp', timestamp, 'the temperature was', temperature, 'in Osl
             The timestamp here is formatted in UTC-format. It's not too hard to read, but remember that the time will always be provided for Greenwich in England, meaning that you may need to add some number of hours to arrive at your local time.
             <Db />
             That's it! This was a very long and information-heavy section, but hopefully you got something helpful out of it. There are many web pages that provide APIs, meaning there is lots of information out there that you can make use of in your programs. It's only to fire up your favorite search engine and find out if there's an API out there containing exactly the data you want!
+
+            <h2>Window Applications</h2>
+
+            We touch upon another module while we're at it: We look at how we can create window based applications in Python. This will allow us te create programs that are easier and more intuitive to use, in addition to allowing for visual information. There are several modules out there that can be used for creating windows, but in this example we will use the module <Ic>tkinter</Ic>. The official documentation for <Ic>tkinter</Ic> can be found <a href="https://docs.python.org/3/library/tkinter.html">here</a>. Unfortunately, the documentation can be hard to read at this point because it makes use of <i>classes</i>, which are a concept we have not looked at in this tutorial.
+            <Db />
+            <Ic>tkinter</Ic> should already be installed together with Python. If this is not the case for your setup, you will have to install <Ic>tkinter</Ic> using <Ic>pip</Ic> just like we did with the <Ic>requests</Ic> module above.
+            <Db />
+            The most common way of importing <Ic>tkinter</Ic> is by writing
+            <CodeBlock>{`import tkinter as tk`}</CodeBlock>
+            When we append the <Ic>as tk</Ic> after the module name, we tell Python that we are going to use the name <Ic>tk</Ic> to refer to the module in the program. This is a bit shorter for us to write, making it somewhat more comfortable writing the program since we will refer to the module several times.
+            <Db />
+            <Ic>tkinter</Ic> contains objects and functions for constructing windows and components you can place inside them, like text and buttons. To create a window, we use
+            <CodeBlock>{`window = tk.Tk()`}</CodeBlock>
+            Notice that the function <Ic>Tk()</Ic> is capitalized. In Python, this is a convention for <i>constructors</i>, which are functions that create and return <i>instances</i> of <i>classes</i>. These are concepts we won't explain here; for our purposes, it suffices to think of constructors as normal functions that return objects.
+            <Db />
+            When we have a <Ic>Tk</Ic> object, we already have a window we can show to the screen. But if you run the above program, it will exit almost immediately without a window appearing. To show the window we ned to call the <Ic>mainloop()</Ic> member function on the <Ic>Tk</Ic> object. <Ic>mainloop()</Ic> "captures" Python, so that it doesn't read more of the code before the window is closed. Thus, an elementary window application can be written like this:
+            <CodeBlock>{`import tkinter as tk
+            
+window = tk.Tk()
+window.mainloop()`}</CodeBlock>
+
+            If you run this code, you will get a glaring empty window appearing on your screen. A good start!
+            <Db />
+            Let's make som cosmetic adjustments on the window. First, we can call the member function <Ic>title()</Ic> on the window object with a string arguments to give it a title that will be shown at the topmost edge of the window. Some properties with the window can also be changed by indexng with strings into the object as if it was a dictionary. To e.g. change the background color of the window, we can set the value at index <Ic>'bg'</Ic> to e.g. <Ic>'red'</Ic>. Written in clear text, these two examples will look like this:
+            <CodeBlock>{`window.title('This is a title!')
+window['bg'] = 'red'`}</CodeBlock>
+            Remember to put these two lines before the call to <Ic>mainloop</Ic>, otherwise they won't be run before after the window is closed.
+            <Db />
+            Let's add a button. When we create a butten, we can use the <Ic>Button</Ic> function. It takes one argument, namely the window the button is to be put into. If we continue on the program above, we can thus create the button like this: 
+            <CodeBlock>{`button = tk.Button(window)`}</CodeBlock>
+            This alone is not enough for the button to appear. For that we will need to specify <i>how</i> the button is to be placed. Here, we will do it with the help of the member function <Ic>pack</Ic>. We can call <Ic>pack</Ic> without arguments like this:
+            <CodeBlock>{`button.pack()`}</CodeBlock>
+            This will place the button, which right now is only a small gray rectangle, at the top of the window in the middle. Make sure that both the initialization of <Ic>button</Ic> and the <Ic>pack</Ic>-call happens before the call to <Ic>mainloop</Ic>.
+            <Db />
+            If we want to be more creative with the placement of the button, we can specify at which of the four sides we want the button to be placed using the <Ic>side</Ic> argument. We may also add some space on the sides and above and below the button with the arguments <Ic>padx</Ic> and <Ic>pady</Ic> respectively. The values of <Ic>padx</Ic> and <Ic>pady</Ic> is given in pixels. To place a button to the left, with some space from the edge, we can replace the <Ic>pack</Ic> call above with
+            <CodeBlock>{`button.pack(side='left', padx='30')`}</CodeBlock>
+            An empty rectangle is not very exciting. To make it more informative, we can use the <Ic>'text'</Ic> attibute. We set this attribute in the same way that we set the background color of the window above:
+            <CodeBlock>{`button['text'] = 'This is a button!'`}</CodeBlock>
+            Other attributes we can set for buttons include width and height (<Ic>'width'</Ic> and <Ic>'height'</Ic>, specified in pixels) and <Ic>'fg'</Ic> and <Ic>'bg'</Ic> to set the text color and the color of the rest of the button, respectively.
+            <Db />
+            Naturally, we usually want the button to do more than just lie there and look cute. How do we decide what happens when someone presses the button? The answer is the attribute <Ic>'command'</Ic>, whose value is a function. When the user presses the button, the function is run.
+            <Db />
+            Here, the button is coupled with a simple function:
+            <CodeBlock>{`def hey():
+    print('Hello!')
+    
+button['command'] = hey`}</CodeBlock>
+            Note that when we set the <Ic>'command'</Ic> attribute, we write <Ic>hey</Ic> and not <Ic>hey()</Ic>. This is because we want to refer to the function itself and <i>not</i> call it and refer to the return value (which in this case would have been nothing). Try adding this in the program (still before the <Ic>mainloop</Ic> call) and see for yourself that you receive some text each time you press the button!
+            <Db />
+            At last, we include a more complex example where we use what we have seen in this section combined with the <Ic>random</Ic> module:
+
+            <CodeBlock>{`from random import randint
+import tkinter as tk
+
+window = tk.Tk()
+
+button = tk.Button(window)
+button['text'] = 'Change color'
+
+def change_color():
+    colors = ['red', 'blue', 'yellow', 'green', 'brown', 'black', 'white', 'gray', 'turquoise']
+
+    last_index = len(colors) - 1
+    chosen_index = randint(0, last_index)
+    chosen_color = colors[chosen_index]
+    window['bg'] = chosen_color
+
+button['command'] = change_color
+button.pack(side='top', pady=40)
+
+window.mainloop()`}</CodeBlock>
+
+            We have already gone through all the concepts we have used in this program, but it is more complex than most of what we've seen before. Run it and read the code and see if you can understand how it works!
+            
+            <h2>A Note on Figuring out How to Do Stuff™</h2>
+
+            If you've taken a look at the documentation links provided in this post, there is a chance you already feel discouraged from going out in the wild and trying to figure out what packages you want to use and how to use them. Luckily, in this day and age, there is often an easier approach.
+            <Db />
+            That approach is simply to search for the answer on the Internet. To take a specific example - we have not yet mentioned how to change the size of the text in the button we created above. Also, the documentation does not seem to have that information easily available. Instead, we can use the search term "tkinter button text size" in any search engine, and see if someone has wondered about how to this before. In this specific example, you may e.g. be shown to the web page <a href="https://stackoverflow.com/questions/20588417/how-to-change-font-and-size-of-buttons-and-frame-in-tkinter-using-python">https://stackoverflow.com/questions/20588417/how-to-change-font-and-size-of-buttons-and-frame-in-tkinter-using-python</a>, which gives you an example of how to set the font size.
+            <Db />
+            There is no shame in searching for the answer directly like this rather than reading the documentation trying to find exactly what you want. This is usually much quicker and easier than the alternative, and is in fact the most common way of finding out what to do even for experienced programmers.
+            
+            <h2>Dividing a Program into Modules</h2>
+
+            At the brink of this post, we mention another use for the module concept:
+            <Db />
+            The module concept can be used to divide your program into several files. When the program consists of multiple Python files, one of them will be the "main file" which is run as normal. The other files can contain functions and variables that can be used from the main file.
+            <Db />
+            To import other Python files, say <Ic>cool_functions.py</Ic>, you will need that this file and the file you are importing into, reside in the same folder. Then you only need to write
+            <CodeBlock>{`import cool_functions`}</CodeBlock>
+            Notice that we only write <Ic>cool_functions</Ic> without the <Ic>.py</Ic> at the end. That's all! Now you can use the functions defined in <Ic>cool_functions.py</Ic> inside the file where you wrote the above line!
+            <Db />
+            You may also import files into other files than the main one. If e.g. you have a file that is called <Ic>hey.py</Ic> that contains a function:
+            <CodeBlock>{`def say_hi():
+    print('Hi?')`}</CodeBlock>
+            
+            And another file called <Ic>superhey.py</Ic> containing
+            <CodeBlock>{`import hey
+
+def superhey(number):
+    for i in range(number):
+        hey.say_hi()`}</CodeBlock>
+
+            , then you can create a main file, say <Ic>main.py</Ic> that looks like this:
+            <CodeBlock>{`import superhey
+
+superhey.superhey(5)`}</CodeBlock>
+            
+            Which writes a confused greeting to the screen five times.
+
+            <Db />
+            Splitting your programs into several files is probably not something you need to think about currently. It is only when your code is becoming increasingly large and hard to handle that you can start thinking of categorizing it into several files to make it easier to work with.
+
+            <h2>Summary</h2>
+
+            That was a bit of a monster post! Whether you read everything or not, I hope you found <i>something</i> reasonable in the myriad above. Generally, using modules is central to the practice of programming. That's why we have tried to both show how modules work and how you can find documentation. It might be a large difference in how easy they are to understand and how well documented different modules are, but you become more comfortable with working with modules the more you... Work with modules. 
+            <Db />
+            And don't be afraid of firing up a search engine whenever you need it!
+            <Db />
+            As already mentioned, this is only a small taste of what's out there. There are modules for all kinds of purposes, so if you have an idea for a programming project, there is a large chance that there exist modules that can help you out!
+            <Db />
+            <Db />
+            This marks the end of the main part of this Python tutorial. In principle, we have gone through everything you need for creating a plethora of different programs - the main challenge that remains is to be more comfortable with the language and the way of thinking, and in that manner, there's little else to do than keeping at it.
+            <Db />
+            After this one, there will be at least one bonus post where we walk through a specific project and show how you can go from an idea to a simple program by using what we've learnt up to this point.
+            <Db />
+            The author of this blog hopes that you have found something useful while reading this series and that it has been educational, interesting and even fun? In either case, I hope that your programming adventure doesn't stop here, but that you use your newfound knowledge to explore further and use coding to create something that helps you or that you can be proud of!
+
+            <h2>Exercises</h2>
+
+            If you don't have any programming ideas on your own yet, you might as well start here! Some of these exercises will be more challenging than the ones we've seen earlier, first and foremost because they require that you read up on documentation for other modules in orderd to use them. Don't feel pressured to do all of them - choose the ones that seem the most interesting and relevant. And take your time - there will probably be enough time later on to feel stressed.
+            <Db />
+            1. Simulate a simple dice game - see how many times you get e.g. six eyes when throwing the die one million times. Does the result fit with your intuition? If you know some mathematics: Find out approximately how large the chance of getting a sum of at least 15 when throwing three dice - by using simulations.
+            <Db />
+            2. Try <a href="https://data.ssb.no/api/v0/dataset/?lang=en">APIet til ssb.no, the Norwegian Statistics Bureau</a> to fetch statistics about something that interests you.
+            <Db />
+            3. Create a guessing game with a window. Choose a random number with the <Ic>random</Ic> module and use <Ic>tkinter</Ic> for creating a user interface with a text field and a button for guessing, and some text telling the user whether they guessed too high or too low. You can use the <Ic>tk.Entry()</Ic> function to create an input text field and <Ic>tk.Text()</Ic> to create text that will be shown to the user.
+            <Db />
+            4. If you are interested in statistics, you can try out <a href="https://matplotlib.org/stable/index.html">matplotlib</a> for creating diagrams and plots to visualize data! If you look at  <a href="https://matplotlib.org/stable/gallery/index.html">the gallery</a>, you can find many examples of what to create. If you feel extra adventorous, you can try combining this with the results from the dice simulation in exercise 1 or the statistics from exercise 2.
+            <Db />
+            5. Use the <a href="https://docs.python.org/3/library/turtle.html#module-turtle">turtle module</a> to create some interesting drawings!
         </PostWrapper>
     </>
 );
