@@ -36,6 +36,8 @@ const DebuggingNo = (props: TutorialPostProps) => (
 SyntaxError: invalid syntax`}</CodeBlock>
 
             Her har den lagt inn en liten pil (<Ic>{`^`}</Ic>) som forteller nøyktig hvor på linja det ble funnet en feil. Pass på at denne pila kan være misvisende, den sier bare hvor Python fant ut at noe var galt, og ikke hvor du eventuelt må endre koden for å fikse problemet. Dette gjelder spesielt for parantesfeil, hvor Python ofte vil klage på linjen <i>etter</i> der den faktiske feilen ligger. Hvis du får beskjed om en syntaksfeil, men ikke klarer å se hva som er galt, er det en stor sjanse for at det er den forrige linja som inneholder det faktiske problemet.
+            <Db />
+            Mye av flisespikkeriet til Python kan virke direkte unødvendig - ofte burde det være opplagt hva du mente å skrive når du for eksempel mangler en parantes på slutten av en linje. Grunnen til at Python likevel klager, er at Python krever at programmet må være fullstendig <i>utvetydig</i> for å kunne kjøre det. Dette er ikke for å irritere programmereren, men heller det stikk motsatte. Programmereren skal ha full kontroll over hva programmet gjør, og skal være ansvarlig for alt som står der. Hvis Python begynner å fylle inn eller korrigere koden din, er det fort gjort at den gjør noe programmereren hverken ber om eller vil at Python skal gjøre. 
             
             <h2>Kjøretidsfeil</h2>
 
@@ -75,17 +77,57 @@ ValueError: invalid literal for int() with base 10: 'tretten'`}</CodeBlock>
 
             <h3>Debuggere</h3>
 
-            En del mer avanserte editorer har innebydge <i>debuggere</i>. Debuggere er systemer som lar deg legge inn "pausepunkter" (engelsk: <b>break points</b>) på noen linjer koden for å stoppe det når linjen kjøres, og lar deg inspisere alle variablene som er definert på dét tidspunktet. I praksis er dette en litt mer rett-fram måte å finne ut hvordan programmet arbeider enn <Ic>print</Ic>-feilsøking, men kan kreve litt mer oppsett for å fungere.
+            En del mer avanserte editorer har ofte innebydge <i>debuggere</i>. Debuggere er systemer som lar deg legge inn "pausepunkter" (engelsk: <b>break points</b>) på noen linjer koden for å stoppe det når linjen kjøres, og lar deg inspisere alle variablene som er definert på dét tidspunktet. I praksis er dette en litt mer rett-fram måte å finne ut hvordan programmet arbeider enn <Ic>print</Ic>-feilsøking, men kan kreve litt mer oppsett for å fungere.
 
             <h3>Gummiandfeilsøking</h3>
 
-            Hent en gummiand og sett den på bordet foran deg. Gå deretter gjennom koden steg for steg og forklar gummianden hva koden gjør til gummianden. Ofte vil du til slutt komme til et sted i koden der du innser at koden ikke gjør det du vil den skal gjøre. På dette tidspunktet gjør du endringer i koden og kjører på nytt. Hold på slik til programmet gjør akkurat det du forventer at det skal gjøre. Husk å takke gummianden for tålmodigheten etterpå!
+            Hent en gummiand og sett den på bordet foran deg. Gå deretter gjennom koden steg for steg og forklar gummianden hva koden gjør. Ofte vil du til slutt komme til et sted i koden der du innser at koden ikke gjør det du vil den skal gjøre. På dette tidspunktet gjør du endringer i koden og kjører på nytt. Hold på slik til programmet gjør akkurat det du forventer at det skal gjøre. Husk å takke gummianden for tålmodigheten etterpå!
             <Db />
-            Du har kanskje allerede gjettet at det ikke er gummianden som er det viktige her, selv om denne feilsøkingmetoden heter <i>gummiandfeilsøking</i> (engelsk: <i>rubber duck debugging</i>). Denne metoden er overraskende effektiv, men kan være treig for større programmer. (TODO: Egner seg for komplisert matematisk logikk, uviss forventning, avanserte brukere).
+            Du har kanskje allerede gjettet at det ikke er gummianden som er det viktige her, selv om denne feilsøkingmetoden heter <i>gummiandfeilsøking</i> (engelsk: <i>rubber duck debugging</i>). I praksis kan man bruke andre gjenstander eller personer. 
+            <Db />
+            Denne prosessen tvinger deg til å tenke gjennom hva koden faktisk gjør, og sammenligne det med hva du vil den skal gjøre. Det gjør at gummiandfeilsøking er overraskende effektivt, men kan ta mye tid dersom det er mye kode du må gå igjennom. Denne metoden er først og fremst nyttig i situasjoner der du ikke har en god følelse for hvilken tilstand programmet skal ha på forskjellige tidspunkter, eller du kanskje ikke har mulighet til å gjenskape feilen du fikk på noen enkel måte. Dette gjelder spesielt for kompliserte programmer, ofte med mange matematiske operasjoner som det er vanskelig å studere på en intuitiv måte. Derfor kommer du sannsynligvis ikke til å trenge å benytte deg av gummiandmetoden med det første, men den kan være lur å kjenne til.
+
+            <Db />
+
+            Utover disse feilsøkingsmetodene er det i grunn bare fantasien som setter grenser! Noen ganger kan spesielle innputt gjøre feilen lettere å finne, andre ganger kan det lønne seg å kode programmet til å krasje et sted i koden dersom en bestemt betingelse er oppfylt - antakeligvis finnes det helt spesielle effektive måter å finne feilene i koden din for akkurat det programmet du har laget, så ikke vær redd for å tenke utenfor boksen!
+            
+            <h2>Utvikling i praksis</h2>
+                
+            På slutten av denne korte posten snakker vi litt om hvordan man jobber med kode i praksis.
+
+            <h3>Utviklingsprosess</h3>
+
+            Dette kan virke som ren svada, men vi tar uansett med en kort seksjon om hvordan man generelt lager programmer. Her følger en frynsete beskrivelse av hvordan et program ofte blir til i praksis:
+
+            <Db />
+            Det starter som en idé om hva du vil lage. Hvis du følger denne serien, vil du få eksempler på "ideer" servert på sølvfat i oppgaveseksjonen i hver post - men ideene kan naturligvis komme fra deg selv også.
+            <Db />
+            
+            Det neste steget er å planlegge strukturen til programmet. Dette innebærer å se de store linjene - finne ut hvilke steg programmet i grove trekk må igjennom for å realisere ideen. Du trenger ikke å tenke konkret på kode i dette steget, bare tenke på de overordnede delene av programmet, som for et enkelt program kan være for eksempel innputt, utregning og utputt. Denne delen er ikke veldig relevant i oppgavene du gjør i starten, men vil komme mer og mer til nytte når programmene blir større og mer sammensatte. Da blir det også lettere og gir mer mening å tenke på det som en rekke større og mer omfattende steg. 
+            <Db />
+            Omsider kommer <i>implementasjonssteget</i>, hvor du koder (implementerer) selve programmet. Dette steget er vanligvis det mest tidkrevende. Noen ganger er det fordi det er mye kode som må skrives, andre ganger (og spesielt i starten), er det fordi det dukker opp feil i koden som kan ta tid å rette opp i. Ikke vær redd om du føler du bruker mye av tiden din på feilsøking, det er ikke uvanlig at majoriteten av tiden går til nettopp det.
+            <Db />
+            Etter at koden er ferdig implementert og programmet fungerer som det skal, er du, i de enkleste tilfellene, ferdig. I praksis, derimot, pågår utviklingen ofte lenge etter at programmet er i kjørbar tilstand. Denne utviklingen dreier seg ofte både om å legge inn ny funksjonalitet, samt å fikse eventuelle feil som blir oppdaget mens programmet er i bruk. Vi kan kalle denne delen <i>vedlikeholdssteget</i>. I industrien er dette antakeligvis det steget det jevnt over brukes mest tid på. For selskaper som lager programvare med en viss funksjonalitet, vil det nemlig ofte lønne seg å legge til ny funksjonalitet i samme programvare, enn å starte på en ny en. Dette er også en viktig grunn til at det lønner seg å skrive kode som er <i>lesbar</i>, noe vi kommer til å snakke mer om i senere poster.
+
+            <h3>Tips og triks</h3>
+
+            Helt avslutningsvis kommer vi med noen uformelle tips som kan være til stor hjelp når du tar fatt på programmering framover.
+
+            <Db />
+
+            For det første: Det er ingen skam i å søke etter svar på Internett. Faktisk gjør mange profesjonelle programmerere dette en stor del av tiden, rett og slett fordi det er omtrent umulig å ha oversikt over alt som er relevant innenfor prosjektet man jobber på. 
+            
+            <Db />
+            Hvis du har lyst til å gjøre en veldig spesifikk operasjon, men er usikker på hvordan man skriver det i Python, kan du bare formulere det som et spørsmål og bruke spørsmålet som søketekst. Hvis du får en feilmelding når du kjører et program, kan du bruke hele feilmeldingen som søketekst for å finne stoff fra folk som har støtt på det samme problemet. Mange programmeringsrelaterte spørsmål blir besvart på <a href="stackoverflow.com">StackOverflow.com</a>, som er en spørsmål/svar-side rettet først og fremst mot programmerere. Det er vanlig å ende opp her etter et søk med en normal søkemotor. 
+            <Db />
+            Merk at de aller fleste programmeringsressurser på nettet er på engelsk, som betyr at det vil lønne seg å bruke engelsk søketekst.
+            
+            <Db />
+            Utover dét er det viktigste å ikke miste tålmodigheten. Det kan fort skje at du bruker lang tid på feil som virker helt opplagte i ettertid. Ikke bli nedbrutt om det skulle skje med deg, slike flaue øyeblikk er vanlige, selv for erfarne programmerere. 
+
+            <h2>Oppsummering</h2>
 
 
-            <Db />
-            Mye av flisespikkeriet til Python kan virke direkte unødvendig - ofte burde det være opplagt hva du mente å skrive når du for eksempel mangler en parantes på slutten av en linje. Grunnen til at Python likevel klager, er at Python krever at programmet må være fullstendig <i>utvetydig</i> for å kunne kjøre det. Dette er ikke for å irritere programmereren, men heller det stikk motsatte. Programmereren skal ha full kontroll over hva programmet gjør, og skal være ansvarlig for alt som står der. Hvis Python begynner å fylle inn eller korrigere 
         </PostWrapper>
     </>
 );
