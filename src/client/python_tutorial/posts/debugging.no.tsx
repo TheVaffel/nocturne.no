@@ -59,7 +59,31 @@ ValueError: invalid literal for int() with base 10: 'tretten'`}</CodeBlock>
             
             <h2>Logiske feil</h2>
 
+            Til slutt har vi <i>logiske</i> feil. En logisk feil er rett og slett at programmet ditt gjør noe annet enn du vil det skal gjøre. Dette kommer som regel til syne i utputtet fra programmet - enten fordi programmet skriver mer, mindre eller bare noe annet enn det du forventet. Det sier dessverre lite om hvor roten til feilen ligger - feilen kan ligge nær starten av programmet selv om effekten av den bare er synlig på slutten.
+            <Db />
+             Denne typen feil kan ikke Python hjelpe deg med å oppdage eller stedfeste - ettersom Python bare har gjort akkurat det koden din sier, som ikke nødvendigvis er det samme som det du ville koden skulle si. Det er fullstendig opp til deg selv å se om programmet ditt gjør det du forventer, og finne ut av årsaken til at den eventuelt ikke gjør det.
+            <Db />
+            I praksis er det denne typen feil som tar mest tid å finne og rydde opp i, og de blir vanligere og vanskeligere å oppdage/fikse jo mer kompleks koden din blir. Prosessen med å finne feil - og da først og fremst logiske feil - er det vi kaller <i>feilsøking</i> (engelsk: <b>debugging</b>, fjerning av bugs). Hvordan man lettest feilsøker problemer med programmet, kommer helt an på hva slags feil det er snakk om, men det finnes et par generelle måter man kan bruke i de aller fleste tilfeller.
+
+            <h3><Ic>print</Ic>-feilsøking</h3>
             
+            <Ic>print</Ic>-feilsøking er en forholdsvis usofistikert metode hvor man takler feilen ved å legge inn flere <Ic>print</Ic>-kall på forskjellige steder i programmet for å se hvilke deler som kjøres, og for å se hvilke verdier forskjellige variabler har på forskjellige tidspunkter. Denne metoden er enkel, men ofte svært effektiv. Ofte har vi nemlig en formening om hva programmet skal gjøre og hva forskjellige variabler skal inneholde på forskjellige punkter i koden, noe som gjør at det er lett å oppdage når noe ikke stemmer når vi skriver hva programmet gjør til skjerm mens det kjøres. 
+
+            <Db /> 
+
+            For mange er <Ic>print</Ic>-feilsøking den foretrukne feilsøke-metoden, og det er en metode vi anbefaler å bruke når du først begynner å snuble i logiske feil.
+
+            <h3>Debuggere</h3>
+
+            En del mer avanserte editorer har innebydge <i>debuggere</i>. Debuggere er systemer som lar deg legge inn "pausepunkter" (engelsk: <b>break points</b>) på noen linjer koden for å stoppe det når linjen kjøres, og lar deg inspisere alle variablene som er definert på dét tidspunktet. I praksis er dette en litt mer rett-fram måte å finne ut hvordan programmet arbeider enn <Ic>print</Ic>-feilsøking, men kan kreve litt mer oppsett for å fungere.
+
+            <h3>Gummiandfeilsøking</h3>
+
+            Hent en gummiand og sett den på bordet foran deg. Gå deretter gjennom koden steg for steg og forklar gummianden hva koden gjør til gummianden. Ofte vil du til slutt komme til et sted i koden der du innser at koden ikke gjør det du vil den skal gjøre. På dette tidspunktet gjør du endringer i koden og kjører på nytt. Hold på slik til programmet gjør akkurat det du forventer at det skal gjøre. Husk å takke gummianden for tålmodigheten etterpå!
+            <Db />
+            Du har kanskje allerede gjettet at det ikke er gummianden som er det viktige her, selv om denne feilsøkingmetoden heter <i>gummiandfeilsøking</i> (engelsk: <i>rubber duck debugging</i>). Denne metoden er overraskende effektiv, men kan være treig for større programmer. (TODO: Egner seg for komplisert matematisk logikk, uviss forventning, avanserte brukere).
+
+
             <Db />
             Mye av flisespikkeriet til Python kan virke direkte unødvendig - ofte burde det være opplagt hva du mente å skrive når du for eksempel mangler en parantes på slutten av en linje. Grunnen til at Python likevel klager, er at Python krever at programmet må være fullstendig <i>utvetydig</i> for å kunne kjøre det. Dette er ikke for å irritere programmereren, men heller det stikk motsatte. Programmereren skal ha full kontroll over hva programmet gjør, og skal være ansvarlig for alt som står der. Hvis Python begynner å fylle inn eller korrigere 
         </PostWrapper>
