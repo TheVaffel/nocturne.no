@@ -328,9 +328,8 @@ else:
     dette er noe som er nyttig å ha en god forståelse av, både for videre lesing i denne bloggen, men også 
     for programmering generelt. 
     <Db />
-    Neste post vil ta for seg løkker, som også er et viktig konsept innen programmering. Det er
-    først når vi utforsker løkker at den virkelige kraften som ligger i programmering begynner å åpenbare seg.
 
+    Nå som du har fått en vag følelse av hva programmering er, kan vi ta et skritt tilbake og snakke om programmering i praksis. Det er dette som er temaet for neste post. Før du tar fatt på den, håper vi du tar deg tid til å prøve deg på i hvertfall <i>noen</i> av oppgavene under for å stille best mulig forberedt.
 
     <h2>Oppgaver</h2>
     Nå som vi har lært litt forskjellige programmeringskonsepter, kan du allerede
