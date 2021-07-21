@@ -30,7 +30,7 @@ const LoopsNo = (props: TutorialPostProps) => (
     </CodeBlock>
     
     Den starter med en linje som begynner med <Ic>while</Ic> fulgt av en betingelse, og med et kolon på slutten. Deretter følger 
-    en innrykket blokk, akkurat som i hvis-setningen vi så på i forrige post.
+    en innrykket blokk, akkurat som i hvis-setningen vi så på i posten om betingelser.
     <Db />
     <Ic>while</Ic>-løkken blir kjørt som følger: Når Python kommer til linjen som begynner på <Ic>while</Ic>, sjekker den om 
     betingelsen er sann. Hvis den er sann, kjører Python gjennom koden i løkkeblokken. Etter at den har nådd slutten 
