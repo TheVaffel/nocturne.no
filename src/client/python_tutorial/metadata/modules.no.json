@@ -1,10 +1,10 @@
 {
-	"index": 9,
+	"index": 10,
 	"title": "Moduler",
 	"description": "Vi avslutter hoveddelen av denne innføringen med å se på hva moduler er og hva som rører seg der ute",
 	"createDate": 1626376049473,
 	"updateDate": 1626603118467,
 	"hash": "4d9b86df9f5d3c58af6196b8b0cae02f",
 	"fileName": "modules.no.tsx",
-	"urlPath": "modules.no"
+	"urlPath": "moduler"
 }

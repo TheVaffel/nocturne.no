@@ -3,8 +3,8 @@
 	"title": "Brukerinteraksjon og betingelser",
 	"description": "Vi ser på hvordan vi kan lage programmer som interagerer med brukeren, og hvordan vi kan bruke betingelser for å bestemme hvilken del av koden som skal kjøres og ikke",
 	"createDate": 1618748415317,
-	"updateDate": 1620412033971,
-	"hash": "644147e64c23508e3f31c0c427eb2344",
+	"updateDate": 1626897388362,
+	"hash": "134bcad57284fdf1ca543f0fb09f66b6",
 	"fileName": "user_interaction_and_conditions.no.tsx",
 	"urlPath": "brukerinteraksjon_og_betingelser"
 }
