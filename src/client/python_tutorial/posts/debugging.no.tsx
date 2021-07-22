@@ -9,19 +9,19 @@ import { Ic, CodeBlock } from '../../common/code_format.tsx';
 const DebuggingNo = (props: TutorialPostProps) => (
     <>
         <PostWrapper metadata={props.metadata} >
-            Før vi hopper videre på å introdusere flere Python-konsepter, skal vi sette av litt tid til å snakke om selve utviklingsprosessen i praksis. Deretter skal vi se på noe som garantert vil komme til nytte når du jobber med oppgaver senere i denne serien, nemlig feilsøking.
+            Før vi hopper videre på å introdusere flere Python-konsepter, skal vi sette av litt tid til å snakke om selve utviklingsprosessen i praksis. Deretter skal vi se på noe som garantert vil komme til nytte når du jobber med oppgaver senere i denne serien og når du lager dine egne programmer, nemlig feilsøking.
             
             <h2>Utvikling i praksis</h2>
                 
-            Dette kan virke som ren svada, men vi tar uansett med en kort seksjon om hvordan man generelt lager programmer. Her følger en frynsete beskrivelse av hvordan et program ofte blir til i praksis:
+            Dette kan virke som ren svada for noen, men vi tar uansett med en kort seksjon om hvordan man generelt lager programmer. Her følger en frynsete beskrivelse av hvordan et program ofte blir til i praksis:
 
             <Db />
-            Det starter som en idé om hva du vil lage. Hvis du følger denne serien, vil du få eksempler på "ideer" servert på sølvfat i oppgaveseksjonen i hver post - men ideene kan naturligvis komme fra deg selv også.
+            Det starter som en idé om hva du vil lage. Hvis du følger denne serien, vil du få eksempler på "ideer" servert på sølvfat i oppgaveseksjonen i hver post - men ideene kan naturligvis komme fra overalt, også deg selv.
             <Db />
             
-            Det neste steget er å planlegge strukturen til programmet. Dette innebærer å se de store linjene - finne ut hvilke steg programmet i grove trekk må igjennom for å realisere ideen. Du trenger ikke å tenke konkret på kode i dette steget, bare tenke på de overordnede delene av programmet, som for et enkelt program kan være for eksempel innputt, utregning og utputt. Denne delen er ikke veldig relevant i oppgavene du gjør i starten, men vil komme mer og mer til nytte når programmene blir større og mer sammensatte. Da blir det også lettere og gir mer mening å tenke på det som en rekke større og mer omfattende steg. 
+            Det neste steget er å planlegge strukturen til programmet. Dette innebærer å se de store linjene - finne ut hvilke steg programmet i grove trekk må igjennom for å realisere ideen. Du trenger ikke å tenke konkret på kode i dette steget, bare fokusere på de overordnede delene av programmet, som for et enkelt program kan være for eksempel innputt, utregning og utputt. Denne delen er ikke veldig relevant i oppgavene du gjør i starten, men vil komme mer og mer til nytte når programmene blir større og mer sammensatte. Da blir det også lettere og gir mer mening å tenke på det som en rekke større og mer omfattende steg. 
             <Db />
-            Omsider kommer <i>implementasjonssteget</i>, hvor du koder (implementerer) selve programmet. Dette steget er vanligvis det mest tidkrevende. Noen ganger er det fordi det er mye kode som må skrives, andre ganger (og spesielt i starten), er det fordi det dukker opp feil i koden som kan ta tid å rette opp i. Ikke vær redd om du føler du bruker mye av tiden din på å ordne opp i feil, det er ikke uvanlig at majoriteten av tiden går til nettopp det.
+            Omsider kommer <i>implementasjonssteget</i>, hvor du koder (implementerer) selve programmet. Dette steget kan være svært tidkrevende. Noen ganger er det fordi det er mye kode som må skrives, andre ganger (og spesielt i starten), er det fordi det dukker opp feil i koden som kan ta tid å rette opp i. Ikke vær redd om du føler du bruker mye av tiden din på å ordne opp i feil, det er ikke uvanlig at majoriteten av tiden går til nettopp det.
             <Db />
             Etter at koden er ferdig implementert og programmet fungerer som det skal, er du, i de enkleste tilfellene, ferdig. I praksis, derimot, pågår utviklingen ofte lenge etter at programmet er i kjørbar tilstand. Denne utviklingen dreier seg ofte både om å legge inn ny funksjonalitet, samt å fikse eventuelle feil som blir oppdaget mens programmet er i bruk. Vi kan kalle denne delen <i>vedlikeholdssteget</i>. I industrien er dette antakeligvis det steget det jevnt over brukes mest tid på. For selskaper som lager programvare med en viss funksjonalitet, gir det nemlig ofte mer mening å legge til ny funksjonalitet (for å f. eks. møte forespørsler fra markedet) i samme programvare, enn å starte på en ny en. Dette er også en viktig grunn til at det lønner seg å skrive kode som er <i>lesbar</i>, noe vi kommer til å snakke mer om i senere poster.
             
@@ -32,14 +32,14 @@ const DebuggingNo = (props: TutorialPostProps) => (
 
             Hvis du prøvde deg på oppgavene på slutten av forrige post, har du kanskje allerede oppdaget hvor nøye man må være når man skriver for at Python skal godkjenne programmet vårt og kjøre det. Det er flere forskjellige typer feil man kan støte borti i programmet sitt. Vi snakker om hver av dem her og kommer med framgangsmåter og tips for å håndtere dem når du koder.
             <Db />
-            Vi deler forskjellige programfeil inn i tre kategorier:
+            I denne posten deler vi forskjellige programfeil inn i tre kategorier:
             <ul>
                 <li>Syntaksfeil</li>
                 <li>Kjøretidsfeil</li>
                 <li>Logiske feil</li>
             </ul>
 
-            Fordi du i likhet med alle andre programmerere er et feilbarlig menneske, Er sjansen stor for at du vil møte på alle disse feilene før eller senere. I de kommende seksjonene skal vi diskutere hver av dem, hva som kjennetegner dem, og hva man eventuelt kan gjøre for å takle dem.
+            Fordi du i likhet med alle andre programmerere er et feilbarlig menneske, er sjansen stor for at du vil møte på alle disse feilene før eller senere. I de kommende seksjonene skal vi diskutere hver av dem, hva som kjennetegner dem, og hva man eventuelt kan gjøre for å takle dem.
 
             <h3>Syntaksfeil</h3>
 
@@ -50,8 +50,8 @@ const DebuggingNo = (props: TutorialPostProps) => (
             Syntaksfeil betyr at programmet ikke oppfyller de grammatiske reglene til Python. Det kan være at du mangler en avsluttende parantes, at du ikke har indentert hvis-blokken eller lignende. I disse tilfellene vil Python være grei nok til å fortelle deg hvor i filen feilen ble funnet. Hvis du for eksempel glemmer et kolon etter hvis-linja slik som dette:
             <CodeBlock>{`if 1 == 2
     print('1 er visst lik 2')`}</CodeBlock>
-            Vil Python meddele at
-            <CodeBlock>{`  File "/home/user/path/to/program/test.py", line 1
+            vil Python meddele at
+            <CodeBlock>{`  File "/home/user/lokasjon/til/program/test.py", line 1
     if 1 == 2
              ^
 SyntaxError: invalid syntax`}</CodeBlock>
