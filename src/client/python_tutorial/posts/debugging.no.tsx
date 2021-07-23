@@ -66,7 +66,7 @@ SyntaxError: invalid syntax`}</CodeBlock>
             <Db />
             Når Python krasjer programmet som følge av en kjøretidsfeil, vil den gi deg en melding som dette:
             <CodeBlock>{`Traceback (most recent call last):
-  File "/home/user/path/to/program/test.py", line 11, in <module>
+  File "/home/user/lokasjon/til/program/test.py", line 11, in <module>
     print(int('tretten'))
 ValueError: invalid literal for int() with base 10: 'tretten'`}</CodeBlock>
             
@@ -74,36 +74,39 @@ ValueError: invalid literal for int() with base 10: 'tretten'`}</CodeBlock>
             <Db />
             Det er spesielt to typer kjøretidsfeil som er vanlige å få under utvikling, som vi skal diskutere litt her. 
             <Db />
-            Den første er navnefeil, <Ic>NameError</Ic>, som betyr at det blir brukt et variabelnavn som Python ikke har sett før, i én eller annen operasjon. Får du denne feilen, betyr det nesten alltid at det er en skrivefeil i koden, kanskje noe så lite som en forveksling mellom en stor og en liten bokstav. Husk på at linjen Python peker på, kan ha variabelnavnet stavet riktig, men at variabelen ble feilstavet da den først ble definert, slik at Python ikke finner den igjen når du staver navnet riktig.
+            Den første er navnefeil, <Ic>NameError</Ic>, som betyr at det blir brukt et variabelnavn som Python ikke har fått en definisjon for, i én eller annen operasjon. Får du denne feilen, betyr det nesten alltid at det er en skrivefeil i koden, kanskje noe så lite som en forveksling mellom en stor og en liten bokstav. Husk på at linjen Python peker på, kan ha variabelnavnet stavet riktig, men at variabelen ble feilstavet da den først ble definert, slik at Python ikke finner den igjen når du staver navnet riktig.
             <Db />
-            Den andre vanlige typen kjøretidsfeil er typefeil, <Ic>TypeError</Ic>, som er når det er en uoverenstemmelse mellom typen til f. eks. en variabel du bruker, og typen som er forventet i en operasjon. Et eksempel på dette som vi allerede har sett, er når vi prøver å sette sammen en streng med et tall. Denne typen feil kommer nok til å dukke opp oftere når vi introduserer funksjoner som konsept, hvor det ofte er en implisitt forventning om hvilke typer verdier må ha. 
+            Den andre vanlige typen kjøretidsfeil er typefeil, <Ic>TypeError</Ic>, som er når det er en uoverenstemmelse mellom typen til f. eks. en variabel du bruker, og typen som er forventet i en operasjon. Et eksempel på dette som vi allerede har sett, er når vi prøver å sette sammen en streng med et tall. Denne typen feil kommer nok til å dukke opp oftere når vi introduserer funksjonskonseptet, hvor det ofte er en implisitt forventning om hvilke typer verdier må ha. 
             <Db />
             I de fleste tilfeller kan typefeil fikses ved å konvertere en verdi til riktig type, mens det andre ganger kan hende du innser at det trengs en større revurdering av koden.
             <Db />
             I mange andre språk fanges både navnefeil og typefeil opp <i>før</i> kjøringen av koden. Årsaken til at dette ikke skjer i Python, er at vi ikke kan ha oversikt over hvilke variabler som er definert og ikke i et spesielt område i koden, og heller ikke hvilke typer de har, uten å kjøre koden. Språk som har strengere regler for variabeldefinisjoner og bruk (f. eks. C++, Java og Rust, for å nevne noen få) kan dedusere slike ting fra koden uten å måtte kjøre den.
             <Db />
 
-            Det er mulig å forutse og skrive kode for åhåndtere slike feil og hindre at programmet stopper, noe vi ser vi på i en senere post.
+            Det er mulig å forutse og skrive kode for å håndtere slike feil og hindre at programmet stopper, noe vi ser vi på i en senere post.
 
             <h3>Logiske feil</h3>
 
-            Til slutt har vi <i>logiske</i> feil. En logisk feil er rett og slett at programmet ditt gjør noe annet enn du vil det skal gjøre. Dette kommer som regel til syne i utputtet fra programmet - enten fordi programmet skriver mer, mindre eller bare noe annet enn det du forventet. Det sier dessverre lite om hvor roten til feilen ligger - feilen kan ligge nær starten av programmet selv om effekten av den bare er synlig på slutten.
+            Til slutt har vi <i>logiske</i> feil. En logisk feil er rett og slett at programmet ditt gjør noe annet enn du vil det skal gjøre. Dette kommer som regel til syne i utputtet fra programmet - enten fordi programmet skriver mer, mindre eller bare noe annet enn det du forventet. Det sier dessverre lite om hvor roten til feilen ligger - feilen kan ligge nær starten av programmet selv om effekten av den bare er synlig på slutten. 
             <Db />
-             Denne typen feil kan ikke Python hjelpe deg med å oppdage eller stedfeste - ettersom Python bare har gjort akkurat det koden din sier, som ikke nødvendigvis er det samme som det du ville koden skulle si. Det er fullstendig opp til deg selv å se om programmet ditt gjør det du forventer, og finne ut av årsaken til at den eventuelt ikke gjør det.
+            Logiske feil er det vi ofte kaller <i>bugs</i>.
+            <Db />
+            Denne typen feil kan ikke Python hjelpe deg med å oppdage eller stedfeste - ettersom Python bare har gjort akkurat det koden din sier, som ikke nødvendigvis er det samme som det du ville koden skulle si. Det er fullstendig opp til deg selv å se om programmet ditt gjør det du forventer, og finne ut av årsaken til at den eventuelt ikke gjør det.
             <Db />
             I praksis er det denne typen feil som tar mest tid å finne og rydde opp i, og de blir vanskeligere å oppdage/fikse jo mer kompleks koden din blir. Prosessen med å finne feil - og da først og fremst logiske feil - er det vi kaller <i>feilsøking</i> (engelsk: <b>debugging</b>, fjerning av bugs). Hvordan man lettest feilsøker problemer med programmet, kommer helt an på hva slags feil det er snakk om, men det finnes noen generelle måter man kan bruke i de aller fleste tilfeller.
 
             <h4><Ic>print</Ic>-feilsøking</h4>
             
-            <Ic>print</Ic>-feilsøking er en forholdsvis usofistikert metode hvor man takler feilen ved å legge inn flere <Ic>print</Ic>-kall på forskjellige steder i programmet for å se hvilke deler som kjøres, og for å se hvilke verdier forskjellige variabler har på forskjellige tidspunkter. Denne metoden er enkel, men ofte svært effektiv. Ofte har vi nemlig en formening om hva programmet skal gjøre og hva forskjellige variabler skal inneholde på forskjellige punkter i koden, noe som gjør at det er lett å oppdage når noe ikke stemmer når vi skriver hva programmet gjør til skjerm mens det kjøres. 
-
+            <Ic>print</Ic>-feilsøking er en forholdsvis usofistikert metode hvor man takler feilen ved å legge inn flere <Ic>print</Ic>-linjer på forskjellige steder i programmet for å se hvilke deler som kjøres, og for å se hvilke verdier forskjellige variabler har på forskjellige tidspunkter. Denne metoden er enkel, men ofte svært effektiv. Vanligvis har vi nemlig en formening om hva programmet skal gjøre og hva forskjellige variabler skal inneholde på forskjellige punkter i koden, noe som gjør at det er lett å oppdage når noe ikke stemmer når vi skriver hva programmet gjør til skjerm mens det kjøres. 
+            <Db />
+            Hvilke variabler og hvilke linjer i koden du burde bruke til print-linjer, er helt spesifikt for din kode. Hvis du ikke vet hvor du skal starte, prøv å <Ic>print</Ic>-e variablene som førte til det feilaktige outputtet, og jobb deg bakover derfra.
             <Db /> 
 
             For mange er <Ic>print</Ic>-feilsøking den foretrukne feilsøke-metoden, og det er en metode vi anbefaler å bruke når du først begynner å snuble i logiske feil.
 
             <h4>Debuggere</h4>
 
-            En del mer avanserte editorer har ofte innebydge <i>debuggere</i>. Debuggere er systemer som lar deg legge inn "pausepunkter" (engelsk: <b>break points</b>) på noen linjer i koden for å stoppe det når linjen kjøres, og lar deg inspisere alle variablene som er definert på dét tidspunktet. I praksis er dette en litt mer rett-fram måte å finne ut hvordan programmet arbeider enn <Ic>print</Ic>-feilsøking, men kan kreve litt mer oppsett for å fungere.
+            En del mer avanserte editorer har ofte innebydge <i>debuggere</i>. Debuggere er systemer som lar deg legge inn "pausepunkter" (engelsk: <b>break points</b>) på noen linjer i koden for å stoppe det når linjen kjøres, og lar deg inspisere alle variablene som er definert på dét tidspunktet samt verdiene deres. I praksis er dette en litt mer rett-fram måte å finne ut hvordan programmet arbeider enn <Ic>print</Ic>-feilsøking, men kan kreve mer oppsett for å fungere.
 
             <h4>Gummiandfeilsøking</h4>
 
@@ -136,7 +139,7 @@ ValueError: invalid literal for int() with base 10: 'tretten'`}</CodeBlock>
 
             <h2>Oppsummering</h2>
 
-            Vi har ikke introdusert mye nytt her, bare snakket litt om programmering i praksis. Forhåpentligvis har du allerede noen få knagger å henge litt av denne informasjonen på, men en del av stoffet blir først relevant når du begynner å lære flere konsepter utover i denne serien.
+            Vi har ikke introdusert mye nye konsepter her, bare snakket litt om programmering i praksis. Forhåpentligvis har du allerede noen få knagger å henge litt av denne informasjonen på, men en del av stoffet blir først relevant når du begynner å lære flere konsepter og lager større programmer utover i denne serien.
             <Db />
 
             Håper du er klar for å lære mer programmering! Neste post vil ta for seg løkker, som er et veldig viktig konsept innen programmering. Det er først når vi utforsker løkker at den virkelige kraften som ligger i programmering begynner å åpenbare seg.
