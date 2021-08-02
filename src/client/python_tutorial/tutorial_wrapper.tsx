@@ -12,7 +12,7 @@ import { TutorialIndexEn } from './index.en.tsx';
 export const tutorialUrlNo = "/no/introduksjon_til_python";
 export const tutorialUrlEn = "/en/introduction_to_python";
 
-export const rootTutorialUrls = [tutorialUrlNo, tutorialUrlEn];
+export const rootTutorialUrls: string[] = [tutorialUrlNo, tutorialUrlEn];
 
 export const localUrl = 'python_tutorial';
 
@@ -20,15 +20,20 @@ const outerDivColor = '#347AB4';
 const innerDivColor = '#FFCA1D';
 const backgroundColor = '#FFFFFF';
 
-const outerDivStyle: React.CSSProperties = { backgroundColor: outerDivColor, 
-    padding: '5px', 
-    paddingTop: '0px',
-    paddingBottom: '0px' };
+const backgroundDivStyle: React.CSSProperties = {
+    padding: '20px'
+};
+
+const outerDivStyle: React.CSSProperties = { 
+    backgroundColor: outerDivColor, 
+    padding: '5px' };
+
 const innerDivStyle: React.CSSProperties = { backgroundColor: innerDivColor, 
-    padding: '5px', 
-    paddingTop: '0px',
-    paddingBottom: '0px' };
-const backgroundDivStyle = { backgroundColor: backgroundColor, padding: '20px'};
+    padding: '5px' };
+
+const textBackgroundDivStyle = { 
+    backgroundColor: backgroundColor, 
+    padding: '20px'};
 
 interface MetadataMap {
     [key: string]: Metadata[];
@@ -185,9 +190,11 @@ export const TutorialWrapper = (props: {}) => {
         </Route>
     </>);
 
-    return (<div style={outerDivStyle}>
+    return (
+        <div style={backgroundDivStyle}>
+    <div style={outerDivStyle}>
         <div style={innerDivStyle}>
-            <div style={backgroundDivStyle} >
+            <div style={textBackgroundDivStyle} >
         { indexRoute }
         { (metadataLists[0].length == 0 || langIndex == -1) ? <></> : metadataLists[langIndex].map((met: Metadata) =>
             {
@@ -200,6 +207,7 @@ export const TutorialWrapper = (props: {}) => {
         }
             </div>
         </div>
+    </div>
     </div>
     );
 };
