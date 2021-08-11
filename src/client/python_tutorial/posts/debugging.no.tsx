@@ -23,10 +23,34 @@ const DebuggingNo = (props: TutorialPostProps) => (
             <Db />
             Omsider kommer <i>implementasjonssteget</i>, hvor du koder (implementerer) selve programmet. Dette steget kan være svært tidkrevende. Noen ganger er det fordi det er mye kode som må skrives, andre ganger (og spesielt i starten), er det fordi det dukker opp feil i koden som kan ta tid å rette opp i. Ikke vær redd om du føler du bruker mye av tiden din på å ordne opp i feil, det er ikke uvanlig at majoriteten av tiden går til nettopp det.
             <Db />
-            Etter at koden er ferdig implementert og programmet fungerer som det skal, er du, i de enkleste tilfellene, ferdig. I praksis, derimot, pågår utviklingen ofte lenge etter at programmet er i kjørbar tilstand. Denne utviklingen dreier seg ofte både om å legge inn ny funksjonalitet, samt å fikse eventuelle feil som blir oppdaget mens programmet er i bruk. Vi kan kalle denne delen <i>vedlikeholdssteget</i>. I industrien er dette antakeligvis det steget det jevnt over brukes mest tid på. For selskaper som lager programvare med en viss funksjonalitet, gir det nemlig ofte mer mening å legge til ny funksjonalitet (for å f. eks. møte forespørsler fra markedet) i samme programvare, enn å starte på en ny en. Dette er også en viktig grunn til at det lønner seg å skrive kode som er <i>lesbar</i>, noe vi kommer til å snakke mer om i senere poster.
+            Etter at koden er ferdig implementert og programmet fungerer som det skal, er du, i de enkleste tilfellene, ferdig. I praksis, derimot, pågår utviklingen ofte lenge etter at programmet er i kjørbar tilstand. Denne utviklingen dreier seg ofte både om å legge inn ny funksjonalitet, samt å fikse eventuelle feil som blir oppdaget mens programmet er i bruk. Vi kan kalle denne delen <i>vedlikeholdssteget</i>. I industrien er dette antakeligvis det steget det jevnt over brukes mest tid på. For selskaper som lager programvare med en viss funksjonalitet, gir det nemlig ofte mer mening å legge til ny funksjonalitet (for å f. eks. møte forespørsler fra markedet) i samme programvare, enn å starte på en ny en. Dette er også en viktig grunn til at det lønner seg å skrive kode som er <i>lesbar</i>, noe vi kommer til å snakke litt om her, og enda mer i senere poster.
             
             <Db />
-            Her kommer vi til å konsentrere oss om <i>implementasjonssteget</i>, som kommer til å være det mest tidkrevende steget i starten. Helt spesifikt skal vi se på den delen av implementasjonssteget som ofte tar lengst tid, nemlig feilsøking.
+            Av stegene nevnt over kommer vi til å konsentrere oss om <i>implementasjonssteget</i>, som kommer til å være det mest tidkrevende steget i starten. Helt spesifikt skal vi først si litt om lesbarhet, og deretter se på den delen av implementasjonssteget som oftest tar lengst tid, nemlig feilsøking.
+            
+            <h2>Lesbarhet</h2>
+            
+            <i>Lesbarhet</i> betegner rett og slett hvor lett det er for en som ikke har koden friskt i minne, å forstå hva den gjør. Lesbarhet kan virke litt unødvendig i starten, men kommer fort til hjelp både når andre skal se på koden din, når du tar en pause fra et programmeringsprosjekt og kommer tilbake etter flere dager, eller når koden er for stor til at du kan ha god oversikt over hele sulamitten samtidig. Hvor lett det er å forstå kode, kommer naturligvis an på hvor stor og komplisert den er, men det er flere ting vi kan gjøre for å sikre at lesbarheten er på et ålreit nivå selv når koden blir kompleks.
+            <Db />
+            Det første og viktigste vi kan gjøre, er å gi fornuftige navn til variablene våre. Dette innebærer først og fremst å ikke gi for korte navn, men kalle dem noe som er mest mulig deskriptivt for det de inneholder. Dette er en treningssak, og kan være vanskelig å være disiplinert på i starten. Du vil derimot takke deg selv om du har klart å begynne å bruke lengre, mer deskriptive navn når du jobber på større programmeringsprosjekter!
+            
+            <Db />
+            En annen viktig måte å sørge for lesbarhet på, er ved å splitte opp koden i logiske biter ved hjelp av <i>funksjoner</i>. Du trenger ikke å tenke på dette riktig ennå, vi skal se nærmere på funksjoner i en senere post.
+            <Db />
+            Det siste tipset til lesbarhet er å bruke <i>kommentarer</i>. Kommentarer er skrift du kan skrive hvor som helst i koden, og som ikke blir lest av Python når programmet kjøres. Med andre ord kan kommentarer brukes til å beskrive koden, dersom det trengs. 
+            <Db />
+            Kommentarer skrives som <Ic>{`# <kommentar>`}</Ic>. Når Python finner en firkant <Ic>#</Ic> på en linje, enten på starten av linjen eller etter faktisk Python-kode, vil den ignorere resten av linja etter <Ic>#</Ic>.
+            <Db />
+            For å ta et konkret eksempel, se på koden under:
+            <CodeBlock>{`if navn == 'Arne':
+    print('Hei, Erna')`}</CodeBlock>
+            Det kan hende det er åpenbart hva koden gjør her, men ikke nødvendigvis hvorfor programmereren valgte å skrive denne koden. En kommentar kan gjøre susen:
+            <CodeBlock>{`# Hvis brukeren heter Arne, reversér navnet og skriv en hilsen
+if navn == 'Arne':
+    print('Hei, Erna')`}</CodeBlock>
+            Kanskje ikke en veldig givende kode å skrive, men vi har fått et litt bedre innblikk i hva programmereren tenkte da de skrev koden, ettersom de var greie nok til å etterlate seg en kommentar.
+            <Db />
+            Et annet bruksområde for kommentarer er å deaktivere ("kommentere ut") kode som ikke er i bruk. Dette er hendig når du vil fjerne en del av koden for å bytte den ut med noe annet, men vil beholde den gamle koden i nærheten i tilfelle den nye ikke fører fram. Vi kommer ikke til å bruke mye kommentarer i postene framover, men ikke vær redd for å ta dem i bruk når du koder dine egne programmer!
 
             <h2>Feil og feilsøking</h2>
 

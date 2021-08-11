@@ -23,11 +23,35 @@ const DebuggingEn = (props: TutorialPostProps) => (
             <Db />
             Then comes the <i>implementation step</i>, where you code (implement) the program itself. This step may be very time consuming. Sometimes it will be because there is a lot of code that must be written, while other times (and especially in the beginning), it is because errors appear in the code, that may take time to straighten. Don't be afraid if you feel that you spend much of your time fixing errors, it is not uncommon that the majority of time is spent on this.
             <Db />
-            After having finished implementing the code, and the program works like it should, you are, in the simplest cases, done. In practice, however, development often continues long after the program is up and running. This development usually focusses on adding more functionality and fixing errors that are discovered while the program is in use. We may call this part the <i>maintenance step</i>. In the industry, this is probably the step where most of the time is spent. For companies creating software with some kind of functionality, it often makes sense to add more functionality (to e.g. meet demands from the market) in the same software, rather than creating an entirely new one. This is also an important reason that it pays off writing <i>readable</i> code, which we will talk more about in later posts.
+            After having finished implementing the code, and the program works like it should, you are, in the simplest cases, done. In practice, however, development often continues long after the program is up and running. This development usually focusses on adding more functionality and fixing errors that are discovered while the program is in use. We may call this part the <i>maintenance step</i>. In the industry, this is probably the step where most of the time is spent. For companies creating software with some kind of functionality, it often makes sense to add more functionality (to e.g. meet demands from the market) in the same software, rather than creating an entirely new one. This is also an important reason that it pays off writing <i>readable</i> code, which we will talk a little about here, and even more in later posts.
             <Db />
 
-            Here, we will concentrate a bit more on the <i>implementation step</i>, which will be the most laborious step in the beginning. More specifically, we will look closer at the part of the implementation step that usually takes the most time: Debugging.
+            Out of all the above stages, we will here focus on the <i>implementation step</i>, which will be the most laborious step in the beginning. More specifically, we will first discuss a bit about readability and then look closer at the part of the implementation step that usually takes the most time: Debugging.
+
+            <h2>Readability</h2>
             
+            <i>Readability</i> means how easy it is for someone who does not have the code freshly in mind, to understand what it does. Readability may seem unnecessary when you start out programming, but will be helpful both when someone else looks at your code, when you take a pause from a programming project and come back after a few days, or when the code is too big for you to have a good overview of everything at once. How easy it is to understand code, will of course depend on how big and complicated it is, but there are multiple things we can do to ensure readability even when the code is getting complex.
+            <Db />
+            The first and most important thing we can do, is to give reasonable names to our variables. This first and foremost means not to give too short names, but find meaningful and descriptive names for the content of the variables. This is something that becomes easier with training, and may be hard to be strict at in the beginning. You will benefit greatly from using longer, more descriptive names when you start working on larger programming projects, however.
+            <Db />
+            Another important way of gaining readability, is by splitting the code into logical parts with the help of <i>functions</i>. You don't need to think about this just yet, we will visit functions in a later post.
+            <Db />
+            The last tip for readability is to use <i>comments</i>. Comments is text that you can write in your code, which will not be read by Python when the program is run. In other words, comments can be used to describe the code, if needed.
+            <Db />
+            Comments are written as <Ic>{`# <comment>`}</Ic>. When Python3 finds a square <Ic>#</Ic> on a line, either at the beginning, or after some actual Python code, it will ignore everything written after the <Ic>#</Ic> on the line.
+            <Db />
+            To make a concrete example, have a look at the following code:
+            <CodeBlock>{`if name == 'Alice':
+    print('Hey, Ecila')`}</CodeBlock>
+
+            You may understand what the code does, but not necessarily why the programmer chose to write this code. A comment may solve the mystery:
+            <CodeBlock>{`# If the user is called Alice, reverse the name and write a greeting
+if name == 'Alice':
+    print('Hey, Ecila')`}</CodeBlock>
+            Perhaps the reason for the code seems a bit weird, but we now have a better understanding of what the programmer was thinking when they wrote the code, since they were nice enough to provide us with this comment.
+            <Db />
+            Another use for comments is to deactivate ("comment out") code that is not in use. This is useful when you want to remove some part of the code and replace it with something else, but want to keep the old code close in case the new one turns out not to work. We will not use comments much in the following posts, but don't be afraid of making use of them when coding your own programs!
+
             <h2>Bugs and Debugging</h2>
 
             If you put your newly-found skills to the test on some of the exercises in the previous post, you may already have discovered how exact you need to be when writing code in order for Python to accept and run the program. There are a multitude of different error types our program may run into. We talk about each of them here, and provide some advice on how to tackle them.
