@@ -11,9 +11,11 @@ const SiteIndex: React.FunctionComponent<{}> = () => {
     return (
         <div>
             <h2>Hi!</h2>
-            Since you're here on the home page, you're probably wondering what all the fuzz about this site is about. I'm working on figuring out that one too, so stay tuned. 
-            In the meanwhile, I'm sure you can satisfy your hunger for answers by clicking around here. 
-
+            Welcome to Nocturne.no!
+            <Db />
+            I could probably have written a few words here about what you will find on this web page, but to be honest, I think it's easier for you to find out by clicking around here on your own.
+            <Db />
+            Enjoy!
         </div>
     );
     }
