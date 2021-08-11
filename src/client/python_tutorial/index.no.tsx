@@ -9,23 +9,16 @@ import { Db } from '../common/utils.tsx';
 
 export const TutorialIndexNo = (props: {metadatas: Metadata[][]}) => (
     <div>
-        <h2>Innføring i programmering i Python</h2>
+        <h2>Innføring i programmering med Python</h2>
         <div>
-            Liker du å lære nye ting? 
+            Hei!
             <Db />
-            Det kan hende du svarer nei på spørsmålet over. I såfall håper jeg du
-            ser gjennom innleggene jeg har skrevet under, og klarer å overbevise deg
-            selv om at du tar feil.
-    
+            Dette er en innføring i programmering med programmeringsspråket Python. Målet med innføringen er å ta et menneske uten noen erfaring med programmering med på en reise hvor vi dekker grunnleggende teori og praksis innen det å programmere, med Python som førstespråk. 
             <Db />
-            Om du svarte ja, kan du bare glede deg!
-            <Db />
-            Dette er en innføring i programmering med programmeringsspråket Python.
-            Den er beregnet på nybegynnere.
+            Om dette hørtes interessant ut, kan du begynne med å lese <a href={tutorialUrlNo + '/forord'} > forordet</a> for en mer utfyllende introduksjon til denne bloggserien.
 
             <Db />
-            Om dette hørtes interessant ut, kan du begynne med å lese <a href={tutorialUrlNo + '/forord'} > forordet</a> for en mer 
-            utfyllende introduksjon til denne bloggserien.
+            Lykke til på reisen!
         </div>
 
         {
