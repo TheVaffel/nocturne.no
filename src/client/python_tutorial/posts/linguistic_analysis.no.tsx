@@ -6,7 +6,7 @@ import { PostWrapper, NoticeBlock } from '../../common/post_utils.tsx';
 import { Db } from '../../common/utils.tsx';
 import { Ic, CodeBlock } from '../../common/code_format.tsx';
 
-const FilesAndExceptionsNo = (props: TutorialPostProps) => (
+const LinguisticAnalysisNo = (props: TutorialPostProps) => (
     <>
         <PostWrapper metadata={props.metadata} >
             Hei igjen! Dette er en <i>prosjektpost</i>, som betyr at vi gjennomgår et programmeringsprosjekt for å vise hvordan du kan bruke det du har lært i de tidligere postene. På papiret har du lært nok Python til å kunne utføre disse prosjektene på egen hånd. Realiteten er likevel at det kan være vanskelig å vite hvor man skal begynne når man vil programmere noe på egen hånd. Forhåpentligvis vil denne prosjektposten hjelpe deg med å finne veien selv når du senere begir deg ut på eventyr alene.
@@ -20,7 +20,7 @@ const FilesAndExceptionsNo = (props: TutorialPostProps) => (
 
             <h2>Prosjektbeskrivelse</h2>
 
-            For å starte et slikt prosjekt, begynner vi først med å definere klart hva det er vi vil oppnå med prosjektet. På samme måte som vi må være helt tydelige når vi skriver et Python program for at maskinen skal vite hva den skal gjøre, bør vi være veldig klare på hva det er vi prøver å gjøre. Det gjør det mye lettere å planlegge hvordan vi går fram for å lage programmet.
+            For å starte et slikt prosjekt, begynner vi først med å definere klart hva det er vi vil oppnå med prosjektet. På samme måte som vi må være helt tydelige når vi skriver et Python-program for at maskinen skal vite hva den skal gjøre, bør vi være veldig klare på hva det er vi prøver å gjøre. Det gjør det mye lettere å planlegge hvordan vi går fram for å lage programmet.
             <Db />
 
             I dette prosjektet vil vi gjøre lingvistisk analyse, mer spesifikt skal vi 
@@ -55,7 +55,7 @@ const FilesAndExceptionsNo = (props: TutorialPostProps) => (
             For å visualisere informasjonen, kommer vi til å bruke <a href="https://matplotlib.org/">matplotlib</a>, en pakke som lar oss lage grafer og diagrammer. 
 
             <Db />
-            Vi kommer til å skrive disse delene inn i hver sin funksjon. Det gjør det lett å f. eks. kjøre bare én av dem av gangen under testing. 
+            Vi kommer til å skrive disse delene inn i hver sin funksjon, som igjen kan bruke andre funksjoner. Det gjør det lett å f. eks. kjøre bare én av dem av gangen under testing. 
             <Db />
             Nå som vi har en grov oversikt over hva vi prøver å lage, kan vi konsentrere oss om neste problem: Hvilken tekst bruker vi som innputt til dette programmet?
 
@@ -65,10 +65,65 @@ const FilesAndExceptionsNo = (props: TutorialPostProps) => (
             <Db />
             I dette prosjektet kommer vi til å bruke <a href="https://www.nb.no/sprakbanken/ressurskatalog/oai-nb-no-sbr-4/">Norsk aviskorpus</a>, som i motsetning til mange andre korpus er fritt tilgjengelig for all ikke-kommersiell bruk. Som navnet tilsier, er det en tekstsamling hentet fra forskjellige norske aviser. Avisartikler er ikke fullstendig optimale for generell språkanalyse, ettersom de ofte inneholder mange dramatiske hendelser og en del politikk, slik at for eksempel ord som "trusler", "politiker" og "Høyre" forekommer oftere enn de gjør i vanlig dagligtale og de fleste andre skriftlige kilder. Det er likevel godt nok for våre formål.
             <Db />
-            Korpuset kan lastes ned <a href='/files/korpus.zip' download>her</a>. Merk at korpuset ligger i en ZIP-fil som må pakkes ut før du kan bruke det i et program. I samme fil ligger også lisensinformasjon. Aviskorpuset er nemlig beskyttet av en <a href='https://creativecommons.org/licenses/by-nc/4.0/'>lisens</a> som tillater fri distribusjon og modifikasjon, men ikke kommersiell bruk. Tekstfila inneholder en forenklet versjon av korpusets samlig av aviser på norsk bokmål fra 2019. Kort fortalt går forenklingen ut på at formatering og ekstra informasjon om avisartiklene er fjernet slik at vi står igjen med en ren tekstfil som er lett å lese i Python. Denne modifikasjonen er også nevnt i den medfølgende lisensfila, også pålagt av den nevnte lisensen.
+            Korpuset kan lastes ned <a href='https://nocturne.no/files/korpus.zip' download>her</a>. Merk at korpuset ligger i en ZIP-fil som må pakkes ut før du kan bruke det i et program. I samme fil ligger også lisensinformasjon. Aviskorpuset er nemlig beskyttet av en <a href='https://creativecommons.org/licenses/by-nc/4.0/'>lisens</a> som tillater fri distribusjon og modifikasjon, men ikke kommersiell bruk. Tekstfila inneholder en forenklet versjon av korpusets samlig av aviser på norsk bokmål fra 2019. Kort fortalt går forenklingen ut på at formatering og ekstra informasjon om avisartiklene er fjernet slik at vi står igjen med en ren tekstfil som er lett å lese i Python. Denne modifikasjonen er også nevnt i den medfølgende lisensfila, også pålagt av den nevnte lisensen.
             <Db />
             Da skal tekstmaterialet være i boks, og vi kan fortsette på neste steg i prosjektet - implementasjon!
+            
+            <h2>Implementasjon</h2>
 
+            Det er på tide å få skitt under neglene. Vi har allerede planlagt grovt hvordan vi skal gå fram ovenfor, så det er forholdsvis greit for oss å se hva vi må gjøre. Vi starter fra toppen:
+
+            <h3>Telle forekomster av et enkeltord</h3>
+
+            Som nevnt vil vi skrive hver separate oppgave inn i sin egen funksjon, slik at det blir enklest mulig for oss å holde orden og teste ett av dem av gangen. Vi begynner her med å skrive funksjonen <Ic>tell_forekomster</Ic>, som tar inn ett argument - nemlig en streng som inneholder ordet vi vil søke på. Deretter begynner vi å lese fra korpusfila:
+            <CodeBlock>{`korpusfilnavn = 'destillert_aviskorpus_nob_2019.txt'
+            
+def tell_forekomster(ord):
+    with open(korpusfilnavn) as korpusfil:`}
+            </CodeBlock>
+            Før vi i det hele tatt har rukket å starte på funksjonen, har vi definert variabelen <Ic>korpusfilnavn</Ic> som inneholder navnet på korpusfila. Her regner vi med at korpusfila ligger i samme som Python-fila vi skriver. Grunnen til at vi definerer denne variabelen <i>utenfor</i> funksjonen, er at det gjør det lett for oss å gjenbruke den i de andre funksjonene senere i programmet, som naturligvis kommer til å lese fra samme fil. Det første vi gjør inne i funksjonen er å åpne opp korpusfila ved å bruke filnavnet som ligger i denne variabelen.
+            <Db />
+            Flott, vi har en åpnet fil. Hva nå? Følger vi planen vi la tidligere, skal vi nå lese gjennom fila linje for linje. Som du kanskje husker, er dette en smal sak når vi har et filobjekt. Vi kan nemlig bruke filobjektet direkte i en <Ic>for</Ic>-løkke. 
+            <CodeBlock>{`        for linje in korpusfil:`}</CodeBlock>
+            Her kommer selve kjøttet i funksjonen - vi vil telle opp hvor mange ganger ordet vårt forekommer i strengen <Ic>linje</Ic>. Men vent et øyeblikk - hvis vi først finner ut antall forekomster, hva gjør vi så med tallet? Vi er naturligvis interessert i antall forekomster <i>totalt</i> i hele teksten, så vi trenger en måte å holde rede på hvor mange vi har funnet hittil mens vi leser linje for linje. Vi lager en variabel for dette, og initialiserer den til 0 <i>før</i> vi går inn i løkken:
+            <CodeBlock>{`...
+        totalt_antall_forekomster = 0
+        for linje in korpusfil:
+            ...`}</CodeBlock>
+            Kodesnuttene vi viser framover kommer stort sett til å ligge i rekkefølge, så du trenger ikke å måtte gå tilbake og endre kode du allerede har skrevet, slik som her. I praksis er det derimot sjeldent man klarer å skrive koden direkte fra start til slutt; det skjer ofte at man underveis i kodingen for eksempel kommer på feil i framgangsmåten i tidligere kode, eller trenger å legge inn en ekstra variabel, som vi gjorde nettopp. 
+            <Db />
+            La oss fortsette! Neste steg i programmet er å telle opp forekomstene av et ord i linja. Før vi gjør dét, bør vi huske at Python (og stort sett alle programmeringsspråk) skiller skarpt mellom store og små bokstaver. For å sikre at vi klarer å telle f.eks. ordet "min" i uttrykket "Min kamp", gjør vi alle bokstavene i innputt-linja små:
+            <CodeBlock>{
+`            linje = linje.lower()`}</CodeBlock>
+            
+            Det begynner å bli en del indentering å holde styr på - denne linja skal altså indenteres tre ganger. Legg merke til at vi bare definerer iterasjonsvariabelen <Ic>linje</Ic> på nytt. Dette går fint, ettersom <Ic>linje</Ic> blir redefinert av Python til neste linje i fila når den hopper tilbake til starten av løkkeblokken i neste iterasjon.
+            <Db />
+            Nå er vi omsider klare til å telle forekomstene! Det viser seg at Python allerede har en hendig metode for å telle opp forekomstene av én tekststreng i en annen, nemlig medlemsfunksjonen <Ic>count()</Ic>. Dokumentasjonen for denne funksjonen kan du finne her: <a href='https://docs.python.org/3/library/stdtypes.html#str.count'>https://docs.python.org/3/library/stdtypes.html#str.count</a>.
+            <Db />
+            Dermed kan vi telle opp antall forekomster og legge det til totalantallet slik:
+            <CodeBlock>{
+`            antall_forekomster = linje.count(ord)
+            totalt_antall_forekomster += antall_forekomster`}
+            </CodeBlock>
+            Nesten ferdig! Det vi mangler er å returnere antallet fra funksjonen. Pass på at dette gjøres med riktig indentering: Vi vil returnere fra inne i <Ic>with</Ic>-blokken, men ikke i løkkeblokken:
+            <CodeBlock>{
+`        return totalt_antall_forekomster`}</CodeBlock>
+            Du kan eventuelt gjøre det helt i slutten av funksjonsblokken også.
+            <Db />
+            Dét er dét! Funksjonen er ferdig - alt vi mangler er å kalle den. Vi skriver følgende under funksjonen:
+            <CodeBlock>{`antall_mennesker = tell_forekomster('menneske')
+            
+print('Fant', antall_mennesker, 'forekomster av "menneske" i teksten')`}</CodeBlock>
+            
+            Programmet er klar for å kjøres. Merk at det kan ta litt tid å kjøre dette programmet, siden det er enormt mye tekst som skal gjennomgås. Til slutt vil du få ut noe lignende dette på skjermen:
+            <CodeBlock>{`Fant 34381 forekomster av "menneske" i teksten`}</CodeBlock>
+            Merk at programmet vårt også vil telle opp ord som "mennesker" og "undermennesket", ettersom <Ic>count()</Ic>-funksjonen ikke skiller mellom enkeltord i teksten. Vi regner likevel dette som en god nok løsning av den første oppgaven.
+            <Db />
+            Så bra! Den første implementasjonsbiten er i boks - vi hopper videre til neste.
+            
+            <h3>Finne de vanligste ordene i teksten</h3>
         </PostWrapper>
     </>
 );
+
+export default LinguisticAnalysisNo;
