@@ -48,7 +48,7 @@ const LinguisticAnalysisNo = (props: TutorialPostProps) => (
             <Db />
             For å telle opp forekomsten av ulike ord, åpner vi tekstfilen vi skal bruke, for deretter å lese igjennom linje for linje. På hver linje sjekker vi hvor mange ganger ordet opptrer. Vi legger sammen alle disse forekomstene og skriver det ut til skjerm.
             <Db />
-            For å finne det vanligste ordet i teksten, leser vi igjen gjennom linje for linje, men denne gangen må vi i tillegg skjære ned på tegnsetting og store bokstaver, for å sørge for at linja bare er en streng av mellomrom-separerte ord, som gjør det lett å hente ut hvert av dem. Når vi henter dem ut, bruker vi hvert av dem som indeks i en tabell, hvor korresponderende verdi vil være antallet av ordet vi har funnet hittil. Hvis denne forklaringen var forvirrende, blir det nok klarere når vi kommer til dette steget senere.
+            For å finne det vanligste ordet i teksten, leser vi igjen gjennom linje for linje, men denne gangen må vi i tillegg skjære ned på tegnsetting og store bokstaver, for å sørge for at linja bare er en streng av mellomrom-separerte ord, som gjør det lett å hente ut hvert av dem. Når vi henter dem ut, bruker vi hvert av dem som indeks i en tabell, hvor korresponderende verdi vil være antallet av ordet vi har funnet hittil. Til slutt kan vi gå igjennom tabellen for å finne hvilket ord vi har flest av. Hvis denne forklaringen var forvirrende, blir det nok klarere når vi kommer til dette steget senere.
             <Db />
             Når vi teller opp hver bokstav i språket, bruker vi også en tabell. I dette tilfellet vil indeksene være de norske bokstavene, og korresponderende verdier er antallet.
             <Db />
@@ -122,6 +122,27 @@ print('Fant', antall_mennesker, 'forekomster av "menneske" i teksten')`}</CodeBl
             Så bra! Den første implementasjonsbiten er i boks - vi hopper videre til neste.
             
             <h3>Finne de vanligste ordene i teksten</h3>
+
+            Vi lager en ny funksjon for å hente ut de vanligste ordene - vi starter med de samme linjene som i forrige punkt:
+            <CodeBlock>{`def finn_vanligste_ord():
+    with open(korpusfilnavn) as korpusfil:`}</CodeBlock>
+            Som diskutert i planleggingssteget, vil vi bruke en tabell for å holde rede på ordene vi har sett, og hvor mange ganger vi har kommet over dem. Vi lager en tom tabell slik:
+            <CodeBlock>{
+`        ordforekomster = {}`}</CodeBlock>
+            
+            Så itererer vi:
+            <CodeBlock>{
+`        for linje in korpusfil:`}</CodeBlock>
+            Her må vi holde tunga rett i munnen - vi vil gå igjennom linja og legge hvert ord inn i tabellen. Da må vi først dele opp strengen i ord. Vi har allerede sett at <Ic>split()</Ic>-funksjonen kan brukes til å dele opp en streng som består av flere linjer, og den fungerer for å splitte opp en streng i separate ord også. I tillegg bør vi, som i forrige punkt, passe på at linja bare består av små bokstaver, slik at ord blir gruppert sammen uavhengig av om de f.eks. står først i en setning eller ikke. Et siste hinder er tegnsettingen. Vi må fjerne alle punktum, komma og andre tegn fra slutten av hvert ord. 
+            <Db />
+            I og med at forhåndsprosesseringen av hver linje er såpass kompleks, er det en fordel å legge den ut i en egen funksjon. Her kaller vi den <Ic>hent_rene_ord</Ic>, som altså tar inn en tekstlinje og returnerer en liste med ord i små bokstaver og uten tegn på slutten. Funksjonen starter rett og slett med at vi gjør bokstavene i linja små og gjør en splitt:
+            <CodeBlock>{`def hent_rene_ord(linje):
+    deler = linje.lower().split()`}</CodeBlock>
+
+            I koden over vil <Ic>linje.lower()</Ic> returnere en ny streng som inneholder bare små bokstaver, og vi kan kalle <Ic>split()</Ic> direkte på denne strengen uten å sette den til en variabel først.
+            <Db />
+            
+
         </PostWrapper>
     </>
 );
