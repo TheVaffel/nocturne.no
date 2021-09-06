@@ -141,7 +141,81 @@ print('Fant', antall_mennesker, 'forekomster av "menneske" i teksten')`}</CodeBl
 
             I koden over vil <Ic>linje.lower()</Ic> returnere en ny streng som inneholder bare små bokstaver, og vi kan kalle <Ic>split()</Ic> direkte på denne strengen uten å sette den til en variabel først.
             <Db />
-            
+            Neste steg er litt mer komplisert. Vi vil gå igjennom listen med ord vi nettopp har fått tak i, og fjerne alle tegn som ikke er <i>alfanumeriske</i> på starten og slutten av hvert ord, dvs. alt som ikke er enten et tall eller en bokstav. Vi kan bruke medlemsfunksjonen <Ic>isalnum()</Ic> for å sjekke om et tegn er alfanumerisk.
+            <Db />
+            Vi fjerner bare fra starten og slutten av hvert ord, sånn at vi beholder f.eks. ord som inneholder bindestrek uendret, men fjerner f.eks. punktum og anførselstegn. Dette kan vi gjøre ved å bevege oss én gang forlengs og én gang baklengs gjennom strengen og sjekke hvert enkelttegn til vi finner det første alfanumeriske tegnet. Når vi har to alfanumerisk tegn, ett fra hver ende, tar vi bare og bruker tekststrengen mellom disse tegnene, og legger inn i en resultatlista. Samtidig passer vi på at ordet ikke er tomt, sånn at vi unngår å legge inn f.eks. enkelttegn som ligger alene i en setning. 
+            <Db />
+            Koden for dette kan bli seende slik ut:
+            <CodeBlock>
+{`    resultatliste = []
+    for ord in deler:
+        første_alfanumeriske = -1
+        siste_alfanumeriske = -1
+        for i in range(0, len(ord)):
+            if ord[i].isalnum():
+                første_alfanumeriske = i
+                break
+        
+        for i in range(len(ord) - 1, -1, -1):
+            if ord[i].isalnum():
+                siste_alfanumeriske = i
+                break
+        
+        if første_alfanumeriske == -1:
+            break
+        
+        resultatliste.append(ord[første_alfanumeriske:(siste_alfanumeriske + 1)])`}
+            </CodeBlock>
+            Det er et par ting som skjer her som vi ikke har sett tidligere. Det første er syntaksen <Ic>range(len(ord) - 1, -1, -1)</Ic>. Dette genererer et intervall fra og med <Ic>len(ord) - 1</Ic> til, men ikke med, <Ic>-1</Ic>, og teller nedover ett hakk av gangen, som er angitt av det tredje argumentet til <Ic>range()</Ic>. Dette er med andre ord det samme som intervallet <Ic>range(0, len(ord))</Ic> i revers.
+            <Db />
+            Det andre aspektet som krever en forklaring, er syntaksen <Ic>{`ord[første_alfanumeriske:(siste_alfanumeriske + 1)]`}</Ic>. Dette kalles <i>kutting</i> (engelsk: <b>slicing</b>), og betyr rett og slett at vi lager en ny streng som inneholder alle tegn i den gamle strengen som ligger fra og med <Ic>første_alfanumeriske</Ic> og til, men ikke med <Ic>siste_alfanumeriske + 1</Ic>. Med andre ord får vi en streng bestående av alle tegn mellom første og siste alfanumeriske tegn inklusiv.
+            <Db />
+            Det var en liten munnfull - ikke få panikk om du ikke forsto alt som skjedde her - to kan heller lese gjennom denne igjen senere om du vil! <Ic>hent_rene_ord</Ic>-funksjonen er omtrent ferdig; alt som mangler er å returnere resultatlisten: 
+            <CodeBlock>
+{`    return resultatliste`}</CodeBlock>
+        
+            Med denne hendige funksjonen i boks, kan vi gå tilbake til funksjonen <Ic>finn_vanligste_ord</Ic> og prosessere hver linje inne i løkken:
+            <CodeBlock>
+{`            ordliste = hent_rene_ord(linje)`}
+            </CodeBlock>
+            Nå er det bare å legge inn ordene i tabellen! Før vi legger inn hvert ord, må vi sjekke om det allerede ligger der. I såfall trenger vi bare å øke antallet av ordet med én. Ellers legger vi inn ordet sammen med antallet 1. For å sjekke om et ord ligger i tabellen, kan vi bruke <Ic>in</Ic>-operatoren.
+            <CodeBlock>
+{`            for ord in ordliste:
+                if ord in ordforekomster:
+                    ordforekomster[ord] += 1
+                else:
+                    ordforekomster[ord] = 1`}
+            </CodeBlock>
+            Flott! Når den ytterste løkka er ferdig med å kjøre, vil vi stå igjen med <Ic>ordforekomster</Ic> som er fylt til randen av ordene fra teksten, koblet med tilsvarende antall av ordet. Nå er spørsmålet: Hvordan henter vi ut ordet med flest forekomster. Vi viser to måter. 
+            <Db />
+            Den første metoden er veldig rett-fram. Vi itererer gjennom hele tabellen og holder rede på hvilket ord som har flest forekomster av dem vi har funnet hittil. I tillegg må vi holde rede på antallet av dette ordet, så vi kan sammenligne med de neste ordene vi finner. Koden for dette ser sånn her ut:
+            <CodeBlock>
+{`        vanligste_ord = ''
+        største_antall = 0
+        for ord, antall in ordforekomster.items():
+            if største_antall < antall:
+                vanligste_ord = ord
+                største_antall = antall
+        return vanligste_ord`}
+            </CodeBlock>
+            Når denne løkken har kjørt ferdig, vil <Ic>vanligste_ord</Ic> inneholde nettopp det vanligste ordet i hele teksten, og vi kan returnere det!
+            <Db />
+            Den andre metoden er mer komplisert, og også tregere, men vil la oss gjøre mer interessante ting med resultatet. Vi vil nemlig <i>sortere</i> ordene etter antall forekomster, slik at vi kan finne f.eks. de ti mest vanlige ordene, eller til og med de mest uvanlige, om vi vil. For å kunne sortere på antall forekomster, kommer vi til å legge hvert ord-antall-par i en liste av tupler, der hvert tuppel har antall som første element og ordet som andre. Når vi deretter sorterer Listen, vil Python bruke det første elementet i hvert tuppel, altså antallet, til å sortere, og bruke alfabetisk rekkefølge på ordene i tilfeller for ord med samme antall. Hele denne prosessen ser slik ut:
+            <CodeBlock>
+{`        tuppelliste = [(antall, ord) for ord, antall in ordforekomster.items()]
+        tuppelliste.sort()
+        
+        return tuppelliste[-1][1]`}</CodeBlock>
+
+            Her har vi brukt listeinklusjon for å gjøre konverteringen til liste fra tabell så kompakt som mulig. Etter å ha sortert listen, returnerer vi ordet (andre element) i det <i>siste</i> tuppelet, ettersom ordene blir sortert fra færrest forekomster til flest. For å hente ut siste element, bruker vi indeks <Ic>-1</Ic>. Bruker vi negative tall, vil Python nemlig starte å telle fra slutten av lista. Her kunne vi som sagt gjort mer interessante ting med informasjonen i listen, men vi nøyer oss med dette og lar en interessert leser prøve seg fram på egen hånd.
+            <Db />
+            Sånn, da mangler vi bare å kjøre funksjonen! Det gjør vi med følgende linjer:
+            <CodeBlock>{`vanligste_ord = finn_vanligste_ord()
+print('Det vanligste ordet var', vanligste_ord)`}</CodeBlock>
+            Før du kjører, bør du kommentere ut funksjonskallet til forrige oppgave. Det er unødvendig å sitte og vente på at den skal kjøres når vi kun er interessert i resultatet fra den andre funksjonen.
+
+        
+
 
         </PostWrapper>
     </>
