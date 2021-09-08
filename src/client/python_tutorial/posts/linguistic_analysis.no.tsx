@@ -23,7 +23,7 @@ const LinguisticAnalysisNo = (props: TutorialPostProps) => (
             For å starte et slikt prosjekt, begynner vi først med å definere klart hva det er vi vil oppnå med prosjektet. På samme måte som vi må være helt tydelige når vi skriver et Python-program for at maskinen skal vite hva den skal gjøre, bør vi være veldig klare på hva det er vi prøver å gjøre. Det gjør det mye lettere å planlegge hvordan vi går fram for å lage programmet.
             <Db />
 
-            I dette prosjektet vil vi gjøre lingvistisk analyse, mer spesifikt skal vi 
+            I dette prosjektet vil vi gjøre lingvistisk analyse, mer spesifikt skal vi
             <ul>
                 <li>1. Telle opp forekomsten av spesifikke ord i en tekst</li>
                 <li>2. Finne de vanligste ordene i teksten</li>
@@ -31,7 +31,7 @@ const LinguisticAnalysisNo = (props: TutorialPostProps) => (
                 <li>4. Visualisere informasjonen fra de foregående stegene</li>
             </ul>
 
-            Her er det siste punktet en smule uspesifikt, men vi kan diskutere hvordan vi best utfører visualiseringsdelen når vi har kommet så langt. 
+            Her er det siste punktet en smule uspesifikt, men vi kan diskutere hvordan vi best utfører visualiseringsdelen når vi har kommet så langt.
 
             <Db />
             Vi har listet opp en del forskjellige mål her, men vi kommer bare til å lage ett program som inneholder funksjonalitet for alle disse tingene.
@@ -52,10 +52,10 @@ const LinguisticAnalysisNo = (props: TutorialPostProps) => (
             <Db />
             Når vi teller opp hver bokstav i språket, bruker vi også en tabell. I dette tilfellet vil indeksene være de norske bokstavene, og korresponderende verdier er antallet.
             <Db />
-            For å visualisere informasjonen, kommer vi til å bruke <a href="https://matplotlib.org/">matplotlib</a>, en pakke som lar oss lage grafer og diagrammer. 
+            For å visualisere informasjonen, kommer vi til å bruke <a href="https://matplotlib.org/">matplotlib</a>, en pakke som lar oss lage grafer og diagrammer.
 
             <Db />
-            Vi kommer til å skrive disse delene inn i hver sin funksjon, som igjen kan bruke andre funksjoner. Det gjør det lett å f. eks. kjøre bare én av dem av gangen under testing. 
+            Vi kommer til å skrive disse delene inn i hver sin funksjon, som igjen kan bruke andre funksjoner. Det gjør det lett å f. eks. kjøre bare én av dem av gangen under testing.
             <Db />
             Nå som vi har en grov oversikt over hva vi prøver å lage, kan vi konsentrere oss om neste problem: Hvilken tekst bruker vi som innputt til dette programmet?
 
@@ -68,7 +68,7 @@ const LinguisticAnalysisNo = (props: TutorialPostProps) => (
             Korpuset kan lastes ned <a href='https://nocturne.no/files/korpus.zip' download>her</a>. Merk at korpuset ligger i en ZIP-fil som må pakkes ut før du kan bruke det i et program. I samme fil ligger også lisensinformasjon. Aviskorpuset er nemlig beskyttet av en <a href='https://creativecommons.org/licenses/by-nc/4.0/'>lisens</a> som tillater fri distribusjon og modifikasjon, men ikke kommersiell bruk. Tekstfila inneholder en forenklet versjon av korpusets samlig av aviser på norsk bokmål fra 2019. Kort fortalt går forenklingen ut på at formatering og ekstra informasjon om avisartiklene er fjernet slik at vi står igjen med en ren tekstfil som er lett å lese i Python. Denne modifikasjonen er også nevnt i den medfølgende lisensfila, også pålagt av den nevnte lisensen.
             <Db />
             Da skal tekstmaterialet være i boks, og vi kan fortsette på neste steg i prosjektet - implementasjon!
-            
+
             <h2>Implementasjon</h2>
 
             Det er på tide å få skitt under neglene. Vi har allerede planlagt grovt hvordan vi skal gå fram ovenfor, så det er forholdsvis greit for oss å se hva vi må gjøre. Vi starter fra toppen:
@@ -77,25 +77,25 @@ const LinguisticAnalysisNo = (props: TutorialPostProps) => (
 
             Som nevnt vil vi skrive hver separate oppgave inn i sin egen funksjon, slik at det blir enklest mulig for oss å holde orden og teste ett av dem av gangen. Vi begynner her med å skrive funksjonen <Ic>tell_forekomster</Ic>, som tar inn ett argument - nemlig en streng som inneholder ordet vi vil søke på. Deretter begynner vi å lese fra korpusfila:
             <CodeBlock>{`korpusfilnavn = 'destillert_aviskorpus_nob_2019.txt'
-            
+
 def tell_forekomster(ord):
     with open(korpusfilnavn) as korpusfil:`}
             </CodeBlock>
             Før vi i det hele tatt har rukket å starte på funksjonen, har vi definert variabelen <Ic>korpusfilnavn</Ic> som inneholder navnet på korpusfila. Her regner vi med at korpusfila ligger i samme som Python-fila vi skriver. Grunnen til at vi definerer denne variabelen <i>utenfor</i> funksjonen, er at det gjør det lett for oss å gjenbruke den i de andre funksjonene senere i programmet, som naturligvis kommer til å lese fra samme fil. Det første vi gjør inne i funksjonen er å åpne opp korpusfila ved å bruke filnavnet som ligger i denne variabelen.
             <Db />
-            Flott, vi har en åpnet fil. Hva nå? Følger vi planen vi la tidligere, skal vi nå lese gjennom fila linje for linje. Som du kanskje husker, er dette en smal sak når vi har et filobjekt. Vi kan nemlig bruke filobjektet direkte i en <Ic>for</Ic>-løkke. 
+            Flott, vi har en åpnet fil. Hva nå? Følger vi planen vi la tidligere, skal vi nå lese gjennom fila linje for linje. Som du kanskje husker, er dette en smal sak når vi har et filobjekt. Vi kan nemlig bruke filobjektet direkte i en <Ic>for</Ic>-løkke.
             <CodeBlock>{`        for linje in korpusfil:`}</CodeBlock>
             Her kommer selve kjøttet i funksjonen - vi vil telle opp hvor mange ganger ordet vårt forekommer i strengen <Ic>linje</Ic>. Men vent et øyeblikk - hvis vi først finner ut antall forekomster, hva gjør vi så med tallet? Vi er naturligvis interessert i antall forekomster <i>totalt</i> i hele teksten, så vi trenger en måte å holde rede på hvor mange vi har funnet hittil mens vi leser linje for linje. Vi lager en variabel for dette, og initialiserer den til 0 <i>før</i> vi går inn i løkken:
             <CodeBlock>{`...
         totalt_antall_forekomster = 0
         for linje in korpusfil:
             ...`}</CodeBlock>
-            Kodesnuttene vi viser framover kommer stort sett til å ligge i rekkefølge, så du trenger ikke å måtte gå tilbake og endre kode du allerede har skrevet, slik som her. I praksis er det derimot sjeldent man klarer å skrive koden direkte fra start til slutt; det skjer ofte at man underveis i kodingen for eksempel kommer på feil i framgangsmåten i tidligere kode, eller trenger å legge inn en ekstra variabel, som vi gjorde nettopp. 
+            Kodesnuttene vi viser framover kommer stort sett til å ligge i rekkefølge, så du trenger ikke å måtte gå tilbake og endre kode du allerede har skrevet, slik som her. I praksis er det derimot sjeldent man klarer å skrive koden direkte fra start til slutt; det skjer ofte at man underveis i kodingen for eksempel kommer på feil i framgangsmåten i tidligere kode, eller trenger å legge inn en ekstra variabel, som vi gjorde nettopp.
             <Db />
             La oss fortsette! Neste steg i programmet er å telle opp forekomstene av et ord i linja. Før vi gjør dét, bør vi huske at Python (og stort sett alle programmeringsspråk) skiller skarpt mellom store og små bokstaver. For å sikre at vi klarer å telle f.eks. ordet "min" i uttrykket "Min kamp", gjør vi alle bokstavene i innputt-linja små:
             <CodeBlock>{
 `            linje = linje.lower()`}</CodeBlock>
-            
+
             Det begynner å bli en del indentering å holde styr på - denne linja skal altså indenteres tre ganger. Legg merke til at vi bare definerer iterasjonsvariabelen <Ic>linje</Ic> på nytt. Dette går fint, ettersom <Ic>linje</Ic> blir redefinert av Python til neste linje i fila når den hopper tilbake til starten av løkkeblokken i neste iterasjon.
             <Db />
             Nå er vi omsider klare til å telle forekomstene! Det viser seg at Python allerede har en hendig metode for å telle opp forekomstene av én tekststreng i en annen, nemlig medlemsfunksjonen <Ic>count()</Ic>. Dokumentasjonen for denne funksjonen kan du finne her: <a href='https://docs.python.org/3/library/stdtypes.html#str.count'>https://docs.python.org/3/library/stdtypes.html#str.count</a>.
@@ -112,15 +112,15 @@ def tell_forekomster(ord):
             <Db />
             Dét er dét! Funksjonen er ferdig - alt vi mangler er å kalle den. Vi skriver følgende under funksjonen:
             <CodeBlock>{`antall_mennesker = tell_forekomster('menneske')
-            
+
 print('Fant', antall_mennesker, 'forekomster av "menneske" i teksten')`}</CodeBlock>
-            
+
             Programmet er klar for å kjøres. Merk at det kan ta litt tid å kjøre dette programmet, siden det er enormt mye tekst som skal gjennomgås. Til slutt vil du få ut noe lignende dette på skjermen:
             <CodeBlock>{`Fant 34381 forekomster av "menneske" i teksten`}</CodeBlock>
             Merk at programmet vårt også vil telle opp ord som "mennesker" og "undermennesket", ettersom <Ic>count()</Ic>-funksjonen ikke skiller mellom enkeltord i teksten. Vi regner likevel dette som en god nok løsning av den første oppgaven.
             <Db />
             Så bra! Den første implementasjonsbiten er i boks - vi hopper videre til neste.
-            
+
             <h3>Finne de vanligste ordene i teksten</h3>
 
             Vi lager en ny funksjon for å hente ut de vanligste ordene - vi starter med de samme linjene som i forrige punkt:
@@ -129,11 +129,11 @@ print('Fant', antall_mennesker, 'forekomster av "menneske" i teksten')`}</CodeBl
             Som diskutert i planleggingssteget, vil vi bruke en tabell for å holde rede på ordene vi har sett, og hvor mange ganger vi har kommet over dem. Vi lager en tom tabell slik:
             <CodeBlock>{
 `        ordforekomster = {}`}</CodeBlock>
-            
+
             Så itererer vi:
             <CodeBlock>{
 `        for linje in korpusfil:`}</CodeBlock>
-            Her må vi holde tunga rett i munnen - vi vil gå igjennom linja og legge hvert ord inn i tabellen. Da må vi først dele opp strengen i ord. Vi har allerede sett at <Ic>split()</Ic>-funksjonen kan brukes til å dele opp en streng som består av flere linjer, og den fungerer for å splitte opp en streng i separate ord også. I tillegg bør vi, som i forrige punkt, passe på at linja bare består av små bokstaver, slik at ord blir gruppert sammen uavhengig av om de f.eks. står først i en setning eller ikke. Et siste hinder er tegnsettingen. Vi må fjerne alle punktum, komma og andre tegn fra slutten av hvert ord. 
+            Her må vi holde tunga rett i munnen - vi vil gå igjennom linja og legge hvert ord inn i tabellen. Da må vi først dele opp strengen i ord. Vi har allerede sett at <Ic>split()</Ic>-funksjonen kan brukes til å dele opp en streng som består av flere linjer, og den fungerer for å splitte opp en streng i separate ord også. I tillegg bør vi, som i forrige punkt, passe på at linja bare består av små bokstaver, slik at ord blir gruppert sammen uavhengig av om de f.eks. står først i en setning eller ikke. Et siste hinder er tegnsettingen. Vi må fjerne alle punktum, komma og andre tegn fra slutten av hvert ord.
             <Db />
             I og med at forhåndsprosesseringen av hver linje er såpass kompleks, er det en fordel å legge den ut i en egen funksjon. Her kaller vi den <Ic>hent_rene_ord</Ic>, som altså tar inn en tekstlinje og returnerer en liste med ord i små bokstaver og uten tegn på slutten. Funksjonen starter rett og slett med at vi gjør bokstavene i linja små og gjør en splitt:
             <CodeBlock>{`def hent_rene_ord(linje):
@@ -143,7 +143,7 @@ print('Fant', antall_mennesker, 'forekomster av "menneske" i teksten')`}</CodeBl
             <Db />
             Neste steg er litt mer komplisert. Vi vil gå igjennom listen med ord vi nettopp har fått tak i, og fjerne alle tegn som ikke er <i>alfanumeriske</i> på starten og slutten av hvert ord, dvs. alt som ikke er enten et tall eller en bokstav. Vi kan bruke medlemsfunksjonen <Ic>isalnum()</Ic> for å sjekke om et tegn er alfanumerisk.
             <Db />
-            Vi fjerner bare fra starten og slutten av hvert ord, sånn at vi beholder f.eks. ord som inneholder bindestrek uendret, men fjerner f.eks. punktum og anførselstegn. Dette kan vi gjøre ved å bevege oss én gang forlengs og én gang baklengs gjennom strengen og sjekke hvert enkelttegn til vi finner det første alfanumeriske tegnet. Når vi har to alfanumerisk tegn, ett fra hver ende, tar vi bare og bruker tekststrengen mellom disse tegnene, og legger inn i en resultatlista. Samtidig passer vi på at ordet ikke er tomt, sånn at vi unngår å legge inn f.eks. enkelttegn som ligger alene i en setning. 
+            Vi fjerner bare fra starten og slutten av hvert ord, sånn at vi beholder f.eks. ord som inneholder bindestrek uendret, men fjerner f.eks. punktum og anførselstegn. Dette kan vi gjøre ved å bevege oss én gang forlengs og én gang baklengs gjennom strengen og sjekke hvert enkelttegn til vi finner det første alfanumeriske tegnet. Når vi har to alfanumerisk tegn, ett fra hver ende, tar vi bare og bruker tekststrengen mellom disse tegnene, og legger inn i en resultatlista. Samtidig passer vi på at ordet ikke er tomt, sånn at vi unngår å legge inn f.eks. enkelttegn som ligger alene i en setning.
             <Db />
             Koden for dette kan bli seende slik ut:
             <CodeBlock>
@@ -155,25 +155,25 @@ print('Fant', antall_mennesker, 'forekomster av "menneske" i teksten')`}</CodeBl
             if ord[i].isalnum():
                 første_alfanumeriske = i
                 break
-        
+
         for i in range(len(ord) - 1, -1, -1):
             if ord[i].isalnum():
                 siste_alfanumeriske = i
                 break
-        
+
         if første_alfanumeriske == -1:
             break
-        
+
         resultatliste.append(ord[første_alfanumeriske:(siste_alfanumeriske + 1)])`}
             </CodeBlock>
             Det er et par ting som skjer her som vi ikke har sett tidligere. Det første er syntaksen <Ic>range(len(ord) - 1, -1, -1)</Ic>. Dette genererer et intervall fra og med <Ic>len(ord) - 1</Ic> til, men ikke med, <Ic>-1</Ic>, og teller nedover ett hakk av gangen, som er angitt av det tredje argumentet til <Ic>range()</Ic>. Dette er med andre ord det samme som intervallet <Ic>range(0, len(ord))</Ic> i revers.
             <Db />
             Det andre aspektet som krever en forklaring, er syntaksen <Ic>{`ord[første_alfanumeriske:(siste_alfanumeriske + 1)]`}</Ic>. Dette kalles <i>kutting</i> (engelsk: <b>slicing</b>), og betyr rett og slett at vi lager en ny streng som inneholder alle tegn i den gamle strengen som ligger fra og med <Ic>første_alfanumeriske</Ic> og til, men ikke med <Ic>siste_alfanumeriske + 1</Ic>. Med andre ord får vi en streng bestående av alle tegn mellom første og siste alfanumeriske tegn inklusiv.
             <Db />
-            Det var en liten munnfull - ikke få panikk om du ikke forsto alt som skjedde her - to kan heller lese gjennom denne igjen senere om du vil! <Ic>hent_rene_ord</Ic>-funksjonen er omtrent ferdig; alt som mangler er å returnere resultatlisten: 
+            Det var en liten munnfull - ikke få panikk om du ikke forsto alt som skjedde her, du kan heller lese gjennom denne igjen senere om du vil. <Ic>hent_rene_ord</Ic>-funksjonen er omtrent ferdig; alt som mangler er å returnere resultatlisten:
             <CodeBlock>
 {`    return resultatliste`}</CodeBlock>
-        
+
             Med denne hendige funksjonen i boks, kan vi gå tilbake til funksjonen <Ic>finn_vanligste_ord</Ic> og prosessere hver linje inne i løkken:
             <CodeBlock>
 {`            ordliste = hent_rene_ord(linje)`}
@@ -186,7 +186,7 @@ print('Fant', antall_mennesker, 'forekomster av "menneske" i teksten')`}</CodeBl
                 else:
                     ordforekomster[ord] = 1`}
             </CodeBlock>
-            Flott! Når den ytterste løkka er ferdig med å kjøre, vil vi stå igjen med <Ic>ordforekomster</Ic> som er fylt til randen av ordene fra teksten, koblet med tilsvarende antall av ordet. Nå er spørsmålet: Hvordan henter vi ut ordet med flest forekomster. Vi viser to måter. 
+            Flott! Når den ytterste løkka er ferdig med å kjøre, vil vi stå igjen med <Ic>ordforekomster</Ic> som er fylt til randen av ordene fra teksten, koblet med tilsvarende antall av ordet. Nå er spørsmålet: Hvordan henter vi ut ordet med flest forekomster. Vi viser to måter.
             <Db />
             Den første metoden er veldig rett-fram. Vi itererer gjennom hele tabellen og holder rede på hvilket ord som har flest forekomster av dem vi har funnet hittil. I tillegg må vi holde rede på antallet av dette ordet, så vi kan sammenligne med de neste ordene vi finner. Koden for dette ser sånn her ut:
             <CodeBlock>
@@ -204,19 +204,101 @@ print('Fant', antall_mennesker, 'forekomster av "menneske" i teksten')`}</CodeBl
             <CodeBlock>
 {`        tuppelliste = [(antall, ord) for ord, antall in ordforekomster.items()]
         tuppelliste.sort()
-        
-        return tuppelliste[-1][1]`}</CodeBlock>
 
-            Her har vi brukt listeinklusjon for å gjøre konverteringen til liste fra tabell så kompakt som mulig. Etter å ha sortert listen, returnerer vi ordet (andre element) i det <i>siste</i> tuppelet, ettersom ordene blir sortert fra færrest forekomster til flest. For å hente ut siste element, bruker vi indeks <Ic>-1</Ic>. Bruker vi negative tall, vil Python nemlig starte å telle fra slutten av lista. Her kunne vi som sagt gjort mer interessante ting med informasjonen i listen, men vi nøyer oss med dette og lar en interessert leser prøve seg fram på egen hånd.
+        return tuppelliste[-1]`}</CodeBlock>
+
+            Her har vi brukt listeinklusjon for å gjøre konverteringen til liste fra tabell så kompakt som mulig. Etter å ha sortert listen, returnerer vi det <i>siste</i> tuppelet, ettersom ordene blir sortert fra færrest forekomster til flest. For å hente ut siste element, bruker vi indeks <Ic>-1</Ic>. Bruker vi negative tall, vil Python nemlig starte å telle fra slutten av lista. Her kunne vi som sagt gjort mer interessante ting med informasjonen i listen, men vi nøyer oss med dette og lar en interessert leser prøve seg fram på egen hånd.
             <Db />
             Sånn, da mangler vi bare å kjøre funksjonen! Det gjør vi med følgende linjer:
             <CodeBlock>{`vanligste_ord = finn_vanligste_ord()
-print('Det vanligste ordet var', vanligste_ord)`}</CodeBlock>
-            Før du kjører, bør du kommentere ut funksjonskallet til forrige oppgave. Det er unødvendig å sitte og vente på at den skal kjøres når vi kun er interessert i resultatet fra den andre funksjonen.
+print('Det vanligste ordet, med antall forekomster, var', vanligste_ord)`}</CodeBlock>
+            Før du kjører, bør du kommentere ut funksjonskallet til forrige oppgave (altså skrive en "#" på starten av linja med kallet, og på linja som printer resultatet av kallet). Det er unødvendig å sitte og vente på at den skal kjøres når vi kun er interessert i resultatet fra den andre funksjonen.
 
-        
+            <h3>Finne forekomster av hver bokstav</h3>
 
+            Neste oppgave er å telle opp antall av hver bokstav. Vi lager en ny funksjon, og starter som vi gjorde med de to forrige:
+            <CodeBlock>{`def finn_bokstavforekomster():
+    with open(korpusfilnavn) as korpusfil:`}</CodeBlock>
+            Neste steg er å gå igjennom hver linje i fila og telle opp antall av hver bokstav. Den enkleste måten å holde rede på antallene, er å bruke en tabell, slik som vi gjorde med ordforekomstene over. De neste linjene ser da sånn her ut:
+            <CodeBlock>
+{`        bokstavforekomster = {}
+        for linje in korpusfil:
+            linje = linje.lower()`}</CodeBlock>
+            Nok en gang sørger vi for at linjene kun består av små bokstaver. Nå kan vi iterere gjennom hvert tegn i linja, sjekke om det er en bokstav, og deretter legge den inn i tabellen på akkurat samme måte som vi gjorde med ordene tidligere. For å sjekke at et tegn er en bokstav, kunne vi brukt medlemsfunksjonen <Ic>isalpha()</Ic>, men denne inkluderer mange andre bokstaver som vi ikke har i det norske alfabetet. De aller fleste bokstavene i teksten vil være norske, men enkelte utenlandske bokstaver (som for eksempel bokstaven "ç") dukker også opp, for eksempel i personnavn. I stedet skal vi lage en hjelpefunksjon som sjekker om en bokstav er i det norske alfabetet.
+            <Db />
+            Funksjonen heter bare <Ic>er_i_alfabetet(bokstav)</Ic>, og returnerer <Ic>True</Ic> dersom bokstaven er i det norske alfabetet, og <Ic>False</Ic> ellers. For å bestemme om den er i det norske alfabetet, skal vi bruke <Ic>ord()</Ic>. <Ic>ord()</Ic> tar inn et tegn som et argument og returnerer tallverdien til tegnet i unicode-systemet. En hendig egenskap med unicode-systemet er at alle de engelske bokstavene ligger på rekke og rad. Derfor trenger vi å sjekke om <Ic>ord(bokstav)</Ic> ligger mellom <Ic>ord('a')</Ic> og <Ic>ord('z')</Ic>, eller om den er lik æ, ø eller å. Hjelpefunkjsonen ser da slik ut:
+            <CodeBlock>{`def er_i_alfabetet(bokstav):
+    tallverdi = ord(bokstav)
+    if (tallverdi >= ord('a') and tallverdi <= ord('z')) or \\
+            bokstav == 'æ' or bokstav == 'ø' or bokstav == 'å':
+        return True
+    return False`}</CodeBlock>
+            Det gjør naturligvis saken lettere at vi bare trenger å se på små bokstaver her, ettersom vi gjør alle bokstavene på hver linje små før de sendes til denne funksjonen.
+            <Db />
+            Med denne i bakhånd kan vi fortsette på <Ic>finn_bokstavforekomster()</Ic> slik:
+            <CodeBlock>
+{`            for bokstav in linje: 
+                if er_i_alfabetet(bokstav):
+                    if bokstav in bokstavforekomster:
+                        bokstavforekomster[bokstav] += 1
+                    else:
+                        bokstavforekomster[bokstav] = 1`}</CodeBlock>
+            
+            Nå har vi antakeligvis et avsindig stort antall av hver bokstav. For å gjøre resultatene mer lesbare for oss dødelige mennesker, kan vi heller regne ut hvor stor andel av språket hver av dem utgjør i prosent. For å få til dét, må vi først telle opp antall forekomster til sammen:
+            <CodeBlock>
+{`        totalt_antall = sum([antall for antall in bokstavforekomster.values()])`}</CodeBlock>
+            Vi kortet ned hele tellingen til én linje - se om du forstår hva som skjer! Så bytter vi ut antallene i tabellen med prosentvis forekomst, med andre ord deler vi på totalt antall og ganger med hundre:
+            <CodeBlock>
+{`        for bokstav in bokstavforekomster:
+            bokstavforekomster[bokstav] *= 100 / totalt_antall`}</CodeBlock>
 
+            Det er alt! Til slutt kan vi returnere hele forekomst-tabellen:
+            <CodeBlock>
+{`        return bokstavforekomster`}</CodeBlock>
+            
+            Til slutt kan vi vise fram resultatene til brukeren:
+            <CodeBlock>{`bokstavforekomster = finn_bokstavforekomster()
+for bokstav, forekomst in bokstavforekomster.items():
+    print(forekomst, '% av bokstavene var en \\'' + bokstav + '\\'')`}</CodeBlock>
+            Sånn - nå kan koden kjøres, og du blir litt klokere på hvor ofte hver bokstav faktisk blir brukt på norsk!
+            
+            <h3>Datavisualisering</h3>
+            Vi har klart å hente ut noen interessante data fra tekstsamlingen, men data blir ofte mer interessant når vi kan undersøke det visuelt. I denne seksjonen skal vi se på noen enkle metoder vi kan bruke for å visualisere dataene vi hentet ut i oppgavene over. Til dét skal vi bruke <Ic>matplotlib</Ic>, som er et vanlig datavisualiseringsverktøy som ofte brukes til å visualisere blant annet forskningsresultater. Det er en sjanse for at <Ic>matplotlib</Ic> ikke ble installert samtidig som du installerte Python. I såfall blir du nødt til å installere det selv f.eks. ved hjelp av <Ic>pip</Ic>, som vi har gjennomgått tidligere.
+            <Db />
+            Vi skal bruke litt forskjellige typer diagrammer for å vise noe av hva <Ic>matplotlib</Ic> kan gjøre. Hvis du vil være mer kreativ med visualiseringen enn vi er her, kan du sjekke ut de <a href='https://matplotlib.org/stable/gallery/index.html'>offisielle eksemplene</a>. 
+            <Db />
+            Vi går igjennom hver oppgave i tur og orden.
+            <Db />
+            Når vi leter etter antall forekomster av ord, er det mest interessant om vi har flere forskjellige ord å jobbe med. Når vi har flere ord, kan vi sammenligne forekomstene av dem i f. eks. et stolpediagram. La oss først lage en liste med ord, og telle forekomster av hver av dem:
+            <CodeBlock>{`ordliste = ['menneske', 'demokrati', 'asiat', 'smugling', 'suppe']
+forekomster = []
+for ord in ordliste:
+    forekomster.append(tell_forekomster(ord))`}
+            </CodeBlock>
+            Merk at denne delen av koden vil ta litt tid å kjøre, ettersom vi leser igjennom hele teksten for <i>hvert</i> ord.
+            <Db />
+            La oss sette i gang med litt visualisering! Først må vi importere og initialisere <Ic>matplotlib</Ic>. Øverst i fila skriver vi 
+            <CodeBlock>{`import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots()`}</CodeBlock>
+            Dette er den vanligste måten å initialisere matplotlib på. Vi kommer til å bruke <Ic>plt</Ic> til å vise fram plottet, og <Ic>ax</Ic> for å bestemme hva som skal plottes. <Ic>fig</Ic> kan brukes til å endre oppsettet av visualiseringen når vi har flere plott, men vi kommer ikke til å bruke det her. Vi kommer til å gjenbruke disse objektene til visualisering av de andre oppgavene, så det passer bra å ha dette øverst i fila.
+            <Db />
+            Alt vi trenger å gjøre nå, er å bruke <Ic>ax</Ic> til å beskrive hva som skal visualiseres og hvordan. 
+            <Db />
+            Det første vi beskriver, er hva slags plott vi skal ha, og hvordan det skal arrangeres. Vi vil ha et stolpediagram, som vi får ved å bruke funksjonen <Ic>bar()</Ic> på <Ic>ax</Ic>-objektet. <Ic>bar</Ic> tar inn argumenter som bestemmer x-posisjon (horisontal plassering) for hver stolpe og høyde for hver stolpe. Etter å ha hentet forekomstene over, kan vi altså bruke
+            <CodeBlock>{`ax.bar(range(len(forekomster)), forekomster)`}</CodeBlock>
+            for å lage stolpene. <Ic>range(len(forekomster))</Ic> brukes bare til å lage en rekke med tallene 0, 1, osv. opp til lengden av listen, slik at stolpene plasseres på posisjon 0, 1 osv.
+            <Db />
+            I stedet for å markere x-aksen med tallene 0 til 4, vil vi heller ha de forskjellige ordene som stolpene representerer. Dette får vi til ved å skrive
+            <CodeBlock>{`ax.set_xticklabels(ordliste)`}</CodeBlock>
+            Til slutt kan vi legge inn en beskrivelse for y-aksen og en tittel til hele plottet:
+            <CodeBlock>{`ax.set_ylabel('Antall')
+ax.set_title('Ordforekomster')`}</CodeBlock>
+
+            Sånn, da er det bare én ting som gjenstår, nemlig å vise fram resultatet! For å få til dét, skriver vi
+            <CodeBlock>{`plt.show()`}</CodeBlock>
+            Om alt er skrevet riktig, skal du ende opp med et stolpediagram på skjermen når programmet omsider får kjøre ferdig.
+            
         </PostWrapper>
     </>
 );
