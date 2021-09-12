@@ -77,7 +77,7 @@ const LinguisticAnalysisEn = (props: TutorialPostProps) => (
             <h3>Count Occurences of a Single Word</h3>
 
             As mentioned, we will write each separate task in its own function, so that it becomes as easy as possible to keep it tidy and to test each of them separately. We start by writing the function <Ic>count_occurences</Ic> which takes one argument - a string containing the word we want to search for. Then we start reading from the corpus file:
-            <CodeBlock>{`corpus_file_name = 'destilled_OANC.txt'
+            <CodeBlock>{`corpus_file_name = 'distilled_OANC.txt'
 
 def count_occurences(word):
     with open(corpus_file_name) as corpus_file:`}</CodeBlock>
@@ -116,7 +116,7 @@ def count_occurences(word):
             <CodeBlock>{`number_of_humans = count_occurences('human')
 print('Found', number_of_humans, 'occurences of "human" in the text')`}</CodeBlock>
             The program ready to be run. Note that it may take some time to run, since there is a lot of text to read through. Eventually, you should get something similar to this:
-            <CodeBlock>{`Found __ occurences of "human" in the text`}</CodeBlock>
+            <CodeBlock>{`Found 7724 occurences of "human" in the text`}</CodeBlock>
             Right now, our program will also count occurences of worlds like "humans" and "superhuman", since the <Ic>count()</Ic>-function does not care about what parts of the string are singular words and not. Either way, we accept this as a solution that is good enough for our first goal. If you are unhappy about this solution, you could try fixing it yourself; see the exercises at theh end of this post.
             <Db />
             Good stuff! The first part of the implementation is complete - we just straight to the next.
@@ -125,7 +125,7 @@ print('Found', number_of_humans, 'occurences of "human" in the text')`}</CodeBlo
 
             We create a new function to get the most common words from the text - we start with the same lines as we did in the previous part:
             <CodeBlock>{`def find_most_common_word():
-    with open('corpus_file_name') as corpus_file:`}</CodeBlock>
+    with open(corpus_file_name) as corpus_file:`}</CodeBlock>
             As mentioned in the planning phase, we will use a dictionary to keep track of the words we have seen and how many times we have seen them. We create an empty dictionary like this:
             <CodeBlock>{
 `        occurences = {}`}</CodeBlock>
@@ -234,7 +234,7 @@ print('The most common word was', most_common_word)`}</CodeBlock>
         return True
     else:
         return False`}</CodeBlock>
-            Here, we could just as well have returned <Ic>number_value >= ord('a') and number_value <= ord('z')</Ic>, but we have written it out completely to make it easier to understand.
+            We could just as well have returned <Ic>{`number_value >= ord('a') and number_value <= ord('z')`}</Ic>, but this implementation is perhaps more intuitive
             <Db />
             Of course, the fact that the letter will always be lower-case has simplified this function a bit too.
             <Db />
@@ -259,12 +259,12 @@ print('The most common word was', most_common_word)`}</CodeBlock>
 
             That's all! We may, at last, return the occurence dictionary:
             <CodeBlock>{
-`            return letter_occurences`}</CodeBlock>
+`        return letter_occurences`}</CodeBlock>
             
             Finally we can show the results to the user:
-            <CodeBlock>{`letter_occurences = find_lettter_occurences()
+            <CodeBlock>{`letter_occurences = find_letter_occurences()
 for letter, occurences in letter_occurences.items():
-    print(occurences, '% of the letters was a \\'' + letter + '\\'')`}</CodeBlock>
+    print(occurences, '% of the letters were \\'' + letter + '\\'')`}</CodeBlock>
             
             Now the code can be run - and you should receive the blessing it is to know approximate proportions of usage for each of the English letters!
 
@@ -277,7 +277,7 @@ for letter, occurences in letter_occurences.items():
             We walk through each of the above sections in order
             <h4>Visualizing Word Occurences</h4>
             When we search for the number of occurences of a word, it is most interesting if we have several different words to work with. When we have several, we can compare the occurence of them in e.g. a bar graph. Let's first create a list of words and count the number of occurences for each of them:
-            <CodeBlock>{`words = ['human', 'democracy', 'asian', 'smugling', 'soup']
+            <CodeBlock>{`words = ['human', 'democracy', 'asian', 'smuggling', 'soup']
 occurences = []
 for word in words:
     occurences.append(count_occurences(word))`}</CodeBlock>
@@ -285,7 +285,7 @@ for word in words:
             Note that this part of the code will take some time to run, since we are reading through the entire text for <i>every</i> word.
             <Db />
             Let's proceed with some visualization! First, we will need to import and initialize <Ic>matplotlib</Ic>. At the top of the file, we write
-            <CodeBlock>{`import matplatlib.pyplot as plt
+            <CodeBlock>{`import matplotlib.pyplot as plt
             
 fig, ax = plt.subplots()`}</CodeBlock>
             This is the most common way of initializing matplotlib. We will use <Ic>plt</Ic> to show the plot, and <Ic>ax</Ic> to determine what is going to be drawn. <Ic>fig</Ic> can be used to change the layout of the visualization when we have multiple plots we want to show simultaneously, but we won't be needing that here. We will reuse all these objects for visualizing the other tasks, so it makes sense to keep this at the top of the file, and not mixed in with any specific visualization code.
