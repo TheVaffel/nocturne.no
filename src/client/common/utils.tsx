@@ -49,10 +49,14 @@ export const localizedDate = (date: Date)  => {
     }
 };
 
-export const localize = (st: string[]) => {
+export function getClampedLangIndex() {
     const langStruct: LangContextStruct = React.useContext(LangContext);
-    const langInd = Math.max(0, langStruct.langIndex);
-    return st[langInd];
+    const langInd = langStruct.langIndex < 0 ? 0 : langStruct.langIndex;
+    return langInd;
+}
+
+export function localize<T>(st: T[]) {
+    return st[getClampedLangIndex()];
 };
 
 export const useFetch = function<T>(url: string, defaultValue: T) : T {

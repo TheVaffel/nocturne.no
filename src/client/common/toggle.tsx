@@ -5,6 +5,7 @@ import { LangContextStruct } from '../infrastructure/root';
 import { LangContext } from '../infrastructure/root.tsx';
 
 import './toggle.scss';
+import { getClampedLangIndex } from './utils.tsx';
 
 interface ToggleProps {
     state: boolean;
@@ -44,7 +45,9 @@ export const LangToggle: React.FunctionComponent<{style?: Object}> = (props) => 
       setSetFromClick(true);
       langContext.setLangIndexAndCanChange({langIndex: (b ? 1 : 0), canChange: true});
   }
+  
+  const clampedLangIndex = getClampedLangIndex();
 
-  return <Toggle state={langContext.langIndex == 1} name='langToggle' style={props.style} 
+  return <Toggle state={clampedLangIndex == 1} name='langToggle' style={props.style} 
             onChange={onClick} disabled={!langContext.canChange} />
 };

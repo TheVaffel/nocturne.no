@@ -6,7 +6,7 @@ import { DevBlogWrapper, devblogPathUrl } from '../devblog/devblog_wrapper.tsx'
 import { TutorialWrapper, rootTutorialUrls } from '../python_tutorial/tutorial_wrapper.tsx';
 
 import { SiteIndexEn, SiteIndexNo } from '../dynamics.tsx';
-import { devblogPathLocal } from '../devblog/devblog_wrapper';
+import { getClampedLangIndex } from '../common/utils.tsx';
 
 interface BackgroundState {
        backgroundUrl: string;
@@ -38,7 +38,7 @@ export const ContentWrapper: React.FunctionComponent<{}> = () => {
                             margin: '0 auto',}} >
                             <Switch>
                             <Route exact path={['/', '/en', '/no']} >
-                                   { langState.langIndex == 0 ? <SiteIndexNo /> : <SiteIndexEn /> }
+                                   { getClampedLangIndex() == 0 ? <SiteIndexNo /> : <SiteIndexEn /> }
                             </Route>
 
                             <Route path={devblogPathUrl} >

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
-import { printDateEn, printDateNo, Db } from './utils.tsx';
+import { printDateEn, printDateNo, Db, localize } from './utils.tsx';
 import { Metadata } from '../../server/update_metadata';
 import { LangContextStruct, LangContext } from '../infrastructure/root.tsx';
 import { CommentSection } from './comments.tsx';
@@ -55,13 +55,15 @@ export const PostWrapper = (props: {metadata: Metadata, children: React.ReactNod
 
 const PostHeader : React.FunctionComponent<{metadata : Metadata}> = (props) => {
     const langState: LangContextStruct = React.useContext(LangContext);
-    const langIndex = Math.max(0, langState.langIndex);
-    const printDate = langIndex == 0 ? printDateNo : printDateEn;
+    const printDate = localize([printDateEn, printDateNo]); 
+    const createdText = localize(createdTexts);
+    const updatedText = localize(updatedTexts);
+
 
     return (<>
         <h1>{props.metadata.title}</h1>
-        <h4>{createdTexts[langIndex]}: {printDate(new Date(props.metadata.createDate))}<br/>
-            {updatedTexts[langIndex]}: {printDate(new Date(props.metadata.updateDate))}</h4>
+        <h4>{createdText}: {printDate(new Date(props.metadata.createDate))}<br/>
+            {updatedText}: {printDate(new Date(props.metadata.updateDate))}</h4>
     </>);
 }
 
