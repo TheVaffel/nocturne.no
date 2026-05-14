@@ -10,13 +10,10 @@ const SiteIndexNo: React.FunctionComponent<{}> = () => {
 
     return (
     <div>
-        <h2>Hei!</h2>
 
-        Velkommen til Nocturne.no! 
+        <h2>Nocturne.no</h2> 
         <Db />
-        Jeg kunne sikkert skrevet noen ord her om hva du finner på denne nettsiden, men ærlig talt tror jeg det er lettere for deg å finne ut av det ved å klikke rundt på egen hånd. 
-        <Db />
-        God fornøyelse!
+        - Håkon Flatval
 
     </div>
     );
