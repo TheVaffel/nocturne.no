@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Python-Tutorials on Nocturnal thoughts</title>
+		<link>http://localhost:1313/series/python-tutorials/</link>
+		<description>Recent content in Python-Tutorials on Nocturnal thoughts</description>
+		<generator>Hugo</generator>
+		<language>en-US</language>
+		
+		
+		
+		
+			<lastBuildDate>Sat, 04 Jul 2026 12:01:59 +0200</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/series/python-tutorials/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Python Tutorials</title>
+				<link>http://localhost:1313/python-tutorial/</link>
+				<pubDate>Sat, 04 Jul 2026 12:01:59 +0200</pubDate>
+				<guid>http://localhost:1313/python-tutorial/</guid>
+				<description></description>
+			</item>
+	</channel>
+</rss>

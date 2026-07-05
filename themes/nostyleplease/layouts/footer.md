@@ -1,2 +1,3 @@
-This is footer.
-You can edit this in ../nostyleplease/layouts/footer.md
+##### Håkon Flatval
+
+###### Created with [Hugo](https://github.com/gohugoio/hugo), theme based on [nostyleplease](https://github.com/hanwenguo/hugo-theme-nostyleplease).

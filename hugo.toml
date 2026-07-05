@@ -1,0 +1,12 @@
+baseURL = 'https://nocturne.no/'
+locale = 'en-US'
+title = 'Nocturnal thoughts'
+theme = 'nostyleplease'
+
+[markup.goldmark]
+
+renderer.unsafe = true
+
+[taxonomies]
+
+series = 'series'

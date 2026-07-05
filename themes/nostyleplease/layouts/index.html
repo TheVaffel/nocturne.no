@@ -5,8 +5,9 @@
     {{- if $.Site.Params.theme_config.show_description -}}
         <p>{{ $.Site.Params.description }}</p>
     {{- end -}}
+    {{ partial "navigation_header.html" (dict "context" . "collection" hugo.Data.menu.topbar) }}
 </header>
 {{ .Content }}
-{{ partial "menu_item.html" (dict "context" . "collection" $.Site.Data.menu.entries) }}
+{{ partial "menu_item.html" (dict "context" . "collection" hugo.Data.menu.entries) }}
 
 {{ end }}
