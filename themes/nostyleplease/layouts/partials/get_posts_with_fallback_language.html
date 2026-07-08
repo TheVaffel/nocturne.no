@@ -1,0 +1,23 @@
+{{ $allPages := (where (where site.AllPages "Section" .section) "Kind" "page") }}
+
+{{ $list := slice }}
+
+{{ range $allPages }}
+{{ $allTranslations := .AllTranslations }}
+  {{ $foundRelevantLanguage := false }}
+  {{ range $allTranslations }}
+    {{ if (eq .Language site.Language) }}
+      {{ $foundRelevantLanguage = . }}
+    {{ end }}
+  {{ end }}
+{{ if $foundRelevantLanguage }}
+    {{ if (eq .Language site.Language) }}
+{{ $list = append $foundRelevantLanguage $list }}
+{{ end }}
+  {{ else }}
+    {{ if (eq . (index .AllTranslations 0) ) }}
+      {{ $list = append . $list  }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{- return $list -}}
