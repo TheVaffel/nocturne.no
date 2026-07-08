@@ -1,11 +1,12 @@
 {{ define "main" }}
 
 <header>
-    <h1>{{ $.Site.Title }}</h1>
+
     {{- if $.Site.Params.theme_config.show_description -}}
         <p>{{ $.Site.Params.description }}</p>
     {{- end -}}
-    {{ partial "navigation_header.html" (dict "context" . "collection" hugo.Data.menu.topbar) }}
+
+  {{- partial "language-switcher.html" . -}}
 </header>
 {{ .Content }}
 {{ partial "menu_item.html" (dict "context" . "collection" hugo.Data.menu.entries) }}

@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{ partial "back_link.html" .}}
+{{/* {{ partial "back_link.html" .}} */}}
 
 <article>
     <p class="post-meta">
@@ -9,6 +9,8 @@
     </p>
 
     <h1>{{ .Title }}</h1>
+
+    {{ partial "language-switcher.html" . }}
 
     {{ if .Params.toc }}
         <aside {{ if .Params.tocBorder }} class="toc" {{ end }}>

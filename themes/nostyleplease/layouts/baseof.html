@@ -2,8 +2,9 @@
 <html lang="{{ $.Site.Language.Locale }}">
     {{- partial "head.html" . -}}
     <body a="{{ $.Site.Params.theme_config.appearance | default "auto" }}">
-        <main class="page-content" aria-label="Content">
+      <main class="page-content" aria-label="Content">
             <div class="w">
+              {{ partial "navigation_header.html" (dict "context" $ "collection" hugo.Data.menu.topbar ) }}
                 {{- block "main" . }}{{- end }}
                 {{ partial "footer.html" }}
             </div>

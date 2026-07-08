@@ -1,16 +1,16 @@
 {{- $posts := "" -}}
 
 {{- if .section -}}
-    {{- $posts = (where site.RegularPages "Section" .section) -}}
+    {{- $posts = (where (where site.AllPages "Section" .section) "Kind" "page") -}}
 {{- else -}}
     {{- if (eq .context.Kind "taxonomy") -}}
-        {{- $posts = .context.Pages -}}
+       {{- $posts = .context.Pages -}}
     {{- else -}}
         {{- if (eq .context.Kind "term") -}}
             {{- $posts = .context.Data.Pages -}}
 	{{- else -}}
             {{- $posts = site.RegularPages }}
-	{{- end -}}
+        {{- end -}}
     {{- end -}}
 {{- end -}}
 
@@ -21,19 +21,28 @@
     {{- $limit_exceeded = false -}}
 {{ end }}
 
+
+{{ $posts =  (partial "get_posts_with_fallback_language" .) }}
+
 {{- if (gt (len $posts) 0) }}
     {{- if .limit }}
         {{ $posts = (first .limit $posts ) }}
     {{ end }}
     <ul>
-        {{- range $post := $posts -}}
+      {{- range $post := $posts -}}
+        {{ $languageSuffix := "" }}
+      {{ if (not (eq $post.Language site.Language)) }}
+        {{ $languageSuffix = print "(" $post.Language ")" }}
+      {{ end }}
         <li>
             <span>{{- ($post.Date | time.Format site.Params.theme_config.date_format) }}</span>
-            <a href="{{ $post.Permalink | relURL }}">{{ $post.Title }}</a>
+            <a href="{{ $post.Permalink | relURL }}">{{ $post.Title }}<sub>{{ $languageSuffix }}</sub></a>
         </li>
+
         {{ end }}
         {{- if and .show_more $limit_exceeded }}
             <li><a href="{{ .show_more_url | relURL }}">{{ .show_more_text | default "Show more..." }}</a></li>
-        {{ end }}
+            {{ end }}
+
     </ul>
 {{ end }}

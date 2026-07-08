@@ -1,7 +1,22 @@
 baseURL = 'https://nocturne.no/'
-locale = 'en-US'
-title = 'Nocturnal thoughts'
+locale = 'en'
+title = 'Nocturnal Thoughts'
 theme = 'nostyleplease'
+
+defaultContentLanguage = 'en'
+defaultContentLanguageInSubdir = true
+disableDefaultLanguageRedirect = true
+disableLanguages = []
+
+[languages]
+  [languages.no]
+    title = "Nattlighet"
+    label = "Norsk"
+    weight = 1
+  [languages.en]
+    title = "Nocturnal Thoughts"
+    label = "English"
+    weight = 2
 
 [markup.goldmark]
 
