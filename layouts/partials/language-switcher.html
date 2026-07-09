@@ -2,9 +2,9 @@
 <div class="language-bar">
   {{ range $tr := .AllTranslations }}
   {{ if eq $tr.Language.Label $.Language.Label }}
-  <a class="language selected-language" href="{{ .Permalink }}"><span>{{ $tr.Language.LanguageCode }}</span></a>
+  <a class="language selected-language" href="{{ .Permalink }}"><span>{{ $tr.Language.Locale }}</span></a>
   {{ else }}
-  <a class="language" href="{{ .Permalink }}"><span>{{ $tr.Language.LanguageCode }}</span></a>
+  <a class="language" href="{{ .Permalink }}"><span>{{ $tr.Language.Locale }}</span></a>
   {{ end }}
   {{ end }}
 </div>
