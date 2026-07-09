@@ -38,7 +38,6 @@
             <span>{{- ($post.Date | time.Format site.Params.theme_config.date_format) }}</span>
             <a href="{{ $post.Permalink | relURL }}">{{ $post.Title }}<sub>{{ $languageSuffix }}</sub></a>
         </li>
-
         {{ end }}
         {{- if and .show_more $limit_exceeded }}
             <li><a href="{{ .show_more_url | relURL }}">{{ .show_more_text | default "Show more..." }}</a></li>
