@@ -1,0 +1,11 @@
+{{ if .IsTranslated }}
+<div class="language-bar">
+  {{ range $tr := .AllTranslations }}
+  {{ if eq $tr.Language.Label $.Language.Label }}
+  <a class="language selected-language" href="{{ .Permalink }}"><span>{{ $tr.Language.LanguageCode }}</span></a>
+  {{ else }}
+  <a class="language" href="{{ .Permalink }}"><span>{{ $tr.Language.LanguageCode }}</span></a>
+  {{ end }}
+  {{ end }}
+</div>
+{{ end }}

@@ -5,8 +5,6 @@
     {{- if $.Site.Params.theme_config.show_description -}}
         <p>{{ $.Site.Params.description }}</p>
     {{- end -}}
-
-  {{- partial "language-switcher.html" . -}}
 </header>
 {{ .Content }}
 {{ partial "menu_item.html" (dict "context" . "collection" hugo.Data.menu.entries) }}

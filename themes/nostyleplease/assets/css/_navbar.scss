@@ -1,0 +1,44 @@
+@mixin unvisit($--link-color) {
+    &:visited {
+        color: inherit;
+    }
+}
+
+@mixin navbartheme($--link-color, $--text-color) {
+    .header {
+        @include unvisit($--link-color);
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    .navbar {
+
+        border-style: solid;
+        border-width: 2px;
+        border-color: $--text-color;
+        padding: 8px;
+        margin-bottom: 10px;
+        // @include unvisit($--link-color);
+        &:visited {
+            color: $--text-color;
+        }
+
+        div {
+            span {
+            }
+        }
+    }
+
+    .language {
+        @include unvisit($--link-color);
+    }
+
+    .selected-language {
+        text-decoration: underline;
+    }
+
+    .unvisit {
+        @include unvisit($--link-color);
+    }
+}
