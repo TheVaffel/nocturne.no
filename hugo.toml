@@ -4,7 +4,7 @@ title = 'Nocturnal Thoughts'
 theme = 'nostyleplease'
 
 defaultContentLanguage = 'en'
-defaultContentLanguageInSubdir = true
+defaultContentLanguageInSubdir = false
 disableDefaultLanguageRedirect = true
 disableLanguages = []
 
