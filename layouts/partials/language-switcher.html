@@ -1,11 +1,18 @@
-{{ if .IsTranslated }}
 <div class="language-bar">
-  {{ range $tr := .AllTranslations }}
-  {{ if eq $tr.Language.Label $.Language.Label }}
-  <a class="language selected-language" href="{{ .Permalink }}"><span>{{ $tr.Language.Locale }}</span></a>
+  {{ $translationLocales := slice }}
+  {{- range $.AllTranslations -}}
+  {{- $translationLocales = append .Language.Locale $translationLocales -}}
+  {{- end -}}
+
+  {{ range $tr := .Site.Languages }}
+
+  {{ $translation := where $.Translations ".Language.Locale" $tr.Locale }}
+  {{ if (eq $tr.Locale $.Language.Locale) }}
+  <a class="language selected-language" href="{{ $.Permalink }}"><span>{{ $tr }}</span></a>
+  {{ else if in $translationLocales $tr.Locale }}
+  <a class="language" href="{{ (index $translation 0).Permalink }}"><span>{{ $tr }}</span></a>
   {{ else }}
-  <a class="language" href="{{ .Permalink }}"><span>{{ $tr.Language.Locale }}</span></a>
-  {{ end }}
+   <span class="disabled">{{ $tr }}</span>
+   {{ end }}
   {{ end }}
 </div>
-{{ end }}
