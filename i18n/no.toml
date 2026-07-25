@@ -1,0 +1,5 @@
+python_tutorial = "Innføring i Python"
+devblog = "Utviklerblogg"
+
+next_post = "Neste post:"
+previous_post = "Forrige post:"
