@@ -2,10 +2,17 @@
 <a class="header" class="main-title" href="/"><h1 class="main-title">{{ site.Title}}</h1></a>
 <div style="display: flex; flex-direction: row; gap: 8px;">
   {{- range $item := .collection }}
+  {{ $translatedTitle := "" }}
+  {{ if (lang.Translate $item.section) }}
+  {{ $translatedTitle =  lang.Translate $item.section }}
+  {{ else }}
+  {{ $translatedTitle = $item.title }}
+  {{ end }}
+
     {{ $relURL := $item.section | relURL }}
     {{ with $.context.Site.GetPage $relURL }}
       <a class="navbar" href="{{ $item.section | relLangURL }}">
-        <div >{{ $item.title }}</div>
+        <div >{{ $translatedTitle }}</div>
       </a>
   {{ else }}
   {{ $originalPage := false }}
@@ -14,7 +21,7 @@
       {{ $originalPage = . }}
     {{ end }}
   {{ end }}
-      <a class="navbar" href="{{ $originalPage.Permalink }}"><div> {{ $item.title }}<sub>({{$originalPage.Language.Locale}})</sub></div></a>
+      <a class="navbar" href="{{ $originalPage.Permalink }}"><div>{{ $translatedTitle }}<sub>({{$originalPage.Language.Locale}})</sub></div></a>
     {{ end }}
   {{- end -}}
 </div>
