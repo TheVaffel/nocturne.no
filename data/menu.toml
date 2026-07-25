@@ -5,31 +5,22 @@ title = "All Posts"
   limit = 5
   show_more = true
   show_more_text = "See archive..."
-  show_more_url = "posts"
-  section = "posts"
+  show_more_url = "devblog"
+  section = "devblog"
 
 [[entries]]
 title = "Python tutorial"
   [entries.post_list]
   section = "python-tutorial"
 
-[[entries]]
-title = "another list"
-
-  [[entries.entries]]
-  title = "with subitems"
-
-    [[entries.entries.entries]]
-    title = "with subsubitems"
-
-    [[entries.entries.entries]]
-    title = "example page"
-    url = "about"
-
 [[topbar]]
-section = "posts"
+section = "devblog"
 title = "Dev blog"
 
 [[topbar]]
 section = "python-tutorial"
 title = "Python tutorial"
+
+[[topbar]]
+section= "kun-norsk"
+title = "Kun norsk"
