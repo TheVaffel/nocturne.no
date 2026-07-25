@@ -2,6 +2,8 @@
 date = '2021-04-04'
 draft = true
 title = 'Forord'
+
+weight = 10
 +++
 
 Velkommen til en introduksjon til Python!

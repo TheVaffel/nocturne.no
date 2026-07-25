@@ -1,7 +1,8 @@
 +++
-date = '2026-07-23T21:32:06+02:00'
+date = '2021-04-04'
 draft = true
 title = 'Preface'
+weight = 10
 +++
 
 Welcome to an introduction to Python!
