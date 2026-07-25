@@ -1,8 +1,15 @@
-{{ $allPages := (where (where site.AllPages "Section" .section) "Kind" "page") }}
+{{ $pageList := slice }}
+{{ range hugo.Sites }}
+{{ range .Pages }}
+{{ $pageList = append . $pageList }}
+{{ end }}
+{{ end }}
+
+{{ $relevantPages := sort (where (where $pageList "Section" .section) "Kind" "page") "Weight" }}
 
 {{ $list := slice }}
 
-{{ range $allPages }}
+{{ range $relevantPages }}
 {{ $allTranslations := .AllTranslations }}
   {{ $foundRelevantLanguage := false }}
   {{ range $allTranslations }}

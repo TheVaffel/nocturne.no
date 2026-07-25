@@ -4,15 +4,15 @@
   {{- $translationLocales = append .Language.Locale $translationLocales -}}
   {{- end -}}
 
-  {{ range $tr := .Site.Languages }}
+  {{ range $tr := hugo.Data.languages.languages }}
 
-  {{ $translation := where $.Translations ".Language.Locale" $tr.Locale }}
-  {{ if (eq $tr.Locale $.Language.Locale) }}
-  <a class="language selected-language" href="{{ $.Permalink }}"><span>{{ $tr }}</span></a>
-  {{ else if in $translationLocales $tr.Locale }}
-  <a class="language" href="{{ (index $translation 0).Permalink }}"><span>{{ $tr }}</span></a>
+  {{ $translation := where $.Translations ".Language.Locale" $tr.locale }}
+  {{ if (eq $tr.locale $.Language.Locale) }}
+  <a class="language selected-language" href="{{ $.Permalink }}"><span>{{ $tr.locale }}</span></a>
+  {{ else if in $translationLocales $tr.locale }}
+  <a class="language" href="{{ (index $translation 0).Permalink }}"><span>{{ $tr.locale }}</span></a>
   {{ else }}
-   <span class="disabled">{{ $tr }}</span>
+   <span class="disabled">{{ $tr.locale }}</span>
    {{ end }}
   {{ end }}
 </div>
