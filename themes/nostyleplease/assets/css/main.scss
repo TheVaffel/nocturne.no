@@ -1,14 +1,27 @@
 @use "./navbar";
 
 // -------------- THEME SWITCHER -------------- //
-@mixin theme($--bg-color, $--primary-text-color, $--secondary-text-color, $--link-color, $--visited-link-color, $--highlight) {
+@mixin theme($--bg-color, $--primary-text-color, $--secondary-text-color, $--link-color, $--visited-link-color, $--highlight, $--h3-color, $--code-background, $--code-color) {
   background-color: $--bg-color;
 
   color: $--primary-text-color;
 
+  :root {
+      --secondary-text-color: $--secondary-text-color;
+      --bg-color: $--bg-color;
+  }
+
   a {
     color: $--link-color;
     &:visited { color: $--visited-link-color; }
+  }
+
+  h2 {
+      color: $--highlight
+  }
+
+  h3 {
+      color: $--h3-color
   }
 
   details {
@@ -24,12 +37,13 @@
   }
 
   pre {
-    background: $--bg-color;
+      background: $--code-background;
+      color: $--code-color
   }
 
   code:not(pre > code) {
-    background-color: $--primary-text-color;
-    color: $--bg-color;
+    background-color: $--code-background;
+    color: $--code-color;
   }
 
   *:target {
@@ -50,32 +64,52 @@
       color: $--secondary-text-color;
   }
 
+  .secondary-text {
+      color: $--secondary-text-color
+  }
+
   figcaption { color: $--secondary-text-color; }
 
   blockquote {
     border: thin solid $--primary-text-color;
   }
 
-  @include navbar.navbartheme($--link-color, $--primary-text-color);
+  main {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+  }
+
+  .w {
+      background-color: $--bg-color;
+      border-radius: 1rem;
+
+      max-width: 720px;
+      margin: 2rem auto;
+      padding: 2rem 2rem;
+  }
+
+  @include navbar.navbartheme($--bg-color, $--link-color, $--primary-text-color);
 }
 
 
 @mixin dark-appearance {
-  @include theme(#000000, #ffffff, #AAAAAA, #79a8ff, #f78fe7, #2f3849); // modus-vivendi
+  @include theme(#151515, #DDDDDD, #AAAAAA, #79a8ff, #f78fe7, #8ae58c,#7aa57c, #272822, #f8f8f2); // modus-vivendi
 }
 
 @mixin light-appearance {
-  @include theme(#ffffff, #000000, #595959, #3548cf, #8f0075, #dae5ec); // modus-operandi
+  @include theme(#ffffff, #000000, #595959, #3548cf, #8f0075, #4a8b4c, #b5b5ec, #f8f8f2, #272822); // modus-operandi
 }
 
 body[a="dark"] { @include dark-appearance; }
 body[a="light"] { @include light-appearance; }
 
 @media (prefers-color-scheme: dark) {
+  :root{ color-scheme: dark; }
   body[a="auto"] { @include dark-appearance; }
 }
 
 @media (prefers-color-scheme: light) {
+  :root{ color-scheme: light; }
   body[a="auto"] { @include light-appearance; }
 }
 
@@ -84,8 +118,8 @@ body[a="light"] { @include light-appearance; }
 html { height: 100%; }
 
 body {
-  font-family: monospace;
-  font-size: 16px;
+  font-family: Garamound;
+  font-size: 18px;
   line-height: 1.4;
   margin: 0;
   min-height: 100%;
@@ -108,8 +142,8 @@ hr {
   border: 0;
   margin: 2rem 0;
 
-  &:before { content: '/////' }
-  &:after { content: attr(data-content) '/////' }
+  &:before { content: '-----' }
+  &:after { content: attr(data-content) '-----' }
 }
 
 pre {
@@ -177,12 +211,6 @@ details[open] summary {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.w {
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 4rem 2rem;
 }
 
 .off-settings {

@@ -1,17 +1,37 @@
 <!DOCTYPE html>
 <html lang="{{ $.Site.Language.Locale }}">
-    {{- partial "head.html" . -}}
-    <body a="{{ $.Site.Params.theme_config.appearance | default "auto" }}">
+  {{- partial "head.html" . -}}
+
+
+  {{ $thisSection := index (where hugo.Data.sections.sections ".section" $.Section) 0 }}
+
+  <style>
+    main {
+        {{ if $thisSection.bg }}
+        {{ $light_file_name := printf "%s.light.png" $thisSection.bg }}
+        {{ $dark_file_name := printf "%s.dark.png" $thisSection.bg }}
+        background-image: light-dark(url("{{ $light_file_name | absURL }}"),
+                                     url("{{ $dark_file_name | absURL }}"));
+        {{ end }}
+    }
+  </style>
+
+  <body a="{{ $.Site.Params.theme_config.appearance | default "auto" }}">
+
       <main class="page-content" aria-label="Content">
+
 
         <div class="off-settings">
           {{- partial "language-switcher.html" . -}}
         </div>
 
         <div class="w">
-              {{ partial "navigation_header.html" (dict "context" $ "collection" hugo.Data.menu.topbar ) }}
-                {{- block "main" . }}{{- end }}
-                {{ partial "footer.html" }}
+              {{ partial "navigation_header.html" (dict "context" $ "collection" hugo.Data.sections.sections ) }}
+              {{- block "main" . }}{{- end }}
+
+              <hr />
+
+              {{ partial "footer.html" . }}
             </div>
         </main>
     </body>

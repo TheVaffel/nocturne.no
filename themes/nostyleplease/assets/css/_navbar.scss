@@ -4,7 +4,7 @@
     }
 }
 
-@mixin navbartheme($--link-color, $--text-color) {
+@mixin navbartheme($--bg-color, $--link-color, $--text-color) {
     .header {
         @include unvisit($--link-color);
         &:hover {
@@ -29,6 +29,12 @@
             span {
             }
         }
+    }
+
+    .language-bar {
+        background-color: $--bg-color;
+        border-radius: 0.4rem;
+        padding: 0.4rem;
     }
 
     .language {

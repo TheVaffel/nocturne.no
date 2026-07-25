@@ -1,5 +1,5 @@
 [[entries]]
-title = "All Posts"
+title = "Dev blog"
 
   [entries.post_list]
   limit = 5
@@ -10,17 +10,19 @@ title = "All Posts"
 
 [[entries]]
 title = "Python tutorial"
-  [entries.post_list]
-  section = "python-tutorial"
 
-[[topbar]]
+  [entries.post_list]
+  section = "python_tutorial"
+
+[[sections]]
 section = "devblog"
 title = "Dev blog"
 
-[[topbar]]
-section = "python-tutorial"
+[[sections]]
+section = "python_tutorial"
+bg = "/python_background"
 title = "Python tutorial"
 
-[[topbar]]
+[[sections]]
 section= "kun-norsk"
 title = "Kun norsk"
