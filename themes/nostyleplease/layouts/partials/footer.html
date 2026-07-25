@@ -1,5 +1,27 @@
+<style>
+  .spreader {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+  }
+</style>
+
 {{ if site.Params.theme_config.isShowFooter }}
-    {{ $footerContent := readFile "layouts/footer.md" }}
+{{ $footerContent := readFile "layouts/footer.md" }}
+
+{{ $sectionPosts := .CurrentSection.Pages.ByDate.Reverse }}
+
+<div class="spreader">
+{{ with $sectionPosts.Prev . }}
+  <div><span class="secondary-text">{{ lang.Translate "previous_post" }}</span></br> <a href="{{ .RelPermalink }}">{{ .Title }}</a></div>
+{{ end }}
+
+{{ with $sectionPosts.Next . }}
+  <div><span class="secondary-text">{{ lang.Translate "next_post" }}</span> </br> <a href="{{ .RelPermalink }}">{{ .Title }}</a></div>
+  {{ end }}
+
+</div>
+
     {{ if and $footerContent (ne $footerContent "") }}
         {{ $footerContent | markdownify }}
     {{ else }}
