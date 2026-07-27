@@ -142,8 +142,8 @@ hr {
   border: 0;
   margin: 2rem 0;
 
-  &:before { content: '-----' }
-  &:after { content: attr(data-content) '-----' }
+  &:before { content: '-_-_-_-_-_-_-_' }
+  &:after { content: attr(data-content) '-_-_-_-_-_-_-_-' }
 }
 
 pre {
