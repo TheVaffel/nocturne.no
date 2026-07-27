@@ -215,10 +215,10 @@ viser vi også at vi kan lage tekststrenger ved å bruke anførselstegn (`""`) o
 vi kan bruke bakoverskråstrek foran en apostrof (eller et anførselstegn) for å si at den ikke markerer
 slutten på strengen.
 ```
->>> en_streng = "rens fest"
->>> en_streng_til = "Politiet sa \\"hadet bra\\" på tape"
+>>> en_streng = "siden oppskåret brød"
+>>> en_streng_til = "Du er det beste som har skjedd meg "
 >>> en_streng_til + en_streng
-'Politiet sa "hadet bra" på taperens fest'`
+'Du er det beste som har skjedd meg siden oppskåret brød`
 ```
 
 Legg merke til at resultatstrengen bruker apostrofer og ikke anførselstegn. Dette er regnet som standard
