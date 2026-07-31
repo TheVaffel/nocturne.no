@@ -1,0 +1,33 @@
+@layer section {
+    .section_python_tutorial {
+
+        @mixin python-theme($--h2-color, $--h3-color) {
+            h2 {
+                color: $--h2-color;
+            }
+
+            h3 {
+                color: $--h3-color;
+            }
+        }
+
+        @mixin dark-appearance {
+            @include python-theme(#79a8ff, #6991dd); // modus-vivendi
+        }
+
+        @mixin light-appearance {
+            @include python-theme(#79a8ff, #6991dd); // modus-operandi
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root{ color-scheme: dark; }
+            @include dark-appearance;
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root{ color-scheme: light; }
+            @include light-appearance;
+
+        }
+    }
+};
