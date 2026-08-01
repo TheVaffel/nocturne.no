@@ -11,23 +11,12 @@
             }
         }
 
-        @mixin dark-appearance {
+        @media (prefers-color-scheme: dark) {
             @include python-theme(#79a8ff, #6991dd); // modus-vivendi
         }
 
-        @mixin light-appearance {
-            @include python-theme(#79a8ff, #6991dd); // modus-operandi
-        }
-
-        @media (prefers-color-scheme: dark) {
-            :root{ color-scheme: dark; }
-            @include dark-appearance;
-        }
-
         @media (prefers-color-scheme: light) {
-            :root{ color-scheme: light; }
-            @include light-appearance;
-
+            @include python-theme(#6988dd, #4961cd); // modus-operandi
         }
     }
 };
