@@ -1,12 +1,10 @@
 +++
 date = '2026-07-04T12:01:59+02:00'
 draft = true
-title = 'Innføring i Python'
+title = 'Innføring i programmering med Python'
+header_icon = "/python_tutorial_header_icon.svg"
 series = ['python_tutorial']
 +++
-
-
-## Innføring i programmering med Python
 
 Hei!
 
@@ -14,7 +12,6 @@ Dette er en innføring i programmering med programmeringsspråket Python. Målet
 
 
 Om dette hørtes interessant ut, kan du begynne med å lese [forordet](./preface) for en mer utfyllende introduksjon til denne bloggserien.
-
 
 
 Lykke til på reisen!

@@ -1,5 +1,4 @@
 {{ define "main" }}
-{{/* {{ partial "back_link.html" .}} */}}
 
 <article>
     <p class="post-meta">
@@ -8,7 +7,7 @@
         </time>
     </p>
 
-    <h2>{{ .Title }}</h2>
+    {{ partial "header-with-icon.html" . }}
 
     {{ if .Params.toc }}
         <aside {{ if .Params.tocBorder }} class="toc" {{ end }}>

@@ -1,5 +1,6 @@
 {{ define "main" }}
 
+{{ partial "header-with-icon.html" . }}
 {{ .Content }}
 {{ partial "post_list.html" (dict "context" . "section" .Section)}}
 {{ end }}

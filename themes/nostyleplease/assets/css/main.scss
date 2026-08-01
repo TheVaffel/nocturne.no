@@ -82,6 +82,21 @@
         padding-bottom: 2rem;
     }
 
+    .header-icon {
+        height: 1em;
+        width: auto;
+        margin: 0px;
+        vertical-align: center;
+    }
+
+    .header-with-icon {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 12px;
+    }
+
     .w {
         background-color: $--bg-color;
         border-radius: 1rem;

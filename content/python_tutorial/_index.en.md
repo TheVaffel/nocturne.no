@@ -1,12 +1,10 @@
 +++
 date = '2026-07-04T12:01:59+02:00'
 draft = true
-title = 'Python Tutorials'
+title = 'Introduction to Programming with Python'
+header_icon = "/python_tutorial_header_icon.svg"
 series = ['python_tutorial']
 +++
-
-
-## Introduction to Programming in Python
 
 Hey!
 
