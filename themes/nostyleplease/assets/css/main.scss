@@ -1,6 +1,7 @@
 @use "./layer_definition";
 @use "./navbar";
 @use "./section_python_tutorial";
+@use "./notice";
 
 // -------------- THEME SWITCHER -------------- //
 @mixin main-theme($--bg-color, $--primary-text-color, $--secondary-text-color, $--link-color, $--visited-link-color, $--highlight, $--h3-color, $--code-background, $--code-color) {

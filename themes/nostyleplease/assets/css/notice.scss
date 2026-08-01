@@ -1,0 +1,27 @@
+
+@mixin notice-theme ($--bg-color, $--text-color, $--border-color) {
+    .notice {
+        background-color: $--bg-color;
+        color: $--text-color;
+
+        border-radius: 20px;
+        border-style: solid;
+        border-thickness: 3px;
+        border-color: $--border-color;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin: 20px;
+
+        > p > code {
+            border-radius: 8px;
+        }
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    @include notice-theme(#eafa55, #000000, #2244ee); // modus-vivendi
+}
+
+@media (prefers-color-scheme: light) {
+    @include notice-theme(#eaea55, #000000, #2244ee); // modus-operandi
+}
