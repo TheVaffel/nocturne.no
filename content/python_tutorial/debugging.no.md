@@ -1,5 +1,5 @@
 +++
-date = '2021-07-21'
+date = '2021-04-24'
 draft = true
 title = 'Utviklingsprosessen og feilsøking'
 weight = 50
@@ -35,16 +35,16 @@ Det siste tipset til lesbarhet er å bruke <i>kommentarer</i>. Kommentarer er sk
 Kommentarer skrives som `# <kommentar>`. Når Python finner en firkant `#` på en linje, enten på starten av linjen eller etter faktisk Python-kode, vil den ignorere resten av linja etter `#`.
 
 For å ta et konkret eksempel, se på koden under:
-```
+```python
 if navn == 'Arne':
     print('Hei, Erna')
 ```
 
 Det kan hende det er åpenbart hva koden gjør her, men ikke nødvendigvis hvorfor programmereren valgte å skrive denne koden. En kommentar kan gjøre susen:
-```
+```python
 # Hvis brukeren heter Arne, reversér navnet og skriv en hilsen
 if navn == 'Arne':
-    print('Hei, Erna')`
+    print('Hei, Erna')
 ```
 Kanskje ikke en veldig givende kode å skrive, men vi har fått et litt bedre innblikk i hva programmereren tenkte da de skrev koden, ettersom de var greie nok til å etterlate seg en kommentar.
 
@@ -68,7 +68,7 @@ Fordi du i likhet med alle andre programmerere er et feilbarlig menneske, er sja
 Før Python begynner å kjøre programmet, vil den lese gjennom koden én gang for å <i>parse</i> den. Parsing går ut på å identifisere bestanddelene i programmet - Python finner ut hvilke tegn i koden som tilhører hvilke språklige konstruksjoner, for eksempel hva som er variabelnavn, hvilke paranteser som hører til hverandre, og hvor hvis-blokkene er og hva de inneholder. Det er under denne prosessen at det kan dukke opp <i>syntaksfeil</i>.
 
 Syntaksfeil betyr at programmet ikke oppfyller de grammatiske reglene til Python. Det kan være at du mangler en avsluttende parantes, at du ikke har indentert hvis-blokken eller lignende. I disse tilfellene vil Python være grei nok til å fortelle deg hvor i filen feilen ble funnet. Hvis du for eksempel glemmer et kolon etter hvis-linja slik som dette:
-```
+```python
 if 1 == 2
     print('1 er visst lik 2')
 ```

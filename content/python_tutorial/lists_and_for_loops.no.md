@@ -134,7 +134,7 @@ Merk: Når man sammenligner to bokstaver i Python og andre programmeringsspråk,
 ### `for`-løkker</h2>
 
 Det er et mønster vi har gjentatt mange ganger i eksemplene over, nemlig `while`-løkker på formen
-```
+```python
 i = 0
 while i < len(<liste>):
     ...
@@ -143,7 +143,7 @@ while i < len(<liste>):
 I tillegg til at man fort blir lei av å skrive de samme linjene om og om igjen, er det mange detaljer som kan være lette å glemme. Som et alternativ kan vi bruke `for`-løkker.
 
 `for`-løkker skrives på følgende måte:
-```
+```python
 for <iterasjonsvariabel> in <liste>:
     <løkkeblokk>
 ```
@@ -239,7 +239,7 @@ I de tilfellene der du ikke vet hvor mange iterasjoner løkken skal kjøres, vil
 ### Strenger som lister
 Vi kan også behandle strenger som lister, til en viss grad. For eksempel kan vi bruke indekser for å hente ut bestemte bokstaver av strengen:
 
-```
+```python
 streng = 'hallo'
 første_bokstav = streng[0]
 ```
@@ -291,7 +291,7 @@ for e in store_navn:
 
 Her har vi skrevet `store_navn` ved hjelp av listeinklusjon - `[e.upper() for e in navn]`. Variabelnavnet `e` som vi bruker inne i listeinklusjonen er et fritt valgt variabelnavn, på samme måte som at navnet på iterasjonsvariabelen i `for`-løkker er valgfritt. Vi kan oversette det som skjer i listeinklusjonen omtrent som "lag en liste som består av `e.upper()` for hvert element `e` i listen `navn`".
 
-Vi kan også spesifisere en betingelse i listeinklusjonen for å bare velge noen av elementene fra den gamle lista. Da ser listeinklusjonen slik ut: `{`[<verdi dedusert fra variabelnavn> for <variabelnavn> in <list> if <betingelse>]`}`. Med dette kan vi lage et program hvor vi f. eks. kaster bort navn med en assosiert alder som er for lav:
+Vi kan også spesifisere en betingelse i listeinklusjonen for å bare velge noen av elementene fra den gamle lista. Da ser listeinklusjonen slik ut: `[<verdi dedusert fra variabelnavn> for <variabelnavn> in <list> if <betingelse>]`. Med dette kan vi lage et program hvor vi f. eks. kaster bort navn med en assosiert alder som er for lav:
 ```python
 navneliste = ['Erna', 'Bent', 'Beelzebub']
 alderliste = [60, 50, 4521]
