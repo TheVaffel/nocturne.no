@@ -9,7 +9,7 @@
 {{ if site.Params.theme_config.isShowFooter }}
 {{ $footerContent := readFile "layouts/footer.md" }}
 
-{{ $sectionPosts := .CurrentSection.Pages.ByDate.Reverse }}
+{{ $sectionPosts := .CurrentSection.Pages.ByWeight.ByDate.Reverse }}
 
 <div class="spreader">
 {{ with $sectionPosts.Prev . }}
