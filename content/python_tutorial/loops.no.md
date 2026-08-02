@@ -44,7 +44,7 @@ i = 0
 while i < 5:
     print('Nå er i = ' + str(i))
 
-i += 1
+    i += 1
 ```
 
 Kjører vi denne koden, får vi følgende utputt:
@@ -83,9 +83,9 @@ Den siste gangen løkkeblokken kjøres, er `i` lik 4.
 Verdien skrives til skjerm og `i` økes til 5.
 Når Python så går tilbake til `while`-linja, finner
 den at betingelsen ikke lenger er oppfylt.
-Det er fordiulikhetsoperatoren `{`<`}` evalueres til usant hvis
+Det er fordiulikhetsoperatoren `<` evalueres til usant hvis
 de to sidene har samme verdi. Hvis vi ville inkludert tilfellet
-hvor de var like, kunne vi brukt `{`<=`}`.
+hvor de var like, kunne vi brukt `<=`.
 Etter å ha sett at løkkebetingelsen ikke er oppfylt,
 hopper Python til etter løkkeblokken, og programmet avsluttes.
 
@@ -152,7 +152,7 @@ while i <= 10:
     if i % 2 == 0:
         print(str(i) + ' er et partall')
 
-i += 1
+    i += 1
 ```
 
 Her har vi slengt en hvis-setning inn i `while`-løkken vår, som gjør at koden vår
@@ -194,11 +194,11 @@ while i <= 10:
     er_partall = i % 2 == 0;
     if er_partall:
         if i == 2:
-        print('2 er et partall, men det vet vi jo allerede')
-    else:
-        print(str(i) + ' er et partall')
+            print('2 er et partall, men det vet vi jo allerede')
+        else:
+            print(str(i) + ' er et partall')
 
-i += 1
+    i += 1
 ```
 
 Her har vi lagt til en ny hvis-setning inne i den foregående
@@ -255,7 +255,7 @@ i = 1
 while True:
     if i % 24 == 0 and i % 17 == 0:
         break
-i += 1
+    i += 1
 
 print('Tallet ' + str(i) + ' er delelig på 24 og 17')
 ```
@@ -303,11 +303,11 @@ i = 1
 while True:
     if i == 408:
         i += 1
-continue
+        continue
 
-if i % 24 == 0 and i % 17 == 0:
-    break
-i += 1
+    if i % 24 == 0 and i % 17 == 0:
+        break
+    i += 1
 
 print('Tallet ' + str(i) + ' er delelig på 24 og 17')
 ```

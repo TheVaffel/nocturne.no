@@ -92,8 +92,7 @@ i = 0
 sum = 0
 while i < len(liste):
     sum += liste[i]
-
-i += 1
+    i += 1
 
 print('Summen er', sum)
 ```
@@ -276,7 +275,7 @@ Her lager vi en ny liste hvor vi tar navnene fra den gamle listen og konverterer
 Med listeinklusjon definerer vi en liste på denne måten:
 
 ```python
-[<verdi dedusert fra variabelnavn> for <variabelnavn> in <liste>]
+[<utregning på element> for <elementnavn> in <liste>]
 ```
 
 Den nye lista blir definert med en rekke verdier som blir regnet ut, eller på en eller annen måte laget, fra elementene i en annen liste (eller iterator). Vi kan skrive om eksempelet over slik:

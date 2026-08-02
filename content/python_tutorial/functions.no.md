@@ -5,7 +5,7 @@ title = 'Funksjoner'
 weight = 70
 +++
 
-I denne posten tar vi for oss <i>funksjoner</i>{","} som lar oss dele koden vår inn i gjenbrukbare, mindre deler. Vi har allerede brukt funksjoner mange ganger; for eksempel er både `print()` og `int()` funksjoner. I denne posten skal vi se hvordan vi kan lage våre egne funksjoner, og diskutere hvilke tilfeller det gir mening å lage dem i. Vi skal også se nærmere på noen av funksjonene vi har brukt i tidligere poster.
+I denne posten tar vi for oss <i>funksjoner</i> som lar oss dele koden vår inn i gjenbrukbare, mindre deler. Vi har allerede brukt funksjoner mange ganger; for eksempel er både `print()` og `int()` funksjoner. I denne posten skal vi se hvordan vi kan lage våre egne funksjoner, og diskutere hvilke tilfeller det gir mening å lage dem i. Vi skal også se nærmere på noen av funksjonene vi har brukt i tidligere poster.
 
 I bunn og grunn er en funksjon en blokk med kode som har et eget navn. På samme måte som vi kan bruke navnet på en variabel til å referere til variabelens verdi, kan vi bruke navnet på en funksjon til å kjøre koden i funksjonen. Vi lager en funksjon på denne måten:
 ```python
@@ -93,10 +93,10 @@ def hent_fødselsår():
     return int(brukerinnputt)
 
 fødselsår = hent_fødselsår()
-while fødselsår < 1900 or fødselsår > 2026:
-print('Fødselsåret er ugyldig!')
 
-fødselsår = hent_fødselsår()
+while fødselsår < 1900 or fødselsår > 2026:
+    print('Fødselsåret er ugyldig!')
+    fødselsår = hent_fødselsår()
 
 alder_i_år = 2026 - fødselsår
 print('Du fyller ' + str(alder_i_år) + ' år i år!')
@@ -182,7 +182,7 @@ def si_hei(navn, med_entusiasme):
     if med_entusiasme:
         print('HALLO ' + navn + ', FY FLATE SÅ GLAD JEG ER FOR Å SE DEG!')
     else:
-        print('Hallo ' + navn + '!');
+        print('Hallo ' + navn + '!')
 ```
 
 Det nye argumentet er `med_entusiasme`, som er en boolsk variabel (altså må den inneholde enten `True` eller `False`). Dersom `med_entusiasme` er sann (`True`), kommer `si_hei` til å skrive en entusiastisk hilsen til brukeren. Hvis argumentet er usant, får brukeren kun en moderat entusiastisk hilsen. For å kalle funksjonen må vi nå skrive f. eks.
@@ -211,9 +211,9 @@ def si_hei(navn, med_entusiasme=True, med_hjerter=True):
         print('Hallo ' + navn + '!');
 
     if med_hjerter:
-        print('\\u2665\\u2665\\u2665')
+        print('❤️❤️❤️')
 ```
-Det nye argumentet heter `med_hjerter`, og vi har satt standardverdien til `True`, under antakelsen om at mer er bedre. Hvis dette argumentet er sant, skrives tre hjerter til skjermen på linjen etter hilsenen. Hjertene kan skrus av og på uavhengig av entusiasme-argumentet. Her har vi brukt <i>unicode</i>-koding for å spesifisere hjertene. Unicode-koding lar deg putte spesialtegn inn i strenger ved å skrive `{`\\uxxxx`}`, hvor `x`-ene er koden for spesialtegnet du ønsker. For å finne koden for et tegn, kan du for eksempel søke på <a href="https://unicode-table.com/">unicode-table.com</a>. `2665` er koden for hjerte.
+Det nye argumentet heter `med_hjerter`, og vi har satt standardverdien til `True`, under antakelsen om at mer er bedre. Hvis dette argumentet er sant, skrives tre hjerter til skjermen på linjen etter hilsenen. Hjertene kan skrus av og på uavhengig av entusiasme-argumentet.
 
 Nå kan vi kalle funksjonen med ett, to eller tre argumenter:
 ```python
@@ -224,7 +224,7 @@ si_hei('Arne', False, False)
 
 Men hva nå om vi er sikre på at vi <i>ikke</i> vil ha hjerter, men er likegyldige til hvor entusiastisk resten av meldingen er, slik at vi bare vil bruke standardverdien for entusiasmeargumentet? Hvordan oppgir vi verdi på et spesifikt standardargument uten å måtte bry oss med alle standardargumentene som kommer først? Det er her <i>navngitte</i> argumenter kommer inn i bildet:
 
-Når du kaller en funksjon, kan du spesifisere verdi for bare noen spesifikke standardargumenter ved å skrive `{`<argumentnavn>=<verdi>`}` i funksjonskallet. Dette kaller vi <i>navngitte</i> argumenter. For å tilfredsstille de spesifikke preferansene nevnt over kan vi skrive følgende:
+Når du kaller en funksjon, kan du spesifisere verdi for bare noen spesifikke standardargumenter ved å skrive `<argumentnavn>=<verdi>` i funksjonskallet. Dette kaller vi <i>navngitte</i> argumenter. For å tilfredsstille de spesifikke preferansene nevnt over kan vi skrive følgende:
 ```python
 si_hei('Arne', med_hjerter=False)
 ```
@@ -313,6 +313,6 @@ Flere av disse oppgavene går ut på å lage nye funksjoner. Det anbefales at du
 
 3. Gjør oppgave 3 om BMI i <a href="/no/introduksjon_til_python/brukerinteraksjon_og_betingelser">posten om brukerinteraksjon</a>, hvor du bruker separate funksjoner for brukerinnputt (én hver for henholdsvis høyde og vekt), utregning av BMI og tilbakemelding til brukeren basert på den utregnede BMIen.
 
-4. Lag en funksjon `skriv_stjerner(n)` som skriver en linje med `n` stjerner på skjermen, hvor `n` er et tallargument som sendes inn. F. eks. skal kallet `skriv_stjerner(5)` skrive `*****` på skjermen. (Hint: Bruk `{`end=''`}` som argument i `print`-funksjonen).
+4. Lag en funksjon `skriv_stjerner(n)` som skriver en linje med `n` stjerner på skjermen, hvor `n` er et tallargument som sendes inn. F. eks. skal kallet `skriv_stjerner(5)` skrive `*****` på skjermen. (Hint: Bruk `end=''` som argument i `print`-funksjonen).
 
 5. (Vanskelig) Fibonacci-tallene er tallrekken som starter med `F(0) = 1` og `F(1) = 1`, og fortsetter med `F(n) = F(n - 1) + F(n - 2)` for alle heltall `n` høyere enn 1. Lag en funksjon som regner ut det `n`-te Fibonacci-tallet. (<i>Hint: Det kan løses med minst mulig arbeid ved å lage som en <b>rekursiv</b> funksjon, en funksjon som kaller seg selv i funksjonsblokken. Pass på at funksjonen ikke kaller seg selv igjen og igjen i det uendelige</i>).
