@@ -21,6 +21,7 @@ title = "Dev blog"
 [[sections]]
 section = "python_tutorial"
 bg = "/python_background"
+header_icon = "/python_tutorial_header_icon.svg"
 title = "Python tutorial"
 
 [[sections]]

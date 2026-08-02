@@ -1,7 +1,10 @@
 
+
+{{ $section_data := (index (where (index hugo.Data.sections "sections") "section" .Section) 0) }}
+{{ $header_icon_path := $section_data.header_icon }}
 <h2 class="header-with-icon">
-  {{- if .Params.header_icon -}}
-  <img class="header-icon" src="{{.Params.header_icon}}" />
+  {{- if $header_icon_path -}}
+  <img class="header-icon" src="{{ $header_icon_path }}" />
   {{- end -}}
   {{ .Title }}
 </h2>
