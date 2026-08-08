@@ -81,11 +81,11 @@ innfil.close()
 utfil = open('utfil.txt', 'w')
 
 inntekst = inntekst.strip()
-inntekst_linjer = inntekst.split('\\n')
+inntekst_linjer = inntekst.split('\n')
 
 for i in range(len(inntekst_linjer)):
     if i % 2 == 0:
-        utfil.write(inntekst_linjer[i] + '\\n')
+        utfil.write(inntekst_linjer[i] + '\n')
 
 utfil.close()
 ```
@@ -155,7 +155,7 @@ Her er et eksempel på hvordan en `try`-`except`-blokk kan se ut i praksis.
 ```python
 try:
     with open('navn.txt') as fil:
-    navn = fil.readline()
+        navn = fil.readline()
 except:
     print('Kunne ikke lese navnet fra navn.txt, antar at navnet er Arne.')
     navn = 'Arne'
@@ -187,7 +187,7 @@ For å se hvordan dette kan se ut i praksis, kan vi skrive om koden over til å 
 ```python
 def finn_navn(filnavn):
     with open(filnavn) as fil:
-        navn = fil.readline()
+        return fil.readline()
 
 filnavn = 'navn.txt'
 
@@ -240,9 +240,10 @@ Så hvordan vet vi som programmerere hvilken unntakstype vi er interessert i? N�
 
 Hvis vi for eksempel prøver å åpne en fil som ikke finnes, vil Python si noe slikt som
 ```
-    Traceback (most recent call last):
-File "except.py", line 6, in <module>
-    open('john_cena.jpg')
+Traceback (most recent call last):
+  File "/home/haakon/External/nocturne.no/./test.py", line 1, in <module>
+    with open('john_cena.jpg') as fil:
+         ~~~~^^^^^^^^^^^^^^^^^
 FileNotFoundError: [Errno 2] No such file or directory: 'john_cena.jpg'
 ```
 
