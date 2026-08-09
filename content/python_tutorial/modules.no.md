@@ -62,7 +62,7 @@ print('Du kastet en terning og fikk tallet', tilfeldig_tall)
 
 Det er alt! Det er altså ikke mye som skal til hvis du vil lage litt spenning i hverdagen til brukerne dine, eller av en eller annen grunn ikke vil at et program skal være deterministisk.
 
-<div class="notice>
+<div class="notice">
 
 Strengt tatt vil programmene våre fortsatt være deterministiske selv om vi bruker `random`-modulen. Datamaskiner er fundamentalt deterministiske, som betyr at vi ikke kan be den "velge" noe tilfeldig. `random`-modulen starter med et tall som <i>ser</i> tilfeldig ut, typisk klokkeslettet i nanosekunder på datamaskinen, og gjør en rekke innfløkte matematiske operasjoner på dette tallet for å lage nye tall som ser tilfeldige ut for brukeren. Slik oppførsel kalles <i>pseudotilfeldig</i> (engelsk: <b>pseudorandom</b>), og er den vanlige måten å lage tilfeldig oppførsel på.
 
