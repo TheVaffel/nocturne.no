@@ -5,7 +5,6 @@ title = 'Moduler'
 weight = 110
 +++
 
-
 Hei igjen! Dette blir den siste posten hvor vi fokuserer på å introdusere nye elementer i denne serien. I neste post kommer vi til å lage et mer sammensatt eksempel hvor vi bruker mye av det vi har lært i et sammensatt prosjekt.
 
 Men før det må vi gå igjennom <i>moduler</i>. Moduler er døråpneren som lar oss lage alle mulige slags programmer ved å ta i bruk kode skrevet av andre. Moduler eller lignende konsepter finnes i alle seriøse programmeringsspråk og går ofte under navnet <i>biblioteker</i> (engelsk: <b>libraries</b>).
