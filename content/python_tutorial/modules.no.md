@@ -51,7 +51,7 @@ Når vi omsider har funnet funksjonen vi vil bruke, er det bare å skrive det in
 tilfeldig_tall = random.randint(1, 6)
 ```
 
-Vi bruker altså syntaksen `{`<modulnavn>.<funksjonsnavn>(<argumenter>)`}` når vi kaller en funksjon som ligger i en modul. Som vi allerede har diskutert, gir funksjonskallet vårt et tilfeldig heltall mellom 1 og 6, inklusiv.
+Vi bruker altså syntaksen `<modulnavn>.<funksjonsnavn>(<argumenter>)` når vi kaller en funksjon som ligger i en modul. Som vi allerede har diskutert, gir funksjonskallet vårt et tilfeldig heltall mellom 1 og 6, inklusiv.
 
 Den siste linja tilfører ikke noe nytt til diskusjonen, så vi hopper rett til å vise hele programmet i sin fulle herlighet:
 ```python
@@ -218,7 +218,8 @@ Dersom det foregående steget fungerte, gratulerer! `requests` er blitt installe
 Vi begynner med å sende en enkel HTTP GET-forespørsel til nocturne.no. Ikke vær redd om disse begrepene er fremmede for deg - nettverk og forespørsler kunne vært et eget kapittel i denne bloggen. Her hopper vi over alle detaljer og viser bare hvordan vi kan sende enkle forespørsler. Om du er interessert, kan du lese dokumentasjonen til `requests` her: <a href="https://docs.python-requests.org/en/master/index.html">https://docs.python-requests.org/en/master/index.html</a>.
 
 For å sende en GET-forespørsel, bruker vi bare funksjonen `get()` i `requests`-modulen. `get`-funksjonen kan ta flere argumenter, men bare ett er obligatorisk: URLen. URL (<b>U</b>niform <b>R</b>esource <b>L</b>ocator) er rett og slett bare en nettadresse, slik som dem man skriver inn i nettleseren for å komme til en nettside. URLen vi skal bruke i dette eksempelet er `https://nocturne.no/hei`. Her er `nocturne.no` <i>domenenavnet</i> og `/hei` er <i>stien</i> (engelsk: <b>path</b>). Stien er ikke tilfeldig, serveren som er vert for nocturne.no er programmert til å gi en respons når noen sender en GET-forespørsel til `/hei`-stien. Nok snakk - på tide med litt kode:
-```import requests
+```python
+import requests
 respons = requests.get('https://nocturne.no/hei')
 
 meldingsobjekt = respons.json()
@@ -291,7 +292,6 @@ vindu.mainloop()
 ```
 
 Kjører man denne koden, får man opp et tomt vindu på skjermen. En god start!
-
 
 La oss gjøre noen kosmetiske endringer på vinduet. Først kan vi kalle medlemsfunksjonen `title()` på vinduet med et strengargument for å gi det en tittel som vil vises på den øverste kanten av vinduet. Noen egenskaper ved vinduet kan vi også endre ved å indeksere på strenger i objektet som om det var en tabell. For å for eksempel endre bakgrunnsfargen til vinduet kan vi sette verdien på indeks `'bg'` til for eksempel `'red'`. Skrevet rett ut blir de to eksemplene over seende slik ut:
 ```python
@@ -393,8 +393,8 @@ Og en annen fil som heter `superhei.py` med innholdet
 import hei
 
 def superhei(antall):
-for i in range(antall):
-hei.si_hei()
+    for i in range(antall):
+        hei.si_hei()
 ```
 
 så kan du lage en hovedfil, f. eks. `hoved.py` som ser slik ut:
