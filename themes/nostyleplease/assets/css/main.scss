@@ -161,6 +161,10 @@
         &:after { content: attr(data-content) '-_-_-_-_-_-_-_-' }
     }
 
+    .shell > pre > code > span {
+        &:before { content: '$ ' }
+    }
+
     pre {
         padding: 1em;
         overflow-x: auto; /* Fix pre content overflowing parent without scroll bar */
