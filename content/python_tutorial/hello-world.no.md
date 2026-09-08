@@ -82,7 +82,7 @@ en distribusjon som ikke er Debian-basert, vil du sannsynligvis klare å install
 vanlige pakkesystemet for den distribusjonen (f. eks. `yum` i stedet for `apt`).
 
 Åpne en terminal og skriv
-```
+```sh { class="shell" }
 sudo apt install python
 ```
 Skriv inn administratorpassordet, og vent til det er ferdig installert.
