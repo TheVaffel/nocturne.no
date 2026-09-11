@@ -15,10 +15,8 @@ to find and read posts that I create". By the time you read this post, this blog
 meaning that if you expect everything to work and feel the way this blog does after you have read this post, I have bad news for you. In addition,
 this being the first post on my blog, I may or may not make up things about my blog as we go.
 
-<div class="notification>
-
+<div class="notice">
 This post is not a wine, in that it has aged quite poorly. The blog you are reading is no longer based on the foundations described herein. However, although the author has taken better technical (and life) choices since its conception, the post still describes a somewhat viable approach to blogging, and it still delivers inspiration and ill omens as ever before.
-
 </div>
 
 #### Prerequisites

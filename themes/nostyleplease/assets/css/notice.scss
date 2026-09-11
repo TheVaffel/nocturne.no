@@ -10,6 +10,8 @@
         border-color: $--border-color;
         padding-left: 20px;
         padding-right: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
         margin: 20px;
 
         > p > code {
@@ -19,9 +21,9 @@
 }
 
 @media (prefers-color-scheme: dark) {
-    @include notice-theme(#eafa55, #000000, #2244ee); // modus-vivendi
+    @include notice-theme(#EECC33, #000000, #FFFF00); // modus-vivendi
 }
 
 @media (prefers-color-scheme: light) {
-    @include notice-theme(#eaea55, #000000, #2244ee); // modus-operandi
+    @include notice-theme(#ffcc11, #000000, #DDDD00); // modus-operandi
 }
