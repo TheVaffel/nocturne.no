@@ -1,6 +1,5 @@
 +++
 date = '2021-04-17'
-draft = true
 title = 'Den interaktive konsollen og variabler'
 weight = 30
 +++

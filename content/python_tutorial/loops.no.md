@@ -1,6 +1,5 @@
 +++
 date = '2021-04-25'
-draft = true
 title = 'Løkker'
 weight = 60
 +++

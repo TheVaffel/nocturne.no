@@ -1,6 +1,5 @@
 +++
 date = '2021-04-10'
-draft = true
 title = 'Hallo, verden!'
 weight = 20
 +++

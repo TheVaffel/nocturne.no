@@ -1,6 +1,5 @@
 +++
 date = '2021-04-21'
-draft = true
 title = 'Brukerinteraksjon og betingelser'
 weight = 40
 +++

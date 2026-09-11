@@ -1,6 +1,5 @@
 +++
 date = '2021-06-06'
-draft = true
 title = 'Tupler og tabeller'
 weight = 90
 +++

@@ -1,6 +1,5 @@
 +++
 date = '2026-07-04T12:01:59+02:00'
-draft = true
 title = 'Introduction to Programming with Python'
 series = ['python_tutorial']
 +++

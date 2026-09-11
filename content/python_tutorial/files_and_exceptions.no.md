@@ -1,6 +1,5 @@
 +++
 date = '2021-06-25'
-draft = true
 title = 'Filer og unntak'
 weight = 100
 +++

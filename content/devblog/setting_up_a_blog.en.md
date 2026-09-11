@@ -1,6 +1,5 @@
 +++
 date = '2021-02-23'
-draft = true
 title = 'Setting up a Blog - Part 1'
 +++
 

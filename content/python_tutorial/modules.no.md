@@ -1,6 +1,5 @@
 +++
 date = '2021-07-15'
-draft = true
 title = 'Moduler'
 weight = 110
 +++

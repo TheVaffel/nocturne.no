@@ -1,6 +1,5 @@
 +++
 date = '2021-09-11'
-draft = true
 title = 'Lingvistisk analyse'
 weight = 120
 +++

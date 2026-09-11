@@ -1,6 +1,5 @@
 +++
 date = '2021-04-24'
-draft = true
 title = 'Utviklingsprosessen og feilsøking'
 weight = 50
 +++

@@ -1,6 +1,5 @@
 +++
 date = '2021-05-23'
-draft = true
 title = 'Lister og for-løkker'
 weight = 80
 +++
