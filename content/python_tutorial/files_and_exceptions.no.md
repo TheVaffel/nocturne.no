@@ -42,7 +42,7 @@ En alternativ måte å lese gjennom tekstfiler på, er å bruke `for`-løkker. N
 
 
 <div class="notice">
-Obs: Du kan ikke bruke både `read()`-funksjonen og `for`-løkkeiterasjon på det samme filobjektet. Filobjektet "husker" hva som har blitt lest og fortsetter fra der den slapp i neste leseoperasjon. Dersom du fortsetter fra koden over, må du derfor enten erstatte `read()`-kallet med løkken, eller lukke fila (se under) og åpne den på nytt.
+Obs: Du kan ikke bruke både <code>read()</code> -funksjonen og <code>for</code> -løkkeiterasjon på det samme filobjektet. Filobjektet "husker" hva som har blitt lest og fortsetter fra der den slapp i neste leseoperasjon. Dersom du fortsetter fra koden over, må du derfor enten erstatte <code>read()</code> -kallet med løkken, eller lukke fila (se under) og åpne den på nytt.
 </div>
 
 Her er et eksempel hvor vi skriver filen ut til skjerm ved hjelp av en `for`-løkke:
