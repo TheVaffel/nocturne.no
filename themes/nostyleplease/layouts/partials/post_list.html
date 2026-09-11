@@ -1,7 +1,14 @@
 {{- $posts := "" -}}
 
 {{- if .section -}}
-    {{- $posts = (where (where site.AllPages "Section" .section) "Kind" "page") -}}
+    {{- $fullPageList := slice -}}
+    {{ range hugo.Sites }}
+        {{ range .Pages }}
+            {{ $fullPageList = append . $fullPageList }}
+        {{ end }}
+    {{ end }}
+
+    {{- $posts = (where (where $fullPageList "Section" .section) "Kind" "page") -}}
 {{- else -}}
     {{- if (eq .context.Kind "taxonomy") -}}
        {{- $posts = .context.Pages -}}
